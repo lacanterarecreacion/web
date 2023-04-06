@@ -4,10 +4,12 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "devp": "astro build && npm run postbuild && npm run preview",
     "start": "astro dev",
     "build": "astro build",
+    "postbuild": "pagefind --source dist/ --force-language es",
     "preview": "astro preview",
-    "astro": "astro"
+    "update-videos": "node --experimental-fetch scripts/updateVideos.mjs"
   },
   "devDependencies": {
     "@astrojs/mdx": "0.18.2",
