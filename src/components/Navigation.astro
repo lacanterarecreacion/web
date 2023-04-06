@@ -1,0 +1,45 @@
+---
+// remove the first "/"
+// const currentPath = pathname.slice(1);
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<nav aria-label="Top">
+  <a class={pathname === "/" ? "active" : ""} rel="prefetch" href="/">Inicio</a>
+  <a
+    class={pathname === "/sobre-cantera"
+      ? "active"
+      : "" || pathname.includes("/sobre-cantera")
+      ? "active"
+      : ""}
+    rel="prefetch"
+    href="/sobre-cantera"
+  >
+    Sobre Cantera
+  </a>
+  <a
+    class={pathname === "/contacto"
+      ? "active"
+      : "" || pathname.includes("/contacto")
+      ? "active"
+      : ""}
+    rel="prefetch"
+    href="/contacto"
+  >
+    Contacto
+  </a>
+</nav>
+
+<style>
+  nav {
+    @apply mx-auto pr-12 px-4 gap-x-6 w-full flex justify-between items-center;
+  }
+
+  nav a {
+    @apply text-lg text-left hover:text-orange-600 duration-300 font-bold text-gray-900  font-sans;
+  }
+
+  nav a.active {
+    @apply text-orange-600;
+  }
+</style>
