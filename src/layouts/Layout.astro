@@ -61,7 +61,7 @@ const pathname = new URL(Astro.request.url).pathname;
     <header
       class="sticky shadow-md bg-white/90 py-0.5 lg:py-2 top-0 left-0 flex justify-between right-0 z-50 backdrop-blur-sm"
     >
-      <div class="flex items-center translate-x-6 md:-translate-x-1">
+      <div class="flex items-center">
         <a href="/" rel="prefetch">
           <Logo />
           <span class="sr-only">Madejandola</span>
@@ -95,7 +95,7 @@ const pathname = new URL(Astro.request.url).pathname;
       </a>
       </div>
     </header>
-    <div data-pagefind-ignore>
+    <div data-pagefind-ignore class="overflow-x-hidden relative">
       <slot />
     </div>
     <!-- <a
