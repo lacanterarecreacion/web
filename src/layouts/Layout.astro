@@ -21,7 +21,8 @@ import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header/Header.astro";
 import MainLayout from "./MainLayout.astro";
 import Navigation from "@/components/Navigation/Navigation.astro";
-import Offcanvas from "@/components/Offcanvas";
+// import Offcanvas from "@/components/Offcanvas";
+import Offcanvas from "@/components/Offcanvas.vue";
 
 const {
   title,
@@ -52,7 +53,7 @@ const pathname = new URL(Astro.request.url).pathname;
     ></script>
   </head>
   <body class="w-full text-gray-900 bg-white">
-    <Offcanvas client:load>
+    <Offcanvas client:visible>
       <Navigation />
       <CallToActions/>
     </Offcanvas>

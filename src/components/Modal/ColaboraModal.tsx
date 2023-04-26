@@ -17,7 +17,7 @@ export default function MyModal() {
       <button
         type="button"
         onClick={openModal}
-        className="btn red !text-xs"
+        className="btn blue !text-xs"
       >
         Colaborá
       </button>

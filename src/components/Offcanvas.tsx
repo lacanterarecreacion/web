@@ -48,7 +48,7 @@ export default function Offcanvas({ children }: { children: any }) {
           onClick={closeModal}
           className={`OffcanvasNav OffcanvasNavRight ${
             !show
-              ? "translate-x-full pointer-events-none"
+              ? "translate-x-full pointer-events-none hidden"
               : "translate-x-0 pointer-events-auto"
           } `}
         >

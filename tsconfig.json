@@ -10,22 +10,42 @@
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "baseUrl": ".",
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "jsxImportSource": "react",
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/lib/*": ["src/lib/*"],
-      "@/layouts/*": ["src/layouts/*"],
-      "@/styles/*": ["src/styles/*"],
-      "@/src/*": ["src/*"],
-      "@/utils/*": ["src/utils/*"],
-      "@/modules/*": ["src/modules/*"],
-      "@/types/*": ["src/types/*"]
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/lib/*": [
+        "src/lib/*"
+      ],
+      "@/layouts/*": [
+        "src/layouts/*"
+      ],
+      "@/styles/*": [
+        "src/styles/*"
+      ],
+      "@/src/*": [
+        "src/*"
+      ],
+      "@/utils/*": [
+        "src/utils/*"
+      ],
+      "@/modules/*": [
+        "src/modules/*"
+      ],
+      "@/types/*": [
+        "src/types/*"
+      ]
     }
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 }
