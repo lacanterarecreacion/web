@@ -24,7 +24,7 @@ const solutions = [
 
 export default function Example() {
   return (
-    <div className="hidden lg:flex">
+    <div className="hidden xl:flex">
       <Popover className="relative">
         {({ open }) => (
           <>
@@ -56,16 +56,16 @@ export default function Example() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute right-0 z-10 mt-6 w-screen max-w-sm -translate-x-0 transform px-4 sm:px-0 ">
+              <Popover.Panel className="absolute right-0 z-10 w-screen max-w-sm px-4 mt-6 transform -translate-x-0 sm:px-0 ">
                 <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                   <div className="relative grid gap-8 bg-white p-7 lg:grid-cols-1">
                     {solutions.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
-                        className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                        className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
                       >
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
+                        <div className="flex items-center justify-center w-10 h-10 text-white shrink-0 sm:h-12 sm:w-12">
                           <item.icon aria-hidden="true" />
                         </div>
                         <div className="ml-4">

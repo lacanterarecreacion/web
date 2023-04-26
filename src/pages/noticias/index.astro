@@ -20,7 +20,7 @@ import GrainOne from "@/components/Grain/GrainOne.astro";
     noticias && (
       <div class="grid mt-12 pb-24 max-w-6xl mx-auto lg:grid-cols-3 gap-6">
         {noticias.map((post: Post) => (
-          <a href={`noticias/${post.slug?.current}`}>
+          <a href={`/noticias/${post.slug?.current}`}>
             {post.mainImage ? (
               <PlaceholderImage
                 title={post.title}
