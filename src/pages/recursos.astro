@@ -21,7 +21,7 @@ const calendario = await useSanityClient().fetch(
       <div class="grid mt-32 max-w-2xl min-h-screen mx-auto lg:grid-cols-1 gap-6">
         {calendario.map((post: any) => (
           <a href="#">
-            <h3 class="text-2xl">{post.title}</h3>
+            <span class="text-2xl">{post.title}</span>
           </a>
         ))}
       </div>
