@@ -2,20 +2,24 @@
 import Logo from "@/components/Icons/Logo.astro";
 import Navigation from "@/components/Navigation/Navigation.astro";
 import CallToActions from "./CallToActions.astro";
+import GrainOne from "../Grain/GrainOne.astro";
 ---
 
 <header
   id="headroom"
-  class="fixed shadow-md bg-white/90 py-0.5 lg:py-2 top-0 left-0 flex justify-between right-0 z-50 backdrop-blur-sm"
+  class="fixed shadow-md bg-white py-0.5 lg:py-2 top-0 left-0 flex justify-between right-0 z-50"
 >
-  <div class="max-w-7xl mx-auto flex items-center justify-between w-full">
-    <div class="flex items-center pl-1 md:pl-0">
-      <a href="/" rel="prefetch">
-        <Logo />
-        <span class="sr-only">La Cantera</span>
-      </a>
-    </div>
-    <div class="hidden xl:flex items-center gap-3 lg:pr-6 flex-col">
+  <div
+    class="max-w-7xl px-2 md:px-0 relative z-10 mx-auto flex items-center justify-between w-full"
+  >
+    <a href="/" rel="prefetch" class="flex justify-start items-center pl-1 md:pl-0">
+      <Logo />
+      <div class="hidden sm:flex flex-col ml-2 md:ml-4">
+        <span class="font-title text-2xl">La Cantera</span>
+        <span class="font-sans hidden lg:flex text-sm">Proyectos en el campo de la recreación</span>
+      </div>
+    </a>
+    <div class="hidden xl:flex items-center gap-2 flex-col">
       <CallToActions />
       <Navigation />
     </div>
@@ -53,13 +57,15 @@ import CallToActions from "./CallToActions.astro";
   }
 
   .headroom--unpinned {
-    opacity: 0;
-    transition-delay: 0s;
+    @apply !bg-white;
+    /* opacity: 0; */
+    /* transition-delay: 0s; */
   }
 
   @screen md {
     .headroom--unpinned {
       /* transform: translateY(-100%);*/
+      opacity: 0;
       background: transparent !important;
       backdrop-filter: blur(0) !important;
       pointer-events: none;
@@ -72,7 +78,7 @@ import CallToActions from "./CallToActions.astro";
   }
   .headroom--pinned {
     position: fixed;
-    @apply bg-opacity-60;
+    @apply bg-opacity-90 backdrop-blur-lg;
     transform: translateY(0%);
   }
 </style>

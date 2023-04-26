@@ -8,6 +8,7 @@ import "@fontsource/inter/300.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
+import "@fontsource/sigmar-one";
 import "@fontsource/unbounded";
 import "@fontsource/unbounded/300.css";
 import "@fontsource/unbounded/500.css";
@@ -23,6 +24,7 @@ import MainLayout from "./MainLayout.astro";
 import Navigation from "@/components/Navigation/Navigation.astro";
 // import Offcanvas from "@/components/Offcanvas";
 import Offcanvas from "@/components/Offcanvas.vue";
+
 
 const {
   title,
@@ -48,7 +50,7 @@ const pathname = new URL(Astro.request.url).pathname;
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
-
+    <link href="https://fonts.cdnfonts.com/css/slayer" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"
     ></script>
   </head>
