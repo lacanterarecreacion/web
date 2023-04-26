@@ -1,0 +1,52 @@
+---
+import { useSanityClient } from "astro-sanity";
+import moment from "moment";
+import Layout from "@/layouts/Layout.astro";
+import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderImage.astro";
+import PortableText from "@/components/PortableText.astro";
+import type { Post } from "@/types/interfaces";
+
+interface Props extends Post {}
+
+export async function getStaticPaths() {
+  const noticias = await useSanityClient().fetch(`*[_type == "noticias"]`);
+  return noticias.map((post: Post) => {
+    return {
+      params: {
+        slug: post.slug?.current || "",
+      },
+      props: { ...post },
+    };
+  });
+}
+const { title, body, mainImage, publishedAt } = Astro.props as Props;
+---
+
+<Layout title={title}>
+  <div
+    class="h-screen bg-gradient-to-br flex justify-center items-center relative overflow-hidden from-pink-600 to-blue-600"
+  >
+    <div class="text-white text-center">
+      <h1 class="relative font-mono text-6xl z-10">{title}</h1>
+      <p class="mt-6">
+        Publicado el
+        <time datetime={publishedAt}>
+          {moment(publishedAt).locale("es").format("MMMM Do YYYY")}
+          <!-- {format(date, "do LLLL, yyyy")} -->
+        </time>
+      </p>
+    </div>
+    <div class="absolute z-0 opacity-20 inset-0 object-cover w-full">
+      <PlaceholderImage
+        customClass="!h-screen"
+        title={title}
+        width={1820}
+        height={1200}
+        image={mainImage}
+      />
+    </div>
+  </div>
+  <article class="prose prose-lg max-w-3xl mx-auto pb-24 mt-12" id="article">
+    <PortableText portableText={body} />
+  </article>
+</Layout>

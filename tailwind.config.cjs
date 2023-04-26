@@ -1,13 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-	theme: {
-		fontFamily: {
-			sans: ["Alegreya Sans", "sans"],
-			serif: ["Alegreya", "sans-serif"],
-			mono: ["Alegreya SC", "sans-serif"],
-		},
-	},
+  theme: {
+    fontFamily: {
+      sans: ["Inter", "sans"],
+      serif: ["Alegreya", "sans-serif"],
+      mono: ["Unbounded", "sans-serif"],
+    },
+  },
   corePlugins: {
     aspectRatio: false,
   },

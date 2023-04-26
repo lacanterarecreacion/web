@@ -1,9 +1,5 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { getCollection } from "astro:content";
-import PageFindSearch from "../components/PageFind/PageFindSearch.astro";
-import BlogList from "../components/PageFind/List.astro";
-const allVideos = await getCollection("tramas");
+import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Buscar videos">
@@ -14,7 +10,5 @@ const allVideos = await getCollection("tramas");
     <h2 class="px-6 mb-2 font-sans text-lg md:text-xl font-light text-left">
       Escriba en el buscador y aguarde a que aparezcan los resultados.
     </h2>
-    <PageFindSearch />
-    <BlogList posts={allVideos} />
   </div>
 </Layout>

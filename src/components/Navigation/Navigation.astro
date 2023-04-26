@@ -1,0 +1,61 @@
+---
+// remove the first "/"
+// const currentPath = pathname.slice(1);
+import DropdownInstitucional from "./DropdownInstitucional";
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<nav aria-label="Top">
+  <DropdownInstitucional client:load />
+  <a class={pathname === "/recursos" ? "active" : ""} rel="prefetch" href="/recursos">
+    Recursos
+  </a>
+  <a
+    class={pathname === "/noticias" ? "active" : ""}
+    rel="prefetch"
+    href="/noticias"
+  >
+    Noticias
+  </a>
+  <a class={pathname === "/servicios" ? "active" : ""} rel="prefetch" href="/servicios  ">
+    Servicios
+  </a>
+  <a
+    class={`${
+      pathname === "/institucional/quienes-somos"
+        ? "active"
+        : "" || pathname.includes("/institucional/quienes-somos")
+        ? "active"
+        : ""
+    } flex lg:hidden`}
+    rel="prefetch"
+    href="/institucional/quienes-somos"
+  >
+    Institucional
+  </a>
+  <a
+    class={pathname === "/contacto"
+      ? "active"
+      : "" || pathname.includes("/contacto")
+      ? "active"
+      : ""}
+    rel="prefetch"
+    href="/contacto"
+  >
+    Contacto
+  </a>
+</nav>
+
+<style>
+  nav {
+    @apply mx-auto gap-x-2 md:gap-x-6 w-full flex justify-between items-center;
+  }
+
+  nav a {
+    @apply py-2 text-left hover:text-orange-600 duration-300 text-gray-900 font-mono;
+  }
+
+  nav a.active {
+    @apply text-orange-600;
+  }
+</style>

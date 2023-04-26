@@ -1,0 +1,78 @@
+---
+import Logo from "@/components/Icons/Logo.astro";
+import Navigation from "@/components/Navigation/Navigation.astro";
+import CallToActions from "./CallToActions.astro";
+---
+
+<header
+  id="headroom"
+  class="fixed shadow-md bg-white/90 py-0.5 lg:py-2 top-0 left-0 flex justify-between right-0 z-50 backdrop-blur-sm"
+>
+  <div class="max-w-7xl mx-auto flex items-center justify-between w-full">
+    <div class="flex items-center pl-1 md:pl-0">
+      <a href="/" rel="prefetch">
+        <Logo />
+        <span class="sr-only">La Cantera</span>
+      </a>
+    </div>
+    <div class="hidden xl:flex items-center gap-3 lg:pr-6 flex-col">
+      <CallToActions />
+      <Navigation />
+    </div>
+  </div>
+</header>
+
+<script>
+  // @ts-ignore
+  import Headroom from "headroom.js";
+  var element = document.querySelector("#headroom");
+  var options = {
+    offset: {
+      up: 0,
+      down: 300,
+    },
+    tolerance: 5,
+  };
+  var headroom = new Headroom(element, options);
+  headroom.init({});
+</script>
+
+<style>
+  .headroom {
+    transition: all 300ms ease-in-out;
+  }
+
+  .headroom--scrolled {
+  }
+
+  .headroom--unpinned {
+    /* transform: translateY(-100%);*/
+    background: transparent !important;
+    backdrop-filter: blur(0) !important;
+    pointer-events: none;
+  }
+
+  .headroom--unpinned {
+    opacity: 0;
+    transition-delay: 0s;
+  }
+
+  @screen md {
+    .headroom--unpinned {
+      /* transform: translateY(-100%);*/
+      background: transparent !important;
+      backdrop-filter: blur(0) !important;
+      pointer-events: none;
+    }
+
+    .headroom--unpinned .inner-wrapper {
+      opacity: 0;
+      transition-delay: 0s;
+    }
+  }
+  .headroom--pinned {
+    position: fixed;
+    @apply bg-opacity-60;
+    transform: translateY(0%);
+  }
+</style>

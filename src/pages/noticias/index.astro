@@ -1,0 +1,40 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { useSanityClient } from "astro-sanity";
+const noticias = await useSanityClient().fetch(`*[_type == "noticias"]`);
+import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderImage.astro";
+import type { Post } from "@/src/types/interfaces";
+import GrainOne from "@/components/Grain/GrainOne.astro";
+---
+
+<Layout title="Noticias">
+  <div
+    class="bg-gradient-to-tr pt-40 pb-32 flex justify-center items-center from-red-400 bg-indigo-600 relative"
+  >
+    <h1 class="relative text-white text-6xl font-mono">Noticias</h1>
+    <div class="absolute inset-0 z-0 opacity-90">
+      <GrainOne />
+    </div>
+  </div>
+  {
+    noticias && (
+      <div class="grid mt-12 pb-24 max-w-6xl mx-auto lg:grid-cols-3 gap-6">
+        {noticias.map((post: Post) => (
+          <a href={`noticias/${post.slug?.current}`}>
+            {post.mainImage ? (
+              <PlaceholderImage
+                title={post.title}
+                width={500}
+                height={500}
+                image={post.mainImage}
+              />
+            ) : (
+              <div class="h-64 bg-gray-100" />
+            )}
+            <h3 class="text-2xl">{post.title}</h3>
+          </a>
+        ))}
+      </div>
+    )
+  }
+</Layout>

@@ -1,0 +1,137 @@
+---
+import GrainOne from "@/components/Grain/GrainOne.astro";
+import Layout from "@/src/layouts/Layout.astro";
+import LineaDeTiempo from "@/src/modules/QuienesSomos/LineaDeTiempo.astro";
+
+const people = [
+  { title: "Noches de juegos" },
+  { title: "Tardes de juego" },
+  { title: "Juegos de la Mente" },
+  { title: "Intervenciones lúdicas en fiestas callejeras" },
+  { title: "Capacitaciones" },
+  { title: "Asesoramientos" },
+  { title: "Encuentro Nacionales de juegos de mesa" },
+];
+---
+
+<Layout title="Sobre cantera">
+  <div class="relative z-20 w-full mx-auto">
+    <div
+      class="relative flex items-center justify-center w-full p-6 pt-40 pb-24 overflow-hidden bg-fixed bg-center bg-cover"
+    >
+      <div
+        class="relative z-10 flex flex-col justify-center w-full max-w-6xl px-4 mx-auto"
+      >
+        <h2 class="mb-3 font-mono text-6xl font-medium text-center text-white">
+          La Cantera
+        </h2>
+        <p class="text-white max-w-6xl text-lg font-mono mx-auto text-center">
+          Somos la Asociación Civil La Cantera. Proyectos en el Campo de la
+          Recreación, una organización sin fines de lucro que se dedica a la
+          investigación, difusión y puesta en marcha de actividades y proyectos
+          en el ámbito de la Recreación, la Educación y el Juego.
+        </p>
+      </div>
+      <div class="absolute inset-0 z-0 opacity-60 bg-black"></div>
+    </div>
+    <div>
+      <article class="prose font-sans prose-xl max-w-full">
+        <p>
+          La Cantera nace en el año 2007 de la mano de un grupo de educadorxs,
+          recreólogxs y apasionadxs de los juegos con la intención de poder
+          <b>instalar</b> la temática <b>lúdica</b> en la vida cotidiana de las personas,
+          entendiéndolo como parte de nuestra cultura y dándole mayor importancia,
+          no sólo en la educación y el tiempo libre sino <b
+            >como parte constitutiva del ser humano</b
+          > y por ende de las sociedades que conformamos.
+        </p>
+
+        <p>
+          Desde el comienzo, y a lo largo de nuestro camino, hemos participado y
+          organizado eventos masivos al aire libre, en escuelas, centros
+          culturales y otras instituciones barriales. Hemos dado capacitaciones,
+          charlas, talleres y clínicas lúdicas en diferentes encuentros,
+          jornadas y congresos. También creamos y sostenemos diferentes espacios
+          de juego destinados a niños y adultos.
+        </p>
+        <p>
+          Hoy en día, la ONG está formada por profesionales de campos como la
+          recreación, la educación, la literatura, los juegos de mesa, la
+          psicología, la matemática y el juego corporal. Nos movemos desde la
+          curiosidad, desde las ganas, desde la pasión por encontrar formas
+          nuevas de pensar y hacer para generar "un mundo donde quepan todos los
+          mundos". Buscamos potenciar y potenciarnos con propuestas, reflexiones
+          y debates. Jugando, pero sobre todo jugándonos.
+        </p>
+        <p>
+          Los proyectos que tenemos en marcha son las “Noches de Juegos de
+          Mesa”, las capacitaciones en el “Centro de Especialización en Juego”,
+          nuestra sede en el barrio de Nueva Pompeya, los eventos barriales como
+          el “PICA, la calle hecha Juego”; el “Encuentro Nacional de Juegos de
+          Mesa” y la revista “Awalé. Sembrando el Juego” que ya lleva 9 números
+          editados.
+        </p>
+        <p>
+          Nos mueve la pasión, como decíamos antes, porque entendemos que la
+          mejor forma de compartir lo que sentimos y lo que creemos es desde el
+          disfrute, desde las ganas de querer hacerlo con otras y otros,
+          aprendiendo, enseñando lo aprendido, corrigiendo y reafirmando.
+        </p>
+      </article>
+      <div
+        id="nuestra-historia"
+        class="relative scroll-mt-32 h-96 bg-black overflow-hidden"
+      >
+        <div class="absolute inset-0">
+          <LineaDeTiempo />
+        </div>
+      </div>
+
+      <div
+        id="que-hacemos"
+        class="relative flex items-center justify-center w-full py-40 overflow-hidden bg-fixed bg-center bg-cover"
+        style={{
+          backgroundImage: "url(/imagen2.jpg )",
+        }}
+      >
+        <div
+          class="relative z-10 flex flex-col justify-center w-full max-w-6xl px-4 mx-auto"
+        >
+          <h2
+            class="!my-0 font-mono text-6xl font-medium text-center text-white"
+          >
+            Que hacemos
+          </h2>
+          <div class="relative">
+            <div
+              class="relative z-10 grid grid-cols-3 max-w-6xl mx-auto gap-3 py-12"
+            >
+              {
+                people.map((post) => (
+                  <a
+                    href="#"
+                    class="h-32 text-center p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 mb-2 text-lg font-mono font-bold tracking-tight text-gray-900 flex justify-center items-center"
+                  >
+                    {post.title}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+        <div class="absolute inset-0 z-0 opacity-60 bg-black"></div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  .prose p,
+  .prose ul {
+    @apply my-6 block mx-auto max-w-3xl;
+  }
+
+  .prose img {
+    @apply my-0;
+  }
+</style>

@@ -26,7 +26,7 @@ export default function Offcanvas({ children }: { children: any }) {
         <button
           type="button"
           onClick={toggleChecked}
-          className="right-2 offcanvasBtn cursor-pointer lg:hidden fixed text-lg justify-center items-center opacity-80 rounded-md overflow-hidden hover:opacity-100 p-0.5 bg-gray-200/80 hover:bg-gray-200/90 duration-1000 font-medium text-gray-900  z-[60] flex top-4"
+          className="right-2 offcanvasBtn cursor-pointer xl:hidden fixed text-lg justify-center items-center opacity-100 rounded-md overflow-hidden hover:opacity-100 p-0.5 bg-white/90 hover:bg-gray-200/90 duration-1000 font-medium text-gray-900  z-[60] flex top-4"
         >
           <span className="pl-3 pr-2 font-sans uppercase">Menú</span>
           <svg

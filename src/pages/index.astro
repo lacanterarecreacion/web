@@ -1,73 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "@astrojs/image/components";
-import HeroContact from "@/components/Heros/HeroContact.astro";
+import HeroContact from "@/modules/Home/Contact.astro";
+import HeroHome from "@/modules/Home/HeroHome.astro";
+import QuienesSomos from "../modules/Home/QuienesSomos.astro";
+import QueHacemos from "../modules/Home/QueHacemos.astro";
 ---
 
 <Layout title="Inicio">
-  <main
-    class="flex flex-col w-full min-h-screen max-w-screen overscroll-auto scroll-smooth"
-  >
-    <div
-      class="relative flex items-center justify-center w-full min-h-screen px-3 overflow-hidden bg-gray-900"
-    >
-      <div
-        class="relative z-10 flex flex-col items-center justify-center w-full max-w-3xl p-6"
-      >
-        <div class="lg:px-0">
-          <h2
-            class="mb-6 font-sans text-xl text-center text-white md:text-3xl"
-          >
-          La Asociación civil “La Cantera: Proyectos en el campo de la recreación es una organización sin fines de lucro, que se dedica a la investigación, difusión y puesta en marcha de actividades y proyectos en el ámbito de la recreación, la educación y el juego.
-          </h2>
-        </div>
-        <!-- <a href="/tramas" class="btn red"> Explorar trama</a> -->
-      </div>
-      <div class="absolute inset-0 z-0 opacity-40">
-        <Image
-          alt="Cantera"
-          width={1600}
-          height={1300}
-          class="object-cover w-full h-screen"
-          src="/imagen1.jpg"
-        />
-      </div>
-    </div>
-    <div
-      class="relative flex items-center justify-center w-full min-h-screen bg-white"
-      id="sobre-el-proyecto"
-    >
-      <div
-        class="relative z-10 flex flex-col items-center justify-center w-full max-w-2xl p-2 bg-white rounded shadow-lg"
-      >
-        <div class="flex flex-col items-center justify-center lg:px-0">
-          <h2 class="mt-6 mb-6 font-sans text-base md:text-3xl font-bold text-center">
-            La Cantera nace en el año 2007 de la mano de un grupo de educadores, recreólogos, y ludópata con la intención de que las actividades lúdicas comiencen a estar presentes en la vida cotidiana y cultural de nuestra ciudad.
-          </h2>
-          <a href="/sobre-cantera" class="btn yellow">Conocer más</a>
-        </div>
-      </div>
-      <div class="absolute inset-0">
-        <Image
-          alt="Cantera"
-          width={1600}
-          height={800}
-          class="w-full h-screen object-cover"
-          src="/imagen3.jpg"
-        />
-      </div>
-    </div>
-    <div
-      class="relative mt-1 w-full min-h-screen max-h-screen bg-gray-900 overflow-hidden"
-      id="contacto"
-    >
-      <HeroContact />
-    </div>
-  </main>
+  <HeroHome />
+  <QuienesSomos />
+  <QueHacemos />
+  <HeroContact />
 </Layout>
-
-<style>
-  .bgPattern {
-    
-  }
-</style>

@@ -1,0 +1,27 @@
+---
+import GrainOne from "@/components/Grain/GrainOne.astro";
+---
+
+<div
+  class="relative flex items-center justify-center w-full min-h-screen px-3 overflow-hidden bg-gradient-to-br from-pink-600 to-yellow-500"
+>
+  <div class="relative z-10 grid md:grid-cols-2 w-full max-w-7xl pb-6">
+    <div class="flex flex-col gap-6">
+      <h2 class="font-mono text-white text-3xl lg:text-6xl">
+        La Cantera: <span class="font-light font-mono">Proyectos en el campo de la recreación</span>
+      </h2>
+      <p class="text-white font-sans">
+        Somos una asociación civil que se dedica a la 
+        Investigación, Difusión y Diseño de actividades y 
+        Proyectos en el ámbito de la Recreación, la Educación y el Juego.
+        
+      </p>
+      <a href="/institucional/quienes-somos" class="btn w-44">Conocenos</a>
+    </div>
+  </div>
+  <div class="absolute inset-0 z-0 opacity-90">
+    <div class="absolute inset-0 z-10">
+      <GrainOne />
+    </div>
+  </div>
+</div>

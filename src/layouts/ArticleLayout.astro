@@ -16,7 +16,7 @@ type Props = MarkdownLayoutProps<{
 const { frontmatter } = Astro.props;
 ---
 
-<div data-pagefind-body class="min-h-screen z-0">
+<div  class="min-h-screen z-0">
   <div class="min-h-screen flex justify-center bg-gray-900 items-center">
     <div class="absolute inset-0 z-0 opacity-30 max-h-screen overflow-hidden">
       <Image
@@ -44,14 +44,4 @@ const { frontmatter } = Astro.props;
       <slot />
     </article>
   </div>
-  <Image
-    height={187}
-    width={280}
-    fit="cover"
-    format={"webp"}
-    alt={frontmatter.title}
-    class="object-cover hidden min-h-screen"
-    data-pagefind-meta="image[src]"
-    src={frontmatter?.featuredImage}
-  />
 </div>

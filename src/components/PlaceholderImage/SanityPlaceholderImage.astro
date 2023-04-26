@@ -1,0 +1,28 @@
+---
+import { urlForImage } from "@/lib/urlForImage";
+const { title, image, width, height, customClass } = Astro.props;
+
+export interface Props {
+  title: string;
+  image: string;
+  width: number;
+  height: number;
+  customClass?: string;
+}
+---
+
+<div class={`"h-[${height}px] relative overflow-hidden w-full"`}>
+  <img
+    class={`object-cover w-full animate__fadeIn animate__animated relative z-10 animate__delay-1s ${customClass}`}
+    width={width}
+    alt={title}
+    height={height}
+    src={urlForImage(image).width(width).height(height).url()}
+  />
+  <div class="h-64 absolute inset-0 z-0 w-full">
+    <img
+      class={`w-full object-cover ${customClass}`}
+      src={urlForImage(image).width(50).height(50).blur(50).url()}
+    />
+  </div>
+</div>
