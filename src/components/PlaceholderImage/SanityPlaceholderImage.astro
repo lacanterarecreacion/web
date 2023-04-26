@@ -1,6 +1,7 @@
 ---
 import { urlForImage } from "@/lib/urlForImage";
 const { title, image, width, height, customClass } = Astro.props;
+import { Image } from "@astrojs/image/components";
 
 export interface Props {
   title: string;
@@ -12,7 +13,7 @@ export interface Props {
 ---
 
 <div class={`"h-[${height}px] relative overflow-hidden w-full"`}>
-  <img
+  <Image
     class={`object-cover w-full animate__fadeIn animate__animated relative z-10 animate__delay-1s ${customClass}`}
     width={width}
     alt={title}
@@ -22,6 +23,9 @@ export interface Props {
   <div class="h-64 absolute inset-0 z-0 w-full">
     <img
       class={`w-full object-cover ${customClass}`}
+      role="none"
+      width="50"
+      height="50"
       src={urlForImage(image).width(50).height(50).blur(50).url()}
     />
   </div>

@@ -1,8 +1,15 @@
 <template>
   <div class="xl:hidden">
-    <Transition>
+    <Transition
+      enter-from-class="opacity-0"
+      enter-active-class=""
+      enter-to-class="opacity-100"
+      leave-from-class="opacity-100"
+      leave-active-class=""
+      leave-to-class="opacity-0"
+    >
       <button
-        class="fixed inset-0 bg-white/60 backdrop-blur opacity-100 z-[998]"
+        class="fixed inset-0 bg-white/60 backdrop-blur z-[998]"
         @click="show = !show"
         v-if="!show"
       />
@@ -49,8 +56,6 @@
 import { ref } from "vue";
 const show = ref(true);
 </script>
-
-
 
 <style>
 .v-enter-active,

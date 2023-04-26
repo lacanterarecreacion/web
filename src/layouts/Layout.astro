@@ -53,7 +53,7 @@ const pathname = new URL(Astro.request.url).pathname;
     ></script>
   </head>
   <body class="w-full text-gray-900 bg-white">
-    <Offcanvas client:visible>
+    <Offcanvas client:load>
       <Navigation />
       <CallToActions/>
     </Offcanvas>
