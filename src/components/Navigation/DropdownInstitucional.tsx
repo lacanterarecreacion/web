@@ -4,7 +4,7 @@ import { Fragment } from "react";
 export default function Example() {
   return (
     <div className="hidden xl:flex">
-      <Menu as="div" className="relative">
+      <Menu as="div" className="relative font-mono">
         <div>
           <Menu.Button className="outline-none focus:ring-2 ring-offset-2 cursor-pointer flex items-center text-left hover:text-orange-600 duration-300 text-gray-900 font-mono">
             Institucional
@@ -39,7 +39,7 @@ export default function Example() {
                     href="/institucional/quienes-somos"
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                    } group flex w-full font-mono items-center rounded-md px-2 py-4 text-sm`}
                   >
                     Sobre Cantera
                   </a>
@@ -51,7 +51,7 @@ export default function Example() {
                     href="/institucional/quienes-somos#nuestra-historia"
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                    } group flex w-full font-mono items-center rounded-md px-2 py-4 text-sm`}
                   >
                     Nuestra historia
                   </a>
@@ -63,7 +63,7 @@ export default function Example() {
                     href="/institucional/quienes-somos#que-hacemos"
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                    } group flex w-full font-mono items-center rounded-md px-2 py-4 text-sm`}
                   >
                     Que hacemos
                   </a>

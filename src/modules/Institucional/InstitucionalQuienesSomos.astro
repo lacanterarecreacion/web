@@ -1,0 +1,84 @@
+---
+import StarDoodle from "@/components/UI/Doodles/StarDoodle.astro";
+import CurlyArrowDoodle from "@/components/UI/Doodles/CurlyArrowDoodle.astro";
+import MoonDoodle from "@/components/UI/Doodles/MoonDoodle.astro";
+import Carousel from "@/components/Carousel/Carousel.astro";
+---
+
+<article class="max-w-full relative px-4 font-sans prose md:prose-xl">
+  <p>
+    La Cantera nace en el año 2007 de la mano de un grupo de educadorxs,
+    recreólogxs y apasionadxs de los juegos con la intención de poder
+    <b>instalar</b> la temática <b>lúdica</b> en la vida cotidiana de las personas,
+    entendiéndolo como parte de nuestra cultura y dándole mayor importancia, no sólo
+    en la educación y el tiempo libre sino <b
+      >como parte constitutiva del ser humano</b
+    > y por ende de las sociedades que conformamos.
+  </p>
+  <div
+    class="hidden md:flex justify-between w-full h-0 left-0 right-0 relative"
+  >
+    <div class="w-32 rellax h-32" data-rellax-speed="-6">
+      <MoonDoodle />
+    </div>
+    <div class="w-24 rellax relative -top-24 h-24" data-rellax-speed="6">
+      <StarDoodle />
+    </div>
+  </div>
+  <Carousel
+    images={[
+      "/imagen1.jpg",
+      "/imagen2.jpg",
+      "/imagen3.jpg",
+      "/imagen1.jpg",
+      "/imagen2.jpg",
+      "/imagen3.jpg",
+      "/imagen1.jpg",
+      "/imagen2.jpg",
+      "/imagen3.jpg",
+    ]}
+  />
+  <p>
+    Desde el comienzo, y a lo largo de nuestro camino, hemos participado y
+    organizado eventos masivos al aire libre, en escuelas, centros culturales y
+    otras instituciones barriales. Hemos dado capacitaciones, charlas, talleres
+    y clínicas lúdicas en diferentes encuentros, jornadas y congresos. También
+    creamos y sostenemos diferentes espacios de juego destinados a niños y
+    adultos.
+  </p>
+  <p>
+    Hoy en día, la ONG está formada por profesionales de campos como la
+    recreación, la educación, la literatura, los juegos de mesa, la psicología,
+    la matemática y el juego corporal. Nos movemos desde la curiosidad, desde
+    las ganas, desde la pasión por encontrar formas nuevas de pensar y hacer
+    para generar "un mundo donde quepan todos los mundos". Buscamos potenciar y
+    potenciarnos con propuestas, reflexiones y debates. Jugando, pero sobre todo
+    jugándonos.
+  </p>
+  <div class="hidden md:flex justify-between w-full h-0 left-0 right-0 relative">
+    <div class="w-24 rellax relative -top-24 left-24 h-24" data-rellax-speed="3">
+      <StarDoodle />
+    </div>
+    <div class="w-24 rellax relative -top-2 h-24" data-rellax-speed="1">
+      <MoonDoodle />
+    </div>
+  </div>
+  <p>
+    Los proyectos que tenemos en marcha son las “Noches de Juegos de Mesa”, las
+    capacitaciones en el “Centro de Especialización en Juego”, nuestra sede en
+    el barrio de Nueva Pompeya, los eventos barriales como el “PICA, la calle
+    hecha Juego”; el “Encuentro Nacional de Juegos de Mesa” y la revista “Awalé.
+    Sembrando el Juego” que ya lleva 9 números editados.
+  </p>
+  <p>
+    Nos mueve la pasión, como decíamos antes, porque entendemos que la mejor
+    forma de compartir lo que sentimos y lo que creemos es desde el disfrute,
+    desde las ganas de querer hacerlo con otras y otros, aprendiendo, enseñando
+    lo aprendido, corrigiendo y reafirmando.
+  </p>
+</article>
+
+<script>
+  //@ts-ignore
+  var rellax = new Rellax(".rellax");
+</script>

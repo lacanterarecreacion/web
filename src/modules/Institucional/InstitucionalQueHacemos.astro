@@ -1,0 +1,47 @@
+---
+const people = [
+  { title: "NDJ, Noches de juegos de mesa" },
+  { title: "FORMACIÓN/Capacitaciones" },
+  { title: "PICA, la calle hecha juego" },
+  { title: "UNA MÁS…  " },
+  { title: "DISEÑO y TESTEO de Juegos " },
+  { title: "Publicaciones y Contenidos audiovisuales" },
+  { title: "ENDA" },
+  { title: "ENJM" },
+];
+---
+
+<div
+  id="que-hacemos"
+  class="relative flex items-center justify-center w-full py-40 overflow-hidden bg-fixed bg-center bg-cover"
+  style={{
+    backgroundImage: "url(/imagen2.jpg )",
+  }}
+>
+  <div
+    class="relative z-10 flex flex-col justify-center w-full max-w-6xl px-4 mx-auto"
+  >
+    <h2
+      class="!my-0 font-mono text-4xl intersectionAnimation md:text-6xl font-medium text-left text-white"
+    >
+      Que hacemos
+    </h2>
+    <div class="relative">
+      <div
+        class="relative z-10 grid max-w-6xl gap-3 py-12 mx-auto md:grid-cols-2"
+      >
+        {
+          people.map((post) => (
+            <p class="h-24 font-mono intersectionAnimation text-white">
+              {post.title}
+            </p>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <div
+    class="absolute inset-0 z-0 bg-gradient-to-br from-red-600 to-indigo-600 opacity-90"
+  >
+  </div>
+</div>
