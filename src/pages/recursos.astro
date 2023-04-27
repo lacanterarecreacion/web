@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import { useSanityClient } from "astro-sanity";
 import GrainOne from "@/components/Grain/GrainOne.astro";
+import StrackedScene from "@/components/UI/Backgrounds/StrackedScene.astro";
 const calendario = await useSanityClient().fetch(
   `*[_type == "calendarioLudico"]`
 );
@@ -9,11 +10,14 @@ const calendario = await useSanityClient().fetch(
 
 <Layout title="Recursos">
   <div
-    class="bg-gradient-to-tr pt-40 pb-32 flex justify-center items-center from-teal-400 bg-emerald-600 relative"
+    class="bg-gradient-to-tr pt-32 pb-32 overflow-hidden flex justify-center items-center from-teal-400 bg-emerald-600 relative"
   >
-    <h1 class="relative text-white text-6xl font-mono">Recursos</h1>
+    <h1 class="relative text-white text-6xl font-mono z-10">Recursos</h1>
     <div class="absolute inset-0 z-0 opacity-90">
       <GrainOne />
+    </div>
+    <div class="absolute inset-0 z-0 opacity-30">
+      <StrackedScene/>
     </div>
   </div>
   {

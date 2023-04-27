@@ -10,13 +10,13 @@ import StarDoodle from "@/components/Doodles/StarDoodle.astro";
 
 <div
   id="contacto"
-  class="relative z-10 flex flex-col items-center overflow-hidden justify-center w-full min-h-screen px-6 mx-auto text-left md:px-0 bg-gradient-to-br from-cyan-500 to-yellow-500 font-mono"
+  class="relative z-10 flex flex-col items-center justify-center w-full min-h-screen px-6 mx-auto overflow-hidden font-mono text-left md:px-0 bg-gradient-to-br from-cyan-500 to-yellow-500"
 >
   <div
-    class="w-full relative z-20 max-w-3xl p-6 mx-auto text-center rounded-md shadow-lg md:p-12 bg-white"
+    class="relative z-20 w-full max-w-3xl p-6 mx-auto text-center bg-white rounded-md shadow-lg md:p-12"
   >
     <h1
-      class="w-full mx-auto font-mono mb-8 text-4xl font-bold tracking-wide text-center text-gray-900 md:text-5xl"
+      class="w-96 mx-auto font-mono mb-8 text-4xl font-bold tracking-wide text-center text-transparent bg-clip-text bg-gradient-to-br from-teal-600 via-70% via-teal-700 to-teal-600 md:text-5xl"
     >
       Contacto
     </h1>
@@ -26,16 +26,16 @@ import StarDoodle from "@/components/Doodles/StarDoodle.astro";
       Podés contactarnos vía mail o en nuestras redes sociales.
     </h3>
     <div class="relative my-6 text-gray-900">
-      <p class="text-lg text-center w-full font-mono md:text-2xl select-all">
+      <p class="w-full font-mono text-lg text-center select-all md:text-2xl">
         lacantera.recreacion@gmail.com
       </p>
     </div>
-    <div class="flex items-center mt-12 justify-center space-x-9">
+    <div class="flex items-center justify-center mt-12 space-x-9">
       <a
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Ir a facebook de La Cantera Recreación"
-        class="hover:opacity-80 group w-12 h-12"
+        class="w-12 h-12 hover:opacity-80 group"
         href="https://es-la.facebook.com/LaCanteraRecreacion/"
       >
         <IconFacebook class="text-lg" />
@@ -44,7 +44,7 @@ import StarDoodle from "@/components/Doodles/StarDoodle.astro";
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Ir a Instagram de La Cantera Recreación"
-        class="hover:opacity-80 group w-12 h-12"
+        class="w-12 h-12 hover:opacity-80 group"
         href="https://www.instagram.com/lacantera.recreacion/"
       >
         <IconInstagram />
@@ -53,19 +53,19 @@ import StarDoodle from "@/components/Doodles/StarDoodle.astro";
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Ir a youtube de La Cantera Recreación"
-        class="hover:opacity-80 group w-12 h-12"
+        class="w-12 h-12 hover:opacity-80 group"
         href="https://www.youtube.com/channel/UCgyRMwOrJ8zKayunSI6pMGA"
       >
         <IconYoutube />
       </a>
     </div>
   </div>
-  <div class="absolute inset-0 w-full h-screen z-10 opacity-90">
-    <div class="absolute overflow-hidden inset-0 z-10 w-full min-h-screen">
+  <div class="absolute inset-0 z-10 w-full h-screen opacity-90">
+    <div class="absolute inset-0 z-10 w-full min-h-screen overflow-hidden">
       <GrainOne />
     </div>
     <div
-      class="absolute overflow-hidden rotate-180 inset-0 z-0 w-full min-h-screen "
+      class="absolute inset-0 z-0 w-full min-h-screen overflow-hidden rotate-180 "
     >
       <BlobScene />
     </div>
