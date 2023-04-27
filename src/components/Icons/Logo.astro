@@ -1,5 +1,6 @@
 ---
 import { Image } from "@astrojs/image/components";
+import LogoCantera from "./LogoCantera.astro";
 ---
 
 <div class="w-24">
@@ -9,4 +10,10 @@ import { Image } from "@astrojs/image/components";
     width={181}
     height={136}
   />
+</div>
+<div class="hidden sm:flex flex-col ml-2 md:ml-4">
+  <LogoCantera />
+  <span class="font-sans hidden lg:flex text-sm mt-2">
+    Proyectos en el campo de la recreación
+  </span>
 </div>

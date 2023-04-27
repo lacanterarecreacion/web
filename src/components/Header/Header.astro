@@ -2,7 +2,6 @@
 import Logo from "@/components/Icons/Logo.astro";
 import Navigation from "@/components/Navigation/Navigation.astro";
 import CallToActions from "./CallToActions.astro";
-import GrainOne from "../Grain/GrainOne.astro";
 ---
 
 <header
@@ -14,10 +13,6 @@ import GrainOne from "../Grain/GrainOne.astro";
   >
     <a href="/" rel="prefetch" class="flex justify-start items-center pl-1 md:pl-0">
       <Logo />
-      <div class="hidden sm:flex flex-col ml-2 md:ml-4">
-        <span class="font-title text-2xl">La Cantera</span>
-        <span class="font-sans hidden lg:flex text-sm">Proyectos en el campo de la recreación</span>
-      </div>
     </a>
     <div class="hidden xl:flex items-center gap-2 flex-col">
       <CallToActions />
