@@ -1,5 +1,4 @@
 ---
-
 import "@/styles/animate.css";
 import "@/styles/global.css";
 import "@/styles/mobile.css";
@@ -39,18 +38,18 @@ const pathname = new URL(Astro.request.url).pathname;
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"
-    ></script>
   </head>
   <body class="w-full text-gray-900 bg-white">
     <Offcanvas client:load>
       <Navigation />
-      <CallToActions/>
+      <CallToActions />
     </Offcanvas>
     <Header />
     <MainLayout>
       <slot />
     </MainLayout>
     <Footer />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"
+    ></script>
   </body>
 </html>
