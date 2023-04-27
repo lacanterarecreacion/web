@@ -36,7 +36,7 @@ export default function Example() {
               Institucional
               <svg
                 className={`${open ? "" : "text-opacity-90"}
-                  ml-1 h-7 w-7 text-orange-300 transition duration-150 ease-in-out group-hover:text-opacity-80`}
+                  h-6 w-6 text-orange-300 transition duration-150 ease-in-out group-hover:text-opacity-80`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

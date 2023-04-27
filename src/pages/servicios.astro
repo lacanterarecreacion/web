@@ -11,9 +11,9 @@ const calendario = await useSanityClient().fetch(
 
 <Layout title="Servicios">
   <div
-    class="bg-gradient-to-tr overflow-hidden pt-32 pb-32 flex justify-center items-center from-amber-400 bg-yellow-600 relative"
+    class="relative flex items-center justify-center pt-32 pb-32 overflow-hidden bg-yellow-600 bg-gradient-to-tr from-amber-400"
   >
-    <h1 class="relative z-10 text-white text-6xl font-mono">Servicios</h1>
+    <h1 class="relative z-10 font-mono text-4xl text-white md:text-6xl">Servicios</h1>
     <div class="absolute inset-0 z-0 opacity-90">
       <GrainOne />
     </div>
@@ -23,7 +23,7 @@ const calendario = await useSanityClient().fetch(
   </div>
   {
     calendario && (
-      <div class="grid mt-32 max-w-2xl min-h-screen mx-auto lg:grid-cols-1 gap-6">
+      <div class="grid max-w-2xl min-h-screen gap-6 mx-auto mt-32 lg:grid-cols-1">
         {calendario.map((post: any) => (
           <a href="#">
             <span class="text-2xl">{post.title}</span>
