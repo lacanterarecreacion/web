@@ -1,0 +1,34 @@
+<script>
+  const myBars = document.querySelectorAll(".intersectionAnimation");
+
+  // No need to change this part. Though we'll have multiple targets,
+  // we still have a single observer and a single callback
+  const observer = new IntersectionObserver((entries, observer) => {
+    // Each of the bars will make up an “entry”
+    entries.forEach((entry) => {
+      // If our target enters the viewport, add an “active” class to it
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        // Otherwise, remove the “active” class
+      } else {
+        entry.target.classList.remove("active");
+      }
+    });
+  });
+
+  // Looping through the bars and adding them as targets of the observer
+  Array.prototype.forEach.call(myBars, (el) => {
+    observer.observe(el);
+  });
+</script>
+
+<style is:global>
+  .intersectionAnimation {
+    opacity: 0;
+    @apply duration-1000 translate-y-6 ;
+  }
+
+  .intersectionAnimation.active {
+    @apply opacity-100 translate-y-0;
+  }
+</style>

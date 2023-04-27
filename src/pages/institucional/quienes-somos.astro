@@ -60,14 +60,15 @@ const people = [
         aprendiendo, enseñando lo aprendido, corrigiendo y reafirmando.
       </p>
     </article>
-    <div class="pt-24 scroll-mt-12" id="nuestra-historia"></div>
-    <h2 class="font-mono text-4xl text-center md:text-6xl">Nuestra Historia</h2>
+    <div class="scroll-mt-32" id="nuestra-historia"></div>
+    <h2 class="font-mono text-4xl intersectionAnimation text-[#002b36] relative top-2 text-center md:text-6xl">Nuestra Historia</h2>
     <div class="relative h-[70vh] overflow-hidden bg-indigo-900">
       <div class="absolute inset-0">
         <LineaDeTiempo />
       </div>
     </div>
 
+    
     <div
       id="que-hacemos"
       class="relative flex items-center justify-center w-full py-40 overflow-hidden bg-fixed bg-center bg-cover"
@@ -79,7 +80,7 @@ const people = [
         class="relative z-10 flex flex-col justify-center w-full max-w-6xl px-4 mx-auto"
       >
         <h2
-          class="!my-0 font-mono text-4xl md:text-6xl font-medium text-left text-white"
+          class="!my-0 font-mono text-4xl intersectionAnimation md:text-6xl font-medium text-left text-white"
         >
           Que hacemos
         </h2>
@@ -89,7 +90,7 @@ const people = [
           >
             {
               people.map((post) => (
-                <p class="h-24 font-mono text-white">
+                <p class="h-24 font-mono intersectionAnimation text-white">
                   {post.title}
                 </p>
               ))

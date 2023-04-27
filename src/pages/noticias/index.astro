@@ -11,16 +11,23 @@ import GrainOne from "@/components/Grain/GrainOne.astro";
   <div
     class="relative flex items-center justify-center py-24 bg-indigo-600 md:py-12 bg-gradient-to-tr from-red-400"
   >
-    <h1 class="relative font-mono text-4xl text-white md:text-6xl">Noticias</h1>
+    <h1
+      class="relative font-mono text-4xl text-white md:text-6xl animate__fadeIn animate__animated"
+    >
+      Noticias
+    </h1>
     <div class="absolute inset-0 z-0 opacity-90">
       <GrainOne />
     </div>
   </div>
   {
     noticias && (
-      <div class="grid w-full gap-6 px-3 pb-24 mx-auto mt-12 md:px-0 max-w-7xl lg:grid-cols-3">
+      <div class="NewsGrid grid w-full gap-6 px-3 pb-24 mx-auto mt-12 md:px-0 max-w-7xl sm:grid-cols-2 lg:grid-cols-3">
         {noticias.map((post: Post) => (
-          <a href={`/noticias/${post.slug?.current}`} class="overflow-hidden duration-500 rounded-lg shadow-md bg-gray-50 hover:shadow-2xl">
+          <a
+            href={`/noticias/${post.slug?.current}`}
+            class="overflow-hidden animate__fadeIn animate__animated animate__slower duration-500 rounded-lg shadow-md bg-gray-50 hover:shadow-2xl"
+          >
             {post.mainImage ? (
               <PlaceholderImage
                 title={post.title}
@@ -31,10 +38,31 @@ import GrainOne from "@/components/Grain/GrainOne.astro";
             ) : (
               <div class="h-64 bg-gray-100" />
             )}
-            <h2 class="p-3 font-mono text-lg">{post.title}</h2>
+            <h2 class="p-3 font-sans font-semibold text-lg">{post.title}</h2>
           </a>
         ))}
       </div>
     )
   }
 </Layout>
+
+<style>
+  .NewsGrid a:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .NewsGrid a:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .NewsGrid a:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .NewsGrid a:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .NewsGrid a:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .NewsGrid a:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+</style>
