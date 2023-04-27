@@ -4,7 +4,7 @@ import { useSanityClient } from "astro-sanity";
 const noticias = await useSanityClient().fetch(`*[_type == "noticias"]`);
 import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderImage.astro";
 import type { Post } from "@/src/types/interfaces";
-import GrainOne from "@/components/Grain/GrainOne.astro";
+import GrainOne from "@/components/UI/Grain/GrainOne.astro";
 ---
 
 <Layout title="Noticias">

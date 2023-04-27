@@ -2,8 +2,8 @@
 import "@/styles/animate.css";
 import "@/styles/global.css";
 import "@/styles/mobile.css";
+import "@/styles/swiper.css";
 import "glightbox/dist/css/glightbox.min.css";
-import "swiper/css";
 import BaseHead from "@/components/BaseHead.astro";
 import CallToActions from "@/components/Header/CallToActions.astro";
 import Footer from "@/components/Footer.astro";
@@ -35,10 +35,6 @@ const pathname = new URL(Astro.request.url).pathname;
       image={image}
     />
     <GoogleFont />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
-    />
   </head>
   <body class="w-full text-gray-900 bg-white">
     <Offcanvas client:load>
