@@ -4,16 +4,13 @@ import Logo from "./Icons/Logo.astro";
 
 <div class="pt-24 bg-gray-100 relative z-30 sm:pt-0">
   <footer class="p-4 bg-white sm:p-6">
-    <div
-      class="flex flex-col items-center justify-center w-full pt-6 mx-auto"
-    >
+    <div class="flex flex-col items-center justify-center w-full pt-6 mx-auto">
       <div
-        class="flex justify-between md:flex-row flex-col items-start w-full gap-8 text-center sm:gap-6"
+        class="flex justify-between max-w-7xl md:flex-row flex-col items-start w-full gap-8 text-center sm:gap-6"
       >
-        <div class="flex justify-start items-start h-full">
-          <Logo/>
+        <div class="flex justify-start items-center h-full">
+          <Logo />
         </div>
-        <div/>
         <div class="grid gap-5 text-left sm:grid-cols-2">
           <div>
             <h2
@@ -21,47 +18,53 @@ import Logo from "./Icons/Logo.astro";
             >
               Seguínos
             </h2>
-            <ul class="text-gray-600 font-mono">
+            <ul class="text-gray-600 font-sans">
               <li class="py-3 text-lg md:py-0 md:pb-3">
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.instagram.com/lacantera.recreacion/"
-                  class="transition duration-150 ease-in-out hover:font-bold font-mono"
-                  >Instagram</a
+                  class="transition duration-150 ease-in-out hover:font-bold font-sans"
                 >
+                  Instagram
+                </a>
               </li>
               <li class="py-3 text-lg md:py-0 md:pb-3">
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://es-la.facebook.com/LaCanteraRecreacion/"
-                  class="transition duration-150 ease-in-out hover:font-bold font-mono"
-                  >Facebook</a
+                  class="transition duration-150 ease-in-out hover:font-bold font-sans"
                 >
+                  Facebook
+                </a>
               </li>
               <li class="py-3 text-lg md:py-0 md:pb-3">
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.youtube.com/channel/UCgyRMwOrJ8zKayunSI6pMGA"
-                  class="transition duration-150 ease-in-out hover:font-bold font-mono"
-                  >Youtube</a
+                  class="transition duration-150 ease-in-out hover:font-bold font-sans"
                 >
+                  Youtube
+                </a>
               </li>
             </ul>
           </div>
           <div>
-            <h2 class="font-mono mb-6 text-lg font-semibold text-gray-900 uppercase">
+            <h2
+              class="font-mono mb-6 text-lg font-semibold text-gray-900 uppercase"
+            >
               Quienes somos
             </h2>
             <ul class="text-gray-600">
               <li class="py-3 text-lg md:py-0 md:pb-3">
                 <a
                   href="/institucional/quienes-somos"
-                  class="transition font-mono duration-150 ease-in-out hover:text-accents-6 hover:font-bold"
-                  >Sobre Cantera</a
+                  class="transition font-sans duration-150 ease-in-out hover:text-accents-6 hover:font-bold"
                 >
+                  Sobre Cantera
+                </a>
               </li>
             </ul>
           </div>
@@ -70,7 +73,7 @@ import Logo from "./Icons/Logo.astro";
     </div>
   </footer>
   <div class="sm:flex sm:items-center sm:justify-center py-6">
-    <span class="text-sm text-gray-800 font-mono sm:text-center"
+    <span class="text-sm text-gray-800 font-sans sm:text-center"
       >©{new Date().getFullYear()} Cantera. Todos los derechos reservados.
     </span>
   </div>

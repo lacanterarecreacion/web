@@ -6,7 +6,6 @@ module.exports = {
       sans: ["Inter", "sans"],
       serif: ["Alegreya", "sans-serif"],
       mono: ["Unbounded", "sans-serif"],
-      title: ["Slayer", "cursive"],
     },
   },
   corePlugins: {
