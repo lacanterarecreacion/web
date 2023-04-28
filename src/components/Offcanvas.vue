@@ -15,7 +15,7 @@
       />
     </Transition>
     <button
-      class="fixed text-lg justify-center items-center ring ring-orange-600 p-2 bg-white font-bold text-gray-900 right-0 z-[60] flex top-0 mr-2 rounded-lg my-3"
+      class="fixed text-lg justify-center items-center ring ring-orange-600 p-2 bg-white font-bold text-gray-900 right-0 z-[60] flex top-1 lg:top-0 mr-2 rounded-lg my-3"
       @click="show = !show"
     >
       <span>Menú</span>
