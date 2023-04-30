@@ -1,18 +1,25 @@
 <script>
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { INITIAL_EVENTS } from "./event-utils";
+// import { INITIAL_EVENTS } from "./event-utils";
 import esLocale from "@fullcalendar/core/locales/es";
 import ModalEvento from "./ModalEvento.vue";
+import ModalEventoAgenda from "./ModalEventoAgenda.vue";
 import { formatDate } from "@fullcalendar/core";
 
 export default defineComponent({
   components: {
     FullCalendar,
     ModalEvento,
+    ModalEventoAgenda,
+  },
+  props: {
+    calendarEvents: {
+      type: Array,
+    },
   },
   data() {
     return {
@@ -23,13 +30,14 @@ export default defineComponent({
           interactionPlugin, // needed for dateClick
         ],
         headerToolbar: {
-          left: "prev,next today",
-          center: "title",
-          right: "dayGridMonth,timeGridWeek",
+          left: "title",
+          // center: "",
+          right: "prev,next,today",
+          // timeGridWeek, dayGridMonth
         },
         locale: esLocale,
         initialView: "dayGridMonth",
-        initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+        initialEvents: this.calendarEvents, // alternatively, use the `events` setting to fetch from a feed
         editable: false,
         selectable: true,
         selectMirror: true,
@@ -66,15 +74,16 @@ export default defineComponent({
     },
   },
 });
+
 </script>
 <template>
   <div
-    class="grid animate__fadeIn animate__animated animate__delay-1s md:grid-cols-6 w-full max-w-7xl mx-auto bg-white sm:p-3 gap-6 mt-2 rounded-xl shadow-lg"
+    class="grid animate__fadeIn animate__animated animate__delay-1s md:grid-cols-6 w-full max-w-7xl mx-auto bg-white sm:p-3 gap-1 md:gap-6 mt-2 rounded-xl shadow-lg"
   >
     <div class="md:col-span-2 border-r p-2 sm:px-2">
       <div class="">
         <h2
-          class="font-mono flex justify-start text-gray-700 items-center text-xl gap-3 mb-2"
+          class="font-mono flex flex-wrap justify-start text-gray-700 items-center text-xl gap-3 mb-2"
         >
           Próximos
           <span class="font-mono text-gray-500">
@@ -84,9 +93,10 @@ export default defineComponent({
           <div style="flex: 1" />
           <slot />
         </h2>
-        <ul class="md:h-[600px] overflow-y-auto">
+        <!-- {{JSON.stringify(calendarEvents)}} -->
+        <ul class="md:h-[590px] overflow-y-auto">
           <li
-            class="flex border-b border-gray-300 py-3"
+            class="flex border-b border-gray-300 px-1 py-3"
             v-for="event in currentEvents"
             :key="event.id"
           >
@@ -96,6 +106,32 @@ export default defineComponent({
                 {{ formattedDate(event.startStr) }}
               </h4>
               <p>{{ event.extendedProps.description }}</p>
+              <ModalEventoAgenda>
+                <template #header>
+                  {{ event.title }}
+                </template>
+                <template #image v-if="event.extendedProps.image">
+                  <img
+                    :src="event.extendedProps.image.secure_url"
+                    class="w-full h-64 object-cover"
+                  />
+                </template>
+                <template #link v-if="event.extendedProps.link">
+                  <a
+                    class="btn blue !text-xs w-44"
+                    target="_blank"
+                    :href="event.extendedProps.link"
+                  >
+                    Link al evento
+                  </a>
+                </template>
+                <span>{{ formattedDate(event.startStr) }}</span>
+                de {{ formattedTime(event.startStr) }}
+                <span v-if="event.endStr">
+                  a {{ formattedTime(event.endStr) }}
+                </span>
+                <p>{{ event.extendedProps.description }}</p>
+              </ModalEventoAgenda>
             </div>
             <p class="flex flex-col text-gray-600 items-end">
               {{ formattedTime(event.startStr) }}
@@ -107,7 +143,7 @@ export default defineComponent({
         </ul>
 
         <div class="py-2">
-          <a class="btn w-full yellow" href="/"> Volver al inicio </a>
+          <a class="btn w-full green" href="/"> Volver al inicio </a>
         </div>
       </div>
     </div>
@@ -115,7 +151,7 @@ export default defineComponent({
       <FullCalendar class="demo-app-calendar" :options="calendarOptions">
         <template v-slot:eventContent="arg">
           <div class="flex flex-col overflow-hidden w-full p-2 text-xs">
-            <b>{{ arg.timeText }}</b>
+            <!-- <b>{{ arg.timeText }}</b> -->
             <p class="truncate">{{ arg.event.title }}</p>
           </div>
           <ModalEvento>
@@ -130,7 +166,7 @@ export default defineComponent({
             </template>
             <template #link v-if="arg.event.extendedProps.link">
               <a
-                class="btn blue w-44"
+                class="btn blue !text-xs w-44"
                 target="_blank"
                 :href="arg.event.extendedProps.link"
               >
@@ -152,11 +188,11 @@ export default defineComponent({
 
 <style>
 .fc-header-toolbar {
-  @apply flex-col sm:flex-row;
+  @apply px-2 sm:px-0 mb-2 !important;
 }
 
 .fc .fc-view-harness {
-  height: 600px !important;
+  height: 660px !important;
 }
 
 .fc-toolbar-title {

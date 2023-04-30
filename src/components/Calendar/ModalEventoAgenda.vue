@@ -1,6 +1,6 @@
 <template>
-  <button type="button" @click="openModal" class="absolute inset-0">
-    <span class="sr-only"> Ver más información </span>
+  <button type="button" @click="openModal" class="btn !text-xs">
+    Ver más
   </button>
   <TransitionRoot appear :show="isOpen" as="template">
     <Dialog as="div" @close="closeModal" class="relative z-[10000]">
