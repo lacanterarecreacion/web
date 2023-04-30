@@ -1,5 +1,5 @@
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, Suspense } from "vue";
 import { formatDate } from "@fullcalendar/core";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -8,18 +8,20 @@ import FullCalendar from "@fullcalendar/vue3";
 import interactionPlugin from "@fullcalendar/interaction";
 import ModalEvento from "./ModalEvento.vue";
 import ModalEventoAgenda from "./ModalEventoAgenda.vue";
+import IconSpinner from "./IconSpinner.vue";
 import timeGridPlugin from "@fullcalendar/timegrid";
 
 export default defineComponent({
   components: {
     FullCalendar,
+    IconSpinner,
     ModalEvento,
     ModalEventoAgenda,
+    Tab,
     TabGroup,
     TabList,
-    Tab,
-    TabPanels,
     TabPanel,
+    TabPanels,
   },
   props: {
     calendarEvents: {
@@ -129,67 +131,77 @@ export default defineComponent({
               {{ currentEvents.length }} eventos
             </span>
           </div>
-          <ul class="md:h-[600px] overflow-y-auto px-1 mt-2">
-            <li
-              class="flex py-1 flex-col"
-              v-for="event in currentEvents"
-              :key="event.id"
+
+          <div class="relative bg-white min-h-[400px]">
+            <div
+              class="animate__fadeIn bg-white animate__animated animate__faster relative z-10 animate__delay-2s"
             >
-              <div class="group text-left">
-                <ModalEventoAgenda>
-                  <template #button>
-                    <h3
-                      class="flex font-mono text-orange-600 group-hover:underline underline-offset-2 justify-between items-center"
-                    >
-                      {{ event.title }}
-                    </h3>
-                    <div>
-                      <h4
-                        class="flex justify-between text-left my-1 items-center"
-                      >
-                        {{ event.extendedProps.description }}
-                      </h4>
-                    </div>
-                    <div
-                      class="flex pt-2 text-sm w-full justify-between items-center"
-                    >
-                      <p>{{ formattedDate(event.startStr) }}</p>
-                      <p class="flex text-gray-600 items-end">
-                        {{ formattedTime(event.startStr) }}hs&nbsp;
-                        <span v-if="event.endStr">
-                          — {{ formattedTime(event.endStr) }}hs
-                        </span>
-                      </p>
-                    </div>
-                  </template>
-                  <template #header>
-                    {{ event.title }}
-                  </template>
-                  <template #image v-if="event.extendedProps.image">
-                    <img
-                      :src="event.extendedProps.image.secure_url"
-                      class="w-full h-64 object-cover"
-                    />
-                  </template>
-                  <template #link v-if="event.extendedProps.link">
-                    <a
-                      class="btn blue !text-xs w-44"
-                      target="_blank"
-                      :href="event.extendedProps.link"
-                    >
-                      Link al evento
-                    </a>
-                  </template>
-                  <span>{{ formattedDate(event.startStr) }}</span>
-                  de {{ formattedTime(event.startStr) }}
-                  <span v-if="event.endStr">
-                    a {{ formattedTime(event.endStr) }}
-                  </span>
-                  <p>{{ event.extendedProps.description }}</p>
-                </ModalEventoAgenda>
-              </div>
-            </li>
-          </ul>
+              <ul class="md:h-[600px] overflow-y-auto px-1 mt-2">
+                <li
+                  class="flex py-1 flex-col"
+                  v-for="event in currentEvents"
+                  :key="event.id"
+                >
+                  <div class="group text-left">
+                    <ModalEventoAgenda>
+                      <template #button>
+                        <h3
+                          class="flex font-mono text-orange-600 group-hover:underline underline-offset-2 justify-between items-center"
+                        >
+                          {{ event.title }}
+                        </h3>
+                        <div>
+                          <h4
+                            class="flex justify-between text-left my-1 items-center"
+                          >
+                            {{ event.extendedProps.description }}
+                          </h4>
+                        </div>
+                        <div
+                          class="flex pt-2 text-sm w-full justify-between items-center"
+                        >
+                          <p>{{ formattedDate(event.startStr) }}</p>
+                          <p class="flex text-gray-600 items-end">
+                            {{ formattedTime(event.startStr) }}hs&nbsp;
+                            <span v-if="event.endStr">
+                              — {{ formattedTime(event.endStr) }}hs
+                            </span>
+                          </p>
+                        </div>
+                      </template>
+                      <template #header>
+                        {{ event.title }}
+                      </template>
+                      <template #image v-if="event.extendedProps.image">
+                        <img
+                          :src="event.extendedProps.image.secure_url"
+                          class="w-full h-64 object-cover"
+                        />
+                      </template>
+                      <template #link v-if="event.extendedProps.link">
+                        <a
+                          class="btn blue !text-xs w-44"
+                          target="_blank"
+                          :href="event.extendedProps.link"
+                        >
+                          Link al evento
+                        </a>
+                      </template>
+                      <span>{{ formattedDate(event.startStr) }}</span>
+                      de {{ formattedTime(event.startStr) }}
+                      <span v-if="event.endStr">
+                        a {{ formattedTime(event.endStr) }}
+                      </span>
+                      <p>{{ event.extendedProps.description }}</p>
+                    </ModalEventoAgenda>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="absolute flex items-center justify-center inset-0 z-0">
+              <div><IconSpinner class="w-12 h-12"/></div>
+            </div>
+          </div>
         </TabPanel>
         <TabPanel
           :class="[
