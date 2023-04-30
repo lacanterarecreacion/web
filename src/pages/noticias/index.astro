@@ -1,10 +1,10 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import { useSanityClient } from "astro-sanity";
 const noticias = await useSanityClient().fetch(`*[_type == "noticias"]`);
+import { useSanityClient } from "astro-sanity";
+import GrainOne from "@/components/UI/Grain/GrainOne.astro";
+import Layout from "@/layouts/Layout.astro";
 import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderImage.astro";
 import type { Post } from "@/src/types/interfaces";
-import GrainOne from "@/components/UI/Grain/GrainOne.astro";
 ---
 
 <Layout title="Noticias">

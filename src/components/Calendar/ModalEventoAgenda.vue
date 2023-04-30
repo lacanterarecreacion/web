@@ -1,7 +1,13 @@
 <template>
-  <button type="button" @click="openModal" class="btn !text-xs">
-    Ver más
-  </button>
+  <div class="flex justify-start items-center">
+    <button
+      type="button"
+      @click="openModal"
+      class="flex flex-col w-full hover:bg-orange-50 duration-300 p-1 rounded-md"
+    >
+      <slot name="button" />
+    </button>
+  </div>
   <TransitionRoot appear :show="isOpen" as="template">
     <Dialog as="div" @close="closeModal" class="relative z-[10000]">
       <TransitionChild
@@ -13,7 +19,9 @@
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-gradient-to-br from-green-700/60 to-orange-600/60 backdrop-blur-sm" />
+        <div
+          class="fixed inset-0 bg-gradient-to-br from-green-700/60 to-orange-600/60 backdrop-blur-sm"
+        />
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-y-auto">
@@ -43,7 +51,11 @@
                 <slot />
               </div>
               <div class="mt-4 flex justify-center items-center p-3 gap-2">
-                <button type="button" class="btn !text-xs ghost w-44" @click="closeModal">
+                <button
+                  type="button"
+                  class="btn !text-xs ghost w-44"
+                  @click="closeModal"
+                >
                   Cerrar
                 </button>
                 <slot name="link" />
@@ -58,7 +70,6 @@
 
 <script setup>
 import { ref } from "vue";
-
 
 import {
   TransitionRoot,

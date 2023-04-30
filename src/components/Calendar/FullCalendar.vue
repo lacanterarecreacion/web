@@ -1,5 +1,5 @@
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -30,9 +30,9 @@ export default defineComponent({
           interactionPlugin, // needed for dateClick
         ],
         headerToolbar: {
-          left: "title",
-          // center: "",
-          right: "prev,next,today",
+          center: "prev,title,next",
+          right: "",
+          left: "today",
           // timeGridWeek, dayGridMonth
         },
         locale: esLocale,
@@ -74,39 +74,50 @@ export default defineComponent({
     },
   },
 });
-
 </script>
 <template>
   <div
-    class="grid animate__fadeIn animate__animated animate__delay-1s md:grid-cols-6 w-full max-w-7xl mx-auto bg-white sm:p-3 gap-1 md:gap-6 mt-2 rounded-xl shadow-lg"
+    class="grid md:grid-cols-6 w-full max-w-7xl mx-auto bg-white sm:p-3 gap-1 md:gap-2 mt-2 rounded-xl shadow-lg"
   >
-    <div class="md:col-span-2 border-r p-2 sm:px-2">
-      <div class="">
-        <h2
-          class="font-mono flex flex-wrap justify-start text-gray-700 items-center text-xl gap-3 mb-2"
+    <div class="md:col-span-2 border-r md:pr-2">
+      <div class="p-2 sm:px-2">
+        <div
+          class="flex justify-between border-b-2 border-orange-600 pb-2 items-center"
         >
-          Próximos
+          <h1 class="text-orange-600 font-mono text-2xl">Agendate</h1>
+          <!-- <slot /> -->
           <span class="font-mono text-gray-500">
-            {{ currentEvents.length }}
+            {{ currentEvents.length }} eventos
           </span>
-          eventos
-          <div style="flex: 1" />
-          <slot />
-        </h2>
+        </div>
         <!-- {{JSON.stringify(calendarEvents)}} -->
-        <ul class="md:h-[590px] overflow-y-auto">
+        <ul class="md:h-[600px] overflow-y-auto pr-1">
           <li
-            class="flex border-b border-gray-300 px-1 py-3"
+            class="flex border-b border-gray-300 py-1 flex-col"
             v-for="event in currentEvents"
             :key="event.id"
           >
-            <div class="grow">
-              <h4 class="font-bold">
-                {{ event.title }} -
-                {{ formattedDate(event.startStr) }}
-              </h4>
-              <p>{{ event.extendedProps.description }}</p>
+            <div class="group text-left">
               <ModalEventoAgenda>
+                <template #button>
+                  <h3 class="flex font-mono text-orange-600 group-hover:underline underline-offset-2 justify-between items-center">
+                    {{ event.title }}
+                  </h3>
+                  <div>
+                    <h4 class="flex justify-between text-left items-center">
+                      {{ event.extendedProps.description }}
+                    </h4>
+                  </div>
+                  <div class="flex pt-2 text-sm w-full justify-between items-center">
+                    <p>{{ formattedDate(event.startStr) }}</p>
+                    <p class="flex text-gray-600 items-end">
+                      {{ formattedTime(event.startStr) }}hs&nbsp;
+                      <span v-if="event.endStr">
+                        — {{ formattedTime(event.endStr) }}hs
+                      </span>
+                    </p>
+                  </div>
+                </template>
                 <template #header>
                   {{ event.title }}
                 </template>
@@ -133,15 +144,8 @@ export default defineComponent({
                 <p>{{ event.extendedProps.description }}</p>
               </ModalEventoAgenda>
             </div>
-            <p class="flex flex-col text-gray-600 items-end">
-              {{ formattedTime(event.startStr) }}
-              <span v-if="event.endStr">
-                {{ formattedTime(event.endStr) }}
-              </span>
-            </p>
           </li>
         </ul>
-
         <div class="py-2">
           <a class="btn w-full green" href="/"> Volver al inicio </a>
         </div>
@@ -174,9 +178,9 @@ export default defineComponent({
               </a>
             </template>
             <span>{{ formattedDate(arg.event.startStr) }}</span>
-            de {{ formattedTime(arg.event.startStr) }}
+            {{ formattedTime(arg.event.startStr) }}hs
             <span v-if="arg.event.endStr">
-              a {{ formattedTime(arg.event.endStr) }}
+              — {{ formattedTime(arg.event.endStr) }}hs
             </span>
             <p>{{ arg.event.extendedProps.description }}</p>
           </ModalEvento>
@@ -189,6 +193,18 @@ export default defineComponent({
 <style>
 .fc-header-toolbar {
   @apply px-2 sm:px-0 mb-2 !important;
+}
+
+.fc-header-toolbar .fc-toolbar-chunk:nth-child(2) div {
+  @apply flex justify-center items-center gap-6;
+}
+
+.fc .fc-col-header-cell-cushion {
+  @apply font-mono font-normal uppercase text-sm;
+}
+
+.fc .fc-daygrid-day-number {
+  @apply font-mono font-normal uppercase text-xs;
 }
 
 .fc .fc-view-harness {
