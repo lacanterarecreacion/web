@@ -69,9 +69,9 @@ export default defineComponent({
 </script>
 <template>
   <div
-    class="grid md:grid-cols-6 w-full max-w-7xl mx-auto bg-white sm:p-3 gap-6 mt-2 rounded-xl shadow-lg"
+    class="grid animate__fadeIn animate__animated animate__delay-1s md:grid-cols-6 w-full max-w-7xl mx-auto bg-white sm:p-3 gap-6 mt-2 rounded-xl shadow-lg"
   >
-    <div class="md:col-span-2 border-r sm:px-2">
+    <div class="md:col-span-2 border-r p-2 sm:px-2">
       <div class="">
         <h2
           class="font-mono flex justify-start text-gray-700 items-center text-xl gap-3 mb-2"
