@@ -3,7 +3,7 @@
     <button
       type="button"
       @click="openModal"
-      class="flex flex-col w-full hover:bg-orange-50 duration-300 p-1 rounded-md"
+      class="flex flex-col w-full hover:ring-2 ring-orange-600 bg-gray-100 duration-300 p-2 rounded-lg shadow"
     >
       <slot name="button" />
     </button>

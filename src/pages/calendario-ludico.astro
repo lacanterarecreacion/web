@@ -23,8 +23,13 @@ const calendario = await useSanityClient().fetch(
 ---
 
 <Layout title="Calendario lúdico">
-  <div class="sm:p-1 mt-4 md:mt-0 min-h-screen bg-gradient-to-br from-indigo-100 bg-amber-100" >
+  <div class="sm:p-1 mt-0 min-h-screen bg-gradient-to-br from-indigo-100 bg-amber-100" >
     <FullCalendar calendarEvents={calendario} client:load >
+      <a href="/" rel="prefetch" class="md:relative absolute top-8 md:top-0 left-2 flex justify-start flex-col items-center pl-1 md:pl-0 ">
+        <div class="w-40 md:w-32">
+          <LogoCantera/>
+        </div>
+      </a>
     </FullCalendar>
   </div>
 </Layout>
