@@ -5,7 +5,7 @@ const sanityClient = createClient({
   projectId: '1ekf84ne',
   dataset: 'production',
   apiVersion: '2023-02-08',
-  useCdn: false
+  useCdn: true
 });
 
 export const INITIAL_EVENTS = await sanityClient.fetch(`*[_type == "calendarioLudico"] | order(start asc)
