@@ -7,7 +7,6 @@ export default function Youtube({ video, title, thumbnail }) {
 
   const handleClick = useCallback(() => {
     setIsActive((current) => !current);
-    console.log("active");
   }, []);
 
   return (
