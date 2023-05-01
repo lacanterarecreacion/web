@@ -1,7 +1,6 @@
 <template>
   <div class="flex flex-col w-full gap-2 p-3 bg-gray-100 rounded-md">
     <div class="w-32 h-6 pulse"></div>
-    <div class="w-64 h-6 pulse"></div>
     <div class="flex justify-between gap-6">
       <div class="w-24 h-4 pulse"></div>
       <div class="w-32 h-4 pulse"></div>
@@ -18,13 +17,13 @@
 
 @keyframes pulse-bg {
   0% {
-    background-color: #ddd;
+    @apply bg-gray-200
   }
   50% {
-    background-color: #d0d0d0;
+    @apply bg-gray-300/90
   }
   100% {
-    background-color: #ddd;
+    @apply bg-gray-200
   }
 }
 </style>

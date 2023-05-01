@@ -17,7 +17,7 @@ export default function MyModal() {
       <button
         type="button"
         onClick={openModal}
-        className="btn md:!py-0.5 green !text-xs"
+        className="btn green !text-xs"
       >
         Enterate
       </button>

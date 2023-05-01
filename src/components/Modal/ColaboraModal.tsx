@@ -17,7 +17,7 @@ export default function MyModal() {
       <button
         type="button"
         onClick={openModal}
-        className="btn blue  md:!py-0.5 !text-xs"
+        className="btn blue  !text-xs"
       >
         Colaborá
       </button>

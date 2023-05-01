@@ -161,13 +161,13 @@ export default defineComponent({
                         >
                           {{ event.title }}
                         </h3>
-                        <div>
+                        <!-- <div>
                           <h4
                             class="flex items-center justify-between my-1 text-left"
                           >
                             {{ event.extendedProps.description }}
                           </h4>
-                        </div>
+                        </div> -->
                         <div
                           class="flex items-center justify-between w-full pt-2 text-sm"
                         >
@@ -294,13 +294,13 @@ export default defineComponent({
                   >
                     {{ event.title }}
                   </h3>
-                  <div>
+                  <!-- <div>
                     <h4
                       class="flex items-center justify-between my-1 text-left"
                     >
                       {{ event.extendedProps.description }}
                     </h4>
-                  </div>
+                  </div> -->
                   <div
                     class="flex items-center justify-between w-full pt-2 text-sm"
                   >
@@ -391,7 +391,7 @@ export default defineComponent({
       </FullCalendar>
       <div
         v-if="isLoading"
-        class="absolute top-0 right-0 h-full w-full bg-gray-100 flex justify-center items-center z-50"
+        class="absolute pulse top-0 right-0 h-full rounded-lg overflow-hidden w-full bg-gray-100 flex justify-center items-center z-50"
       >
         <IconSpinner/>
       </div>
