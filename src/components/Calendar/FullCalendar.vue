@@ -24,8 +24,8 @@ export default defineComponent({
     TabPanel,
     TabPanels,
     AgendaSkeleton,
-    IconSpinner
-},
+    IconSpinner,
+  },
   props: {
     calendarEvents: {
       type: Array,
@@ -88,7 +88,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="block w-full pt-20 lg:hidden">
+  <div class="block w-full pt-16 lg:hidden">
     <slot />
     <TabGroup>
       <TabList class="flex p-1 mx-2 space-x-1 rounded-xl bg-orange-900/20">
@@ -222,7 +222,7 @@ export default defineComponent({
         </TabPanel>
         <TabPanel
           :class="[
-            'rounded-xl bg-white p-3',
+            'rounded-xl bg-white p-1 md:p-3',
             'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
           ]"
         >
@@ -393,7 +393,7 @@ export default defineComponent({
         v-if="isLoading"
         class="absolute pulse top-0 right-0 h-full rounded-lg overflow-hidden w-full bg-gray-100 flex justify-center items-center z-50"
       >
-        <IconSpinner/>
+        <IconSpinner />
       </div>
     </div>
   </div>
@@ -425,11 +425,11 @@ export default defineComponent({
 }
 
 .fc .fc-view-harness {
-  height: 660px !important;
+  @apply !h-[75vh] md:!h-[660px];
 }
 
 .fc-toolbar-title {
-  @apply font-mono capitalize !text-xs md:!text-lg;
+  @apply font-mono capitalize !text-xs md:!text-lg md:min-w-[230px] text-center;
 }
 
 .fc .fc-button {
