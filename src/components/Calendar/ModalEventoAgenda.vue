@@ -43,7 +43,7 @@
               <slot name="image" />
               <DialogTitle
                 as="h3"
-                class="text-2xl p-3 font-medium leading-6 text-gray-900"
+                class="text-2xl p-3 font-medium font-mono leading-6 text-gray-900"
               >
                 <slot name="header" />
               </DialogTitle>
