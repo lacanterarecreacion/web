@@ -169,7 +169,7 @@ export default defineComponent({
                           </h4>
                         </div> -->
                         <div
-                          class="flex items-center justify-between w-full pt-2 text-sm"
+                          class="flex items-center justify-between w-full pt-1 text-sm"
                         >
                           <p>{{ formattedDate(event.startStr) }}</p>
                           <p class="flex items-end text-gray-600">
@@ -302,7 +302,7 @@ export default defineComponent({
                     </h4>
                   </div> -->
                   <div
-                    class="flex items-center justify-between w-full pt-2 text-sm"
+                    class="flex items-center justify-between w-full pt-1 text-sm"
                   >
                     <p>{{ formattedDate(event.startStr) }}</p>
                     <p class="flex items-end text-gray-600">
