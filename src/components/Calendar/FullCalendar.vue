@@ -24,7 +24,8 @@ export default defineComponent({
     TabPanel,
     TabPanels,
     AgendaSkeleton,
-  },
+    IconSpinner
+},
   props: {
     calendarEvents: {
       type: Array,
@@ -32,6 +33,7 @@ export default defineComponent({
   },
   data() {
     return {
+      isLoading: true,
       calendarOptions: {
         plugins: [
           dayGridPlugin,
@@ -61,7 +63,9 @@ export default defineComponent({
   },
   methods: {
     handleEvents(events) {
+      this.isLoading = true;
       this.currentEvents = events;
+      this.isLoading = false;
     },
     formattedDate(value) {
       return formatDate(value, {
@@ -340,7 +344,7 @@ export default defineComponent({
       </div>
       <div
         v-else
-        class="flex md:h-[600px] flex-col items-center justify-center gap-3 px-1 mt-2"
+        class="flex md:h-[600px] flex-col items-center justify-start gap-3 px-1 mt-2"
       >
         <AgendaSkeleton />
         <AgendaSkeleton />
@@ -351,7 +355,7 @@ export default defineComponent({
         <a class="w-full btn green" href="/"> Volver al inicio </a>
       </div>
     </div>
-    <div class="md:col-span-4">
+    <div class="md:col-span-4 relative">
       <FullCalendar :options="calendarOptions">
         <template v-slot:eventContent="arg">
           <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
@@ -385,6 +389,12 @@ export default defineComponent({
           </ModalEvento>
         </template>
       </FullCalendar>
+      <div
+        v-if="isLoading"
+        class="absolute top-0 right-0 h-full w-full bg-gray-100 flex justify-center items-center z-50"
+      >
+        <IconSpinner/>
+      </div>
     </div>
   </div>
 </template>
