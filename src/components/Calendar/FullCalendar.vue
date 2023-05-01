@@ -340,7 +340,7 @@ export default defineComponent({
       </div>
       <div
         v-else
-        class="flex flex-col items-center justify-center gap-3 px-1 mt-2"
+        class="flex md:h-[600px] flex-col items-center justify-center gap-3 px-1 mt-2"
       >
         <AgendaSkeleton />
         <AgendaSkeleton />
