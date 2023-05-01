@@ -10,6 +10,7 @@ import ModalEvento from "./ModalEvento.vue";
 import ModalEventoAgenda from "./ModalEventoAgenda.vue";
 import IconSpinner from "./IconSpinner.vue";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import AgendaSkeleton from "./AgendaSkeleton.vue";
 
 export default defineComponent({
   components: {
@@ -22,6 +23,7 @@ export default defineComponent({
     TabList,
     TabPanel,
     TabPanels,
+    AgendaSkeleton,
   },
   props: {
     calendarEvents: {
@@ -82,10 +84,10 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="w-full block lg:hidden pt-20">
+  <div class="block w-full pt-20 lg:hidden">
     <slot />
     <TabGroup>
-      <TabList class="flex space-x-1 rounded-xl bg-orange-900/20 p-1 mx-2">
+      <TabList class="flex p-1 mx-2 space-x-1 rounded-xl bg-orange-900/20">
         <Tab as="template" v-slot="{ selected }">
           <button
             :class="[
@@ -122,46 +124,51 @@ export default defineComponent({
           ]"
         >
           <div
-            class="flex justify-between border-b-2 border-orange-600 pb-2 items-center"
+            class="flex items-center justify-between pb-2 border-b-2 border-orange-600"
           >
-            <h1 class="text-orange-600 font-mono text-2xl flex items-center">
+            <h1 class="flex items-center font-mono text-2xl text-orange-600">
               Agendate
             </h1>
-            <span class="font-mono text-gray-500">
+            <span
+              v-if="currentEvents.length !== 0"
+              class="font-mono text-gray-500"
+            >
               {{ currentEvents.length }} eventos
             </span>
+            <IconSpinner v-else class="w-6 h-6" />
           </div>
 
           <div class="relative bg-white min-h-[400px]">
             <div
-              class="animate__fadeIn bg-white animate__animated animate__faster relative z-10 animate__delay-2s"
+              v-if="currentEvents.length !== 0"
+              class="relative z-10 bg-white"
             >
               <ul class="md:h-[600px] overflow-y-auto px-1 mt-2">
                 <li
-                  class="flex py-1 flex-col"
+                  class="flex flex-col py-1"
                   v-for="event in currentEvents"
                   :key="event.id"
                 >
-                  <div class="group text-left">
+                  <div class="text-left group">
                     <ModalEventoAgenda>
                       <template #button>
                         <h3
-                          class="flex font-mono text-orange-600 group-hover:underline underline-offset-2 justify-between items-center"
+                          class="flex items-center justify-between font-mono text-orange-600 group-hover:underline underline-offset-2"
                         >
                           {{ event.title }}
                         </h3>
                         <div>
                           <h4
-                            class="flex justify-between text-left my-1 items-center"
+                            class="flex items-center justify-between my-1 text-left"
                           >
                             {{ event.extendedProps.description }}
                           </h4>
                         </div>
                         <div
-                          class="flex pt-2 text-sm w-full justify-between items-center"
+                          class="flex items-center justify-between w-full pt-2 text-sm"
                         >
                           <p>{{ formattedDate(event.startStr) }}</p>
-                          <p class="flex text-gray-600 items-end">
+                          <p class="flex items-end text-gray-600">
                             {{ formattedTime(event.startStr) }}hs&nbsp;
                             <span v-if="event.endStr">
                               — {{ formattedTime(event.endStr) }}hs
@@ -175,7 +182,7 @@ export default defineComponent({
                       <template #image v-if="event.extendedProps.image">
                         <img
                           :src="event.extendedProps.image.secure_url"
-                          class="w-full h-64 object-cover"
+                          class="object-cover w-full h-64"
                         />
                       </template>
                       <template #link v-if="event.extendedProps.link">
@@ -198,8 +205,14 @@ export default defineComponent({
                 </li>
               </ul>
             </div>
-            <div class="absolute flex items-center justify-center inset-0 z-0">
-              <div><IconSpinner class="w-12 h-12"/></div>
+            <div
+              v-else
+              class="flex flex-col items-center justify-center gap-3 px-1 mt-2"
+            >
+              <AgendaSkeleton />
+              <AgendaSkeleton />
+              <AgendaSkeleton />
+              <AgendaSkeleton />
             </div>
           </div>
         </TabPanel>
@@ -211,7 +224,7 @@ export default defineComponent({
         >
           <FullCalendar :options="calendarOptions">
             <template v-slot:eventContent="arg">
-              <div class="flex flex-col overflow-hidden w-full p-2 text-xs">
+              <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
                 <p class="truncate !font-sans">{{ arg.event.title }}</p>
               </div>
               <ModalEvento>
@@ -221,7 +234,7 @@ export default defineComponent({
                 <template #image v-if="arg.event.extendedProps.image">
                   <img
                     :src="arg.event.extendedProps.image.secure_url"
-                    class="w-full h-64 object-cover"
+                    class="object-cover w-full h-64"
                   />
                 </template>
                 <template #link v-if="arg.event.extendedProps.link">
@@ -248,86 +261,100 @@ export default defineComponent({
   </div>
 
   <div
-    class="hidden lg:grid md:grid-cols-6 w-full max-w-7xl mx-auto bg-white sm:p-3 gap-1 md:gap-2 mt-2 rounded-xl shadow-lg"
+    class="hidden w-full gap-1 mx-auto mt-2 bg-white shadow-lg lg:grid md:grid-cols-6 max-w-7xl sm:p-3 md:gap-2 rounded-xl"
   >
     <div class="md:col-span-2 md:p-2 sm:px-2">
       <div
-        class="flex justify-between border-b-2 border-orange-600 pb-2 items-center"
+        class="flex items-center justify-between pb-2 border-b-2 border-orange-600"
       >
-        <h1 class="text-orange-600 font-mono text-2xl flex items-center">
+        <h1 class="flex items-center font-mono text-2xl text-orange-600">
           Agendate
         </h1>
-        <span class="font-mono text-gray-500">
+        <span v-if="currentEvents.length !== 0" class="font-mono text-gray-500">
           {{ currentEvents.length }} eventos
         </span>
+        <IconSpinner v-else class="w-6 h-6" />
       </div>
-      <ul class="md:h-[600px] overflow-y-auto px-1 mt-2">
-        <li
-          class="flex py-1 flex-col"
-          v-for="event in currentEvents"
-          :key="event.id"
-        >
-          <div class="group text-left">
-            <ModalEventoAgenda>
-              <template #button>
-                <h3
-                  class="flex font-mono text-orange-600 group-hover:underline underline-offset-2 justify-between items-center"
-                >
+      <div v-if="currentEvents.length !== 0">
+        <ul class="md:h-[600px] overflow-y-auto px-1 mt-2">
+          <li
+            class="flex flex-col py-1"
+            v-for="event in currentEvents"
+            :key="event.id"
+          >
+            <div class="text-left group">
+              <ModalEventoAgenda>
+                <template #button>
+                  <h3
+                    class="flex items-center justify-between font-mono text-orange-600 group-hover:underline underline-offset-2"
+                  >
+                    {{ event.title }}
+                  </h3>
+                  <div>
+                    <h4
+                      class="flex items-center justify-between my-1 text-left"
+                    >
+                      {{ event.extendedProps.description }}
+                    </h4>
+                  </div>
+                  <div
+                    class="flex items-center justify-between w-full pt-2 text-sm"
+                  >
+                    <p>{{ formattedDate(event.startStr) }}</p>
+                    <p class="flex items-end text-gray-600">
+                      {{ formattedTime(event.startStr) }}hs&nbsp;
+                      <span v-if="event.endStr">
+                        — {{ formattedTime(event.endStr) }}hs
+                      </span>
+                    </p>
+                  </div>
+                </template>
+                <template #header>
                   {{ event.title }}
-                </h3>
-                <div>
-                  <h4 class="flex justify-between text-left my-1 items-center">
-                    {{ event.extendedProps.description }}
-                  </h4>
-                </div>
-                <div
-                  class="flex pt-2 text-sm w-full justify-between items-center"
-                >
-                  <p>{{ formattedDate(event.startStr) }}</p>
-                  <p class="flex text-gray-600 items-end">
-                    {{ formattedTime(event.startStr) }}hs&nbsp;
-                    <span v-if="event.endStr">
-                      — {{ formattedTime(event.endStr) }}hs
-                    </span>
-                  </p>
-                </div>
-              </template>
-              <template #header>
-                {{ event.title }}
-              </template>
-              <template #image v-if="event.extendedProps.image">
-                <img
-                  :src="event.extendedProps.image.secure_url"
-                  class="w-full h-64 object-cover"
-                />
-              </template>
-              <template #link v-if="event.extendedProps.link">
-                <a
-                  class="btn blue !text-xs w-44"
-                  target="_blank"
-                  :href="event.extendedProps.link"
-                >
-                  Link al evento
-                </a>
-              </template>
-              <span>{{ formattedDate(event.startStr) }}</span>
-              de {{ formattedTime(event.startStr) }}
-              <span v-if="event.endStr">
-                a {{ formattedTime(event.endStr) }}
-              </span>
-              <p>{{ event.extendedProps.description }}</p>
-            </ModalEventoAgenda>
-          </div>
-        </li>
-      </ul>
+                </template>
+                <template #image v-if="event.extendedProps.image">
+                  <img
+                    :src="event.extendedProps.image.secure_url"
+                    class="object-cover w-full h-64"
+                  />
+                </template>
+                <template #link v-if="event.extendedProps.link">
+                  <a
+                    class="btn blue !text-xs w-44"
+                    target="_blank"
+                    :href="event.extendedProps.link"
+                  >
+                    Link al evento
+                  </a>
+                </template>
+                <span>{{ formattedDate(event.startStr) }}</span>
+                de {{ formattedTime(event.startStr) }}
+                <span v-if="event.endStr">
+                  a {{ formattedTime(event.endStr) }}
+                </span>
+                <p>{{ event.extendedProps.description }}</p>
+              </ModalEventoAgenda>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div
+        v-else
+        class="flex flex-col items-center justify-center gap-3 px-1 mt-2"
+      >
+        <AgendaSkeleton />
+        <AgendaSkeleton />
+        <AgendaSkeleton />
+        <AgendaSkeleton />
+      </div>
       <div class="p-1">
-        <a class="btn w-full green" href="/"> Volver al inicio </a>
+        <a class="w-full btn green" href="/"> Volver al inicio </a>
       </div>
     </div>
     <div class="md:col-span-4">
       <FullCalendar :options="calendarOptions">
         <template v-slot:eventContent="arg">
-          <div class="flex flex-col overflow-hidden w-full p-2 text-xs">
+          <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
             <p class="truncate !font-sans">{{ arg.event.title }}</p>
           </div>
           <ModalEvento>
@@ -337,7 +364,7 @@ export default defineComponent({
             <template #image v-if="arg.event.extendedProps.image">
               <img
                 :src="arg.event.extendedProps.image.secure_url"
-                class="w-full h-64 object-cover"
+                class="object-cover w-full h-64"
               />
             </template>
             <template #link v-if="arg.event.extendedProps.link">
