@@ -15,7 +15,6 @@ import AgendaSkeleton from "./AgendaSkeleton.vue";
 export default defineComponent({
   components: {
     FullCalendar,
-    IconSpinner,
     ModalEvento,
     ModalEventoAgenda,
     Tab,
@@ -85,6 +84,15 @@ export default defineComponent({
         locale: "es",
       });
     },
+    isOldEvent(value) {
+      const inputValue = value;
+      const calendarApi = this.$refs.fullCalendar.getApi();
+      const currentDate = calendarApi.getDate();
+      // console.log("Input value:", inputValue);
+      // console.log("Today value:", currentDate.toISOString());
+      // console.log("Es Actual", inputValue >= currentDate.toISOString());
+      return inputValue >= currentDate.toISOString();
+    },
   },
 });
 </script>
@@ -135,20 +143,11 @@ export default defineComponent({
             <h1 class="flex items-center font-mono text-2xl text-orange-600">
               Agendate
             </h1>
-            <span
-              v-if="currentEvents.length !== 0"
-              class="font-mono text-gray-500"
-            >
-              {{ currentEvents.length }} eventos
-            </span>
-            <IconSpinner v-else class="w-6 h-6" />
+            <IconSpinner v-if="isLoading" class="w-6 h-6" />
           </div>
 
           <div class="relative bg-white min-h-[400px]">
-            <div
-              v-if="currentEvents.length !== 0"
-              class="relative z-10 bg-white"
-            >
+            <div v-if="!isLoading" class="relative z-10 bg-white">
               <ul class="md:h-[600px] overflow-y-auto px-1 mt-2">
                 <li
                   class="flex flex-col py-1"
@@ -270,27 +269,24 @@ export default defineComponent({
         <h1 class="flex items-center font-mono text-2xl text-orange-600">
           Agendate
         </h1>
-        <span v-if="currentEvents.length !== 0" class="font-mono text-gray-500">
-          {{ currentEvents.length }} eventos
-        </span>
-        <IconSpinner v-else class="w-6 h-6" />
+        <IconSpinner v-if="isLoading" class="w-6 h-6" />
       </div>
-      <div v-if="currentEvents.length !== 0">
+      <div v-if="!isLoading">
         <ul class="md:h-[600px] overflow-y-auto px-1 mt-2">
           <li
             class="flex flex-col py-1"
             v-for="event in currentEvents"
             :key="event.id"
           >
-            <div class="text-left group">
+            <div class="text-left group" v-if="isOldEvent(event.startStr)">
               <ModalEventoAgenda>
                 <template #button>
                   <h3
-                    class="flex items-center justify-between font-mono text-gray-600 group-hover:underline underline-offset-2"
+                    class="flex items-center justify-between font-mono text-gray-600 group-hover:underline underline-offset-2 relative w-full"
                   >
                     {{ event.title }}
                   </h3>
-                  
+
                   <div
                     class="flex items-center justify-between w-full pt-1 text-sm"
                   >

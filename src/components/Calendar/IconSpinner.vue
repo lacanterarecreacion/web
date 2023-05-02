@@ -11,7 +11,7 @@
     >
       <animateTransform
         attributeName="transform"
-        dur="0.6s"
+        dur="1s"
         repeatCount="indefinite"
         type="rotate"
         values="0 12 12;360 12 12"

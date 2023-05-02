@@ -9,7 +9,7 @@ import { useSanityClient } from "astro-sanity";
 
 const calendario = await useSanityClient().fetch(
   `
-  *[_type == "calendarioLudico" && end > now()] | order(start asc)
+  *[_type == "calendarioLudico"] | order(start asc)
     {
       title,
       start,
