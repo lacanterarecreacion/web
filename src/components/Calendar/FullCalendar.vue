@@ -154,7 +154,10 @@ export default defineComponent({
                   v-for="event in currentEvents"
                   :key="event.id"
                 >
-                  <div class="text-left group">
+                  <div
+                    class="text-left group"
+                    v-if="isOldEvent(event.startStr)"
+                  >
                     <ModalEventoAgenda>
                       <template #button>
                         <h3
