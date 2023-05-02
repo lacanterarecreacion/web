@@ -31,8 +31,7 @@ const { title, body, mainImage, publishedAt } = Astro.props as Props;
       <p class="mt-6">
         Publicado el
         <time datetime={publishedAt}>
-          {moment(publishedAt).locale("es").format("MMMM Do YYYY")}
-          <!-- {format(date, "do LLLL, yyyy")} -->
+          {moment(publishedAt).locale("es").format("LL")}
         </time>
       </p>
     </div>

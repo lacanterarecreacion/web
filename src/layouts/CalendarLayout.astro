@@ -36,13 +36,13 @@ const pathname = new URL(Astro.request.url).pathname;
       image={image}
     />
     <GoogleFont />
-    <Noscript/>
+    <Noscript />
   </head>
   <body class="w-full text-gray-900 bg-white">
     <Offcanvas client:load>
       <Navigation />
       <CallToActions />
     </Offcanvas>
-      <slot />
+    <slot />
   </body>
 </html>

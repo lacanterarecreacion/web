@@ -20,7 +20,7 @@ const pathname = new URL(Astro.request.url).pathname;
   >
     Noticias
   </a>
-  <DropdownInstitucional client:load />
+  <DropdownInstitucional client:media="(min-width: 1280px)" />
   <a
     class={`${
       pathname === "/institucional/quienes-somos"

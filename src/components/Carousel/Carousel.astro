@@ -5,7 +5,7 @@ const { images } = Astro.props;
 
 <div class="max-w-4xl w-full mx-auto">
   <div
-    style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+    style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff; --swiper-pagination-bullet-width: 16px; --swiper-pagination-bullet-height: 16px;"
     class="swiper mySwiper2"
   >
     <div class="swiper-wrapper">
@@ -26,6 +26,7 @@ const { images } = Astro.props;
         })
       }
     </div>
+    <div class="swiper-pagination"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
@@ -63,6 +64,14 @@ const { images } = Astro.props;
   //@ts-ignore
   var swiper2 = new Swiper(".mySwiper2", {
     spaceBetween: 10,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -77,4 +86,6 @@ const { images } = Astro.props;
   .swiper {
     @apply w-full select-none;
   }
+
+
 </style>

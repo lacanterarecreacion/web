@@ -51,9 +51,11 @@ export default defineComponent({
         initialEvents: this.calendarEvents, // alternatively, use the `events` setting to fetch from a feed
         editable: false,
         selectable: true,
-        selectMirror: true,
-        dayMaxEvents: true,
+        selectMirror: false,
+        dayMaxEvents: false,
         weekends: true,
+        eventColor: "#999",
+        eventDisplay: "block",
         select: this.handleDateSelect,
         eventClick: this.handleEventClick,
         eventsSet: this.handleEvents,
@@ -157,17 +159,11 @@ export default defineComponent({
                     <ModalEventoAgenda>
                       <template #button>
                         <h3
-                          class="flex items-center justify-between font-mono text-orange-600 group-hover:underline underline-offset-2"
+                          class="flex items-center justify-between font-mono text-gray-600 group-hover:underline underline-offset-2"
                         >
                           {{ event.title }}
                         </h3>
-                        <!-- <div>
-                          <h4
-                            class="flex items-center justify-between my-1 text-left"
-                          >
-                            {{ event.extendedProps.description }}
-                          </h4>
-                        </div> -->
+
                         <div
                           class="flex items-center justify-between w-full pt-1 text-sm"
                         >
@@ -267,7 +263,7 @@ export default defineComponent({
   <div
     class="hidden w-full gap-1 mx-auto mt-2 bg-white shadow-lg lg:grid md:grid-cols-6 max-w-7xl sm:p-3 md:gap-2 rounded-xl"
   >
-    <div class="md:col-span-2 md:p-2 sm:px-2">
+    <div class="md:col-span-2 md:p-2 md:pt-0 sm:px-2">
       <div
         class="flex items-center justify-between pb-2 border-b-2 border-orange-600"
       >
@@ -290,17 +286,11 @@ export default defineComponent({
               <ModalEventoAgenda>
                 <template #button>
                   <h3
-                    class="flex items-center justify-between font-mono text-orange-600 group-hover:underline underline-offset-2"
+                    class="flex items-center justify-between font-mono text-gray-600 group-hover:underline underline-offset-2"
                   >
                     {{ event.title }}
                   </h3>
-                  <!-- <div>
-                    <h4
-                      class="flex items-center justify-between my-1 text-left"
-                    >
-                      {{ event.extendedProps.description }}
-                    </h4>
-                  </div> -->
+                  
                   <div
                     class="flex items-center justify-between w-full pt-1 text-sm"
                   >
@@ -356,7 +346,7 @@ export default defineComponent({
       </div>
     </div>
     <div class="md:col-span-4 relative">
-      <FullCalendar :options="calendarOptions">
+      <FullCalendar ref="fullCalendar" :options="calendarOptions">
         <template v-slot:eventContent="arg">
           <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
             <p class="truncate !font-sans">{{ arg.event.title }}</p>
@@ -391,7 +381,7 @@ export default defineComponent({
       </FullCalendar>
       <div
         v-if="isLoading"
-        class="absolute pulse top-0 right-0 h-full rounded-lg overflow-hidden w-full bg-gray-100 flex justify-center items-center z-50"
+        class="absolute top-0 right-0 h-full rounded-lg overflow-hidden w-full bg-gray-100 flex justify-center items-center z-50"
       >
         <IconSpinner />
       </div>
@@ -440,8 +430,14 @@ export default defineComponent({
   @apply font-mono disabled:bg-orange-600 p-1 px-2 disabled:border-none disabled:cursor-not-allowed text-sm disabled:text-white bg-white text-gray-600;
 }
 
-.fc .fc-event {
-  @apply bg-amber-600 border-amber-700 hover:ring-2 ring-orange-300 !important;
+.fc .fc-day-past .fc-event {
+  @apply opacity-60;
+  @apply bg-gray-800 border-gray-700 hover:ring-2 ring-orange-300 !important;
   color: #fff;
 }
+
+/* .fc .fc-event {
+  @apply bg-amber-600 border-amber-700 hover:ring-2 ring-orange-300 !important;
+  color: #fff;
+} */
 </style>
