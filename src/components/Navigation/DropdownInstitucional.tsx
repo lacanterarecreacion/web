@@ -41,7 +41,19 @@ export default function Example() {
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full font-mono items-center rounded-md px-2 py-4 text-sm`}
                   >
-                    Sobre Cantera
+                    ¿Qué es La Cantera?
+                  </a>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <a
+                    href="/que-hacemos"
+                    className={`${
+                      active ? "bg-violet-500 text-white" : "text-gray-900"
+                    } group flex w-full font-mono items-center rounded-md px-2 py-4 text-sm`}
+                  >
+                    ¿Qué hacemos?
                   </a>
                 )}
               </Menu.Item>
@@ -57,18 +69,7 @@ export default function Example() {
                   </a>
                 )}
               </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <a
-                    href="/institucional/quienes-somos#que-hacemos"
-                    className={`${
-                      active ? "bg-violet-500 text-white" : "text-gray-900"
-                    } group flex w-full font-mono items-center rounded-md px-2 py-4 text-sm`}
-                  >
-                    Que hacemos
-                  </a>
-                )}
-              </Menu.Item>
+             
             </div>
           </Menu.Items>
         </Transition>

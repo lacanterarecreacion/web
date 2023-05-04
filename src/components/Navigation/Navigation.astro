@@ -20,13 +20,6 @@ const pathname = new URL(Astro.request.url).pathname;
   >
     Noticias
   </a>
-  <a
-    class={pathname === "/que-hacemos" ? "active" : ""}
-    rel="prefetch"
-    href="/que-hacemos"
-  >
-    ¿Qué hacemos?
-  </a>
   <DropdownInstitucional client:media="(min-width: 1280px)" />
   <a
     class={`${
