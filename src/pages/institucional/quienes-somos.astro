@@ -3,7 +3,6 @@ import Layout from "@/src/layouts/Layout.astro";
 import InstitucionalQueHacemos from "@/src/modules/Institucional/InstitucionalQueHacemos.astro";
 import InstitucionalQuienesSomos from "@/src/modules/Institucional/InstitucionalQuienesSomos.astro";
 import LaCanteraHero from "@/src/modules/Institucional/LaCanteraHero.astro";
-import LineaDeTiempo from "@/src/modules/Institucional/LineaDeTiempo.astro";
 ---
 
 <Layout title="Sobre cantera">
@@ -12,11 +11,7 @@ import LineaDeTiempo from "@/src/modules/Institucional/LineaDeTiempo.astro";
     <InstitucionalQuienesSomos/>
     <div class="scroll-mt-32" id="nuestra-historia"></div>
     <h2 class="font-mono text-4xl intersectionAnimation text-[#002b36] relative top-2 text-center md:text-6xl">Nuestra Historia</h2>
-    <div class="relative h-[70vh] overflow-hidden bg-indigo-900">
-      <div class="absolute inset-0">
-        <LineaDeTiempo />
-      </div>
-    </div>
+
     <InstitucionalQueHacemos/>
   </div>
 </Layout>

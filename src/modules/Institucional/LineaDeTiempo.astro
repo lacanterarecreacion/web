@@ -1,19 +1,32 @@
 ---
-import 'reveal.js/dist/reveal.css';
-import 'reveal.js/dist/theme/moon.css';
+import "reveal.js/dist/reveal.css";
+import "reveal.js/dist/theme/moon.css";
 ---
 
 <div class="reveal">
   <div class="slides">
-    <section>Slide 1</section>
-    <section>Slide 2</section>
-    <section>Slide 3</section>
-    <section>Slide 4</section>
-    <section>Slide 5</section>
-    <section>Slide 6</section>
-    <section>Slide 7</section>
-    <section>Slide 8</section>
-    <section>Slide 9</section>
+    <section><h1>Nuestra historia</h1></section>
+    <section><h1>1</h1></section>
+    <section><h1>Dos</h1></section>
+    <section><h1>(3)</h1></section>
+    <section><h1>cuatro</h1></section>
+    <section>
+      <p class="fragment">Fade in</p>
+      <p class="fragment fade-out">Fade out</p>
+      <p class="fragment highlight-red">Highlight red</p>
+      <p class="fragment fade-in-then-out">Fade in, then out</p>
+      <p class="fragment fade-up">Slide up while fading in</p>
+    </section>
+    <section data-auto-animate>
+      <h1>Auto-Animate</h1>
+    </section>
+    <section data-auto-animate>
+      <h1 style="margin-top: 100px; color: red;">Auto-Animate</h1>
+    </section>
+    <section id="grand-finale">
+      <h2>...</h2>
+      <a href="https://revealjs.com/links/" target="_blank">Hecho en Reveal.js</a>
+    </section>
   </div>
 </div>
 <script>
@@ -21,6 +34,7 @@ import 'reveal.js/dist/theme/moon.css';
   import Reveal from "reveal.js";
   // @ts-ignore
   import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
+  // @ts-ignore
 
   let deck = new Reveal({
     plugins: [Markdown],
