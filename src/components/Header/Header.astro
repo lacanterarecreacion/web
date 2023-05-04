@@ -6,17 +6,23 @@ import CallToActions from "./CallToActions.astro";
 
 <header
   id="headroom"
-  class="fixed shadow-md bg-white py-2 top-0 left-0 flex justify-between right-0 z-50"
+  class="fixed shadow-md bg-white h-16 sm:h-20 top-0 left-0 flex justify-between right-0 z-50"
 >
   <div
-    class="max-w-7xl px-2 md:px-0 relative z-10 mx-auto flex items-center justify-between w-full"
+    class="max-w-full px-0 relative z-10 mx-auto flex items-center justify-between w-full"
   >
-    <a href="/" rel="prefetch" class="flex justify-start items-center pl-1 md:pl-0">
+    <a
+      href="/"
+      rel="prefetch"
+      class="flex justify-start bg-gradient-to-br from-indigo-200 to-emerald-100 items-center  h-16 sm:h-20 px-2 md:px-3"
+    >
       <Logo />
     </a>
-    <div class="hidden xl:flex items-center gap-2 flex-col">
-      <CallToActions />
+    <div class="hidden xl:flex w-full items-center pl-6 gap-2 mx-6">
       <Navigation />
+    </div>
+    <div class="hidden w-96 xl:flex items-center pr-3 gap-2 flex-col">
+      <CallToActions />
     </div>
   </div>
 </header>
