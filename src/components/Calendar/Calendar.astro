@@ -1,0 +1,26 @@
+---
+import FullCalendar from "@/components/Calendar/FullCalendar.vue";
+import { useSanityClient } from "astro-sanity";
+const calendario = await useSanityClient().fetch(
+  `
+  *[_type == "calendarioLudico"] | order(start asc)
+    {
+      title,
+      start,
+      end,
+      color,
+      "extendedProps":  {
+        description,
+        image,
+        link,
+      }
+    }`
+);
+
+
+
+---
+
+<FullCalendar calendarEvents={calendario} client:load />
+
+

@@ -1,11 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { useSanityClient } from "astro-sanity";
 import GrainOne from "@/components/UI/Grain/GrainOne.astro";
 import StrackedScene from "@/components/UI/Backgrounds/StrackedScene.astro";
-const calendario = await useSanityClient().fetch(
-  `*[_type == "calendarioLudico"]`
-);
+import RecursosCards from "@/modules/Recursos/RecursosCards.astro";
 ---
 
 <Layout title="Recursos">
@@ -20,15 +17,5 @@ const calendario = await useSanityClient().fetch(
       <StrackedScene/>
     </div>
   </div>
-  {
-    calendario && (
-      <div class="grid max-w-2xl min-h-screen gap-6 mx-auto mt-32 lg:grid-cols-1">
-        {calendario.map((post: any) => (
-          <a href="#">
-            <span class="text-2xl">{post.title}</span>
-          </a>
-        ))}
-      </div>
-    )
-  }
+  <RecursosCards/>
 </Layout>

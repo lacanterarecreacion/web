@@ -2,13 +2,14 @@
 import HeaderSocial from "./HeaderSocial.astro";
 import ModalColabora from "@/components/Modal/ColaboraModal";
 import ModalEnterate from "@/components/Modal/EnterateModal";
+import ModalAgendate from "@/components/Modal/AgendateModal";
 ---
 
 <div class="flex flex-col justify-end w-full py-1 xl:flex-row">
   <div class="flex flex-col gap-3 pt-6 xl:pt-0 lg:mt-0 xl:flex-row">
     <ModalColabora client:load />
     <ModalEnterate client:load />
-    <a href="/calendario-ludico" class="btn !text-xs yellow">Agendate</a>
+    <ModalAgendate client:load/>
   </div>
   <div class="absolute justify-center w-64 xl:w-auto right-0 flex items-center bottom-6 xl:right-auto xl:bottom-auto xl:relative">
     <HeaderSocial />

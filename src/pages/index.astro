@@ -4,33 +4,13 @@ import HeroContact from "@/modules/Home/Contact.astro";
 import HeroHome from "@/modules/Home/HeroHome.astro";
 import QuienesSomos from "../modules/Home/QuienesSomos.astro";
 import QueHacemos from "../modules/Home/QueHacemos.astro";
-import FullCalendar from "@/components/Calendar/FullCalendar.vue";
-import { useSanityClient } from "astro-sanity";
-
-const calendario = await useSanityClient().fetch(
-  `
-  *[_type == "calendarioLudico"] | order(start asc)
-    {
-      title,
-      start,
-      end,
-      "extendedProps":  {
-        description,
-        image,
-        link,
-      }
-    }`
-);
+import Agenda from "../modules/Home/Agenda.astro";
 ---
 
 <Layout title="Inicio">
   <HeroHome />
   <QuienesSomos />
   <QueHacemos />
-  <div class="relative bg-gradient-to-br from-indigo-200 p-1 md:p-6 to-green-200 z-20">
-    <h1 class="text-2xl text-center font-mono py-16 text-yellow-600">Agenda lúdica</h1>
-    <FullCalendar calendarEvents={calendario} client:visible>
-    </FullCalendar>
-  </div>
+  <Agenda />
   <HeroContact />
 </Layout>

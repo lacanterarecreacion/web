@@ -6,7 +6,9 @@ import YoutubeLoaderHome from "./YoutubeLoaderHome.astro";
 <div
   class="relative flex items-center justify-center w-full px-3 py-10 overflow-hidden md:py-24 bg-gradient-to-br from-pink-600 to-yellow-500"
 >
-  <div class="relative z-10 grid w-full gap-3 pb-6 md:grid-cols-2 max-w-7xl animate__fadeIn animate__animated">
+  <div
+    class="relative z-10 grid w-full gap-3 pb-6 md:grid-cols-2 max-w-7xl animate__fadeIn animate__animated"
+  >
     <div class="flex flex-col gap-2 sm:gap-6 mt-2 lg:pr-6">
       <h2 class="font-mono text-3xl text-white lg:text-5xl">
         La Cantera: <span class="font-mono font-light"
@@ -17,7 +19,10 @@ import YoutubeLoaderHome from "./YoutubeLoaderHome.astro";
         Nos dedicamos a la investigación, difusión y diseño de actividades y
         proyectos en el ámbito de la Recreación, la Educación y el Juego.
       </p>
-      <a href="/institucional/quienes-somos" class="btn w-44">Conocenos</a>
+      <div class="flex gap-6 w-full">
+        <a href="/institucional/quienes-somos#nuestra-historia" class="btn green ">Nuestra historia</a>
+        <a href="/noticias" class="btn">Ver novedades</a>
+      </div>
     </div>
     <div class="">
       <YoutubeLoaderHome

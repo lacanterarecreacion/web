@@ -3,6 +3,7 @@ import IconFacebook from "@/components/Icons/IconFacebook.astro";
 import IconInstagram from "@/components/Icons/IconInstagram.astro";
 import IconYoutube from "@/components/Icons/IconYoutube.astro";
 import GrainOne from "@/components/UI/Grain/GrainOne.astro";
+import EnterateModal from "@/components/Modal/EnterateModal";
 import BlobScene from "@/components/UI/Backgrounds/BlobScene.astro";
 ---
 
@@ -11,24 +12,27 @@ import BlobScene from "@/components/UI/Backgrounds/BlobScene.astro";
   class="relative z-10 flex flex-col items-center justify-center w-full px-6 py-32 mx-auto overflow-hidden font-mono text-left md:px-0 bg-gradient-to-br from-cyan-500 to-yellow-500"
 >
   <div
-    class="relative z-30 w-full max-w-3xl  animate__fadeIn animate__animated p-6 mx-auto text-center bg-white rounded-md shadow-lg md:p-12"
+    class="relative z-30 w-full max-w-xl animate__fadeIn animate__animated p-6 mx-auto text-center bg-white rounded-md shadow-lg md:p-12"
   >
     <h2
       class="w-full md:w-96 mx-auto font-mono mb-8 text-2xl font-bold tracking-wide text-center text-transparent bg-clip-text bg-gradient-to-br from-teal-600 via-60% via-emerald-500 to-teal-300 md:text-5xl"
     >
       Contacto
     </h2>
-    <h3
-      class="w-full mx-auto mb-8 text-lg text-center text-gray-900 md:text-2xl"
-    >
-      Podés contactarnos vía mail o en nuestras redes sociales.
+    <h3 class="w-full mx-auto text-lg text-center text-gray-900">
+      Podés contactarnos vía mail
     </h3>
-    <div class="relative my-6 text-gray-900">
-      <p class="w-full font-mono text-lg text-center break-words select-all md:text-2xl">
+    <div class="relative mt-3 mb-6 text-gray-900">
+      <p
+        class="w-full font-mono text-lg text-center break-words select-all md:text-xl font-bold"
+      >
         lacantera.recreacion@gmail.com
       </p>
     </div>
-    <div class="flex items-center justify-center mt-12 space-x-9">
+    <h3 class="w-full mx-auto mt-16 text-lg text-center text-gray-900">
+      En nuestras redes sociales.
+    </h3>
+    <div class="flex items-center justify-center mt-3 space-x-9">
       <a
         target="_blank"
         rel="noopener noreferrer"
@@ -56,6 +60,14 @@ import BlobScene from "@/components/UI/Backgrounds/BlobScene.astro";
       >
         <IconYoutube />
       </a>
+    </div>
+    <div class="">
+      <h3 class="w-full mx-auto mt-16 mb-3 text-lg text-center text-gray-900">
+        Sumate a nuestro newsletter.
+      </h3>
+      <div class="scale-125">
+        <EnterateModal client:load />
+      </div>
     </div>
   </div>
   <div class="absolute inset-0 z-20 w-full h-screen opacity-90">

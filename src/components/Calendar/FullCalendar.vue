@@ -1,5 +1,5 @@
 <script>
-import { defineComponent, Suspense } from "vue";
+import { defineComponent } from "vue";
 import { formatDate } from "@fullcalendar/core";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -88,9 +88,6 @@ export default defineComponent({
       const inputValue = value;
       const calendarApi = this.$refs.fullCalendar.getApi();
       const currentDate = calendarApi.getDate();
-      // console.log("Input value:", inputValue);
-      // console.log("Today value:", currentDate.toISOString());
-      // console.log("Es Actual", inputValue >= currentDate.toISOString());
       return inputValue >= currentDate.toISOString();
     },
   },
@@ -101,30 +98,12 @@ export default defineComponent({
   <div class="block w-full pt-16 lg:hidden">
     <slot />
     <TabGroup>
-      <TabList class="flex p-1 mx-2 space-x-1 rounded-xl bg-orange-900/20">
+      <TabList class="flex p-1 mx-2 space-x-1 rounded-xl bg-orange-300/20">
         <Tab as="template" v-slot="{ selected }">
-          <button
-            :class="[
-              'w-full rounded-lg py-2.5 font-mono text-sm font-medium leading-5 text-orange-700',
-              'ring-white ring-opacity-60 ring-offset-2 ring-offset-orange-400 focus:outline-none focus:ring-2',
-              selected
-                ? 'bg-white shadow'
-                : 'text-orange-100 hover:bg-white/[0.12] hover:text-white',
-            ]"
-          >
-            Agenda
-          </button>
+          <button :class="['tab', selected ? 'selected ' : '']">Agenda</button>
         </Tab>
         <Tab as="template" v-slot="{ selected }">
-          <button
-            :class="[
-              'w-full rounded-lg py-2.5 font-mono text-sm font-medium leading-5 text-orange-700',
-              'ring-white ring-opacity-60 ring-offset-2 ring-offset-orange-400 focus:outline-none focus:ring-2',
-              selected
-                ? 'bg-white shadow'
-                : 'text-orange-100 hover:bg-white/[0.12] hover:text-white',
-            ]"
-          >
+          <button :class="['tab', selected ? 'selected ' : '']">
             Calendario
           </button>
         </Tab>
@@ -158,58 +137,23 @@ export default defineComponent({
                     class="text-left group"
                     v-if="isOldEvent(event.startStr)"
                   >
-                    <ModalEventoAgenda>
-                      <template #button>
-                        <h3
-                          class="flex items-center justify-between font-mono text-gray-600 group-hover:underline underline-offset-2"
-                        >
-                          {{ event.title }}
-                        </h3>
-
-                        <div
-                          class="flex items-center justify-between w-full pt-1 text-sm"
-                        >
-                          <p>{{ formattedDate(event.startStr) }}</p>
-                          <p class="flex items-end text-gray-600">
-                            {{ formattedTime(event.startStr) }}hs&nbsp;
-                            <span v-if="event.endStr">
-                              — {{ formattedTime(event.endStr) }}hs
-                            </span>
-                          </p>
-                        </div>
-                      </template>
-                      <template #header>
-                        {{ event.title }}
-                      </template>
-                      <template #image v-if="event.extendedProps.image">
-                        <img
-                          :src="event.extendedProps.image.secure_url"
-                          class="object-cover w-full h-64"
-                        />
-                      </template>
-                      <template #link v-if="event.extendedProps.link">
-                        <a
-                          class="btn blue !text-xs w-44"
-                          target="_blank"
-                          :href="event.extendedProps.link"
-                        >
-                          Link al evento
-                        </a>
-                      </template>
-                      <span>{{ formattedDate(event.startStr) }}</span>
-                      de {{ formattedTime(event.startStr) }}
-                      <span v-if="event.endStr">
-                        a {{ formattedTime(event.endStr) }}
-                      </span>
-                      <p>{{ event.extendedProps.description }}</p>
-                    </ModalEventoAgenda>
+                    <ModalEventoAgenda
+                      :title="event.title"
+                      :description="event.extendedProps.description"
+                      :color="event.backgroundColor"
+                      :eventDay="formattedDate(event.startStr)"
+                      :eventTimeStart="formattedTime(event.startStr)"
+                      :eventTimeEnd="formattedTime(event.endStr)"
+                      :eventImage="event.extendedProps.image"
+                      :eventLink="event.extendedProps.link"
+                    />
                   </div>
                 </li>
               </ul>
             </div>
             <div
               v-else
-              class="flex flex-col items-center justify-center gap-3 px-1 mt-2"
+              class="flex flex-col items-center justify-center gap-3 px-1 mt-3"
             >
               <AgendaSkeleton />
               <AgendaSkeleton />
@@ -229,32 +173,17 @@ export default defineComponent({
               <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
                 <p class="truncate !font-sans">{{ arg.event.title }}</p>
               </div>
-              <ModalEvento>
-                <template #header>
-                  {{ arg.event.title }}
-                </template>
-                <template #image v-if="arg.event.extendedProps.image">
-                  <img
-                    :src="arg.event.extendedProps.image.secure_url"
-                    class="object-cover w-full h-64"
-                  />
-                </template>
-                <template #link v-if="arg.event.extendedProps.link">
-                  <a
-                    class="btn blue !text-xs w-44"
-                    target="_blank"
-                    :href="arg.event.extendedProps.link"
-                  >
-                    Link al evento
-                  </a>
-                </template>
-                <span>{{ formattedDate(arg.event.startStr) }}</span>
-                {{ formattedTime(arg.event.startStr) }}hs
-                <span v-if="arg.event.endStr">
-                  — {{ formattedTime(arg.event.endStr) }}hs
-                </span>
-                <p>{{ arg.event.extendedProps.description }}</p>
-              </ModalEvento>
+              <ModalEventoAgenda
+                inCalendar
+                :title="arg.event.title"
+                :description="arg.event.extendedProps.description"
+                :color="arg.event.backgroundColor"
+                :eventDay="formattedDate(arg.event.startStr)"
+                :eventTimeStart="formattedTime(arg.event.startStr)"
+                :eventTimeEnd="formattedTime(arg.event.endStr)"
+                :eventImage="arg.event.extendedProps.image"
+                :eventLink="arg.event.extendedProps.link"
+              />
             </template>
           </FullCalendar>
         </TabPanel>
@@ -282,58 +211,23 @@ export default defineComponent({
             :key="event.id"
           >
             <div class="text-left group" v-if="isOldEvent(event.startStr)">
-              <ModalEventoAgenda>
-                <template #button>
-                  <h3
-                    class="flex items-center justify-between font-mono text-gray-600 group-hover:underline underline-offset-2 relative w-full"
-                  >
-                    {{ event.title }}
-                  </h3>
-
-                  <div
-                    class="flex items-center justify-between w-full pt-1 text-sm"
-                  >
-                    <p>{{ formattedDate(event.startStr) }}</p>
-                    <p class="flex items-end text-gray-600">
-                      {{ formattedTime(event.startStr) }}hs&nbsp;
-                      <span v-if="event.endStr">
-                        — {{ formattedTime(event.endStr) }}hs
-                      </span>
-                    </p>
-                  </div>
-                </template>
-                <template #header>
-                  {{ event.title }}
-                </template>
-                <template #image v-if="event.extendedProps.image">
-                  <img
-                    :src="event.extendedProps.image.secure_url"
-                    class="object-cover w-full h-64"
-                  />
-                </template>
-                <template #link v-if="event.extendedProps.link">
-                  <a
-                    class="btn blue !text-xs w-44"
-                    target="_blank"
-                    :href="event.extendedProps.link"
-                  >
-                    Link al evento
-                  </a>
-                </template>
-                <span>{{ formattedDate(event.startStr) }}</span>
-                de {{ formattedTime(event.startStr) }}
-                <span v-if="event.endStr">
-                  a {{ formattedTime(event.endStr) }}
-                </span>
-                <p>{{ event.extendedProps.description }}</p>
-              </ModalEventoAgenda>
+              <ModalEventoAgenda
+                :title="event.title"
+                :description="event.extendedProps.description"
+                :color="event.backgroundColor"
+                :eventDay="formattedDate(event.startStr)"
+                :eventTimeStart="formattedTime(event.startStr)"
+                :eventTimeEnd="formattedTime(event.endStr)"
+                :eventImage="event.extendedProps.image"
+                :eventLink="event.extendedProps.link"
+              />
             </div>
           </li>
         </ul>
       </div>
       <div
         v-else
-        class="flex md:h-[600px] flex-col items-center justify-start gap-3 px-1 mt-2"
+        class="flex md:h-[600px] flex-col items-center justify-start gap-3 px-1 mt-4"
       >
         <AgendaSkeleton />
         <AgendaSkeleton />
@@ -350,32 +244,17 @@ export default defineComponent({
           <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
             <p class="truncate !font-sans">{{ arg.event.title }}</p>
           </div>
-          <ModalEvento>
-            <template #header>
-              {{ arg.event.title }}
-            </template>
-            <template #image v-if="arg.event.extendedProps.image">
-              <img
-                :src="arg.event.extendedProps.image.secure_url"
-                class="object-cover w-full h-64"
-              />
-            </template>
-            <template #link v-if="arg.event.extendedProps.link">
-              <a
-                class="btn blue !text-xs w-44"
-                target="_blank"
-                :href="arg.event.extendedProps.link"
-              >
-                Link al evento
-              </a>
-            </template>
-            <span>{{ formattedDate(arg.event.startStr) }}</span>
-            {{ formattedTime(arg.event.startStr) }}hs
-            <span v-if="arg.event.endStr">
-              — {{ formattedTime(arg.event.endStr) }}hs
-            </span>
-            <p>{{ arg.event.extendedProps.description }}</p>
-          </ModalEvento>
+          <ModalEventoAgenda
+            inCalendar
+            :title="arg.event.title"
+            :description="arg.event.extendedProps.description"
+            :color="arg.event.backgroundColor"
+            :eventDay="formattedDate(arg.event.startStr)"
+            :eventTimeStart="formattedTime(arg.event.startStr)"
+            :eventTimeEnd="formattedTime(arg.event.endStr)"
+            :eventImage="arg.event.extendedProps.image"
+            :eventLink="arg.event.extendedProps.link"
+          />
         </template>
       </FullCalendar>
       <div
@@ -430,9 +309,17 @@ export default defineComponent({
 }
 
 .fc .fc-day-past .fc-event {
-  @apply opacity-60;
-  @apply bg-gray-800 border-gray-700 hover:ring-2 ring-orange-300 !important;
+  @apply bg-gray-800 border-gray-700 hover:ring-2 ring-gray-300 !important;
   color: #fff;
+}
+
+.tab {
+  @apply w-full rounded-lg py-2.5 font-mono text-sm font-medium leading-5 text-orange-700;
+  @apply ring-white ring-opacity-60 ring-offset-2 ring-offset-orange-400 focus:outline-none focus:ring-2;
+}
+
+.tab.selected {
+  @apply bg-orange-600 shadow text-orange-100 hover:bg-orange-400 hover:text-white;
 }
 
 /* .fc .fc-event {

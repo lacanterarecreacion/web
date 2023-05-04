@@ -1,0 +1,62 @@
+---
+const RECURSOS = [
+  {
+    title: "Awalé",
+    url: "https://issuu.com/revistaawale",
+  },
+  {
+    title: "La Canterentena",
+    url: "https://www.youtube.com/watch?v=tq4rCd9vbD4&list=PLlUCfw9fSUqfsojBik0y1ng4ktwWYor0e&index=2",
+  },
+  {
+    title: "Piedra, Papel o Cantera",
+    url: "https://www.youtube.com/watch?v=v_aRlMMX0Co&list=PLlUCfw9fSUqeOrPcqDHplYh3LeqEkQrQ9",
+  },
+  {
+    title: "Pica 2.0",
+    url: "https://view.genial.ly/5f79228150d2a90d1e2785d0/interactive-content-pica-la-calle-hecha-juego",
+  },
+  {
+    title: "Dónde están los Pueblos Originarios",
+    url: "https://view.genial.ly/61638fa50025590d8c9fe987/interactive-image-pueblos-indigenas",
+  },
+  {
+    title: "Burbuja lúdica",
+    url: "https://docs.google.com/document/d/1MQeLRL0_2BTtBeWTw5DnsUJCCQKy_EKxlQALCttAEo4/edit?usp=sharing",
+  },
+];
+---
+
+<div
+  id="recursos"
+  class="relative flex items-center justify-center w-full pb-24 overflow-hidden bg-fixed bg-center bg-cover"
+>
+  <div
+    class="relative w-full z-10 grid max-w-3xl gap-12 py-12 mx-auto grid-cols-2 px-3 "
+  >
+    {
+      RECURSOS.map((post) => (
+        <div>
+          <div class="w-full max-w-sm sm:max-w-full mx-auto overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+            <div class="w-full pt-3 h-44 overflow-hidden relative flex patternForest justify-center items-center bg-teal-800">
+              <h3 class="z-10 px-6  text-white w-full  flex justify-center items-end font-medium leading-6 text-center">
+                <span class="font-mono  mb-3">{post.title}</span>
+              </h3>
+              <div class="absolute inset-0 bg-gradient-to-b from-teal-800 via-50% via-teal-900/80 to-teal-900/90 z-0" />
+            </div>
+            <div class="flex justify-center items-center p-3 gap-3 ">
+              <button type="button" class="btn green">
+                {" "}
+                Conocé más
+              </button>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div
+    class="absolute inset-0 z-0 bg-gradient-to-br from-white to-gray-300 opacity-90"
+  >
+  </div>
+</div>

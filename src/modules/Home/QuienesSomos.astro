@@ -1,16 +1,17 @@
 ---
 import GrainOne from "@/components/UI/Grain/GrainOne.astro";
-import WaveScene from "@/components/UI/Backgrounds/WaveScene.astro";
+import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
 ---
 
 <div
-  class="relative flex items-center justify-center border-white h-96 border-y-4 bg-gradient-to-br from-blue-600 to-indigo-600"
+  class="relative flex-col gap-12 flex items-center justify-center border-white h-96 border-y-4 bg-gradient-to-br from-indigo-600 to-indigo-600"
 >
   <h2 class="z-10 font-mono text-3xl text-white md:text-6xl intersectionAnimation">Quienes somos</h2>
+  <a href="/institucional/quienes-somos" class="btn z-20 relative intersectionAnimation"> Conocér más</a>
   <div class="absolute inset-0 z-0 opacity-90">
     <GrainOne />
   </div>
-  <div class="absolute inset-0 z-0 opacity-80 mix-blend-overlay">
-    <WaveScene/>
+  <div class="absolute inset-0 z-0 opacity-10">
+    <BlobPlotScene/>
   </div>
 </div>

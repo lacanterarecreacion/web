@@ -1,0 +1,46 @@
+---
+const QUE_HACEMOS = [
+  { title: "NDJ, Noches de juegos de mesa" },
+  { title: "FORMACIÓN / Capacitaciones" },
+  { title: "PICA, la calle hecha juego" },
+  { title: "UNA MÁS…  " },
+  { title: "DISEÑO y TESTEO de Juegos " },
+  { title: "Publicaciones y Contenidos audiovisuales" },
+  { title: "ENDA" },
+  { title: "ENJM" },
+];
+---
+
+<div
+  id="que-hacemos"
+  class="relative flex items-center justify-center w-full pb-24 overflow-hidden bg-fixed bg-center bg-cover"
+>
+  <div
+    class="relative w-full z-10 grid max-w-7xl gap-12 py-12 mx-auto sm:grid-cols-2 px-3 md:grid-cols-3 lg:grid-cols-4"
+  >
+    {
+      QUE_HACEMOS.map((post) => (
+        <div>
+          <div class="w-full max-w-sm sm:max-w-full mx-auto overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+            <div class="w-full pt-3 h-44 overflow-hidden relative flex patternForest justify-center items-center bg-blue-800">
+              <h3 class="z-10 px-6  text-white w-full  flex justify-center items-end font-medium leading-6 text-center">
+                <span class="font-mono  mb-3">{post.title}</span>
+              </h3>
+              <div class="absolute inset-0 bg-gradient-to-b from-blue-800 via-50% via-blue-900/80 to-indigo-900/90 z-0" />
+            </div>
+            <div class="flex justify-center items-center p-3 gap-3 ">
+              <button type="button" class="btn blue">
+                {" "}
+                Conocé más
+              </button>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div
+    class="absolute inset-0 z-0 bg-gradient-to-br from-white to-gray-300 opacity-90"
+  >
+  </div>
+</div>

@@ -27,7 +27,6 @@ const pathname = new URL(Astro.request.url).pathname;
   >
     ¿Qué hacemos?
   </a>
-  <DropdownInstitucional client:media="(min-width: 1280px)" />
   <a
     class={`${
       pathname === "/institucional/quienes-somos"
@@ -35,7 +34,7 @@ const pathname = new URL(Astro.request.url).pathname;
         : "" || pathname.includes("/institucional/quienes-somos")
         ? "active"
         : ""
-    } flex xl:hidden`}
+    } `}
     rel="prefetch"
     href="/institucional/quienes-somos"
   >
@@ -56,11 +55,11 @@ const pathname = new URL(Astro.request.url).pathname;
 
 <style>
   nav {
-    @apply mx-auto gap-x-2 md:gap-x-6 w-full flex justify-between items-center;
+    @apply mx-auto gap-6 flex-col text-center md:flex-row w-full flex justify-between items-center;
   }
 
   nav a {
-    @apply py-1 text-sm md:text-base text-left hover:text-gray-600 duration-300 text-gray-900 font-mono;
+    @apply py-1 text-sm text-left hover:text-gray-600 duration-300 text-gray-900 font-mono;
   }
 
   nav a.active {
