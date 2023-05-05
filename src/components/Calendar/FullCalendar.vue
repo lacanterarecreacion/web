@@ -86,9 +86,8 @@ export default defineComponent({
     },
     isOldEvent(value) {
       const inputValue = value;
-      const calendarApi = this.$refs.fullCalendar.getApi();
-      const currentDate = calendarApi.getDate();
-      return inputValue >= currentDate.toISOString();
+      const now = new Date;
+      return inputValue >= now.toISOString();
     },
   },
 });
