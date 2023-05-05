@@ -45,7 +45,7 @@ export default function MyModal() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full ring ring-white max-w-xs overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                <Dialog.Panel className="w-full ring ring-white max-w-sm overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                   <div className="w-full pt-3 overflow-hidden relative flex justify-center items-start  h-64 bg-emerald-600">
                      <svg
                       xmlns="http://www.w3.org/2000/svg"
