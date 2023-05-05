@@ -6,11 +6,11 @@ export default function Example() {
     <div className="hidden xl:flex">
       <Menu as="div" className="relative font-mono">
         <div>
-          <Menu.Button className="outline-none focus:ring-2 ring-offset-2 cursor-pointer flex items-center text-left hover:text-orange-600 duration-300 text-gray-900 font-mono">
+          <Menu.Button className="rounded-md outline-none focus:ring-2 ring-offset-2 cursor-pointer flex items-center text-left hover:text-indigo-600 duration-300 text-gray-900 font-mono">
             Institucional
             <svg
               className={`
-                  h-6 w-6 text-orange-300 transition duration-150 ease-in-out group-hover:text-opacity-80`}
+                  h-6 w-6 text-indigo-300 transition duration-150 ease-in-out group-hover:text-opacity-80`}
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
