@@ -235,7 +235,7 @@ export default defineComponent({
         <AgendaSkeleton />
       </div>
       <div class="p-1">
-        <a class="w-full btn green" href="/"> Volver al inicio </a>
+        <a class="w-full btn" href="/"> Volver al inicio </a>
       </div>
     </div>
     <div class="md:col-span-4 relative">

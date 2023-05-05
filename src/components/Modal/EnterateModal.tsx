@@ -29,7 +29,9 @@ export default function MyModal() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gradient-to-r from-emerald-300/90 to-orange-600/60 backdrop-blur-3xl" />
+            <div className="fixed inset-0  bg-gradient-to-tr from-emerald-300/90 to-orange-600/60 backdrop-blur">
+              <div className="fixed inset-0 z-0 patternForest opacity-10 mix-blend-multiply" />
+            </div>
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -43,7 +45,7 @@ export default function MyModal() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-xs overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                <Dialog.Panel className="w-full ring ring-white max-w-xs overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                   <div className="w-full pt-3 overflow-hidden relative flex justify-center items-start  h-64 bg-emerald-600">
                      <svg
                       xmlns="http://www.w3.org/2000/svg"
