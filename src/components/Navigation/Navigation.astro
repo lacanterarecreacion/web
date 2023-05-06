@@ -21,6 +21,17 @@ const pathname = new URL(Astro.request.url).pathname;
     Noticias
   </a>
   <DropdownInstitucional client:media="(min-width: 1280px)" />
+  <a
+    class={pathname === "/contacto"
+      ? "active"
+      : "" || pathname.includes("/contacto")
+      ? "active"
+      : ""}
+    rel="prefetch"
+    href="/contacto"
+  >
+    Contacto
+  </a>
   <b
     class="flex text-sm text-indigo-700 font-mono xl:hidden"
   >
@@ -64,17 +75,6 @@ const pathname = new URL(Astro.request.url).pathname;
     href="/institucional/nuestra-historia"
   >
     Nuestra historia
-  </a>
-  <a
-    class={pathname === "/contacto"
-      ? "active"
-      : "" || pathname.includes("/contacto")
-      ? "active"
-      : ""}
-    rel="prefetch"
-    href="/contacto"
-  >
-    Contacto
   </a>
 </nav>
 
