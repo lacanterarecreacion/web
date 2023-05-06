@@ -21,6 +21,11 @@ const pathname = new URL(Astro.request.url).pathname;
     Noticias
   </a>
   <DropdownInstitucional client:media="(min-width: 1280px)" />
+  <b
+    class="flex text-sm text-indigo-700 font-mono xl:hidden"
+  >
+    Institucional
+  </b>
   <a
     class={`${
       pathname === "/institucional/quienes-somos"
@@ -28,11 +33,37 @@ const pathname = new URL(Astro.request.url).pathname;
         : "" || pathname.includes("/institucional/quienes-somos")
         ? "active"
         : ""
-    } flex xl:hidden`}
+    } text-xs flex xl:hidden`}
     rel="prefetch"
     href="/institucional/quienes-somos"
   >
-    Institucional
+    ¿Qué es La Cantera?
+  </a>
+  <a
+    class={`${
+      pathname === "/que-hacemos"
+        ? "active"
+        : "" || pathname.includes("/que-hacemos")
+        ? "active"
+        : ""
+    } text-xs flex xl:hidden`}
+    rel="prefetch"
+    href="/que-hacemos"
+  >
+    ¿Qué hacemos?
+  </a>
+  <a
+    class={`${
+      pathname === "/institucional/nuestra-historia"
+        ? "active"
+        : "" || pathname.includes("/institucional/nuestra-historia")
+        ? "active"
+        : ""
+    } text-xs flex xl:hidden`}
+    rel="prefetch"
+    href="/institucional/nuestra-historia"
+  >
+    Nuestra historia
   </a>
   <a
     class={pathname === "/contacto"
