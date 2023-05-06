@@ -1,14 +1,28 @@
 ---
-import IconRollingDice from "@/components/Icons/IconRollingDice.astro"
+import IconRollingDice from "@/components/Icons/IconRollingDice.astro";
+function slugify(str) {
+  return str
+    .toLowerCase()
+    .replace(/\//g, "-")
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 ---
 
 <main
-  class="relative flex flex-col w-full pt-12 overflow-x-hidden max-w-screen xl:pt-20 scroll-smooth"
+  class={`relative flex flex-col w-full pt-12 overflow-x-hidden max-w-screen xl:pt-20 scroll-smooth ${slugify(
+    Astro.url.pathname
+  )}`}
 >
   <slot />
 
-  <a href="/contacto" class="fixed group right-0 bottom-0 bg-gray-100  w-16 m-6 flex justify-center items-center rounded-full cursor-pointer z-50 shadow h-16">
-    <IconRollingDice/>
+  <a
+    href="/contacto"
+    class="fixed group left-0 bottom-0 bg-gray-100 w-16 m-6 flex justify-center items-center rounded-full cursor-pointer z-50 shadow h-16 IconRollingDice"
+  >
+    <IconRollingDice />
   </a>
 </main>
 
@@ -21,3 +35,9 @@ import IconRollingDice from "@/components/Icons/IconRollingDice.astro"
     });
   });
 </script>
+
+<style>
+  .institucional-nuestra-historia .IconRollingDice {
+    @apply hidden
+  }
+</style>
