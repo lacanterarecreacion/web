@@ -1,8 +1,7 @@
 ---
 import FullCalendar from "@/components/Calendar/FullCalendar.vue";
-import Layout from "@/layouts/CalendarLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { useSanityClient } from "astro-sanity";
-import { Image } from "@astrojs/image/components";
 
 const calendario = await useSanityClient().fetch(
   `
@@ -25,22 +24,6 @@ const calendario = await useSanityClient().fetch(
   <div
     class="min-h-screen mt-0 sm:p-1 bg-gradient-to-br from-indigo-100 bg-amber-100"
   >
-    <FullCalendar calendarEvents={calendario} client:load>
-      <a
-        href="/"
-        rel="prefetch"
-        class="absolute flex flex-col items-center justify-start pl-1 lg:hidden top-0 lg:top-0 left-2 lg:pl-0"
-      >
-        <div class="w-20">
-          <Image
-            src="/LogoCantera.png"
-            alt="La Cantera Recreación"
-            loading="eager"
-            width={181}
-            height={136}
-          />
-        </div>
-      </a>
-    </FullCalendar>
+    <FullCalendar calendarEvents={calendario} client:load />
   </div>
 </Layout>

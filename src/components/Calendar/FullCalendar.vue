@@ -94,7 +94,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="block w-full pt-16 lg:hidden">
+  <div class="block w-full pt-6 sm:pt-12 lg:hidden">
     <slot />
     <TabGroup>
       <TabList class="flex p-1 mx-2 space-x-1 rounded-xl bg-orange-300/20">
@@ -232,9 +232,6 @@ export default defineComponent({
         <AgendaSkeleton />
         <AgendaSkeleton />
         <AgendaSkeleton />
-      </div>
-      <div class="p-1">
-        <a class="w-full btn" href="/"> Volver al inicio </a>
       </div>
     </div>
     <div class="md:col-span-4 relative">
