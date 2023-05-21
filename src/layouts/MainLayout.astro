@@ -1,14 +1,6 @@
 ---
-import IconRollingDice from "@/components/Icons/IconRollingDice.astro";
-function slugify(str) {
-  return str
-    .toLowerCase()
-    .replace(/\//g, "-")
-    .trim()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/[\s_-]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
+import RandomPageDice from "@/components/RandomPageDice.astro";
+import slugify from "@/lib/createSlug";
 ---
 
 <main
@@ -17,13 +9,7 @@ function slugify(str) {
   )}`}
 >
   <slot />
-
-  <a
-    href="/contacto"
-    class="fixed group left-0 bottom-0 bg-gray-100 w-16 m-6 flex justify-center items-center rounded-full cursor-pointer z-50 shadow h-16 IconRollingDice"
-  >
-    <IconRollingDice />
-  </a>
+  <RandomPageDice />
 </main>
 
 <script>
@@ -35,9 +21,3 @@ function slugify(str) {
     });
   });
 </script>
-
-<style>
-  .institucional-nuestra-historia .IconRollingDice {
-    @apply hidden
-  }
-</style>

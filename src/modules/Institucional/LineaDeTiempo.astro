@@ -75,7 +75,7 @@ import "reveal.js/dist/theme/night.css";
   });
 </script>
 
-<style>
+<style is:inline>
   .reveal h1,
   .reveal h2,
   .reveal h3,
@@ -83,5 +83,11 @@ import "reveal.js/dist/theme/night.css";
   .reveal h5,
   .reveal h6 {
     --r-heading-font: Unbounded, sans-serif;
+  }
+
+  .playback {
+    left: initial !important;
+    right: 50%;
+    transform: translateX(25px)
   }
 </style>

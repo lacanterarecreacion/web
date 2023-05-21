@@ -6,6 +6,14 @@ const pathname = new URL(Astro.request.url).pathname;
 ---
 
 <nav aria-label="Top">
+  <DropdownInstitucional client:media="(min-width: 1280px)" />
+  <a
+    class={pathname === "/que-hacemos" ? "active" : ""}
+    rel="prefetch"
+    href="/que-hacemos"
+  >
+    ¿Qué hacemos?
+  </a>
   <a
     class={pathname === "/recursos" ? "active" : ""}
     rel="prefetch"
@@ -13,14 +21,14 @@ const pathname = new URL(Astro.request.url).pathname;
   >
     Recursos
   </a>
-  <a
+  <!-- <a
     class={pathname === "/noticias" ? "active" : ""}
     rel="prefetch"
     href="/noticias"
   >
     Noticias
-  </a>
-  <DropdownInstitucional client:media="(min-width: 1280px)" />
+  </a> -->
+  
   <a
     class={pathname === "/contacto"
       ? "active"

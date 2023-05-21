@@ -4,38 +4,61 @@ import YoutubeLoaderHome from "./YoutubeLoaderHome.astro";
 ---
 
 <div
-  class="relative flex items-center justify-center w-full px-3 py-10 overflow-hidden md:py-24 bg-gradient-to-br from-pink-600 to-yellow-500"
+  class="relative flex items-center justify-center w-full min-h-[90vh] max-h-[90vh] px-3 py-10 overflow-hidden bg-gradient-to-br from-indigo-600 to-black"
 >
   <div
-    class="relative z-10 grid w-full gap-3 pb-6 md:grid-cols-2 max-w-7xl animate__fadeIn animate__animated"
+    class="relative z-20 grid w-full gap-3 pb-6 md:grid-cols-2 max-w-7xl animate__fadeIn animate__animated"
   >
-    <div class="flex flex-col gap-2 sm:gap-6 mt-2 lg:pr-6">
+    <div class="flex flex-col gap-2 mt-2 sm:gap-6 lg:pr-6">
       <h2 class="font-mono text-3xl text-white lg:text-5xl">
         <!-- La Cantera:  -->
         <span class="font-mono font-light"
           >Proyectos en el campo de la recreación</span
         >
       </h2>
-      <p class="max-w-xl font-sans sm:text-xl text-white">
+      <p class="max-w-xl font-sans text-white sm:text-xl">
         Nos dedicamos a la investigación, difusión y diseño de actividades y
         proyectos en el ámbito de la Recreación, la Educación y el Juego.
       </p>
-      <div class="flex gap-6 mt-4 w-full">
-        <a href="/institucional/nuestra-historia" class="btn  ">Nuestra historia</a>
-        <a href="/noticias" class="btn red">Ver noticias</a>
+      <div class="flex w-full gap-6 mt-4">
+        <a href="/institucional/nuestra-historia" class="btn yellow"
+          >Nuestra historia</a
+        >
+        <a href="/contacto" class="btn green">Contacto</a>
       </div>
     </div>
-    <div class="">
+    <!-- <div class="">
       <YoutubeLoaderHome
         title="La Cantera"
         thumbnail="https://i3.ytimg.com/vi/pO0XwdA1Tcw/maxresdefault.jpg"
         video={`https://www.youtube.com/embed/pO0XwdA1Tcw`}
       />
-    </div>
+    </div> -->
   </div>
-  <div class="absolute inset-0 z-0 opacity-90">
-    <div class="absolute inset-0 z-10">
-      <GrainOne />
-    </div>
+  <div class="absolute inset-0 z-10 bg-gradient-to-b md:bg-gradient-to-r from-indigo-800/70 via-indigo-800/70 via-40% to-transparent"></div>
+  <div
+    class="absolute top-0 left-0 z-0 object-cover object-right w-full h-screen opacity-10 md:opacity-50 md:object-center"
+  >
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      class="absolute top-0 left-0 z-0 object-cover object-right w-full h-screen md:object-center"
+      poster="https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,q_auto:low,w_1108/v1684696189/web/Fondo/videoplayback.00_00_02_21.Still001_mfjhdz.png"
+    >
+      <source
+        src="https://res.cloudinary.com/do2avsfpk/video/upload/q_auto:eco/v1684696169/web/Fondo/Backvideo-1_mcde6u.mp4"
+        type="video/mp4"
+      />
+      <source
+        src="https://res.cloudinary.com/do2avsfpk/video/upload/q_auto:eco/v1684696169/web/Fondo/Backvideo-1_mcde6u.webm"
+        type="video/webm"
+      />
+      <source
+        src="https://res.cloudinary.com/do2avsfpk/video/upload/q_auto:eco/v1684696169/web/Fondo/Backvideo-1_mcde6u.ogv"
+        type="video/ogg"
+      />
+    </video>
   </div>
 </div>

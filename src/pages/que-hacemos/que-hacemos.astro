@@ -1,0 +1,82 @@
+---
+import { useSanityClient } from "astro-sanity";
+import GrainOne from "@/components/UI/Grain/GrainOne.astro";
+import Layout from "@/layouts/Layout.astro";
+import moment from "moment";
+import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderImage.astro";
+import type { Post } from "@/src/types/interfaces";
+const noticias = await useSanityClient().fetch(
+  `*[_type == "noticias"]  | order(publishedAt desc)`
+);
+---
+
+<Layout title="Noticias">
+  <div
+    class="relative flex items-center justify-center py-24 bg-indigo-600 md:py-12 bg-gradient-to-tr from-red-400"
+  >
+    <div
+      class="relative w-full text-left max-w-7xl font-mono text-white animate__fadeIn animate__animated"
+    >
+      <h1 class="text-4xl md:text-6xl font-mono mb-2">Noticias</h1>
+      <p class="font-mono md:text-lg">
+        Sobre el campo de la recreación, y el tiempo libre.
+      </p>
+    </div>
+    <div class="absolute inset-0 z-0 opacity-90">
+      <GrainOne />
+    </div>
+  </div>
+  {
+    noticias && (
+      <div class="NewsGrid grid w-full gap-6 px-3 pb-24 mx-auto mt-12 md:px-0 max-w-7xl sm:grid-cols-2 lg:grid-cols-3">
+        {noticias.map((post: Post) => (
+          <a
+            href={`/noticias/${post.slug?.current}`}
+            class="overflow-hidden animate__fadeIn animate__animated animate__slower duration-500 rounded-lg shadow-md bg-gray-50 hover:shadow-2xl"
+          >
+            {post.mainImage ? (
+              <PlaceholderImage
+                title={post.title}
+                width={500}
+                height={250}
+                image={post.mainImage}
+              />
+            ) : (
+              <div class="h-64 bg-gray-100" />
+            )}
+            <div class="p-3 ">
+              <h2 class="font-sans font-semibold text-lg">{post.title}</h2>
+              <p class="mt-1 text-sm">
+                Publicado el
+                <time datetime={post.publishedAt}>
+                  {moment(post.publishedAt).locale("es").format("ll")}
+                </time>
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    )
+  }
+</Layout>
+
+<style>
+  .NewsGrid a:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .NewsGrid a:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .NewsGrid a:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .NewsGrid a:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .NewsGrid a:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .NewsGrid a:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+</style>

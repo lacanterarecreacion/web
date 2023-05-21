@@ -44,10 +44,10 @@ const pathname = new URL(Astro.request.url).pathname;
       <Navigation />
       <CallToActions />
     </Offcanvas>
-    <Header />
     <MainLayout>
+      <Header />
       <slot />
-    </MainLayout>
+    </MainLayout> 
     <Footer />
     <IntersectionObserver />
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"

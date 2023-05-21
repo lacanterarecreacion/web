@@ -7,7 +7,7 @@ export default function Example() {
       <Menu as="div" className="relative font-mono">
         <div>
           <Menu.Button className="rounded-md outline-none focus:ring-2 ring-offset-2 cursor-pointer flex items-center text-left hover:text-indigo-600 duration-300 text-gray-900 font-mono">
-            Institucional
+            ¿Quiénes somos?
             <svg
               className={`
                   h-6 w-6 text-indigo-300 transition duration-150 ease-in-out group-hover:text-opacity-80`}
@@ -45,18 +45,7 @@ export default function Example() {
                   </a>
                 )}
               </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <a
-                    href="/que-hacemos"
-                    className={`${
-                      active ? "bg-violet-500 text-white" : "text-gray-900"
-                    } group flex w-full font-mono items-center rounded-md px-2 py-4 text-sm`}
-                  >
-                    ¿Qué hacemos?
-                  </a>
-                )}
-              </Menu.Item>
+              
               <Menu.Item>
                 {({ active }) => (
                   <a

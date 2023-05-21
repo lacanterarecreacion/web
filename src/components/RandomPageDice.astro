@@ -1,0 +1,39 @@
+---
+import IconRollingDice from "@/components/Icons/IconRollingDice.astro";
+
+const posts = await Astro.glob('../pages/*.astro');
+
+
+const routes = [
+  "/institucional/quienes-somos",
+  "/institucional/nuestra-historia",
+  "/que-hacemos",
+  "/noticias/tipografia",
+  "/noticias/imagenes",
+  "/noticias/videos",
+  "/recursos",
+  "/colabora",
+  "/calendario-ludico",
+  "/",
+];
+
+function getRandomRoute(routes: string[]) {
+  const randomIndex = Math.floor(Math.random() * routes.length);
+  return routes[randomIndex];
+}
+const randomRoute = getRandomRoute(routes);
+---
+
+<a
+  href={randomRoute}
+  class="fixed group left-0 bottom-0 bg-gray-100 w-16 m-6 flex justify-center items-center rounded-full cursor-pointer z-50 shadow h-16 IconRollingDice"
+>
+  <IconRollingDice />
+</a>
+
+
+<!-- <style is:global>
+  .institucional-nuestra-historia .IconRollingDice {
+    @apply hidden;
+  }
+</style> -->

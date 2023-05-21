@@ -83,7 +83,7 @@ export default function MyModal() {
                     </button>
                     <a
                       className="btn text-center yellow"
-                      href="/institucional/quienes-somos"
+                      href="/colabora"
                     >
                       Conocer más
                     </a>

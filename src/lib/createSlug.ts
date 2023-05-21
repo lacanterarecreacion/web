@@ -1,12 +1,9 @@
-export default function (title: string) {
+export default function slugify(title: string) {
   return title
-  .toString()
-  .normalize('NFD')
-  .replace(/[\u0300-\u036f]/g, '')
-  .toLowerCase()
-  .trim()
-  .replace(/\s+/g, '-')
-  .replace(/[^\w-]+/g, '')
-  .replace(/--+/g, '-')
+    .toLowerCase()
+    .replace(/\//g, "-")
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
-

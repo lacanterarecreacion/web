@@ -32,19 +32,19 @@ const RECURSOS = [
   class="relative flex items-center justify-center w-full pb-24 overflow-hidden bg-fixed bg-center bg-cover"
 >
   <div
-    class="relative w-full z-10 grid max-w-3xl gap-12 py-12 mx-auto grid-cols-2 px-3 "
+    class="relative z-10 grid w-full gap-12 px-3 py-12 mx-auto sm:grid-cols-2 max-w-7xl md:grid-cols-3 "
   >
     {
       RECURSOS.map((post) => (
         <div>
-          <div class="w-full max-w-sm sm:max-w-full mx-auto overflow-hidden text-left align-middle transition-all transform bg-white shadow-lg rounded-2xl hover:shadow-2xl duration-300">
-            <div class="w-full pt-3 h-44 overflow-hidden relative flex patternForest justify-center items-center bg-teal-800">
-              <h3 class="z-10 px-6  text-white w-full  flex justify-center items-end font-medium leading-6 text-center">
-                <span class="font-mono  mb-3">{post.title}</span>
+          <div class="w-full max-w-sm mx-auto overflow-hidden text-left align-middle transition-all duration-300 transform bg-white shadow-lg sm:max-w-full rounded-2xl hover:shadow-2xl">
+            <div class="relative flex items-center justify-center w-full pt-3 overflow-hidden bg-teal-800 h-44 patternForest">
+              <h3 class="z-10 flex items-end justify-center w-full px-6 font-medium leading-6 text-center text-white">
+                <span class="mb-3 font-mono">{post.title}</span>
               </h3>
               <div class="absolute inset-0 bg-gradient-to-b from-teal-800 via-50% via-teal-900/80 to-teal-900/90 z-0" />
             </div>
-            <div class="flex justify-center items-center p-3 gap-3 ">
+            <div class="flex items-center justify-center gap-3 p-3 ">
               <button type="button" class="btn green">
                 {" "}
                 Conocé más

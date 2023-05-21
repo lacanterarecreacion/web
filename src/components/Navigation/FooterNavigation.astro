@@ -7,27 +7,6 @@ const pathname = new URL(Astro.request.url).pathname;
 
 <nav aria-label="Top">
   <a
-    class={pathname === "/recursos" ? "active" : ""}
-    rel="prefetch"
-    href="/recursos"
-  >
-    Recursos
-  </a>
-  <a
-    class={pathname === "/noticias" ? "active" : ""}
-    rel="prefetch"
-    href="/noticias"
-  >
-    Noticias
-  </a>
-  <a
-    class={pathname === "/que-hacemos" ? "active" : ""}
-    rel="prefetch"
-    href="/que-hacemos"
-  >
-    ¿Qué hacemos?
-  </a>
-  <a
     class={`${
       pathname === "/institucional/quienes-somos"
         ? "active"
@@ -38,7 +17,21 @@ const pathname = new URL(Astro.request.url).pathname;
     rel="prefetch"
     href="/institucional/quienes-somos"
   >
-    Institucional
+    ¿Quiénes somos?
+  </a>
+  <a
+    class={pathname === "/que-hacemos" ? "active" : ""}
+    rel="prefetch"
+    href="/que-hacemos"
+  >
+    ¿Qué hacemos?
+  </a>
+  <a
+    class={pathname === "/recursos" ? "active" : ""}
+    rel="prefetch"
+    href="/recursos"
+  >
+    Recursos
   </a>
   <a
     class={pathname === "/contacto"
