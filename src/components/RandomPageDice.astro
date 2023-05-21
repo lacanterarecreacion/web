@@ -26,7 +26,7 @@ const randomRoute = getRandomRoute(routes);
 
 <a
   href={randomRoute}
-  class="fixed group right-0 bottom-0 bg-gray-100 w-16 m-6 flex justify-center items-center rounded-full cursor-pointer z-50 shadow h-16 IconRollingDice"
+  class="fixed group right-0 bottom-0 bg-indigo-600 fill-white w-16 m-6 flex justify-center items-center rounded-full cursor-pointer z-50 shadow h-16 IconRollingDice"
 >
   <IconRollingDice />
 </a>
@@ -36,5 +36,19 @@ const randomRoute = getRandomRoute(routes);
   .institucional-nuestra-historia .IconRollingDice {
     left: 0;
     right: inherit;
+    @apply bg-orange-600 fill-white;
+  }
+
+  .institucional-quienes-somos .IconRollingDice {
+    @apply bg-amber-600 fill-white;
+  }
+
+
+  .contacto  .IconRollingDice {
+    @apply bg-emerald-600 fill-yellow-100;
+  }
+
+  .recursos  .IconRollingDice {
+    @apply bg-amber-600 fill-emerald-100;
   }
 </style>
