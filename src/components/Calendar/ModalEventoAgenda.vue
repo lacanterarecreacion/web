@@ -16,7 +16,7 @@
     >
       <h3 class="flex items-center w-full justify-between text-gray-600">
         <span
-          class="group-hover:underline underline-offset-2 text-sm font-bold font-mono"
+          class="group-hover:underline underline-offset-2 text-sm font-bold font-sans"
           >{{ title }}
         </span>
         <b
@@ -79,7 +79,7 @@
               <div class="relative">
                 <DialogTitle
                   as="h3"
-                  class="text-2xl p-3 font-medium font-mono leading-6 text-gray-900"
+                  class="text-2xl p-3 font-medium font-sans leading-6 text-gray-900"
                 >
                   {{ title }}
                 </DialogTitle>

@@ -24,10 +24,10 @@ const { title, body, mainImage, publishedAt } = Astro.props as Props;
 
 <Layout title={title}>
   <div
-    class="h-screen bg-gradient-to-br flex justify-center items-center relative overflow-hidden from-pink-600 to-blue-600"
+    class="h-[60vh] bg-gradient-to-br flex justify-center items-center relative overflow-hidden from-pink-600 to-blue-600"
   >
     <div class="text-white text-center relative z-20 animate__fadeIn animate__animated">
-      <h1 class="font-mono text-6xl">{title}</h1>
+      <h1 class="font-sans text-6xl">{title}</h1>
       <p class="mt-6">
         Publicado el
         <time datetime={publishedAt}>

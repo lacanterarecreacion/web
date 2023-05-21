@@ -118,7 +118,7 @@ export default defineComponent({
           <div
             class="flex items-center justify-between pb-2 border-b-2 border-orange-600"
           >
-            <h1 class="flex items-center font-mono text-2xl text-orange-600">
+            <h1 class="flex items-center font-sans text-2xl text-orange-600">
               Agendate
             </h1>
             <IconSpinner v-if="isLoading" class="w-6 h-6" />
@@ -197,7 +197,7 @@ export default defineComponent({
       <div
         class="flex items-center justify-between pb-2 border-b-2 border-orange-600"
       >
-        <h1 class="flex items-center font-mono text-2xl text-orange-600">
+        <h1 class="flex items-center font-sans text-2xl text-orange-600">
           Agendate
         </h1>
         <IconSpinner v-if="isLoading" class="w-6 h-6" />
@@ -281,11 +281,11 @@ export default defineComponent({
 }
 
 .fc .fc-col-header-cell-cushion {
-  @apply font-mono font-normal uppercase text-sm;
+  @apply font-sans font-normal uppercase text-sm;
 }
 
 .fc .fc-daygrid-day-number {
-  @apply font-mono font-normal uppercase text-xs;
+  @apply font-sans font-normal uppercase text-xs;
 }
 
 .fc .fc-view-harness {
@@ -293,7 +293,7 @@ export default defineComponent({
 }
 
 .fc-toolbar-title {
-  @apply font-mono capitalize !text-xs md:!text-lg md:min-w-[230px] text-center;
+  @apply font-sans capitalize !text-xs md:!text-lg md:min-w-[230px] text-center;
 }
 
 .fc .fc-button {
@@ -301,7 +301,7 @@ export default defineComponent({
 }
 
 .fc .fc-today-button {
-  @apply font-mono disabled:bg-orange-600 p-1 px-2 disabled:border-none disabled:cursor-not-allowed text-sm disabled:text-white bg-white text-gray-600;
+  @apply font-sans disabled:bg-orange-600 p-1 px-2 disabled:border-none disabled:cursor-not-allowed text-sm disabled:text-white bg-white text-gray-600;
 }
 
 .fc .fc-day-past .fc-event {
@@ -310,7 +310,7 @@ export default defineComponent({
 }
 
 .tab {
-  @apply w-full rounded-lg py-2.5 font-mono text-sm font-medium leading-5 text-orange-700;
+  @apply w-full rounded-lg py-2.5 font-sans text-sm font-medium leading-5 text-orange-700;
   @apply ring-white ring-opacity-60 ring-offset-2 ring-offset-orange-400 focus:outline-none focus:ring-2;
 }
 

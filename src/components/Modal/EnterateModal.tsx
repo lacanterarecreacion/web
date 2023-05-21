@@ -14,7 +14,7 @@ export default function MyModal() {
 
   return (
     <>
-      <button type="button" onClick={openModal} className="btn green !text-xs">
+      <button type="button" onClick={openModal} className="btn green !text-sm">
         Enterate
       </button>
 
@@ -45,7 +45,7 @@ export default function MyModal() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-3xl px-3  text-left align-middle transition-all transform">
+                <Dialog.Panel className="w-full max-w-xl px-3  text-left align-middle transition-all transform">
                   <button
                     type="button"
                     className="w-14 h-14 rounded-full duration-300 absolute outline-none focus-visible:ring-2 ring-white z-20 top-0 right-0 flex justify-center items-center"
@@ -66,8 +66,8 @@ export default function MyModal() {
                   </button>
                   <div className="relative z-10 grid w-full gap-3 pb-6 max-w-7xl animate__fadeIn animate__animated">
                     <div className="flex flex-col gap-2 sm:gap-6 mt-2 lg:pr-6">
-                      <h2 className="font-mono text-3xl text-white lg:text-5xl">
-                        <span className="font-mono font-light">Enterate</span>
+                      <h2 className="text-3xl text-white lg:text-6xl">
+                        <span className="font-hand font-light">Enterate</span>
                       </h2>
                       <p className="max-w-xl font-sans sm:text-xl text-white">
                         En ambos canales recibiran información oficial sobre
@@ -123,7 +123,7 @@ export default function MyModal() {
                             as="h3"
                             className=" z-10 h-24 text-white absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent via-50% via-green-900/80 to-green-900/90 text-2xl flex justify-center items-end font-medium leading-6 text-center"
                           >
-                            <span className="font-mono mb-6">Por Whatsapp</span>
+                            <span className="font-atkinson font-bold mb-6">Whatsapp</span>
                           </Dialog.Title>
                           <div className="absolute inset-0 patternForest opacity-20 z-0"></div>
                         </div>
@@ -169,7 +169,7 @@ export default function MyModal() {
                             as="h3"
                             className=" z-10 h-24 text-white absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent via-50% via-blue-900/80 to-blue-900/90 text-2xl flex justify-center items-end font-medium leading-6 text-center"
                           >
-                            <span className="font-mono mb-6">Por Telegram</span>
+                            <span className="font-atkinson font-bold mb-6">Telegram</span>
                           </Dialog.Title>
                           <div className="absolute inset-0 patternForest opacity-20 z-"></div>
                         </div>

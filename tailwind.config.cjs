@@ -3,9 +3,9 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     fontFamily: {
-      sans: ["Inter", "sans"],
-      serif: ["Alegreya", "sans-serif"],
-      mono: ["Unbounded", "sans-serif"],
+      sans: ["Atkinson", "sans"],
+      hand: ["trashhand", "sans-serif"],
+      // mono: ["Unbounded", "sans-serif"],
     },
   },
   corePlugins: {

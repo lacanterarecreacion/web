@@ -4,9 +4,9 @@ import { Fragment } from "react";
 export default function Example() {
   return (
     <div className="hidden xl:flex">
-      <Menu as="div" className="relative font-mono">
+      <Menu as="div" className="relative font-sans">
         <div>
-          <Menu.Button className="rounded-md outline-none focus:ring-2 ring-offset-2 cursor-pointer flex items-center text-left hover:text-indigo-600 duration-300 text-gray-900 font-mono">
+          <Menu.Button className="rounded-md outline-none focus:ring-2 ring-offset-2 cursor-pointer flex items-center text-left hover:text-indigo-600 duration-300 text-gray-900 font-sans text-lg">
             ¿Quiénes somos?
             <svg
               className={`
@@ -39,7 +39,7 @@ export default function Example() {
                     href="/institucional/quienes-somos"
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
-                    } group flex w-full font-mono items-center rounded-md px-2 py-4 text-sm`}
+                    } group flex w-full font-sans items-center rounded-md px-2 py-4 text-base`}
                   >
                     ¿Qué es La Cantera?
                   </a>
@@ -52,7 +52,7 @@ export default function Example() {
                     href="/institucional/nuestra-historia"
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
-                    } group flex w-full font-mono items-center rounded-md px-2 py-4 text-sm`}
+                    } group flex w-full font-sans items-center rounded-md px-2 py-4 text-base`}
                   >
                     Nuestra historia
                   </a>

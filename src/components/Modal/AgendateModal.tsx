@@ -14,7 +14,7 @@ export default function MyModal() {
 
   return (
     <>
-      <button type="button" onClick={openModal} className="btn yellow !text-xs">
+      <button type="button" onClick={openModal} className="btn yellow !text-sm">
         Agendate
       </button>
 
@@ -52,12 +52,12 @@ export default function MyModal() {
                       as="h3"
                       className=" z-10 h-24 text-white absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent via-50% via-yellow-900/80 to-yellow-900/90 text-2xl flex justify-center items-end font-medium leading-6 text-center"
                     >
-                      <span className="font-mono mb-6">Calendario lúdico</span>
+                      <span className="font-sans font-bold mb-6">Calendario lúdico</span>
                     </Dialog.Title>
                     <div className="absolute inset-0 patternForest opacity-20 z-"></div>
                   </div>
                   <div className="mt-6 text-center px-6">
-                    <p className="text-base font-mono text-gray-500">
+                    <p className="text-xl font-sans text-gray-500">
                       Eventos presenciales y virtuales.
                     </p>
                   </div>
