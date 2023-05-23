@@ -8,10 +8,14 @@ const { video, title, thumbnail } = Astro.props;
   const youtubeVideo = document.querySelector(".videoYoutube") as HTMLElement;
   const youtubePoster = document.querySelector(".posterYoutube") as HTMLElement;
 
-  button.addEventListener("click", function () {
-    youtubeVideo.classList.toggle("!block");
-    youtubePoster.classList.toggle("!hidden");
-  });
+  if (button) {
+    // Not called
+    button.addEventListener("click", () => {
+      youtubeVideo.classList.toggle("!block");
+      youtubePoster.classList.toggle("!hidden");
+    });
+  }
+
 </script>
 
 <div
