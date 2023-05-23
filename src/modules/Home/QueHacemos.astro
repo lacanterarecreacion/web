@@ -1,24 +1,78 @@
 ---
 import GrainOne from "@/components/UI/Grain/GrainOne.astro";
 import WaveScene from "@/components/UI/Backgrounds/WaveScene.astro";
+import QueHacemosCards from "../Institucional/QueHacemosCards.astro";
+import { useSanityClient } from "astro-sanity";
+import type { ItemHacemos } from "@/types/interfaces";
 
+const QUE_HACEMOS = await useSanityClient().fetch(
+  `*[_type == "quehacemos"]  | order(title desc)`
+);
 ---
 
 <div
-  class="relative flex flex-col overflow-hidden items-center gap-12 justify-center border-b-4 border-white h-96 bg-gradient-to-br from-blue-600 to-teal-600"
+  class="relative flex flex-col overflow-hidden items-center gap-12 py-24 justify-center border-b-4 border-white bg-gradient-to-br from-emerald-600 to-teal-600"
 >
   <h2
-    class="z-10 font-sans text-3xl md:text-7xl text-white text-transparent bg-clip-text bg-gradient-to-br via-85% from-blue-100 to-teal-200 intersectionAnimation"
+    class="z-10 font-hand text-3xl md:text-7xl text-white intersectionAnimation"
   >
-    ¿Qué hacemos?
+    ¿Qué hacemos? 
   </h2>
+  <p
+    class="text-white relative z-20 text-2xl font-sans max-w-6xl mx-auto text-center"
+  >
+    Nos enfocamos en diversas iniciativas y actividades. <br/> Algunas de nuestras principales áreas de acción
+  </p>
   <a href="/que-hacemos" class="btn yellow z-20 relative"> Conocer más</a>
+  <div class="relative z-50">
+    <div
+      class="relative QueHacemosGrid w-full z-10 grid max-w-7xl gap-12 py-12 mx-auto sm:grid-cols-2 px-3 md:grid-cols-2 lg:grid-cols-2"
+    >
+      {
+        QUE_HACEMOS.map((post: ItemHacemos) => (
+          <div class="animate__fadeIn relative animate__animated animate__slower ">
+            <h3 class="text-center font-hand text-3xl text-white">
+              {post.title}
+            </h3>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  
   <div class="absolute inset-0 z-0 opacity-90">
-    <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0">
       <GrainOne />
     </div>
-    <div class="absolute inset-0 z-0 opacity-60">
-      <WaveScene/>
+    <div class="absolute inset-0 opacity-30 mix-blend-multiply">
+      <WaveScene />
     </div>
   </div>
 </div>
+
+<style>
+  .QueHacemosGrid a:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .QueHacemosGrid a:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .QueHacemosGrid a:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .QueHacemosGrid a:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .QueHacemosGrid a:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .QueHacemosGrid a:nth-child(6) {
+    animation-delay: 1.6s;
+  }
+  .QueHacemosGrid a:nth-child(7) {
+    animation-delay: 0.5s;
+  }
+  .QueHacemosGrid a:nth-child(9) {
+    animation-delay: 5.6s;
+  }
+</style>

@@ -6,6 +6,39 @@ const pathname = new URL(Astro.request.url).pathname;
 ---
 
 <nav aria-label="Top">
+  <div class="flex flex-col justify-center items-center gap-5 xl:hidden">
+    <span
+      class="text-lg text-indigo-700 font-sans  "
+    >
+      ¿Quiénes somos?
+    </span>
+    <a
+      class={`${
+        pathname === "/institucional/quienes-somos"
+          ? "active"
+          : "" || pathname.includes("/institucional/quienes-somos")
+          ? "active"
+          : ""
+      } text-sm !pr-0`}
+      rel="prefetch"
+      href="/institucional/quienes-somos"
+    >
+      ¿Qué es La Cantera?
+    </a>
+    <a
+      class={`${
+        pathname === "/institucional/nuestra-historia"
+          ? "active"
+          : "" || pathname.includes("/institucional/nuestra-historia")
+          ? "active"
+          : ""
+      } text-sm !pr-0`}
+      rel="prefetch"
+      href="/institucional/nuestra-historia"
+    >
+      Nuestra historia
+    </a>
+  </div>
   <DropdownInstitucional client:media="(min-width: 1280px)" />
   <a
     class={pathname === "/que-hacemos" ? "active" : ""}
@@ -28,7 +61,7 @@ const pathname = new URL(Astro.request.url).pathname;
   >
     Noticias
   </a> -->
-  
+
   <a
     class={pathname === "/contacto"
       ? "active"
@@ -40,52 +73,6 @@ const pathname = new URL(Astro.request.url).pathname;
   >
     Contacto
   </a>
-  <div class="flex flex-col justify-center items-center gap-5 xl:hidden">
-    <span
-      class="text-base text-indigo-700 font-sans underline underline-offset-4"
-    >
-      Institucional
-    </span>
-    <a
-      class={`${
-        pathname === "/institucional/quienes-somos"
-          ? "active"
-          : "" || pathname.includes("/institucional/quienes-somos")
-          ? "active"
-          : ""
-      } text-xs `}
-      rel="prefetch"
-      href="/institucional/quienes-somos"
-    >
-      ¿Qué es La Cantera?
-    </a>
-    <a
-      class={`${
-        pathname === "/que-hacemos"
-          ? "active"
-          : "" || pathname.includes("/que-hacemos")
-          ? "active"
-          : ""
-      } text-xs `}
-      rel="prefetch"
-      href="/que-hacemos"
-    >
-      ¿Qué hacemos?
-    </a>
-    <a
-      class={`${
-        pathname === "/institucional/nuestra-historia"
-          ? "active"
-          : "" || pathname.includes("/institucional/nuestra-historia")
-          ? "active"
-          : ""
-      } text-xs `}
-      rel="prefetch"
-      href="/institucional/nuestra-historia"
-    >
-      Nuestra historia
-    </a>
-  </div>
 </nav>
 
 <style>
@@ -94,7 +81,7 @@ const pathname = new URL(Astro.request.url).pathname;
   }
 
   nav a {
-    @apply py-1 text-sm md:text-lg text-left hover:text-gray-600 duration-300 text-gray-900 font-sans;
+    @apply py-1 pr-2 text-sm md:text-lg text-left hover:text-gray-600 duration-300 text-gray-900 font-sans;
   }
 
   nav a.active {

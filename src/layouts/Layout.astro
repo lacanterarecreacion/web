@@ -40,9 +40,11 @@ const pathname = new URL(Astro.request.url).pathname;
     <Noscript/>
   </head>
   <body class="w-full text-gray-900 bg-white">
-    <Offcanvas client:media="(max-width: 1280px)">
+    <Offcanvas client:load>
       <Navigation />
-      <CallToActions />
+      <div class="md:hidden">
+        <CallToActions  />
+      </div>
     </Offcanvas>
     <MainLayout>
       <Header />

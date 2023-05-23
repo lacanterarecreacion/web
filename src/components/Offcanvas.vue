@@ -15,17 +15,17 @@
       />
     </Transition>
     <button
-      class="fixed text-lg justify-center items-center ring ring-orange-600 p-1 sm:p-2 bg-white font-bold text-gray-900 right-0 z-[60] flex top-0 lg:top-0 mr-2 rounded-lg my-3"
+      class="fixed text-lg justify-center items-center ring ring-orange-600 p-1 sm:py-2 px-4 bg-white font-bold text-gray-900 right-2 z-[60] flex top-2 lg:top-3 rounded-lg"
       @click="show = !show"
     >
-      <span>Menú</span>
+      <span >Menú</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="w-6 h-6"
+        class="w-7 h-7"
       >
         <path
           stroke-linecap="round"

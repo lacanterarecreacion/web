@@ -5,13 +5,14 @@ import ModalEnterate from "@/components/Modal/EnterateModal";
 import ModalAgendate from "@/components/Modal/AgendateModal";
 ---
 
-<div class="mt-6 md:mt-0 flex flex-col justify-end w-full py-1 xl:flex-row">
-  <div class="flex flex-col gap-3 pt-6 xl:pt-0 lg:mt-0 xl:flex-row">
-    <ModalColabora client:load />
-    <ModalEnterate client:load />
-    <ModalAgendate client:load/>
-  </div>
-  <!-- <div class="absolute justify-center w-64 xl:w-auto right-0 flex items-center bottom-6 xl:right-auto xl:bottom-auto xl:relative">
-    <HeaderSocial />
-  </div> -->
+<div class="flex flex-col gap-3 md:flex-row relative right-0 md:right-28 xl:right-0 md:top-0 -top-1">
+  <!-- <ModalColabora client:load /> -->
+  <a href="/colabora" class="btn blue !text-sm">
+    colaborá
+  </a>
+  <!-- <ModalAgendate client:load /> -->
+  <a href="/calendario-ludico" class="btn yellow !text-sm">
+    agendate
+  </a>
+  <ModalEnterate client:load />
 </div>
