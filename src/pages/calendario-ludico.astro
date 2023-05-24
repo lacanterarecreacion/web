@@ -1,5 +1,5 @@
 ---
-import FullCalendar from "@/components/Calendar/FullCalendar.vue";
+import FullCalendar from "@/components/Calendar/FullCalendarRefactor.vue";
 import Layout from "@/layouts/Layout.astro";
 import { useSanityClient } from "astro-sanity";
 
@@ -27,3 +27,12 @@ const calendario = await useSanityClient().fetch(
     <FullCalendar calendarEvents={calendario} client:load />
   </div>
 </Layout>
+
+<style is:global>
+  .calendario-ludico #headroom {
+    @apply border-orange-600 bg-orange-50/90 backdrop-blur-sm !important;
+  }
+  .calendario-ludico #menuOffcanvas {
+    @apply ring-orange-400;
+  }
+</style>

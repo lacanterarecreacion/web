@@ -19,22 +19,23 @@
           class="group-hover:underline underline-offset-2 text-sm font-bold font-sans"
           >{{ title }}
         </span>
-        <b
-          class="!text-xs font-bold no-underline rounded-full px-2 py-0.5 bg-blue-200 text-blue-900 ml-1"
-          v-if="color === 'null'"
-          >Virtual</b
-        >
+
         <b
           class="!text-xs font-bold no-underline rounded-full px-2 py-0.5 bg-purple-200 text-purple-900 ml-1"
           v-if="color === 'purple'"
           >Presencial</b
         >
+        <b
+          class="!text-xs font-bold no-underline rounded-full px-2 py-0.5 bg-orange-200 text-orange-900 ml-1"
+          v-else
+          >Virtual</b
+        >
       </h3>
-      <div class="flex items-center justify-between w-full pt-1 text-sm">
-        <p>{{ eventDay }}</p>
-        <p class="flex items-end text-gray-600">
-          {{ eventTimeStart }}hs&nbsp;
-          <span v-if="eventTimeEnd"> — {{ eventTimeEnd }}hs </span>
+      <div class="flex items-start justify-between w-full pt-1 text-sm">
+        <p class="text-left">{{ eventDay }} al <br/>{{eventDayEnd}}</p>
+        <p class="flex flex-col items-end text-gray-600">
+          {{ eventTimeStart }}hs
+          <span v-if="eventTimeEnd"> a {{ eventTimeEnd }}hs </span>
         </p>
       </div>
     </button>
@@ -85,15 +86,17 @@
                 </DialogTitle>
                 <div class="absolute top-0 right-0 m-3">
                   <b
-                    class="!text-xs font-bold no-underline rounded-full px-2 py-0.5 bg-blue-200 text-blue-900 ml-1"
-                    v-if="color === 'null'"
-                    >Virtual</b
-                  >
-                  <b
                     class="!text-xs font-bold no-underline rounded-full px-2 py-0.5 bg-purple-200 text-purple-900 ml-1"
                     v-if="color === 'purple'"
-                    >Presencial</b
                   >
+                    Presencial
+                  </b>
+                  <b
+                    class="!text-xs font-bold no-underline rounded-full px-2 py-0.5 bg-orange-200 text-orange-900 ml-1"
+                    v-else
+                  >
+                    Virtual
+                  </b>
                 </div>
               </div>
               <div class="px-3">
@@ -140,6 +143,7 @@ interface Props {
   description?: string;
   color?: string;
   eventDay?: string;
+  eventDayEnd?: string;
   eventTimeStart?: string;
   eventTimeEnd?: string;
   eventImage?: Image;

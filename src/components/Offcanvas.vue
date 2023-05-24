@@ -15,7 +15,8 @@
       />
     </Transition>
     <button
-      class="fixed text-lg justify-center items-center ring ring-orange-600 p-1 sm:py-2 px-4 bg-white font-bold text-gray-900 right-2 z-[60] flex top-2 lg:top-3 rounded-lg"
+      id="menuOffcanvas"
+      class="fixed text-lg justify-center items-center ring ring-indigo-600 p-1 sm:py-2 px-4 bg-white font-bold text-gray-900 right-2 z-[60] flex top-4 lg:top-3 rounded-lg"
       @click="show = !show"
     >
       <span >Menú</span>

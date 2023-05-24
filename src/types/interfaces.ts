@@ -1,3 +1,5 @@
+import type { DateInput } from "@fullcalendar/core";
+
 export interface Posts {
   Posts: Post[];
 }
@@ -44,4 +46,27 @@ export interface ItemHacemos {
   };
   body: string;
   mainImage: string;
+}
+
+export interface Events {
+  calendarEvents: Event[];
+}
+
+export interface Image {
+  secure_url: string;
+}
+
+export interface Event {
+  id?: string;
+  title?: string;
+  color?: string;
+  end: DateInput;
+  start: DateInput;
+  extendedProps: ExtendedProps;
+}
+
+export interface ExtendedProps {
+  link?: string;
+  description?: string;
+  image?: Image;
 }

@@ -47,7 +47,7 @@ export default defineComponent({
         },
         locale: esLocale,
         initialView: "dayGridMonth",
-        initialEvents: this.calendarEvents, // alternatively, use the `events` setting to fetch from a feed
+
         editable: false,
         selectable: true,
         selectMirror: false,
@@ -55,17 +55,20 @@ export default defineComponent({
         weekends: true,
         eventColor: "#999",
         eventDisplay: "block",
-        select: this.handleDateSelect,
-        eventClick: this.handleEventClick,
+
+        initialEvents: this.calendarEvents, // alternatively, use the `events` setting to fetch from a feed
+        // select: this.handleDateSelect,
+        // eventClick: this.handleEventClick,
         eventsSet: this.handleEvents,
       },
-      currentEvents: [],
+      allEvents: [],
+      futureEvents: [],
     };
   },
   methods: {
     handleEvents(events) {
       this.isLoading = true;
-      this.currentEvents = events;
+      this.allEvents = events;
       this.isLoading = false;
     },
     formattedDate(value) {
@@ -73,6 +76,7 @@ export default defineComponent({
         month: "long",
         year: "numeric",
         day: "numeric",
+        hour12: false,
         locale: "es",
       });
     },
@@ -80,15 +84,60 @@ export default defineComponent({
       return formatDate(value, {
         hour: "2-digit",
         minute: "2-digit",
-        timeZone: "UTC+3",
+        hour12: false,
         locale: "es",
       });
     },
     isOldEvent(value) {
       const inputValue = value;
-      const now = new Date;
-      return inputValue >= now.toISOString();
+      const now = new Date().toISOString();
+      return inputValue >= now;
     },
+    // eventosFuturos2() {
+    //   const newitem = this.allEvents.filter((evento) => {
+    //     const fechaEvento = evento.endStr;
+    //     console.log("// title:" + evento.title);
+    //     console.log("// evento:" + evento.endStr);
+    //     console.log("// ahora:" + new Date());
+    //     console.log("// ahora:" + new Date().toISOString());
+    //     console.log("// end:" + evento.title);
+    //   });
+    //   console.log(newitem);
+    //   return newitem;
+    // },
+    eventosFuturos() {
+      const newitem = this.calendarOptions.initialEvents.filter((evento) => {
+        console.log()
+        const fechaEvento = formatDate(evento.end, {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour12: false,
+          timeZoneName: "long",
+          locale: "es",
+        });
+        const now = new Date().toISOString()
+        const now2 = formatDate(now, {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour12: false,
+          timeZoneName: "long",
+          locale: "es",
+        });
+        console.log("// title: " + evento.title + " // Color: " + evento.color);
+        console.log("fecha evento: " + fechaEvento);
+        console.log("fecha  ahora: " + now2);
+        console.log(fechaEvento > now2);
+        console.log(" ");
+        return fechaEvento > now2;
+      });
+      console.log(newitem);
+      return newitem;
+    },
+  },
+  mounted() {
+    this.futureEvents = this.eventosFuturos();
   },
 });
 </script>
@@ -108,7 +157,7 @@ export default defineComponent({
         </Tab>
       </TabList>
 
-      <TabPanels class="mt-2">
+      <TabPanels class="mt-2 px-3">
         <TabPanel
           :class="[
             'rounded-xl bg-white p-3',
@@ -119,7 +168,7 @@ export default defineComponent({
             class="flex items-center justify-between pb-2 border-b-2 border-orange-600"
           >
             <h1 class="flex items-center font-sans text-2xl text-orange-600">
-              Agendate
+              Próximas actividades
             </h1>
             <IconSpinner v-if="isLoading" class="w-6 h-6" />
           </div>
@@ -129,7 +178,7 @@ export default defineComponent({
               <ul class="md:h-[600px] overflow-y-auto px-1 mt-2">
                 <li
                   class="flex flex-col py-1"
-                  v-for="event in currentEvents"
+                  v-for="event in allEvents"
                   :key="event.id"
                 >
                   <div
@@ -195,37 +244,15 @@ export default defineComponent({
   >
     <div class="md:col-span-2 md:p-2 md:pt-0 sm:px-2">
       <div
-        class="flex items-center justify-between pb-2 border-b-2 border-orange-600"
+        class="flex items-center justify-between py-1 border-b-2 border-orange-600"
       >
-        <h1 class="flex items-center font-sans text-2xl text-orange-600">
-          Agendate
+        <h1 class="text-center w-full font-sans text-2xl text-orange-600">
+          Próximas actividades
         </h1>
         <IconSpinner v-if="isLoading" class="w-6 h-6" />
       </div>
-      <div v-if="!isLoading">
-        <ul class="md:h-[600px] overflow-y-auto px-1 mt-2">
-          <li
-            class="flex flex-col py-1"
-            v-for="event in currentEvents"
-            :key="event.id"
-          >
-            <div class="text-left group" v-if="isOldEvent(event.startStr)">
-              <ModalEventoAgenda
-                :title="event.title"
-                :description="event.extendedProps.description"
-                :color="event.backgroundColor"
-                :eventDay="formattedDate(event.startStr)"
-                :eventTimeStart="formattedTime(event.startStr)"
-                :eventTimeEnd="formattedTime(event.endStr)"
-                :eventImage="event.extendedProps.image"
-                :eventLink="event.extendedProps.link"
-              />
-            </div>
-          </li>
-        </ul>
-      </div>
       <div
-        v-else
+        v-if="isLoading"
         class="flex md:h-[600px] flex-col items-center justify-start gap-3 px-1 mt-4"
       >
         <AgendaSkeleton />
@@ -233,9 +260,33 @@ export default defineComponent({
         <AgendaSkeleton />
         <AgendaSkeleton />
       </div>
+
+      <div>
+        <ul class="md:h-[600px] overflow-y-auto px-1 mt-2">
+          <li
+            class="flex flex-col py-1"
+            v-for="event in futureEvents"
+            :key="event.id"
+          >
+            <div class="text-left group">
+              <ModalEventoAgenda
+                :title="event.title"
+                :description="event.extendedProps.description"
+                :color="event.color"
+                :eventDay="formattedDate(event.start)"
+                :eventTimeStart="formattedTime(event.start)"
+                :eventTimeEnd="formattedTime(event.end)"
+                :eventImage="event.extendedProps.image"
+                :eventLink="event.extendedProps.link"
+              />
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div>no hay eventos</div>
     </div>
     <div class="md:col-span-4 relative">
-      <FullCalendar ref="fullCalendar" :options="calendarOptions">
+      <FullCalendar :options="calendarOptions">
         <template v-slot:eventContent="arg">
           <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
             <p class="truncate !font-sans">{{ arg.event.title }}</p>
@@ -310,12 +361,12 @@ export default defineComponent({
 }
 
 .tab {
-  @apply w-full rounded-lg py-2.5 font-sans text-sm font-medium leading-5 text-orange-700;
+  @apply w-full rounded-lg py-2.5 font-sans text-sm font-medium bg-white/60 leading-5 text-orange-700;
   @apply ring-white ring-opacity-60 ring-offset-2 ring-offset-orange-400 focus:outline-none focus:ring-2;
 }
 
 .tab.selected {
-  @apply bg-orange-600 shadow text-orange-100 hover:bg-orange-400 hover:text-white;
+  @apply bg-white shadow text-orange-700 hover:bg-orange-200;
 }
 
 /* .fc .fc-event {

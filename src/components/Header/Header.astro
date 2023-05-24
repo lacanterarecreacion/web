@@ -6,7 +6,7 @@ import CallToActions from "./CallToActions.astro";
 
 <header
   id="headroom"
-  class="fixed shadow-md bg-white h-16 sm:h-20 top-0 left-0 flex justify-between right-0 z-50"
+  class="fixed shadow-md border-t-2 border-b-2 border-indigo-400 bg-white h-16 sm:h-20 top-0 left-0 flex justify-between right-0 z-50"
 >
   <div
     class="max-w-full px-0 relative z-10 mx-auto flex items-center justify-between w-full"
@@ -14,10 +14,9 @@ import CallToActions from "./CallToActions.astro";
     <a
       href="/"
       rel="prefetch"
-      class="flex justify-start bg-white md:bg-indigo-300/30  items-center h-16 sm:h-20 px-2 md:px-3 relative z-10"
+      class="flex justify-start  items-center h-16 sm:h-16 px-2 md:px-3 relative z-10"
     >
       <Logo />
-      <div class="patternForest absolute z-0 opacity-10 mix-blend-multiply inset-0"></div>
     </a>
     <div class="hidden xl:flex w-full items-center pl-6 gap-2 mx-6 relative z-10">
       <Navigation />
@@ -25,7 +24,6 @@ import CallToActions from "./CallToActions.astro";
     <div class="hidden w-96 md:flex items-center pr-3 gap-2 flex-col relative z-10">
       <CallToActions />
     </div>
-    <div class="patternForest absolute z-0 opacity-10 mix-blend-multiply inset-0"></div>
   </div>
 </header>
 

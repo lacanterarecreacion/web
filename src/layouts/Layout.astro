@@ -15,6 +15,7 @@ import Offcanvas from "@/components/Offcanvas.vue";
 import GoogleFont from "./GoogleFont.astro";
 import IntersectionObserver from "./IntersectionObserver.astro";
 import Noscript from "./noscript.astro";
+import slugify from "@/lib/createSlug";
 
 const {
   title,
@@ -23,6 +24,7 @@ const {
 } = Astro.props;
 
 const pathname = new URL(Astro.request.url).pathname;
+const bodySlug = slugify(pathname);
 ---
 
 <html lang="es">
@@ -37,19 +39,19 @@ const pathname = new URL(Astro.request.url).pathname;
       image={image}
     />
     <GoogleFont />
-    <Noscript/>
+    <Noscript />
   </head>
-  <body class="w-full text-gray-900 bg-white">
+  <body class={`w-full text-gray-900 bg-white ${bodySlug}`}>
     <Offcanvas client:load>
       <Navigation />
       <div class="md:hidden">
-        <CallToActions  />
+        <CallToActions />
       </div>
     </Offcanvas>
     <MainLayout>
       <Header />
       <slot />
-    </MainLayout> 
+    </MainLayout>
     <Footer />
     <IntersectionObserver />
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"

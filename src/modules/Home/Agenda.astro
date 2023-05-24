@@ -1,14 +1,27 @@
 ---
+import GrainOne from "@/components/UI/Grain/GrainOne.astro";
 import Calendar from "@/components/Calendar/Calendar.astro";
+import StackVerticalScene from "@/components/UI/Backgrounds/StackVerticalScene.astro";
 ---
 
 <div
-  class="relative bg-gradient-to-br from-orange-200 p-1 md:p-6 to-yellow-200 z-20"
+  class="relative bg-gradient-to-br overflow-hidden from-orange-200 p-1 md:p-6 to-yellow-200 z-20"
 >
-  <h2
-    class="z-10 font-hand text-5xl text-center md:text-7xl pt-12 text-orange-600 intersectionAnimation"
-  >
-    Próximas actividades
-  </h2>
-  <Calendar />
+  <div class="relative z-10 pb-24">
+    <h2
+      class="z-10 font-hand text-5xl text-center md:text-7xl pt-12 text-white intersectionAnimation"
+    >
+      Agendate
+    </h2>
+    <Calendar />
+  </div>
+
+  <div class="absolute inset-0 z-0 opacity-90">
+    <div class="absolute inset-0">
+      <GrainOne />
+    </div>
+    <div class="absolute inset-0 opacity-90">
+      <StackVerticalScene />
+    </div>
+  </div>
 </div>

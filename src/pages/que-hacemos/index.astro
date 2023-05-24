@@ -5,9 +5,9 @@ import WaveScene from "@/components/UI/Backgrounds/WaveScene.astro";
 import QueHacemosCards from "@/modules/Institucional/QueHacemosCards.astro";
 ---
 
-<Layout title="Servicios">
+<Layout title="Que hacemos">
   <div
-    class="relative flex items-center justify-center pt-12 pb-12 overflow-hidden bg-yellow-600 bg-gradient-to-tr from-amber-400"
+    class="relative flex items-center justify-center pt-12 pb-12 overflow-hidden bg-emerald-600 bg-gradient-to-tr from-amber-400"
   >
     <h1 class="relative z-10 font-hand text-4xl text-white md:text-7xl">
       ¿Qué hacemos?
@@ -15,9 +15,18 @@ import QueHacemosCards from "@/modules/Institucional/QueHacemosCards.astro";
     <div class="absolute inset-0 z-0 opacity-90">
       <GrainOne />
     </div>
-    <div class="absolute inset-0 z-0 opacity-80">
+    <div class="absolute inset-0 z-0 opacity-20">
       <WaveScene />
     </div>
   </div>
   <QueHacemosCards/>
 </Layout>
+
+<style is:global>
+  .que-hacemos #headroom {
+    @apply border-emerald-600 bg-emerald-50/90 backdrop-blur-sm !important;
+  }
+  .que-hacemos #menuOffcanvas {
+    @apply ring-emerald-400;
+  }
+</style>

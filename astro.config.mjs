@@ -18,7 +18,7 @@ export default defineConfig({
     image({
       serviceEntryPoint: "@astrojs/image/sharp"
     }),
-    prefetch(),
+    // prefetch(),
     svelte(),
     sanity({
       projectId: '1ekf84ne',
