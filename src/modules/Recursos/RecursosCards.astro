@@ -9,7 +9,7 @@ const RECURSOS = await useSanityClient().fetch(
 
 <div
   id="recursos"
-  class="relative flex items-center justify-center w-full pb-24 overflow-hidden bg-fixed bg-center bg-cover"
+  class="relative flex items-center justify-center w-full overflow-hidden"
 >
   <div
     class="RecursosGrid relative z-10 grid w-full gap-12 px-3 py-12 mx-auto sm:grid-cols-2 max-w-7xl md:grid-cols-3"
@@ -18,14 +18,14 @@ const RECURSOS = await useSanityClient().fetch(
       RECURSOS.map((post: Recurso) => (
         <div class="item animate__fadeIn relative animate__animated animate__slower ">
           <div class="w-full max-w-sm mx-auto overflow-hidden text-left align-middle transition-all duration-300 transform bg-white shadow-lg sm:max-w-full rounded-2xl hover:shadow-2xl">
-            <div class="relative flex items-center justify-center w-full pt-3 overflow-hidden bg-teal-800 h-44 patternForest">
+            <div class="relative flex items-center justify-center w-full pt-3 overflow-hidden bg-red-800 h-44 patternForest">
               <h3 class="z-10 mb-3 flex items-end  font-atkinson justify-center w-full px-6 font-medium text-2xl text-center text-white">
                 {post.title}
               </h3>
-              <div class="absolute inset-0 bg-gradient-to-b from-teal-500 via-50% via-teal-700/80 to-teal-700/90 z-0" />
+              <div class="absolute inset-0 bg-gradient-to-b from-red-500 via-50% via-red-700/80 to-red-700/90 z-0" />
             </div>
             <div class="flex items-center justify-center gap-3 p-3 ">
-              <a href={`/recursos/${post.slug?.current}`} class="btn green">
+              <a href={`/recursos/${post.slug?.current}`} class="btn red">
                 {" "}
                 Conocé más
               </a>

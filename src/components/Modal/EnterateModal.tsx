@@ -14,7 +14,7 @@ export default function MyModal() {
 
   return (
     <>
-      <button type="button" onClick={openModal} className="btn green !text-sm">
+      <button type="button" onClick={openModal} className="btn green !text-xs !py-1">
         Enterate
       </button>
 

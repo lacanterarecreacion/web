@@ -16,17 +16,17 @@ const QUE_HACEMOS = await useSanityClient().fetch(
   class="relative flex items-center justify-center w-full overflow-hidden"
 >
   <div
-    class="relative QueHacemosGrid w-full z-10 grid max-w-7xl gap-12 py-12 mx-auto sm:grid-cols-2 px-3 md:grid-cols-3 lg:grid-cols-4"
+    class="relative QueHacemosGrid w-full z-10 grid max-w-7xl gap-6 p-6 mx-auto sm:grid-cols-2 px-3 md:grid-cols-3 lg:grid-cols-4"
   >
     {
       QUE_HACEMOS.map((post: ItemHacemos) => (
         <div class="item animate__fadeIn relative animate__animated animate__slower ">
           <div class="w-full max-w-sm sm:max-w-full mx-auto overflow-hidden text-left align-middle transition-all transform bg-white shadow-lg hover:shadow-2xl duration-300 rounded-2xl">
-            <div class="w-full pt-3 h-44 overflow-hidden relative flex patternForest justify-center items-center bg-teal-800">
+            <div class="w-full pt-3 h-44 overflow-hidden relative flex patternForest justify-center items-center bg-blue-800">
               <h3 class="z-10 mb-3 flex items-end  font-sans justify-center w-full px-6 font-medium text-2xl text-center text-white">
                 {post.title}
               </h3>
-              <div class="absolute inset-0 bg-gradient-to-b from-teal-800 via-50% via-teal-900/80 to-emerald-900/90 z-0" />
+              <div class="absolute inset-0 bg-gradient-to-b from-blue-800 via-50% via-blue-900/80 to-indigo-900/90 z-0" />
             </div>
             <div class="flex justify-center items-center p-3 gap-3 ">
               <QueHacemosModal
