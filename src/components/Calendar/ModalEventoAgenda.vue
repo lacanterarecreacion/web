@@ -32,7 +32,7 @@
         >
       </h3>
       <div class="flex items-start justify-between w-full pt-1 text-sm">
-        <p class="text-left">{{ eventDay }} al <br/>{{eventDayEnd}}</p>
+        <p class="text-left">{{ eventDay }} al <br />{{ eventDayEnd }}</p>
         <p class="flex flex-col items-end text-gray-600">
           {{ eventTimeStart }}hs
           <span v-if="eventTimeEnd"> a {{ eventTimeEnd }}hs </span>
@@ -70,21 +70,22 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-2xl transition-all"
+              class="w-full max-w-xl relative transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-2xl transition-all"
             >
               <img
                 v-if="eventImage"
                 :src="eventImage.secure_url"
                 class="object-cover w-full h-64"
               />
+              
               <div class="relative">
                 <DialogTitle
                   as="h3"
-                  class="text-2xl p-3 font-medium font-sans leading-6 text-gray-900"
+                  class="text-3xl p-3 font-medium font-sans pr-28 text-gray-900"
                 >
                   {{ title }}
                 </DialogTitle>
-                <div class="absolute top-0 right-0 m-3">
+                <div class="absolute top-1.5 right-0 m-3">
                   <b
                     class="!text-xs font-bold no-underline rounded-full px-2 py-0.5 bg-purple-200 text-purple-900 ml-1"
                     v-if="color === 'purple'"
@@ -99,12 +100,13 @@
                   </b>
                 </div>
               </div>
-              <div class="px-3">
-                <span>{{ eventDay }}</span>
-                de {{ eventTimeStart }}
-                <span v-if="eventTimeEnd"> a {{ eventTimeEnd }} </span>
-                <p>{{ description }}</p>
+              <div
+                class="p-1 max-w-lg px-3 inline-flex mx-3 text-gray-800 bg-gray-200 rounded-full z-10"
+              >
+                <span>{{ eventDay }} de {{ eventTimeStart }} </span>
+                <span v-if="eventTimeEnd">&nbsp; a {{ eventTimeEnd }} </span>
               </div>
+              <p class="m-3 text-lg">{{ description }}</p>
               <div class="mt-4 flex justify-center items-center p-3 gap-2">
                 <button
                   type="button"
