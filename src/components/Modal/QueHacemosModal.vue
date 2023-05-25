@@ -30,7 +30,7 @@
             <DialogPanel
               class="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white  text-left align-middle shadow-xl transition-all"
             >
-              <img :src="image"/>
+              <img class="h-64 w-full object-cover" :src="image"/>
               <DialogTitle
                 as="h3"
                 class="text-2xl p-6 font-medium leading-6 text-gray-900"

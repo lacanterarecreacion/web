@@ -21,7 +21,7 @@ a {
 }
 
 .btn {
-  @apply print:hidden inline-flex items-center justify-center px-4 py-2 font-sans font-semibold uppercase text-sm md:text-base tracking-wide duration-300 bg-gray-200 border-0 rounded-md  cursor-pointer ring-0 bg-opacity-90 hover:ring-2 hover:bg-opacity-80 focus-visible:ring-2 shadow-lg hover:shadow focus-visible:ring-offset-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus:ring-2 ring-gray-800;
+  @apply print:hidden inline-flex items-center justify-center px-4 py-2 font-sans font-semibold uppercase text-sm md:text-base tracking-wide duration-300 bg-gray-200 border-0 rounded-md  cursor-pointer ring-0 bg-opacity-90 hover:ring-2 hover:bg-opacity-80 focus-visible:ring-2 shadow-lg hover:shadow focus-visible:ring-offset-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus:ring-2 ring-gray-800 text-gray-900;
 }
 
 .btn.red {

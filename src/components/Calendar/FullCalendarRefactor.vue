@@ -84,7 +84,7 @@ const calendarOptions = {
 
 <template>
   <div
-    class="w-full gap-1 mx-auto mt-2 bg-white shadow-lg grid lg:grid-cols-6 max-w-2xl lg:max-w-7xl sm:p-3 md:gap-2 rounded-xl"
+    class="w-full gap-1 mx-auto mt-2 bg-white shadow-lg mb-20 grid lg:grid-cols-6 max-w-2xl lg:max-w-7xl sm:p-3 md:gap-2 rounded-xl"
   >
     <div class="lg:col-span-2 lg:p-2 lg:pt-0 lg:px-2">
       <div class="flex items-center justify-between py-8">
@@ -186,7 +186,7 @@ const calendarOptions = {
 }
 
 .fc .fc-view-harness {
-  @apply !h-[75vh] md:!h-[660px];
+  @apply !h-[75vh] md:!h-[560px];
 }
 
 .fc-toolbar-title {
