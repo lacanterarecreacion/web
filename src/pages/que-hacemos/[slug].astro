@@ -4,6 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderImage.astro";
 import PortableText from "@/components/PortableText.astro";
 import type { ItemHacemos } from "@/types/interfaces";
+import QueHacemosCards from "@/src/modules/Institucional/QueHacemosCards.astro";
 
 interface Props extends ItemHacemos {}
 
@@ -30,7 +31,7 @@ const { title, description, body, mainImage } = Astro.props as Props;
     >
       <h1 class="font-sans max-w-6xl mx-auto text-6xl">{title}</h1>
       <p class="mt-6 max-w-3xl mx-auto text-2xl font-sans">
-        una descripcion sobre {description}
+        {description}
       </p>
     </div>
     <div class="absolute z-0 opacity-20 inset-0 object-cover w-full">
@@ -49,4 +50,8 @@ const { title, description, body, mainImage } = Astro.props as Props;
   >
     <PortableText portableText={body} />
   </article>
+  <aside>
+    <h3 class="text-center text-4xl">Que más hacemos</h3>
+    <QueHacemosCards/>
+  </aside>
 </Layout>

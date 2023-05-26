@@ -4,6 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderImage.astro";
 import PortableText from "@/components/PortableText.astro";
 import type { Recurso } from "@/types/interfaces";
+import RecursosCards from "@/modules/Recursos/RecursosCards.astro";
 
 interface Props extends Recurso {}
 
@@ -49,4 +50,8 @@ const { title, description, body, mainImage } = Astro.props as Props;
   >
     <PortableText portableText={body} />
   </article>
+  <div class="py-24">
+    <h3 class="text-center text-4xl">Más recursos</h3>
+    <RecursosCards />
+  </div>
 </Layout>
