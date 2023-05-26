@@ -1,0 +1,89 @@
+---
+import { Image } from "@astrojs/image/components";
+const { images } = Astro.props;
+---
+
+<div class="w-full mx-auto">
+  <div
+    style="--swiper-navigation-color: #dd7c06; --swiper-pagination-color: #dd7c06; --swiper-pagination-bullet-width: 16px; --swiper-pagination-bullet-height: 16px;"
+    class="swiper mySwiper pb-12"
+  >
+    <div class="swiper-wrapper">
+      {
+        images.map((i: any) => {
+          return (
+            <a class="swiper-slide glightbox" href={i}>
+              <Image
+                alt={i}
+                src={i}
+                width={1600}
+                height={1280}
+                class="object-cover w-full h-96"
+                format="webp"
+              />
+            </a>
+          );
+        })
+      }
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-left">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#888888" d="M15.41 7.41L14 6l-6 6l6 6l1.41-1.41L10.83 12l4.58-4.59z"/></svg>
+    </div>
+    <div class="swiper-button-right">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#888888" d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6l-6-6z"/></svg>
+    </div>
+  </div>
+</div>
+
+<!-- Initialize Swiper -->
+<script>
+  //@ts-ignore
+  var swiper = new Swiper(".mySwiper", {
+    spaceBetween: 10,
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      600: {
+        slidesPerView: 3,
+      },
+      800: {
+        slidesPerView: 4,
+      },
+      1024: {
+        slidesPerView: 5,
+      },
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: ".swiper-button-right",
+      prevEl: ".swiper-button-left",
+    },
+    thumbs: {
+      swiper: swiper,
+    },
+  });
+</script>
+
+<style>
+  .swiper {
+    @apply w-full select-none;
+  }
+
+  .swiper-button-left,
+  .swiper-button-right {
+    @apply bg-white w-12 h-12 absolute top-1/2 z-50 flex justify-center items-center -translate-y-10;
+  }
+
+  .swiper-button-right {
+    @apply right-0
+  }
+</style>

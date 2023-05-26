@@ -2,22 +2,74 @@
 import Layout from "@/src/layouts/Layout.astro";
 import LineaDeTiempo from "@/src/modules/Institucional/LineaDeTiempo.astro";
 
+// class="relative h-[calc(100vh-50px)] md:h-[calc(100vh-85px)] overflow-hidden bg-indigo-900"
+
 ---
 
 <Layout title="Sobre cantera">
   <div class="relative z-30 w-full mx-auto">
-    <div class="relative h-[calc(100vh-50px)] md:h-[calc(100vh-85px)] overflow-hidden bg-indigo-900">
+    <div
+      class="relative h-[50vh] overflow-hidden bg-indigo-900"
+    >
       <div class="absolute inset-0">
         <LineaDeTiempo />
       </div>
     </div>
-  </div>
+    <article class="prose mt-12 prose-xl max-w-3xl mx-auto">
+      <h2>Festivales y Eventos</h2>
+      <ul>
+        <li>Participación en el Festival Minguero del Club Cultural La Minga</li>
+        <li>Participación en el Antón Pirulero organizado por el Normal 5</li>
+        <li>Evento Burbujas Lúdicas en el marco del Día por el derecho a jugar</li>
+        <li>Participación en el festival El Garelli de la Asociación Civil Villa Valdocco</li>
+        <li>Talleres e intervenciones en el Encuentro Nacional de OMEP</li>
+        <li>Coordinación de propuesta lúdica para la inauguración del Cine Teatro El Plata</li>
+        <li>Diseño de las Visitas Lúdicas del Teatro San Martín</li>
+        <li>Coordinación de propuesta lúdica para la Promesa a la Bandera en el CCK</li>
+        <li>Eventos Recreativos en diversos barrios de CABA</li>
+        <li>Talleres y actividades recreativas para diversas instituciones</li>
+      </ul>
+      <h2>Jornadas y Encuentros</h2>
+      <ul>
+        <li>Participación en el Conversatorio de la Red Internacional de Recreación</li>
+        <li>Participación en el 3er Congreso Internacional de Juego, Tiempo Libre y Recreación</li>
+        <li>Participación en el Encuentro Latinoamericano de Recreación y Ocio</li>
+        <li>Participación en el 2do Congreso de Tiempo Libre y Recreación</li>
+        <li>Participación en las Jornadas de Tiempo Libre y Recreación</li>
+      </ul>
+      <h2>Contenidos Audiovisuales</h2>
+      <ul>
+        <li>Proyecto "La Canterentena" en Youtube</li>
+        <li>Secciones en redes sociales: Pedacitos de libros, Mirame mirame, Haciendo foco, Oráculo poético,
+          ¿Sabías qué…?, Recomendaciones de películas y Había una vez en Cantera…</li>
+        <li>"Piedra, papel o Cantera" - juegos participativos en vivo a través de Youtube</li>
+      </ul>
+      <h2>Revistas y publicaciones</h2>
+      <ul>
+        <li>Revista "Awalé. Sembrando el juego" - 10 números en papel</li>
+        <li>Publicación en la revista Minka</li>
+      </ul>
+      <h2>Talleres y capacitaciones</h2>
+      <ul>
+        <li>Taller de Juegos de Lápiz y Papel</li>
+        <li>Taller de Recursos Lúdicos</li>
+        <li>Taller "Grandes juegos para pequeños jugadores"</li>
+        <li>Taller de construcción de juegos</li>
+        <li>Taller de deportes alternativos</li>
+        <li>Formación de facilitador/a en espacios de juegos de mesa</li>
+        <li>Seminario sobre Graciela Scheines</li>
+        <li>Proyecto "Alimentá tus ganas de jugar" - talleres y actividades sobre alimentación saludable</li>
+      </ul>
+      <h2>Espacio de consultoría</h2>
+      <p>Con cita previa, se ofrece un espacio de asesoramiento sobre juego y lúdica, utilizando la amplia ludoteca y biblioteca especializada, y con la asistencia de profesionales de la organización para acompañar proyectos en el campo de la recreación y a docentes en sus tareas cotidianas.</p>
+    </article>
+    
 </Layout>
 
 <style is:global>
   .prose p,
   .prose ul {
-    @apply my-6 block mx-auto max-w-3xl;
+    @apply my-6 block mx-auto;
   }
 
   .prose img {
