@@ -1,0 +1,16 @@
+---
+const props = Astro.props;
+import { urlForImage } from "@/lib/urlForImage";
+---
+
+<picture>
+  <source
+    srcset={urlForImage(props.asset).format("webp").url()}
+    type="image/webp"
+  />
+  <img
+    class="responsive__img glightbox"
+    src={urlForImage(props.asset).url()}
+    alt={props.alt}
+  />
+</picture>

@@ -25,7 +25,6 @@ const handleEvents = (events: EventApi[]) => {
   isLoading.value = true;
   allEvents.value = events;
   isLoading.value = false;
-  console.log(events);
 };
 
 const eventosFuturos = () => {

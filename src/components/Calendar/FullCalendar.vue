@@ -93,21 +93,8 @@ export default defineComponent({
       const now = new Date().toISOString();
       return inputValue >= now;
     },
-    // eventosFuturos2() {
-    //   const newitem = this.allEvents.filter((evento) => {
-    //     const fechaEvento = evento.endStr;
-    //     console.log("// title:" + evento.title);
-    //     console.log("// evento:" + evento.endStr);
-    //     console.log("// ahora:" + new Date());
-    //     console.log("// ahora:" + new Date().toISOString());
-    //     console.log("// end:" + evento.title);
-    //   });
-    //   console.log(newitem);
-    //   return newitem;
-    // },
     eventosFuturos() {
       const newitem = this.calendarOptions.initialEvents.filter((evento) => {
-        console.log()
         const fechaEvento = formatDate(evento.end, {
           year: "numeric",
           month: "2-digit",
@@ -125,14 +112,8 @@ export default defineComponent({
           timeZoneName: "long",
           locale: "es",
         });
-        console.log("// title: " + evento.title + " // Color: " + evento.color);
-        console.log("fecha evento: " + fechaEvento);
-        console.log("fecha  ahora: " + now2);
-        console.log(fechaEvento > now2);
-        console.log(" ");
         return fechaEvento > now2;
       });
-      console.log(newitem);
       return newitem;
     },
   },

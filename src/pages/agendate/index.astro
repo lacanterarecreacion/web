@@ -8,7 +8,6 @@ import StackVerticalScene from "@/components/UI/Backgrounds/StackVerticalScene.a
 const eventos = await useSanityClient().fetch(
   `*[_type == "calendarioLudico"]  | order(publishedAt desc)`
 );
-console.log(eventos);
 ---
 
 <Layout title="Agendate">

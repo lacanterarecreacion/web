@@ -1,6 +1,18 @@
 ---
-import { sanityPortableText } from "@/lib/portableText";
+import { PortableText } from "astro-portabletext";
 const { portableText } = Astro.props;
+import BlockGallery from "@/components/Plugs/BlockGallery.astro";
+import BlockImage from "@/components/Plugs/BlockImage.astro";
+import YoutubeEmbed from "@/components/Plugs/YoutubeEmbed.astro";
 ---
 
-<Fragment set:html={sanityPortableText(portableText)} />
+<PortableText
+  value={portableText}
+  components={{
+    type: {
+      BlockGallery,
+      YoutubeEmbed,
+      BlockImage,
+    },
+  }}
+/>

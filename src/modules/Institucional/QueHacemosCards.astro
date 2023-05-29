@@ -1,10 +1,6 @@
 ---
-import QueHacemosModal from "@/components/Modal/QueHacemosModal.vue";
-import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderImage.astro";
-import PortableText from "@/components/PortableText.astro";
 import { useSanityClient } from "astro-sanity";
 import type { ItemHacemos } from "@/types/interfaces";
-import { urlForImage } from "@/lib/urlForImage";
 
 const QUE_HACEMOS = await useSanityClient().fetch(
   `*[_type == "quehacemos"]  | order(title desc)`

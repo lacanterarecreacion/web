@@ -35,7 +35,6 @@ const customComponents = {
       `;
     },
     BlockGallery: ({ value }) => {
-      console.log(value)
       return `
         <div class="">
         ${

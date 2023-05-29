@@ -1,14 +1,9 @@
 ---
-import { PortableText } from "astro-portabletext";
+import PortableText from "@/components/PortableText.astro";
 import { useSanityClient } from "astro-sanity";
 import Layout from "@/layouts/Layout.astro";
 import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderImage.astro";
 import QueHacemosCards from "@/src/modules/Institucional/QueHacemosCards.astro";
-// import type { ItemHacemos } from "@/types/interfaces";
-import BlockGallery from "@/components/Plugs/BlockGallery.astro";
-import YoutubeEmbed from "@/components/Plugs/YoutubeEmbed.astro";
-// import PortableText from "@/components/PortableText.astro";
-
 
 export async function getStaticPaths() {
   const noticias = await useSanityClient().fetch(`*[_type == "quehacemos"]`);
@@ -51,15 +46,7 @@ const { title, description, body, mainImage } = Astro.props;
     id="article"
   >
     <!-- <PortableText portableText={body} /> -->
-    <PortableText
-      value={body}
-      components={{
-        type: {
-          BlockGallery,
-          YoutubeEmbed,
-        },
-      }}
-    />
+    <PortableText portableText={body} />
   </article>
   <aside>
     <h3 class="text-4xl text-center">Que más hacemos</h3>
