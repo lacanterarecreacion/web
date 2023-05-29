@@ -1,14 +1,13 @@
-import { portableTextToHtml } from 'astro-sanity';
-import { urlForImage } from '@/lib/urlForImage';
-import getYouTubeId from 'get-youtube-id'
-
+import { portableTextToHtml } from "astro-sanity";
+import { urlForImage } from "@/lib/urlForImage";
+import getYouTubeId from "get-youtube-id";
 const customComponents = {
   types: {
     image: ({ value }) => {
       return `
         <picture>
           <source
-            srcset="${urlForImage(value.asset).format('webp').url()}"
+            srcset="${urlForImage(value.asset).format("webp").url()}"
             type="image/webp"
           />
           <img
@@ -20,8 +19,8 @@ const customComponents = {
       `;
     },
     YoutubeEmbed: ({ value }) => {
-      const { url } = value
-      const id = getYouTubeId(url)
+      const { url } = value;
+      const id = getYouTubeId(url);
       return `
         <div class="videoYoutube youtube-container aspect-w-16 rounded-xl aspect-h-9 overflow-hidden" >
           <iframe
@@ -32,6 +31,25 @@ const customComponents = {
             allowfullscreen
           >
           </iframe>
+        </div>
+      `;
+    },
+    BlockGallery: ({ value }) => {
+      console.log(value)
+      return `
+        <div class="">
+        ${
+          value.imagesGallery.map((i) => {
+           return (
+             <div class="swiper-slide glightbox" >
+               <img
+                 class="object-cover w-full h-64"
+                 src={urlForImage(i.asset).width(600).height(400).url()}
+               />
+             </div>
+           );
+         })
+       }
         </div>
       `;
     },

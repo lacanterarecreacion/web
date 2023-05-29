@@ -44,7 +44,7 @@ export interface ItemHacemos {
   slug: {
     current: string;
   };
-  body: string;
+  body: object;
   mainImage: string;
 }
 

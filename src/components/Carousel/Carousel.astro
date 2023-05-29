@@ -3,14 +3,14 @@ import { Image } from "@astrojs/image/components";
 const { images } = Astro.props;
 ---
 
-<div class="max-w-4xl w-full mx-auto">
+<div class="w-full max-w-4xl mx-auto">
   <div
     style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff; --swiper-pagination-bullet-width: 16px; --swiper-pagination-bullet-height: 16px;"
     class="swiper mySwiper2"
   >
     <div class="swiper-wrapper">
       {
-        images.map((i) => {
+        images.map((i : any) => {
           return (
             <a class="swiper-slide glightbox" href={i}>
               <Image
@@ -30,12 +30,12 @@ const { images } = Astro.props;
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
-  <div thumbsSlider="" class="swiper mySwiper mt-3">
+  <div thumbsSlider="" class="mt-3 swiper mySwiper">
     <div class="swiper-wrapper">
       {
-        images.map((i) => {
+        images.map((i : any) => {
           return (
-            <div class="swiper-slide cursor-pointer hover:opacity-60">
+            <div class="cursor-pointer swiper-slide hover:opacity-60">
               <Image
                 alt={i}
                 src={i}
