@@ -42,10 +42,9 @@ const { title, description, body, mainImage } = Astro.props;
     </div>
   </div>
   <article
-    class="w-full max-w-3xl px-2 pb-24 mx-auto mt-12 prose prose-lg"
+    class="w-full max-w-full px-2 pb-24 mx-auto mt-12 prose prose-lg"
     id="article"
   >
-    <!-- <PortableText portableText={body} /> -->
     <PortableText portableText={body} />
   </article>
   <aside>
@@ -53,3 +52,5 @@ const { title, description, body, mainImage } = Astro.props;
     <QueHacemosCards />
   </aside>
 </Layout>
+
+

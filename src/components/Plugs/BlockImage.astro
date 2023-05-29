@@ -5,12 +5,22 @@ import { urlForImage } from "@/lib/urlForImage";
 
 <picture>
   <source
-    srcset={urlForImage(props.asset).format("webp").url()}
+    srcset={urlForImage(props.node.asset).format("webp").url()}
     type="image/webp"
   />
   <img
     class="responsive__img glightbox"
-    src={urlForImage(props.asset).url()}
-    alt={props.alt}
+    src={urlForImage(props.node.asset).url()}
+    alt={props.node.alt}
   />
 </picture>
+
+<style>
+  picture {
+    @apply max-w-3xl mx-auto;
+  }
+
+  picture img {
+    @apply cursor-pointer hover:opacity-80 duration-300 rounded-lg overflow-hidden
+  }
+</style>

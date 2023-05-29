@@ -6,13 +6,27 @@ import BlockImage from "@/components/Plugs/BlockImage.astro";
 import YoutubeEmbed from "@/components/Plugs/YoutubeEmbed.astro";
 ---
 
-<PortableText
-  value={portableText}
-  components={{
-    type: {
-      BlockGallery,
-      YoutubeEmbed,
-      BlockImage,
-    },
-  }}
-/>
+<article class="portable-text">
+  <PortableText
+    value={portableText}
+    components={{
+      type: {
+        BlockGallery,
+        YoutubeEmbed,
+        image: BlockImage,
+      },
+    }}
+  />
+</article>
+
+<style is:global>
+  .prose .portable-text p,
+  .prose .portable-text h1,
+  .prose .portable-text h2,
+  .prose .portable-text h3,
+  .prose .portable-text h4,
+  .prose .portable-text picture,
+  .prose .portable-text img {
+    @apply max-w-3xl mx-auto;
+  }
+</style>

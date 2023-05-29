@@ -4,15 +4,17 @@ import getYouTubeId from "get-youtube-id";
 const id = getYouTubeId(props.node.url);
 ---
 
-<div
-  class="overflow-hidden videoYoutube youtube-container aspect-w-16 rounded-xl aspect-h-9"
->
-  <iframe
-    width="100%"
-    height="450"
-    src={`https://www.youtube.com/embed/${id}`}
-    allow="autoplay; encrypted-media"
-    allowfullscreen
+<div class="max-w-3xl mx-auto">
+  <div
+    class="overflow-hidden videoYoutube youtube-container mx-auto aspect-w-16 rounded-xl aspect-h-9"
   >
-  </iframe>
+    <iframe
+      width="100%"
+      height="450"
+      src={`https://www.youtube.com/embed/${id}`}
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    >
+    </iframe>
+  </div>
 </div>
