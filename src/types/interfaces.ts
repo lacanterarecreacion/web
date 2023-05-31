@@ -1,4 +1,4 @@
-import type { DateInput } from "@fullcalendar/core";
+
 
 export interface Posts {
   Posts: Post[];
@@ -60,8 +60,8 @@ export interface Event {
   id?: string;
   title?: string;
   color?: string;
-  end: DateInput;
-  start: DateInput;
+  end: string;
+  start: string;
   extendedProps: ExtendedProps;
 }
 
@@ -69,4 +69,11 @@ export interface ExtendedProps {
   link?: string;
   description?: string;
   image?: Image;
+}
+
+
+export interface EventsByTimes {
+ NextWeek?: Event[],
+ NextMonth?: Event[],
+ NextSixMonths?: Event[],
 }

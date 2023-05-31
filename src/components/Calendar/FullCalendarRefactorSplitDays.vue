@@ -9,17 +9,14 @@ import ModalEventoAgenda from "./ModalEventoAgenda.vue";
 import IconSpinner from "./IconSpinner.vue";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import AgendaSkeleton from "./AgendaSkeleton.vue";
-import {
-  formattedDate,
-  formattedTime,
-} from "@/lib/formatCalendarDateTime";
+import { formattedDate, formattedTime } from "@/lib/formatCalendarDateTime";
 
-import type { Events, Event } from "@/types/interfaces";
+import type { Events, Event, EventsByTimes } from "@/types/interfaces";
 
 const props = defineProps<Events>();
 const isLoading = ref(true);
 const allEvents = ref<EventApi[]>([]);
-const futureEvents = ref<Event[]>([]);
+const futureEvents = ref<EventsByTimes[]>([]);
 
 const handleEvents = (events: EventApi[]) => {
   isLoading.value = true;
@@ -27,43 +24,48 @@ const handleEvents = (events: EventApi[]) => {
   isLoading.value = false;
 };
 
-// const eventosFuturos = () => {
-//   const newitem = props.calendarEvents?.filter((evento: Event) => {
-//     const fechaEvento = formatDate(evento.end, {
-//       year: "numeric",
-//       month: "2-digit",
-//       day: "2-digit",
-//       hour12: false,
-//       timeZoneName: "long",
-//       locale: "es",
-//     });
-//     const now = new Date().getTime();
-//     const now2 = formatDate(now, {
-//       year: "numeric",
-//       month: "2-digit",
-//       day: "2-digit",
-//       hour12: false,
-//       timeZoneName: "long",
-//       locale: "es",
-//     });
-//     console.log("Fecha evento: " + fechaEvento)
-//     console.log("Ahora: " + now2)
-//     return fechaEvento > now2;
-//   });
-//   return newitem;
-// };
-
-const eventosFuturos = () => {
+const eventosFuturos2 = () => {
   const now = new Date().getTime();
-  const newItems = props.calendarEvents?.filter((evento) => {
+  const nextWeek = new Date(now + 7 * 24 * 60 * 60 * 1000).getTime();
+  const nextMonth = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth() + 1,
+    new Date().getDate()
+  ).getTime();
+  const nextSixMonths = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth() + 6,
+    new Date().getDate()
+  ).getTime();
+
+  const eventsByPeriod: EventsByTimes = {
+    NextWeek: [],
+    NextMonth: [],
+    NextSixMonths: [],
+  };
+
+  props.calendarEvents?.forEach((evento) => {
     const fechaEvento = new Date(evento.end).getTime();
-    return fechaEvento > now;
+
+    if (fechaEvento > now && fechaEvento <= nextWeek) {
+      eventsByPeriod["NextWeek"].push(evento);
+    } else if (fechaEvento > now && fechaEvento <= nextMonth) {
+      eventsByPeriod["NextMonth"].push(evento);
+    } else if (fechaEvento > now && fechaEvento <= nextSixMonths) {
+      eventsByPeriod["NextSixMonths"].push(evento);
+    }
   });
-  return newItems;
+
+  return eventsByPeriod;
 };
 
+futureEvents.value = eventosFuturos2();
 
-futureEvents.value = eventosFuturos();
+const eventosWeek = futureEvents.value.NextWeek;
+const eventosMonth = futureEvents.value.NextMonth;
+const eventosSixMonth = futureEvents.value.NextSixMonths;
+
+console.log(eventosWeek);
 
 const calendarOptions = {
   plugins: [
@@ -98,7 +100,7 @@ const calendarOptions = {
     class="w-full gap-1 mx-auto mt-2 bg-white shadow-lg mb-20 grid lg:grid-cols-6 max-w-2xl lg:max-w-7xl sm:p-3 md:gap-2 rounded-xl"
   >
     <div class="lg:col-span-2 lg:p-2 lg:pt-0 lg:px-2">
-      <div class="flex items-center justify-between pt-6">
+      <div class="flex items-center justify-between py-8">
         <h1 class="text-center w-full font-sans text-2xl text-orange-600">
           Próximas actividades
         </h1>
@@ -111,6 +113,83 @@ const calendarOptions = {
         <AgendaSkeleton v-for="i in 3" />
       </div>
       <div v-else-if="futureEvents.length !== 0">
+        <div class="lg:h-[600px] overflow-y-auto px-1 mt-2">
+          <div v-if="eventosWeek.length !== 0">
+            <p class="font-bold">Próximos 7 días</p>
+            <div
+              class="flex flex-col py-1"
+              v-for="event in eventosWeek"
+              :key="event.id"
+            >
+              <div class="text-left group">
+                <ModalEventoAgenda
+                  :title="event.title"
+                  :description="event.extendedProps.description"
+                  :color="event.color"
+                  :eventDay="formattedDate(event.start)"
+                  :eventDayEnd="formattedDate(event.end)"
+                  :eventTimeStart="formattedTime(event.start)"
+                  :eventTimeEnd="formattedTime(event.end)"
+                  :eventImage="event.extendedProps.image"
+                  :eventLink="event.extendedProps.link"
+                />
+              </div>
+            </div>
+          </div>
+          <div v-if="eventosMonth">
+            <p class="font-bold">Próximos 30 días</p>
+            <div
+              class="flex flex-col py-1"
+              v-for="event in eventosMonth"
+              :key="event.id"
+            >
+              <div class="text-left group">
+                <ModalEventoAgenda
+                  :title="event.title"
+                  :description="event.extendedProps.description"
+                  :color="event.color"
+                  :eventDay="formattedDate(event.start)"
+                  :eventDayEnd="formattedDate(event.end)"
+                  :eventTimeStart="formattedTime(event.start)"
+                  :eventTimeEnd="formattedTime(event.end)"
+                  :eventImage="event.extendedProps.image"
+                  :eventLink="event.extendedProps.link"
+                />
+              </div>
+            </div>
+          </div>
+          <div v-if="eventosSixMonth">
+            <p class="font-bold">Próximos 6 Meses</p>
+            <div
+              class="flex flex-col py-1"
+              v-for="event in eventosSixMonth"
+              :key="event.id"
+            >
+              <div class="text-left group">
+                <ModalEventoAgenda
+                  :title="event.title"
+                  :description="event.extendedProps.description"
+                  :color="event.color"
+                  :eventDay="formattedDate(event.start)"
+                  :eventDayEnd="formattedDate(event.end)"
+                  :eventTimeStart="formattedTime(event.start)"
+                  :eventTimeEnd="formattedTime(event.end)"
+                  :eventImage="event.extendedProps.image"
+                  :eventLink="event.extendedProps.link"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-else>
+        <div
+          class="bg-indigo-200 text-indigo-800 rounded-md mt-3 h-64 flex justify-center items-center text-center p-6"
+        >
+          No hay eventos programados
+        </div>
+      </div>
+      <!-- <div v-else-if="futureEvents.length !== 0">
         <ul class="lg:h-[600px] overflow-y-auto px-1 mt-2">
           <li
             class="flex flex-col py-1"
@@ -139,7 +218,7 @@ const calendarOptions = {
         >
           No hay eventos programados
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="lg:col-span-4 min-h-[200px] pt-8 px-1 relative">
       <FullCalendar :options="calendarOptions">
