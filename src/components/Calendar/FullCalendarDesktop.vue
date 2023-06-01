@@ -24,6 +24,7 @@ const handleEvents = (events: EventApi[]) => {
 
 const eventosFuturos = () => {
   const now = new Date().getTime();
+  const nextDay = new Date(now + 24 * 60 * 60 * 1000).getTime();
   const nextWeek = new Date(now + 7 * 24 * 60 * 60 * 1000).getTime();
   const nextMonth = new Date(
     new Date().getFullYear(),
@@ -37,6 +38,7 @@ const eventosFuturos = () => {
   ).getTime();
 
   const eventsByPeriod: EventsByTimes = {
+    Next24Hours: [],
     NextWeek: [],
     NextMonth: [],
     NextSixMonths: [],
@@ -45,7 +47,9 @@ const eventosFuturos = () => {
   if (props.calendarEvents) {
     props.calendarEvents.forEach((evento: Event) => {
       const fechaEvento = new Date(evento.end).getTime();
-      if (fechaEvento > now && fechaEvento <= nextWeek) {
+      if (fechaEvento > now && fechaEvento <= nextDay) {
+        eventsByPeriod["Next24Hours"].push(evento);
+      } else if (fechaEvento > now && fechaEvento <= nextWeek) {
         eventsByPeriod["NextWeek"].push(evento);
       } else if (fechaEvento > now && fechaEvento <= nextMonth) {
         eventsByPeriod["NextMonth"].push(evento);
@@ -81,14 +85,12 @@ const calendarOptions = {
   eventsSet: handleEvents,
 };
 
-
 futureEvents.value = eventosFuturos();
 
+const eventosDay = futureEvents.value.Next24Hours;
 const eventosWeek = futureEvents.value.NextWeek;
 const eventosMonth = futureEvents.value.NextMonth;
 const eventosSixMonth = futureEvents.value.NextSixMonths;
-
-
 </script>
 
 <template>
@@ -97,7 +99,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
   >
     <div class="lg:col-span-2 lg:p-2 lg:pt-0 lg:px-2">
       <div
-        class="flex items-center justify-between pt-8 pb-3 mb-2 border-b border-gray-300"
+        class="flex items-center justify-between pt-2 pb-3 mb-2 border-b border-gray-300"
       >
         <h1 class="text-left w-full font-hand text-3xl text-gray-800">
           Proximas actividades
@@ -109,17 +111,26 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
           v-if="isLoading"
           class="flex lg:h-[600px] flex-col items-center justify-start gap-3 px-2 mt-4"
         >
-          <AgendaSkeleton v-for="i in 6" />
+          <AgendaSkeleton v-for="i in 7" />
         </div>
-
         <div v-else-if="futureEvents">
           <div
-            class="lg:h-[600px] overflow-y-auto px-1 flex flex-col gap-3 mt-4"
+            class="lg:h-[530px] overflow-y-auto px-1 flex flex-col gap-3 mt-4"
           >
+            <div v-if="eventosDay.length !== 0">
+              <p class="font-bold text-orange-600">En las próximas 24hs</p>
+              <div
+                class="grid py-1 gap-3"
+                v-for="event in eventosDay"
+                :key="event.id"
+              >
+                <ModalEvento :event="event" />
+              </div>
+            </div>
             <div v-if="eventosWeek.length !== 0">
               <p class="font-bold text-orange-600">Próximos 7 días</p>
               <div
-                class="flex flex-col py-1"
+                class="grid py-1 gap-3"
                 v-for="event in eventosWeek"
                 :key="event.id"
               >
@@ -129,7 +140,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
             <div v-if="eventosMonth.length !== 0">
               <p class="font-bold text-orange-600">Próximos 30 días</p>
               <div
-                class="flex flex-col py-1"
+                class="grid py-1 gap-3"
                 v-for="event in eventosMonth"
                 :key="event.id"
               >
@@ -139,7 +150,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
             <div v-if="eventosSixMonth">
               <p class="font-bold text-orange-600">Próximos 6 Meses</p>
               <div
-                class="flex flex-col py-1"
+                class="grid py-1 gap-3"
                 v-for="event in eventosSixMonth"
                 :key="event.id"
               >
@@ -157,13 +168,13 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
         </div>
       </Transition>
     </div>
-    <div class="lg:col-span-4 min-h-[200px] pt-8 px-1 relative">
+    <div class="lg:col-span-4 min-h-[200px] pt-2 px-1 relative">
       <FullCalendar :options="calendarOptions">
         <template v-slot:eventContent="arg">
           <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
             <p class="truncate !font-sans">{{ arg.event.title }}</p>
           </div>
-          <ModalEvento inCalendar :event="arg.event"  />
+          <ModalEvento inCalendar :event="arg.event" />
         </template>
       </FullCalendar>
       <div

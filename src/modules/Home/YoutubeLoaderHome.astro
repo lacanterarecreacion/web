@@ -1,6 +1,10 @@
 ---
 import { Image } from "@astrojs/image/components";
+import getYouTubeId from "get-youtube-id";
+
 const { video, title, thumbnail } = Astro.props;
+const videoEmbedId = getYouTubeId(video);
+
 ---
 
 <script>
@@ -9,13 +13,11 @@ const { video, title, thumbnail } = Astro.props;
   const youtubePoster = document.querySelector(".posterYoutube") as HTMLElement;
 
   if (button) {
-    // Not called
     button.addEventListener("click", () => {
       youtubeVideo.classList.toggle("!block");
       youtubePoster.classList.toggle("!hidden");
     });
   }
-
 </script>
 
 <div
@@ -24,7 +26,7 @@ const { video, title, thumbnail } = Astro.props;
   <iframe
     width="100%"
     height="450"
-    src={video}
+    src={`https://www.youtube.com/embed/${videoEmbedId}`}
     allow="autoplay; encrypted-media"
     allowfullscreen
     title={title}></iframe>

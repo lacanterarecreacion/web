@@ -1,6 +1,7 @@
 ---
-import FullCalendarRefactorSplitDays from "@/components/Calendar/FullCalendarRefactorSplitDays.vue";
+import FullCalendarDesktop from "@/components/Calendar/FullCalendarDesktop.vue";
 import FullCalendarMobile from "@/components/Calendar/FullCalendarMobile.vue";
+
 import { useSanityClient } from "astro-sanity";
 const calendario = await useSanityClient().fetch(
    `
@@ -17,14 +18,19 @@ const calendario = await useSanityClient().fetch(
        }
      }`
  );
-
 ---
 
-<div class="hidden lg:flex">
-  <FullCalendarRefactorSplitDays calendarEvents={calendario} client:visible />
+<div class="hidden xl:flex">
+  <FullCalendarDesktop
+    calendarEvents={calendario}
+    client:visible
+  />
 </div>
-<div class="flex lg:hidden">
-  <FullCalendarMobile calendarEvents={calendario} client:visible />
+<div class="flex xl:hidden">
+  <FullCalendarMobile
+    calendarEvents={calendario}
+    client:visible
+  />
 </div>
 
 

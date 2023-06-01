@@ -25,6 +25,7 @@ const handleEvents = (events: EventApi[]) => {
 
 const eventosFuturos = () => {
   const now = new Date().getTime();
+  const nextDay = new Date(now + 24 * 60 * 60 * 1000).getTime();
   const nextWeek = new Date(now + 7 * 24 * 60 * 60 * 1000).getTime();
   const nextMonth = new Date(
     new Date().getFullYear(),
@@ -38,6 +39,7 @@ const eventosFuturos = () => {
   ).getTime();
 
   const eventsByPeriod: EventsByTimes = {
+    Next24Hours: [],
     NextWeek: [],
     NextMonth: [],
     NextSixMonths: [],
@@ -46,7 +48,9 @@ const eventosFuturos = () => {
   if (props.calendarEvents) {
     props.calendarEvents.forEach((evento: Event) => {
       const fechaEvento = new Date(evento.end).getTime();
-      if (fechaEvento > now && fechaEvento <= nextWeek) {
+      if (fechaEvento > now && fechaEvento <= nextDay) {
+        eventsByPeriod["Next24Hours"].push(evento);
+      } else if (fechaEvento > now && fechaEvento <= nextWeek) {
         eventsByPeriod["NextWeek"].push(evento);
       } else if (fechaEvento > now && fechaEvento <= nextMonth) {
         eventsByPeriod["NextMonth"].push(evento);
@@ -57,7 +61,6 @@ const eventosFuturos = () => {
   }
   return eventsByPeriod;
 };
-
 const calendarOptions = {
   plugins: [
     dayGridPlugin,
@@ -84,6 +87,7 @@ const calendarOptions = {
 
 futureEvents.value = eventosFuturos();
 
+const eventosDay = futureEvents.value.Next24Hours;
 const eventosWeek = futureEvents.value.NextWeek;
 const eventosMonth = futureEvents.value.NextMonth;
 const eventosSixMonth = futureEvents.value.NextSixMonths;
@@ -91,9 +95,9 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
 
 <template>
   <div
-    class="w-full gap-1 mx-auto bg-white shadow-lg mb-20 grid  max-w-7xl lg:p-3 pt-12 md:gap-2 rounded-xl"
+    class="w-full gap-1 mx-auto bg-white shadow-lg grid max-w-7xl lg:p-3 pt-12 md:gap-2 md:rounded-xl"
   >
-    <TabGroup :defaultIndex="1  ">
+    <TabGroup :defaultIndex="1">
       <TabList class="flex p-1 mx-2 space-x-1 rounded-xl bg-orange-300/20">
         <Tab as="template" v-slot="{ selected }">
           <button :class="['tab', selected ? 'selected ' : '']">Agenda</button>
@@ -105,11 +109,11 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
         </Tab>
       </TabList>
 
-      <TabPanels class="mt-2 px-3">
+      <TabPanels class="mt-2 md:px-3">
         <TabPanel
           :class="[
             'rounded-xl bg-white p-3',
-            'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+            'ring-white  focus:outline-none ',
           ]"
         >
           <div class="lg:col-span-2 lg:p-2 lg:pt-0 lg:px-2">
@@ -131,12 +135,22 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
 
               <div v-else-if="futureEvents">
                 <div
-                  class="lg:h-[600px] overflow-y-auto px-1 grid  xl:grid-cols-3 gap-3 mt-4"
+                  class="lg:h-[600px] overflow-y-auto px-1 grid xl:grid-cols-3 gap-3 mt-4"
                 >
-                  <div v-if="eventosWeek.length !== 0">
-                    <p class="font-bold text-orange-600">Próximos 7 días</p>
+                  <div v-if="eventosDay.length !== 0">
+                    <p class="font-bold text-orange-600">En las próximas 24hs</p>
                     <div
-                      class="grid  py-1 gap-3"
+                      class="grid py-1 gap-3"
+                      v-for="event in eventosDay"
+                      :key="event.id"
+                    >
+                      <ModalEvento :event="event" />
+                    </div>
+                  </div>
+                  <div v-if="eventosWeek.length !== 0">
+                    <p class="font-bold text-orange-600">Dentro de 7 días</p>
+                    <div
+                      class="grid py-1 gap-3"
                       v-for="event in eventosWeek"
                       :key="event.id"
                     >
@@ -144,9 +158,9 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
                     </div>
                   </div>
                   <div v-if="eventosMonth.length !== 0">
-                    <p class="font-bold text-orange-600">Próximos 30 días</p>
+                    <p class="font-bold text-orange-600">En 30 días</p>
                     <div
-                      class="grid  py-1 gap-3"
+                      class="grid py-1 gap-3"
                       v-for="event in eventosMonth"
                       :key="event.id"
                     >
@@ -154,9 +168,9 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
                     </div>
                   </div>
                   <div v-if="eventosSixMonth">
-                    <p class="font-bold text-orange-600">Próximos 6 Meses</p>
+                    <p class="font-bold text-orange-600">En menos 6 Meses</p>
                     <div
-                      class="grid  gap-3 py-1"
+                      class="grid gap-3 py-1"
                       v-for="event in eventosSixMonth"
                       :key="event.id"
                     >
@@ -178,7 +192,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
         <TabPanel
           :class="[
             'rounded-xl bg-white p-1 md:p-3',
-            'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+            'ring-white  focus:outline-none ',
           ]"
         >
           <div class="lg:col-span-4 min-h-[200px] px-1 relative">
@@ -233,7 +247,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
 }
 
 .fc-toolbar-title {
-  @apply font-sans capitalize !text-xs md:!text-lg min-w-[230px] text-center;
+  @apply font-sans capitalize !text-sm md:!text-lg min-w-[230px] text-center;
 }
 
 .fc .fc-button {

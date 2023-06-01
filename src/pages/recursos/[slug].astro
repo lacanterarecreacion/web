@@ -55,3 +55,13 @@ const { title, description, body, mainImage } = Astro.props as Props;
     <RecursosCards />
   </div>
 </Layout>
+
+<style is:global>
+  body[class*="recursos"] #headroom {
+    @apply border-red-400 bg-red-100/90 backdrop-blur-lg;
+  }
+
+  body[class*="recursos"] #menuOffcanvas {
+    @apply ring-red-400;
+  }
+</style>

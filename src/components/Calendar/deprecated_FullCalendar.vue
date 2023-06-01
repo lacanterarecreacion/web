@@ -7,7 +7,7 @@ import esLocale from "@fullcalendar/core/locales/es";
 import FullCalendar from "@fullcalendar/vue3";
 import interactionPlugin from "@fullcalendar/interaction";
 import ModalEvento from "./ModalEvento.vue";
-import ModalEventoAgenda from "./ModalEventoAgenda.vue";
+import ModalEventoAgenda from "./deprecated_ModalEventoAgenda.vue";
 import IconSpinner from "./IconSpinner.vue";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import AgendaSkeleton from "./AgendaSkeleton.vue";

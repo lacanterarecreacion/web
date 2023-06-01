@@ -142,7 +142,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { formattedDate, formattedTime } from "@/lib/formatCalendarDateTime";
-import type { Event } from "@/types/interfaces";
+import type { EventModal } from "@/types/interfaces";
 
 import {
   TransitionRoot,
@@ -152,14 +152,7 @@ import {
   DialogTitle,
 } from "@headlessui/vue";
 
-const props = defineProps<Props>();
-
-console.log(props)
-
-interface Props {
-  event: Event;
-  inCalendar?: boolean;
-}
+const props = defineProps<EventModal>();
 
 const isOpen = ref(false);
 

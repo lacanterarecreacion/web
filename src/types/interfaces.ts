@@ -56,6 +56,12 @@ export interface EventsByTimes {
   NextWeek: Event[];
   NextMonth: Event[];
   NextSixMonths: Event[];
+  Next24Hours: Event[];
+}
+
+export interface EventModal {
+  event: Event;
+  inCalendar?: boolean;
 }
 
 export interface Event {
