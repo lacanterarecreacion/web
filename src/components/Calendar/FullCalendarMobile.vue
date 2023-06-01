@@ -10,6 +10,7 @@ import IconSpinner from "./IconSpinner.vue";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import AgendaSkeleton from "./AgendaSkeleton.vue";
 import type { Events, Event, EventsByTimes } from "@/types/interfaces";
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
 
 const props = defineProps<Events>();
 const isLoading = ref(true);
@@ -81,98 +82,124 @@ const calendarOptions = {
   eventsSet: handleEvents,
 };
 
-
 futureEvents.value = eventosFuturos();
 
 const eventosWeek = futureEvents.value.NextWeek;
 const eventosMonth = futureEvents.value.NextMonth;
 const eventosSixMonth = futureEvents.value.NextSixMonths;
-
-
 </script>
 
 <template>
   <div
-    class="w-full gap-1 mx-auto mt-2 bg-white shadow-lg mb-20 grid lg:grid-cols-6 max-w-2xl lg:max-w-7xl sm:p-3 md:gap-2 rounded-xl"
+    class="w-full gap-1 mx-auto bg-white shadow-lg mb-20 grid  max-w-7xl lg:p-3 pt-12 md:gap-2 rounded-xl"
   >
-    <div class="lg:col-span-2 lg:p-2 lg:pt-0 lg:px-2">
-      <div
-        class="flex items-center justify-between pt-8 pb-3 mb-2 border-b border-gray-300"
-      >
-        <h1 class="text-left w-full font-hand text-3xl text-gray-800">
-          Proximas actividades
-        </h1>
-        <IconSpinner v-if="isLoading" class="w-6 h-6" />
-      </div>
-      <Transition>
-        <div
-          v-if="isLoading"
-          class="flex lg:h-[600px] flex-col items-center justify-start gap-3 px-2 mt-4"
-        >
-          <AgendaSkeleton v-for="i in 6" />
-        </div>
+    <TabGroup :defaultIndex="1  ">
+      <TabList class="flex p-1 mx-2 space-x-1 rounded-xl bg-orange-300/20">
+        <Tab as="template" v-slot="{ selected }">
+          <button :class="['tab', selected ? 'selected ' : '']">Agenda</button>
+        </Tab>
+        <Tab as="template" v-slot="{ selected }">
+          <button :class="['tab', selected ? 'selected ' : '']">
+            Calendario
+          </button>
+        </Tab>
+      </TabList>
 
-        <div v-else-if="futureEvents">
-          <div
-            class="lg:h-[600px] overflow-y-auto px-1 flex flex-col gap-3 mt-4"
-          >
-            <div v-if="eventosWeek.length !== 0">
-              <p class="font-bold text-orange-600">Próximos 7 días</p>
-              <div
-                class="flex flex-col py-1"
-                v-for="event in eventosWeek"
-                :key="event.id"
-              >
-                <ModalEvento :event="event" />
-              </div>
+      <TabPanels class="mt-2 px-3">
+        <TabPanel
+          :class="[
+            'rounded-xl bg-white p-3',
+            'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+          ]"
+        >
+          <div class="lg:col-span-2 lg:p-2 lg:pt-0 lg:px-2">
+            <div
+              class="flex items-center justify-between pt-3 pb-3 mb-2 border-b border-gray-300"
+            >
+              <h1 class="text-left w-full font-hand text-3xl text-gray-800">
+                Proximas actividades
+              </h1>
+              <IconSpinner v-if="isLoading" class="w-6 h-6" />
             </div>
-            <div v-if="eventosMonth.length !== 0">
-              <p class="font-bold text-orange-600">Próximos 30 días</p>
+            <Transition>
               <div
-                class="flex flex-col py-1"
-                v-for="event in eventosMonth"
-                :key="event.id"
+                v-if="isLoading"
+                class="flex lg:h-[600px] flex-col items-center justify-start gap-3 px-2 mt-4"
               >
-                <ModalEvento :event="event" />
+                <AgendaSkeleton v-for="i in 6" />
               </div>
-            </div>
-            <div v-if="eventosSixMonth">
-              <p class="font-bold text-orange-600">Próximos 6 Meses</p>
-              <div
-                class="flex flex-col py-1"
-                v-for="event in eventosSixMonth"
-                :key="event.id"
-              >
-                <ModalEvento :event="event" />
+
+              <div v-else-if="futureEvents">
+                <div
+                  class="lg:h-[600px] overflow-y-auto px-1 grid  xl:grid-cols-3 gap-3 mt-4"
+                >
+                  <div v-if="eventosWeek.length !== 0">
+                    <p class="font-bold text-orange-600">Próximos 7 días</p>
+                    <div
+                      class="grid  py-1 gap-3"
+                      v-for="event in eventosWeek"
+                      :key="event.id"
+                    >
+                      <ModalEvento :event="event" />
+                    </div>
+                  </div>
+                  <div v-if="eventosMonth.length !== 0">
+                    <p class="font-bold text-orange-600">Próximos 30 días</p>
+                    <div
+                      class="grid  py-1 gap-3"
+                      v-for="event in eventosMonth"
+                      :key="event.id"
+                    >
+                      <ModalEvento :event="event" />
+                    </div>
+                  </div>
+                  <div v-if="eventosSixMonth">
+                    <p class="font-bold text-orange-600">Próximos 6 Meses</p>
+                    <div
+                      class="grid  gap-3 py-1"
+                      v-for="event in eventosSixMonth"
+                      :key="event.id"
+                    >
+                      <ModalEvento :event="event" />
+                    </div>
+                  </div>
+                </div>
               </div>
+              <div v-else>
+                <div
+                  class="bg-indigo-200 text-indigo-800 rounded-md mt-3 h-64 flex justify-center items-center text-center p-6"
+                >
+                  No hay eventos programados
+                </div>
+              </div>
+            </Transition>
+          </div>
+        </TabPanel>
+        <TabPanel
+          :class="[
+            'rounded-xl bg-white p-1 md:p-3',
+            'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+          ]"
+        >
+          <div class="lg:col-span-4 min-h-[200px] px-1 relative">
+            <FullCalendar :options="calendarOptions">
+              <template v-slot:eventContent="arg">
+                <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
+                  <p class="truncate !font-sans">{{ arg.event.title }}</p>
+                </div>
+                <ModalEvento inCalendar :event="arg.event" />
+              </template>
+            </FullCalendar>
+            <div
+              v-if="isLoading"
+              class="absolute top-0 right-0 h-full rounded-lg overflow-hidden w-full bg-gray-100 flex justify-center items-center z-50"
+            >
+              <IconSpinner />
             </div>
           </div>
-        </div>
-        <div v-else>
-          <div
-            class="bg-indigo-200 text-indigo-800 rounded-md mt-3 h-64 flex justify-center items-center text-center p-6"
-          >
-            No hay eventos programados
-          </div>
-        </div>
-      </Transition>
-    </div>
-    <div class="lg:col-span-4 min-h-[200px] pt-8 px-1 relative">
-      <FullCalendar :options="calendarOptions">
-        <template v-slot:eventContent="arg">
-          <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
-            <p class="truncate !font-sans">{{ arg.event.title }}</p>
-          </div>
-          <ModalEvento inCalendar :event="arg.event"  />
-        </template>
-      </FullCalendar>
-      <div
-        v-if="isLoading"
-        class="absolute top-0 right-0 h-full rounded-lg overflow-hidden w-full bg-gray-100 flex justify-center items-center z-50"
-      >
-        <IconSpinner />
-      </div>
-    </div>
+        </TabPanel>
+      </TabPanels>
+    </TabGroup>
   </div>
 </template>
 

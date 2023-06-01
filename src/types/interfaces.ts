@@ -52,14 +52,16 @@ export interface Events {
   calendarEvents: Event[];
 }
 
-export interface Image {
-  secure_url: string;
+export interface EventsByTimes {
+  NextWeek: Event[];
+  NextMonth: Event[];
+  NextSixMonths: Event[];
 }
 
 export interface Event {
   id?: string;
   title?: string;
-  color?: string;
+  backgroundColor?: string;
   end: string;
   start: string;
   extendedProps: ExtendedProps;
@@ -71,9 +73,9 @@ export interface ExtendedProps {
   image?: Image;
 }
 
-
-export interface EventsByTimes {
- NextWeek?: Event[],
- NextMonth?: Event[],
- NextSixMonths?: Event[],
+export interface Image {
+  secure_url: string;
 }
+
+
+

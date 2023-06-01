@@ -27,32 +27,6 @@ const handleEvents = (events: EventApi[]) => {
   isLoading.value = false;
 };
 
-// const eventosFuturos = () => {
-//   const newitem = props.calendarEvents?.filter((evento: Event) => {
-//     const fechaEvento = formatDate(evento.end, {
-//       year: "numeric",
-//       month: "2-digit",
-//       day: "2-digit",
-//       hour12: false,
-//       timeZoneName: "long",
-//       locale: "es",
-//     });
-//     const now = new Date().getTime();
-//     const now2 = formatDate(now, {
-//       year: "numeric",
-//       month: "2-digit",
-//       day: "2-digit",
-//       hour12: false,
-//       timeZoneName: "long",
-//       locale: "es",
-//     });
-//     console.log("Fecha evento: " + fechaEvento)
-//     console.log("Ahora: " + now2)
-//     return fechaEvento > now2;
-//   });
-//   return newitem;
-// };
-
 const eventosFuturos = () => {
   const now = new Date().getTime();
   const newItems = props.calendarEvents?.filter((evento) => {
