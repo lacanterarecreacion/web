@@ -10,7 +10,7 @@ const { images } = Astro.props;
   >
     <div class="swiper-wrapper">
       {
-        images.map((i : any) => {
+        images.map((i: any) => {
           return (
             <a class="swiper-slide glightbox" href={i}>
               <Image
@@ -33,7 +33,7 @@ const { images } = Astro.props;
   <div thumbsSlider="" class="mt-3 swiper mySwiper">
     <div class="swiper-wrapper">
       {
-        images.map((i : any) => {
+        images.map((i: any) => {
           return (
             <div class="cursor-pointer swiper-slide hover:opacity-60">
               <Image
@@ -69,9 +69,9 @@ const { images } = Astro.props;
       clickable: true,
     },
     autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
+      delay: 2500,
+      disableOnInteraction: false,
+    },
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -86,6 +86,4 @@ const { images } = Astro.props;
   .swiper {
     @apply w-full select-none;
   }
-
-
 </style>

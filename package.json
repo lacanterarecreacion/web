@@ -47,6 +47,8 @@
     "@headlessui/react": "^1.7.14",
     "@headlessui/vue": "^1.7.13",
     "@nanostores/vue": "^0.8.2",
+    "@radix-ui/react-dialog": "^1.0.4",
+    "@radix-ui/react-tooltip": "^1.0.6",
     "@sanity/client": "^6.1.1",
     "@tailwindcss/container-queries": "^0.1.1",
     "@types/react": "^18.2.6",

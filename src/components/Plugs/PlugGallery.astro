@@ -1,25 +1,24 @@
 ---
-import { Image } from "@astrojs/image/components";
-const { images } = Astro.props;
+const props = Astro.props;
+import { urlForImage } from "@/lib/urlForImage";
 ---
 
-<div class="w-full mx-auto">
+<div class="w-full mx-auto px-3 overflow-hidden rounded-lg my-12">
   <div
-    style="--swiper-navigation-color: #dd7c06; --swiper-pagination-color: #dd7c06; --swiper-pagination-bullet-width: 16px; --swiper-pagination-bullet-height: 16px;"
-    class="pb-12 swiper mySwiper"
+    style="--swiper-navigation-color: #333; --swiper-pagination-color: #333; --swiper-pagination-bullet-width: 16px; --swiper-pagination-bullet-height: 16px;"
+    class="swiper relative mySwiper"
   >
-    <div class="swiper-wrapper">
+    <div class="pb-12 swiper-wrapper">
       {
-        images.map((i: any) => {
+        props.images.imagesGallery.map((i: any) => {
           return (
-            <a class="swiper-slide glightbox" href={i}>
-              <Image
-                alt={i}
-                src={i}
-                width={1600}
-                height={1280}
-                class="object-cover w-full h-96"
-                format="webp"
+            <a
+              class="swiper-slide glightbox"
+              href={urlForImage(i.asset).width(1300).url()}
+            >
+              <img
+                class="object-cover w-full rounded-lg overflow-hidden h-64"
+                src={urlForImage(i.asset).width(600).height(400).url()}
               />
             </a>
           );
@@ -56,7 +55,10 @@ const { images } = Astro.props;
 <!-- Initialize Swiper -->
 <script>
   //@ts-ignore
-  var swiper = new Swiper(".mySwiper", {
+  import Swiper from "swiper/bundle";
+  import "swiper/css/bundle";
+  //@ts-ignore
+  const swiper = new Swiper(".mySwiper", {
     spaceBetween: 10,
     breakpoints: {
       0: {
@@ -65,17 +67,14 @@ const { images } = Astro.props;
       600: {
         slidesPerView: 3,
       },
-      800: {
-        slidesPerView: 4,
-      },
-      1024: {
-        slidesPerView: 4,
-      },
     },
-    loop: false,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
     autoplay: {
       delay: 2500,
-      disableOnInteraction: true,
+      disableOnInteraction: false,
     },
     navigation: {
       nextEl: ".swiper-button-right",
@@ -91,22 +90,10 @@ const { images } = Astro.props;
 
   .swiper-button-left,
   .swiper-button-right {
-    @apply bg-white w-12 h-12 absolute top-1/2 z-50 flex justify-center duration-300 items-center -translate-y-10;
+    @apply bg-white w-12 h-12 absolute top-1/2 z-50 flex justify-center items-center -translate-y-10;
   }
 
   .swiper-button-right {
     @apply right-0;
-  }
-
-  .swiper-button-left.swiper-button-disabled,
-  .swiper-button-right.swiper-button-disabled {
-    @apply opacity-0;
-  }
-
-  .swiper-button-left.swiper-button-disabled {
-    @apply -translate-x-12;
-  }
-  .swiper-button-right.swiper-button-disabled {
-    @apply translate-x-12;
   }
 </style>
