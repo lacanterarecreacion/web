@@ -36,7 +36,7 @@ const QUE_HACEMOS = await useSanityClient().fetch(
             <a href={`/que-hacemos/${post.slug?.current}`} class="flex flex-col items-center justify-center w-full overflow-hidden h-32">
               <img
                 class="object-cover w-full group-hover:scale-105 h-32 duration-300"
-                src={urlForImage(post.mainImage).width(600).height(400).url()}
+                src={urlForImage(post.mainImage).width(300).height(200).url()}
                 alt={post.title}
               />
             </a>
