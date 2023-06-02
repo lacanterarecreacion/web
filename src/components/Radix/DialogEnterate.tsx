@@ -62,14 +62,13 @@ export default function MyDialogDemoDialog() {
                     />
                   </svg>
 
-                  <Dialog.Title
-                    as="h3"
+                  <h3
                     className=" z-10 h-24 text-white absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent via-50% via-green-900/80 to-green-900/90 text-2xl flex justify-center items-end font-medium leading-6 text-center"
                   >
                     <span className="font-atkinson font-bold mb-6">
                       Whatsapp
                     </span>
-                  </Dialog.Title>
+                  </h3>
                   <div className="absolute inset-0 patternForest opacity-20 z-0"></div>
                 </div>
 
