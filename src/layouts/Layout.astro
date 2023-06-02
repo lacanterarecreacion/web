@@ -69,13 +69,6 @@ const bodySlug = slugify(pathname);
       src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver,ResizeObserver,WebAnimations,Object.fromEntries,Array.prototype.at"
     ></script>
     <style is:global>
-      ::view-transition-old(root) {
-        animation: var(--animation-slide-out-down) forwards;
-      }
-
-      ::view-transition-new(root) {
-        animation: var(--animation-slide-in-up) forwards;
-      }
 
       .pace .pace-progress {
         @apply bg-gradient-to-r from-indigo-400 to-emerald-400;

@@ -20,30 +20,30 @@ import PortableText from "@/components/PortableText.astro";
       </div>
     </div>
     <article class="prose mx-auto max-w-7xl prose-xl">
-    {
-      about.content.map((c: any) => {
-        let el = null;
-        switch (c._type) {
-          case "BlockGallery":
-            el = (
-              <>
-                <PlugGallery images={c} />
-              </>
-            );
-            break;
-          case "PlugBlockeditor":
-            el = (
-              <>
-                <PortableText portableText={c.body} />
-              </>
-            );
-            break;
-          default:
-            el = null;
-        }
-        return el;
-      })
-    }
+      {
+        about.content.map((c: any) => {
+          let el = null;
+          switch (c._type) {
+            case "BlockGallery":
+              el = (
+                <>
+                  <PlugGallery images={c} />
+                </>
+              );
+              break;
+            case "PlugBlockeditor":
+              el = (
+                <>
+                  <PortableText portableText={c.body} />
+                </>
+              );
+              break;
+            default:
+              el = null;
+          }
+          return el;
+        })
+      }
     </article>
   </div>
 
