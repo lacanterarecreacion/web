@@ -39,6 +39,12 @@ const bodySlug = slugify(pathname);
       image={image}
     />
     <GoogleFont />
+    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css"
+    />
     <Noscript />
   </head>
   <body class={`w-full text-gray-900 bg-white ${bodySlug}`}>
@@ -62,5 +68,19 @@ const bodySlug = slugify(pathname);
     <script
       src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver,ResizeObserver,WebAnimations,Object.fromEntries,Array.prototype.at"
     ></script>
+    <style is:global>
+      ::view-transition-old(root) {
+        animation: var(--animation-slide-out-down) forwards;
+      }
+
+      ::view-transition-new(root) {
+        animation: var(--animation-slide-in-up) forwards;
+      }
+
+      .pace .pace-progress {
+        @apply bg-gradient-to-r from-indigo-400 to-emerald-400;
+        height: 3px;
+      }
+    </style>
   </body>
 </html>

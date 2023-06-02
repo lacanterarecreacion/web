@@ -1,15 +1,15 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 
-export default function MyDialogDemoDialog() {
+export default function MyDialogDemoDialog({ buttonTriggerClass }: any) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="btn green !text-xs">Enterate</button>
+        <button className={buttonTriggerClass}>Enterate</button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="z-[9998]  bg-gradient-to-tr from-emerald-300/90 to-blue-600/90 backdrop-blur data-[state=open]:animate-overlayShow fixed inset-0" />
-        <Dialog.Content className="z-[9999] data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] p-[25px] focus:outline-none">
+        <Dialog.Overlay className="z-[9998]  bg-gradient-to-tr from-emerald-300/90 to-blue-600/90 backdrop-blur data-[state=open]:animate-overlayShow data-[state=closed]:animate-overlayHide fixed inset-0" />
+        <Dialog.Content className="z-[9999] data-[state=open]:animate-contentShow data-[state=closed]:animate-contentHide fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] p-[25px] focus:outline-none">
           <div className="relative z-10 grid w-full gap-3 pb-6 max-w-7xl animate__fadeIn animate__animated">
             <Dialog.Title className="text-3xl text-white lg:text-6xl">
               <span className="font-hand font-light">Enterate</span>
@@ -62,9 +62,7 @@ export default function MyDialogDemoDialog() {
                     />
                   </svg>
 
-                  <h3
-                    className=" z-10 h-24 text-white absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent via-50% via-green-900/80 to-green-900/90 text-2xl flex justify-center items-end font-medium leading-6 text-center"
-                  >
+                  <h3 className=" z-10 h-24 text-white absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent via-50% via-green-900/80 to-green-900/90 text-2xl flex justify-center items-end font-medium leading-6 text-center">
                     <span className="font-atkinson font-bold mb-6">
                       Whatsapp
                     </span>

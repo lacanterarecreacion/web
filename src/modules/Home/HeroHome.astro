@@ -1,5 +1,7 @@
 ---
 import BackVideo from "@/modules/Home/BackVideo.astro";
+import DialogEnterate from "@/components/Radix/DialogEnterate";
+
 ---
 
 <div
@@ -20,12 +22,13 @@ import BackVideo from "@/modules/Home/BackVideo.astro";
         proyectos en el ámbito de la Recreación, la Educación y el Juego.
       </p>
       <div class="flex w-full gap-3 mt-4">
-        <a href="/calendario-ludico" class="btn md:w-56 yellow  ">
-          Agendate
-        </a>
-        <a href="/colabora" class="btn md:w-56 blue  ">
+        <a href="/colabora" class="btn blue  ">
           Colaborá
         </a>
+        <a href="/calendario-ludico" class="btn yellow  ">
+          Agendate
+        </a>
+        <DialogEnterate buttonTriggerClass={'btn green'} client:visible/>
       </div>
     </div>
   </div>
