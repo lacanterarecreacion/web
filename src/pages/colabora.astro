@@ -1,46 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import HeroColabora from "@/modules/Colabora/HeroColabora.astro";
+import { useSanityClient } from "astro-sanity";
+import PageSectionsPlugs from "@/components/Plugs/PageSectionsPlugs.astro";
 
-import PlugGallery from "@/components/Plugs/PlugGallery.astro";
-
-// class="relative h-[calc(100vh-50px)] md:h-[calc(100vh-85px)] overflow-hidden bg-indigo-900"
-const about = await useSanityClient().fetch(
+const colabora = await useSanityClient().fetch(
   `*[_type == "colabora"]  | order(publishedAt desc) [0]`
 );
-
-import { useSanityClient } from "astro-sanity";
-import PortableText from "@/components/PortableText.astro";
 ---
 
 <Layout title="Colabora">
   <HeroColabora />
-  <section id="colabora" class="py-10">
-    <article class="prose mx-auto max-w-7xl prose-xl">
-      {
-        about.content.map((c: any) => {
-          let el = null;
-          switch (c._type) {
-            case "BlockGallery":
-              el = (
-                <>
-                  <PlugGallery images={c} />
-                </>
-              );
-              break;
-            case "PlugBlockeditor":
-              el = (
-                <>
-                  <PortableText portableText={c.body} />
-                </>
-              );
-              break;
-            default:
-              el = null;
-          }
-          return el;
-        })
-      }
-    </article>
-  </section>
+  <div id="colabora" class="scroll-mt-12">
+    <PageSectionsPlugs content={colabora.content} />
+  </div>
 </Layout>

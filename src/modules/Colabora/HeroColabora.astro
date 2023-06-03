@@ -1,6 +1,15 @@
 ---
 import GrainOne from "@/components/UI/Grain/GrainOne.astro";
 import YoutubeLoaderHome from "../Home/YoutubeLoaderHome.astro";
+import getYouTubeId from "get-youtube-id";
+// class="relative h-[calc(100vh-50px)] md:h-[calc(100vh-85px)] overflow-hidden bg-indigo-900"
+const about = await useSanityClient().fetch(
+  `*[_type == "colabora"]  | order(publishedAt desc) [0]`
+);
+import { urlForImage } from "@/lib/urlForImage";
+
+import { useSanityClient } from "astro-sanity";
+
 ---
 
 <div
@@ -11,22 +20,21 @@ import YoutubeLoaderHome from "../Home/YoutubeLoaderHome.astro";
   >
     <div class="flex flex-col gap-2 sm:gap-6 mt-2 lg:pr-6">
       <h2 class="text-5xl text-white lg:text-7xl">
-        <span class="font-hand">Uniendo a través de los juegos de mesa</span>
+        <span class="font-hand">{about.title}</span>
       </h2>
       <p class="max-w-xl sm:text-xl font-sans text-white">
-        Nuestra misión es promover la educación y la inclusión a través de los
-        juegos de mesa. ¡Ayúdanos a marcar la diferencia!
+        {about.description}
       </p>
       <div class="flex gap-6 mt-4 w-full">
         <a href="#colabora" class="btn red">apoya nuestra misión</a>
-        <a href="/institucional/nuestra-historia" class="btn yellow">Conoce nuestra historia</a>
+        <!-- <a href="/institucional/nuestra-historia" class="btn yellow">Conoce nuestra historia</a> -->
       </div>
     </div>
     <div class="">
       <YoutubeLoaderHome
         title="La Cantera"
-        thumbnail="https://i3.ytimg.com/vi/pO0XwdA1Tcw/maxresdefault.jpg"
-        video={`https://www.youtube.com/watch?v=pO0XwdA1Tcw`}
+        thumbnail={urlForImage(about.mainImage).width(1600).height(900).url()}
+        video={about.video}
       />
     </div>
   </div>

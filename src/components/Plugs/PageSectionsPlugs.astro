@@ -1,0 +1,52 @@
+---
+const props = Astro.props;
+import Layout from "@/src/layouts/Layout.astro";
+import LineaDeTiempo from "@/src/modules/Institucional/LineaDeTiempo.astro";
+import PlugGallery from "@/components/Plugs/PlugGallery.astro";
+import PlugGalleryFour from "@/components/Plugs/PlugGalleryFour.astro";
+console.log(props)
+import PortableText from "@/components/PortableText.astro";
+
+---
+
+<section class="mx-auto max-w-full">
+  {
+    props.content.map((c: any) => {
+      let el = null;
+      switch (c._type) {
+        case "BlockGallery":
+          el = (
+            <div>
+              <PlugGallery images={c} />
+            </div>
+          );
+          break;
+        case "PlugBlockeditor":
+          el = (
+            <div class="PlugBlockeditor prose prose-xl max-w-4xl mx-auto py-12">
+                <PortableText portableText={c.body} />
+            </div>
+          );
+          break;
+        case "PlugBlockeditorGrillaDoble":
+          el = (
+            <div class="PlugBlockeditorGrillaDoble  flex md:flex-row flex-col">
+              <div class="w-full flex flex-col justify-center items-start  bg-gray-100">
+                <h2 class="text-4xl font-bold p-3 md:px-12 md:py-0">
+                  {c.heading}
+                </h2>
+                <PortableText portableText={c.body} />
+              </div>
+              <div class="relative overflow-hidden w-full">
+                <PlugGalleryFour images={c} />
+              </div>
+            </div>
+          );
+          break;
+        default:
+          el = null;
+      }
+      return el;
+    })
+  }
+</section>

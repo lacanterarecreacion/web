@@ -7,7 +7,7 @@ export default function Example() {
       <Menu as="div" className="relative font-sans">
         <div>
           <Menu.Button className="rounded-md outline-none focus:ring-2 ring-offset-2 cursor-pointer flex items-center text-left hover:text-indigo-600 duration-300 text-gray-900 font-sans text-lg">
-            ¿Quiénes somos?
+            Quiénes somos
             <svg
               className={`
                   h-6 w-6 text-indigo-300 transition duration-150 ease-in-out group-hover:text-opacity-80`}
@@ -41,7 +41,7 @@ export default function Example() {
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full font-sans items-center rounded-md px-2 py-4 text-base`}
                   >
-                    ¿Qué es La Cantera?
+                    Qué es La Cantera
                   </a>
                 )}
               </Menu.Item>

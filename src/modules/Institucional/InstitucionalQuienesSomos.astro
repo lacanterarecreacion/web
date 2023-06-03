@@ -1,11 +1,10 @@
 ---
 import StarDoodle from "@/components/UI/Doodles/StarDoodle.astro";
 import MoonDoodle from "@/components/UI/Doodles/MoonDoodle.astro";
-import Carousel from "@/components/Carousel/Carousel.astro";
 import PlugGallery from "@/components/Plugs/PlugGallery.astro";
 import { useSanityClient } from "astro-sanity";
 import PortableText from "@/components/PortableText.astro";
-import DialogEnterate from "@/components/Radix/DialogEnterate";
+import PageSectionsPlugs from "@/components/Plugs/PageSectionsPlugs.astro";
 
 const about = await useSanityClient().fetch(
   `*[_type == "quienes_somos"]  | order(publishedAt desc) [0]`
@@ -23,32 +22,7 @@ const about = await useSanityClient().fetch(
       <StarDoodle />
     </div>
   </div>
-
-  {
-    about.content.map((c: any) => {
-      let el = null;
-      switch (c._type) {
-        case "BlockGallery":
-          el = (
-            <>
-              <PlugGallery images={c} />
-            </>
-          );
-          break;
-        case "PlugBlockeditor":
-          el = (
-            <>
-              <PortableText portableText={c.body} />
-            </>
-          );
-          break;
-        default:
-          el = null;
-      }
-      return el;
-    })
-  }
-
+  <PageSectionsPlugs content={about.content} />
   <div
     class="hidden md:flex justify-between w-full h-0 left-0 right-0 relative"
   >

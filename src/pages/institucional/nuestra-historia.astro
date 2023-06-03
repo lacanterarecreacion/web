@@ -1,7 +1,6 @@
 ---
 import Layout from "@/src/layouts/Layout.astro";
 import LineaDeTiempo from "@/src/modules/Institucional/LineaDeTiempo.astro";
-import PlugGallery from "@/components/Plugs/PlugGallery.astro";
 
 // class="relative h-[calc(100vh-50px)] md:h-[calc(100vh-85px)] overflow-hidden bg-indigo-900"
 const about = await useSanityClient().fetch(
@@ -9,52 +8,26 @@ const about = await useSanityClient().fetch(
 );
 
 import { useSanityClient } from "astro-sanity";
-import PortableText from "@/components/PortableText.astro";
+import PageSectionsPlugs from "@/components/Plugs/PageSectionsPlugs.astro";
 ---
 
 <Layout title="Sobre cantera">
   <div class="relative z-30 w-full mx-auto">
-    <div class="relative h-[50vh] overflow-hidden bg-indigo-900">
+    <div class="relative h-[70vh] overflow-hidden bg-indigo-900">
       <div class="absolute inset-0">
         <LineaDeTiempo />
       </div>
     </div>
-    <article class="prose mx-auto max-w-7xl prose-xl">
-      {
-        about.content.map((c: any) => {
-          let el = null;
-          switch (c._type) {
-            case "BlockGallery":
-              el = (
-                <>
-                  <PlugGallery images={c} />
-                </>
-              );
-              break;
-            case "PlugBlockeditor":
-              el = (
-                <>
-                  <PortableText portableText={c.body} />
-                </>
-              );
-              break;
-            default:
-              el = null;
-          }
-          return el;
-        })
-      }
-    </article>
+    <PageSectionsPlugs content={about.content} />
   </div>
 
   <style is:global>
-    .prose p,
-    .prose ul {
-      @apply my-6 block mx-auto;
+    section .PlugBlockeditorGrillaDoble:nth-child(odd) {
+      @apply md:!flex-row-reverse;
     }
 
-    .prose img {
-      @apply my-0;
+    section .portable-text {
+      @apply prose  max-w-full p-3 md:px-12 md:py-0;
     }
   </style>
 </Layout>
