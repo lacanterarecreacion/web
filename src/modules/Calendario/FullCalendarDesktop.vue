@@ -109,13 +109,18 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
       <Transition>
         <div
           v-if="isLoading"
-          class="flex lg:h-[600px] flex-col items-center justify-start gap-3 px-2 mt-4"
-        >
-          <AgendaSkeleton v-for="i in 7" />
+          class="flex lg:h-[660px] flex-col items-center justify-start gap-3 px-2 mt-4"
+        > 
+          <div class="pulse h-4 mr-auto w-64 rounded-full animate-pulse"></div>
+          <AgendaSkeleton v-for="i in 2" />
+          <div class="pulse h-4 mr-auto w-44 rounded-full animate-pulse"></div>
+          <AgendaSkeleton v-for="i in 3" />
+          <div class="pulse h-4 mr-auto w-32 rounded-full animate-pulse"></div>
+          <AgendaSkeleton v-for="i in 1" />
         </div>
         <div v-else-if="futureEvents">
           <div
-            class="lg:h-[530px] overflow-y-auto px-1 flex flex-col gap-3 mt-4"
+            class="lg:h-[560px] overflow-y-auto px-1 flex flex-col gap-3 mt-4"
           >
             <div v-if="eventosDay.length !== 0">
               <p class="font-bold text-orange-600">En las próximas 24hs</p>

@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import HeroColabora from "@/modules/Colabora/HeroColabora.astro";
+import PageSections from "@/modules/Colabora/PageSections.astro";
 import { useSanityClient } from "astro-sanity";
-import PageSectionsPlugs from "@/components/Plugs/PageSectionsPlugs.astro";
-
+import PageSectionsPlugs from "@/components/PortableText/PageSectionsPlugs.astro";
 const colabora = await useSanityClient().fetch(
   `*[_type == "colabora"]  | order(publishedAt desc) [0]`
 );
@@ -11,7 +11,7 @@ const colabora = await useSanityClient().fetch(
 
 <Layout title="Colabora">
   <HeroColabora />
-  <div id="colabora" class="scroll-mt-12">
+  <PageSections>
     <PageSectionsPlugs content={colabora.content} />
-  </div>
+  </PageSections>
 </Layout>

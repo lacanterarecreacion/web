@@ -1,5 +1,5 @@
 ---
-import Calendar from "@/components/Calendar/Calendar.astro";
+import Calendar from "@/src/modules/Calendario/Calendar.astro";
 import Layout from "@/layouts/Layout.astro";
 ---
 
@@ -10,12 +10,3 @@ import Layout from "@/layouts/Layout.astro";
     <Calendar />
   </div>
 </Layout>
-
-<style is:global>
-  .calendario-ludico #headroom {
-    @apply border-b-orange-600 border-t-transparent bg-orange-50/90 backdrop-blur-sm !important;
-  }
-  .calendario-ludico #menuOffcanvas {
-    @apply ring-orange-400;
-  }
-</style>

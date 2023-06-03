@@ -1,0 +1,38 @@
+---
+import FullCalendarDesktop from "@/src/modules/Calendario/FullCalendarDesktop.vue";
+import FullCalendarMobile from "@/src/modules/Calendario/FullCalendarMobile.vue";
+import { useSanityClient } from "astro-sanity";
+
+const calendario = await useSanityClient().fetch(
+  `
+   *[_type == "calendarioLudico"] | order(start asc)
+     {
+       title,
+       start,
+       end,
+       "backgroundColor": color,
+       "extendedProps":  {
+         description,
+         image,
+         image2,
+         link,
+       }
+     }`
+);
+---
+
+<div class="hidden xl:flex">
+  <FullCalendarDesktop calendarEvents={calendario} client:visible />
+</div>
+<div class="flex xl:hidden">
+  <FullCalendarMobile calendarEvents={calendario} client:visible />
+</div>
+
+<style is:global>
+  .calendario-ludico #headroom {
+    @apply border-b-orange-600 border-t-transparent bg-orange-50/90 backdrop-blur-sm !important;
+  }
+  .calendario-ludico #menuOffcanvas {
+    @apply ring-orange-400;
+  }
+</style>

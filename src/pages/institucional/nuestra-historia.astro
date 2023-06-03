@@ -1,23 +1,16 @@
 ---
+import { useSanityClient } from "astro-sanity";
 import Layout from "@/src/layouts/Layout.astro";
 import LineaDeTiempo from "@/src/modules/Institucional/LineaDeTiempo.astro";
-
-// class="relative h-[calc(100vh-50px)] md:h-[calc(100vh-85px)] overflow-hidden bg-indigo-900"
+import PageSectionsPlugs from "@/components/PortableText/PageSectionsPlugs.astro";
 const about = await useSanityClient().fetch(
   `*[_type == "nuestra_historia"]  | order(publishedAt desc) [0]`
 );
-
-import { useSanityClient } from "astro-sanity";
-import PageSectionsPlugs from "@/components/Plugs/PageSectionsPlugs.astro";
 ---
 
 <Layout title="Sobre cantera">
   <div class="relative z-30 w-full mx-auto">
-    <div class="relative h-[70vh] overflow-hidden bg-indigo-900">
-      <div class="absolute inset-0">
-        <LineaDeTiempo />
-      </div>
-    </div>
+    <LineaDeTiempo />
     <PageSectionsPlugs content={about.content} />
   </div>
 

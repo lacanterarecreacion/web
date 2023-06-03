@@ -35,11 +35,15 @@
       </h3>
       <div class="flex items-start justify-between w-full pt-1 text-sm">
         <p class="text-left">
-          {{ formattedDate(props.event.start) }} al <br />{{ formattedDate(props.event.end) }}
+          {{ formattedDate(props.event.start) }} al <br />{{
+            formattedDate(props.event.end)
+          }}
         </p>
         <p class="flex flex-col items-end text-gray-600">
           {{ formattedTime(props.event.start) }}hs
-          <span v-if="props.event.end"> a {{ formattedTime(props.event.end) }}hs </span>
+          <span v-if="props.event.end">
+            a {{ formattedTime(props.event.end) }}hs
+          </span>
         </p>
       </div>
     </button>
@@ -107,13 +111,16 @@
                 class="p-1 max-w-lg px-3 inline-flex mx-3 text-gray-800 bg-gray-200 rounded-full z-10"
               >
                 <span
-                  >{{ formattedDate(props.event.start) }} de {{ formattedTime(props.event.start) }}
+                  >{{ formattedDate(props.event.start) }} de
+                  {{ formattedTime(props.event.start) }}
                 </span>
                 <span v-if="formattedTime(props.event.end)"
                   >&nbsp; a {{ formattedTime(props.event.end) }}
                 </span>
               </div>
-              <p class="m-3 text-lg">{{ props.event.extendedProps?.description }}</p>
+              <p class="m-3 text-lg">
+                {{ props.event.extendedProps?.description }}
+              </p>
               <div class="mt-4 flex justify-center items-center p-3 gap-2">
                 <button
                   type="button"
@@ -144,6 +151,7 @@ import { ref } from "vue";
 import { formattedDate, formattedTime } from "@/lib/formatCalendarDateTime";
 import type { EventModal } from "@/types/interfaces";
 
+
 import {
   TransitionRoot,
   TransitionChild,
@@ -162,5 +170,4 @@ function closeModal() {
 function openModal() {
   isOpen.value = true;
 }
-
 </script>

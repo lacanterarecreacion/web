@@ -1,10 +1,8 @@
 ---
 import StarDoodle from "@/components/UI/Doodles/StarDoodle.astro";
 import MoonDoodle from "@/components/UI/Doodles/MoonDoodle.astro";
-import PlugGallery from "@/components/Plugs/PlugGallery.astro";
 import { useSanityClient } from "astro-sanity";
-import PortableText from "@/components/PortableText.astro";
-import PageSectionsPlugs from "@/components/Plugs/PageSectionsPlugs.astro";
+import PageSectionsPlugs from "@/components/PortableText/PageSectionsPlugs.astro";
 
 const about = await useSanityClient().fetch(
   `*[_type == "quienes_somos"]  | order(publishedAt desc) [0]`

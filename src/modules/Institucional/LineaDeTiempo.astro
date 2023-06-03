@@ -3,56 +3,60 @@ import "reveal.js/dist/reveal.css";
 import "reveal.js/dist/theme/dracula.css";
 ---
 
-<div class="reveal">
-  <div class="slides">
-    <section><h2>Nuestra historia</h2></section>
-    <section><h1>1</h1></section>
-    <section><h1>Dos</h1></section>
-    <section><h1>(3)</h1></section>
-    <section><h1>cuatro</h1></section>
-    <section>
-      <p class="fragment">Fade in</p>
-      <p class="fragment fade-out">Fade out</p>
-      <p class="fragment text-blue-600">Highlight Blue</p>
-      <p class="fragment fade-in-then-out">Fade in, then out</p>
-      <p class="fragment fade-up">Slide up while fading in</p>
-    </section>
-    <section>
-      <div class="r-stack">
-        <img
-          class="fragment fade-out"
-          data-fragment-index="0"
-          src="https://placekitten.com/450/300"
-          width="450"
-          height="300"
-        />
-        <img
-          class="fragment current-visible"
-          data-fragment-index="0"
-          src="https://placekitten.com/300/450"
-          width="300"
-          height="450"
-        />
-        <img
-          class="fragment"
-          src="https://placekitten.com/400/400"
-          width="400"
-          height="400"
-        />
+<div class="relative h-[70vh] overflow-hidden bg-indigo-900">
+  <div class="absolute inset-0">
+    <div class="reveal">
+      <div class="slides">
+        <section><h2>Nuestra historia</h2></section>
+        <section><h1>1</h1></section>
+        <section><h1>Dos</h1></section>
+        <section><h1>(3)</h1></section>
+        <section><h1>cuatro</h1></section>
+        <section>
+          <p class="fragment">Fade in</p>
+          <p class="fragment fade-out">Fade out</p>
+          <p class="fragment text-blue-600">Highlight Blue</p>
+          <p class="fragment fade-in-then-out">Fade in, then out</p>
+          <p class="fragment fade-up">Slide up while fading in</p>
+        </section>
+        <section>
+          <div class="r-stack">
+            <img
+              class="fragment fade-out"
+              data-fragment-index="0"
+              src="https://placekitten.com/450/300"
+              width="450"
+              height="300"
+            />
+            <img
+              class="fragment current-visible"
+              data-fragment-index="0"
+              src="https://placekitten.com/300/450"
+              width="300"
+              height="450"
+            />
+            <img
+              class="fragment"
+              src="https://placekitten.com/400/400"
+              width="400"
+              height="400"
+            />
+          </div>
+        </section>
+        <section data-auto-animate>
+          <h1>Auto-Animate</h1>
+        </section>
+        <section data-auto-animate>
+          <h1 class="-mt-12" style="color: #13b5a3">Auto-Animate</h1>
+          <h3>Auto-Animate</h3>
+        </section>
+        <section id="grand-finale">
+          <a href="https://revealjs.com/links/" target="_blank"
+            >Hecho en Reveal.js</a
+          >
+        </section>
       </div>
-    </section>
-    <section data-auto-animate>
-      <h1>Auto-Animate</h1>
-    </section>
-    <section data-auto-animate>
-      <h1 class="-mt-12" style="color: #13b5a3">Auto-Animate</h1>
-      <h3>Auto-Animate</h3>
-    </section>
-    <section  id="grand-finale">
-      <a href="https://revealjs.com/links/" target="_blank"
-        >Hecho en Reveal.js</a
-      >
-    </section>
+    </div>
   </div>
 </div>
 <script>
@@ -87,7 +91,6 @@ import "reveal.js/dist/theme/dracula.css";
   .playback {
     left: initial !important;
     right: 50%;
-    transform: translateX(25px)
+    transform: translateX(25px);
   }
-
 </style>
