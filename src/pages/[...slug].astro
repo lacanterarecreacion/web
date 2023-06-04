@@ -1,0 +1,46 @@
+---
+import { useSanityClient } from "astro-sanity";
+import PageSectionsPlugs from "@/components/PortableText/PageSectionsPlugs.astro";
+import Layout from "../layouts/Layout.astro";
+import PortableText from "@/components/PortableText/PortableTextCustom.astro";
+import GrainOne from "@/components/UI/Grain/GrainOne.astro";
+import StrackedScene from "@/components/UI/Backgrounds/StrackedScene.astro";
+export async function getStaticPaths() {
+  const post = await useSanityClient().fetch(`*[_type == "page"]`);
+  return post.map((post: { slug: { current: any } }) => {
+    return {
+      params: {
+        slug: post.slug?.current === "index" ? undefined : post.slug?.current,
+      },
+      props: { post },
+    };
+  });
+}
+
+// const { slug } = Astro.params;
+const { post } = Astro.props;
+---
+
+<Layout title={post.title}>
+  <div
+    class="PlugBlockeditorHero relative flex flex-col items-center justify-center pt-32 pb-32 overflow-hidden bg-gradient-to-tr from-blue-400 bg-blue-600"
+  >
+    <h1
+      class="relative z-10 font-sans text-4xl text-white md:text-6xl animate__fadeIn animate__animated"
+    >
+      {post.title}
+    </h1>
+    <div class="relative prose-invert z-10 prose prose-xl">
+      {post.description}
+    </div>
+    <div class="absolute inset-0 z-0 opacity-10">
+      <GrainOne />
+    </div>
+    <div
+      class="absolute animate__fadeIn animate__animated animate__slower inset-0 z-0 opacity-10"
+    >
+      <StrackedScene />
+    </div>
+  </div>
+  <PageSectionsPlugs content={post?.content} />
+</Layout>

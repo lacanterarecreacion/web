@@ -1,0 +1,27 @@
+---
+const props = Astro.props;
+import PortableText from "@/components/PortableText/PortableTextCustom.astro";
+import GrainOne from "@/components/UI/Grain/GrainOne.astro";
+import StrackedScene from "@/components/UI/Backgrounds/StrackedScene.astro";
+---
+
+<div
+  class="PlugBlockeditorHero relative flex flex-col items-center justify-center pt-32 pb-32 overflow-hidden bg-gradient-to-tr from-red-400 bg-red-600"
+>
+  <h1
+    class="relative z-10 font-sans text-4xl text-white md:text-6xl animate__fadeIn animate__animated"
+  >
+    {props.content.heading}
+  </h1>
+  <div class="relative prose-invert z-10 prose prose-xl">
+    <PortableText portableText={props.content.body} />
+  </div>
+  <div class="absolute inset-0 z-0 opacity-90">
+    <GrainOne />
+  </div>
+  <div
+    class="absolute animate__fadeIn animate__animated animate__slower inset-0 z-0 opacity-30"
+  >
+    <StrackedScene />
+  </div>
+</div>
