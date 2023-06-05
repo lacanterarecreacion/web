@@ -2,9 +2,10 @@
 import { useSanityClient } from "astro-sanity";
 import PageSectionsPlugs from "@/components/PortableText/PageSectionsPlugs.astro";
 import Layout from "../layouts/Layout.astro";
-import PortableText from "@/components/PortableText/PortableTextCustom.astro";
+import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderImage.astro";
 import GrainOne from "@/components/UI/Grain/GrainOne.astro";
 import StrackedScene from "@/components/UI/Backgrounds/StrackedScene.astro";
+
 export async function getStaticPaths() {
   const post = await useSanityClient().fetch(`*[_type == "page"]`);
   return post.map((post: { slug: { current: any } }) => {
@@ -23,7 +24,7 @@ const { post } = Astro.props;
 
 <Layout title={post.title}>
   <div
-    class="PlugBlockeditorHero relative flex flex-col items-center justify-center pt-32 pb-32 overflow-hidden bg-gradient-to-tr from-blue-400 bg-blue-600"
+    class="PlugBlockeditorHero relative flex flex-col items-center justify-center py-44 overflow-hidden bg-gradient-to-tr from-indigo-900 bg-pink-900"
   >
     <h1
       class="relative z-10 font-sans text-4xl text-white md:text-6xl animate__fadeIn animate__animated"
@@ -33,11 +34,25 @@ const { post } = Astro.props;
     <div class="relative prose-invert z-10 prose prose-xl">
       {post.description}
     </div>
+    {
+      post.mainImage && (
+        <div class="absolute inset-0 z-0 object-cover w-full opacity-20">
+          <PlaceholderImage
+            customClass="!h-screen"
+            title={post?.title}
+            width={1820}
+            height={1200}
+            image={post?.mainImage}
+          />
+        </div>
+      )
+    }
+
     <div class="absolute inset-0 z-0 opacity-10">
       <GrainOne />
     </div>
     <div
-      class="absolute animate__fadeIn animate__animated animate__slower inset-0 z-0 opacity-10"
+      class="absolute animate__fadeIn animate__animated animate__slower inset-0 z-0 !opacity-10"
     >
       <StrackedScene />
     </div>
