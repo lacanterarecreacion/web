@@ -77,11 +77,12 @@ export interface ExtendedProps {
   link?: string;
   description?: string;
   image?: Image;
+  body?: any;
 }
 
 export interface Image {
   secure_url: string;
-}
+} 
 
 
 
