@@ -3,55 +3,59 @@ const props = Astro.props;
 import { urlForImage } from "@/lib/urlForImage";
 ---
 
-<div class="w-full mx-auto max-w-7xl overflow-hidden rounded-lg mb-12">
-  <div
-    style="--swiper-navigation-color: #333; --swiper-pagination-color: #333; --swiper-pagination-bullet-width: 16px; --swiper-pagination-bullet-height: 16px;"
-    class="swiper relative mySwiper"
-  >
-    <div class="pb-6 swiper-wrapper">
-      {
-        props.node.imagesGallery.map((i: any) => {
-          return (
-            <a
-              class="swiper-slide glightbox"
-              href={urlForImage(i.asset).width(1300).url()}
-            >
-              <img
-                class="object-cover w-full rounded-lg overflow-hidden h-64"
-                src={urlForImage(i.asset).width(600).height(400).url()}
-              />
-            </a>
-          );
-        })
-      }
-    </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-left">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        ><path
-          fill="#888888"
-          d="M15.41 7.41L14 6l-6 6l6 6l1.41-1.41L10.83 12l4.58-4.59z"
-        ></path></svg
+{
+  props.node.imagesGallery && (
+    <div class="w-full mx-auto max-w-7xl overflow-hidden rounded-lg mb-12">
+      <div
+        style="--swiper-navigation-color: #333; --swiper-pagination-color: #333; --swiper-pagination-bullet-width: 16px; --swiper-pagination-bullet-height: 16px;"
+        class="swiper relative mySwiper"
       >
+        <div class="pb-6 swiper-wrapper">
+          {props.node.imagesGallery.map((i: any) => {
+            return (
+              <a
+                class="swiper-slide glightbox"
+                href={urlForImage(i.asset).width(1300).url()}
+              >
+                <img
+                  class="object-cover w-full rounded-lg overflow-hidden h-64"
+                  src={urlForImage(i.asset).width(600).height(400).url()}
+                />
+              </a>
+            );
+          })}
+        </div>
+        <div class="swiper-pagination" />
+        <div class="swiper-button-left">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="#888888"
+              d="M15.41 7.41L14 6l-6 6l6 6l1.41-1.41L10.83 12l4.58-4.59z"
+            />
+          </svg>
+        </div>
+        <div class="swiper-button-right">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="#888888"
+              d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6l-6-6z"
+            />
+          </svg>
+        </div>
+      </div>
     </div>
-    <div class="swiper-button-right">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        ><path
-          fill="#888888"
-          d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6l-6-6z"></path></svg
-      >
-    </div>
-  </div>
-</div>
-
+  )
+}
 <!-- Initialize Swiper -->
 <script>
   //@ts-ignore
