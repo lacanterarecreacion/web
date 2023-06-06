@@ -15,15 +15,11 @@ const eventos = await useSanityClient().fetch(
     class="relative flex overflow-hidden items-center justify-center py-24 to-orange-600 md:py-12 bg-gradient-to-tr from-orange-400"
   >
     <div
-      class="relative w-full  z-10 text-center max-w-7xl font-sans text-white animate__fadeIn animate__animated"
+      class="relative w-full z-10 text-center max-w-7xl font-sans text-white animate__fadeIn animate__animated"
     >
       <h1 class="text-4xl md:text-6xl font-sans mb-2">Agendate</h1>
-      <p class="font-sans md:text-lg">
-        Eventos presenciales y virtuales.
-      </p>
-      <a href="/calendario-ludico" class="btn mt-6">
-        Ver calendario lúdico
-      </a>
+      <p class="font-sans md:text-lg">Eventos presenciales y virtuales.</p>
+      <a href="/calendario-ludico" class="btn mt-6"> Ver calendario lúdico</a>
     </div>
     <div class="absolute inset-0 z-0 opacity-20">
       <GrainOne />
@@ -40,13 +36,15 @@ const eventos = await useSanityClient().fetch(
             href={`/agendate/${item.slug?.current}`}
             class="overflow-hidden animate__fadeIn animate__animated animate__slower duration-500 rounded-lg shadow-md bg-gray-50 hover:shadow-2xl"
           >
-            <Image
-              src={item.image.secure_url}
-              alt=""
-              width={500}
-              height={500}
-              class="h-64 object-cover w-full"
-            />
+            {item.image && (
+              <Image
+                src={item.image?.secure_url}
+                alt={item.title}
+                width={500}
+                height={500}
+                class="h-64 object-cover w-full"
+              />
+            )}
 
             <div class="p-3 ">
               <h2 class="font-sans font-semibold text-lg">{item.title}</h2>
