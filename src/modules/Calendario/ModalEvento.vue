@@ -19,11 +19,9 @@
       </h3>
       <div class="flex items-start justify-between w-full pt-1 text-sm">
         <p class="text-left">
-          {{ formattedDate(props.event.start) }} al <br />{{
-            formattedDate(props.event.end)
-          }}
+          {{ formattedDateGetDay(props.event.start) }} al {{ formattedDate(props.event.end) }}
         </p>
-        <p class="flex flex-col items-end text-gray-600">
+        <p class="text-gray-600">
           {{ formattedTime(props.event.start) }}hs
           <span v-if="props.event.end">
             a {{ formattedTime(props.event.end) }}hs
@@ -45,7 +43,7 @@
             enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
             leave-to="opacity-0 scale-95">
             <DialogPanel
-              class="w-full max-w-xl relative transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-2xl transition-all">
+              class="w-full max-w-2xl relative transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-2xl transition-all">
               <img v-if="props.event.extendedProps?.image" :src="props.event.extendedProps?.image.secure_url"
                 class="object-cover w-full h-64" />
               <div class="relative">
@@ -70,7 +68,7 @@
                 <span v-if="formattedTime(props.event.end)">&nbsp; a {{ formattedTime(props.event.end) }}
                 </span>
               </div>
-              <div v-if="props.event.extendedProps?.body" class="m-3 text-lg">
+              <div v-if="props.event.extendedProps?.body" class="m-3 prose ">
                 <SanityBlocks :blocks="props.event.extendedProps?.body" />
               </div>
               <div class="mt-4 flex justify-center items-center p-3 gap-2">
@@ -92,7 +90,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { formattedDate, formattedTime } from "@/lib/formatCalendarDateTime";
+import { formattedDate, formattedTime, formattedDateGetDay } from "@/lib/formatCalendarDateTime";
 import type { EventModal } from "@/types/interfaces";
 import { SanityBlocks } from 'sanity-blocks-vue-component';
 

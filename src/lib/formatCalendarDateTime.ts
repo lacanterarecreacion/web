@@ -20,3 +20,11 @@ export const formattedTime = (value: D) => {
     locale: "es",
   });
 };
+
+export const formattedDateGetDay = (value: D) => {
+  return formatDate(value, {
+    day: "numeric",
+    hour12: false,
+    locale: "es",
+  });
+};
