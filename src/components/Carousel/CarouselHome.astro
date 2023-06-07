@@ -12,10 +12,10 @@ const { images } = Astro.props;
       {
         images.map((i: any) => {
           return (
-            <a class="swiper-slide bg-black rounded-lg overflow-hidden glightbox" href={`${i}?fit=max&w=1200&h=1200`}>
+            <a class="swiper-slide bg-black rounded-lg overflow-hidden glightbox" href={i}>
               <Image
                 alt={i}
-                src={`${i}?fit=max&w=400&h=400`}
+                src={i}
                 width={400}
                 height={400}
                 class="object-cover w-full h-96"
