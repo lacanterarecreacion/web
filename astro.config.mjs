@@ -21,7 +21,7 @@ export default defineConfig({
       projectId: "1ekf84ne",
       dataset: "production",
       apiVersion: "2023-02-08",
-      useCdn: false,
+      useCdn: true,
     }),
     vue({
       script: {

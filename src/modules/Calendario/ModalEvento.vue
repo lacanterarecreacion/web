@@ -45,8 +45,10 @@
             leave-to="opacity-0 scale-95">
             <DialogPanel
               class="w-full max-w-2xl relative transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-2xl transition-all">
-              <img v-if="props.event.extendedProps?.image" :src="props.event.extendedProps?.image.secure_url"
-                class="object-cover w-full h-64" />
+              <!-- <img v-if="props.event.extendedProps?.image" :src="props.event.extendedProps?.image.secure_url"
+                class="object-cover w-full h-64" /> -->
+              <img class="object-cover w-full h-64" v-if="props.event.extendedProps?.mainImage"
+                :src="imageUrlFor(props.event.extendedProps?.mainImage)" />
               <div class="relative">
                 <DialogTitle as="h3" class="text-3xl p-3 font-medium font-sans pr-28 text-gray-900">
                   {{ props.event.title }}
@@ -62,15 +64,18 @@
                   </b>
                 </div>
               </div>
-              <div class="p-1 w-full px-3 flex sm:flex-row flex-col justify-between gap-2 text-xl font-bold text-gray-800 z-10">
+              <div
+                class="p-1 w-full px-3 flex sm:flex-row flex-col justify-between gap-2 text-xl font-bold text-gray-800 z-10">
                 <p>
                   <span v-if="props.event.extendedProps.multipleDays">Del {{ formattedDateGetDay(props.event.start) }}
-                  al</span>
+                    al</span>
                   {{ formattedDate(props.event.end) }}
                 </p>
-                <span>{{ formattedTime(props.event.start) }} a {{ formattedTime(props.event.end) }}hs </span>
+                <span>{{ formattedTime(props.event.start) }} a
+                  {{ formattedTime(props.event.end) }}hs
+                </span>
               </div>
-              <div v-if="props.event.extendedProps?.body" class="m-3 prose ">
+              <div v-if="props.event.extendedProps?.body" class="m-3 prose">
                 <SanityBlocks :blocks="props.event.extendedProps?.body" />
               </div>
               <div class="mt-4 flex justify-center items-center p-3 gap-2">
@@ -92,10 +97,15 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { formattedDate, formattedTime, formattedDateGetDay } from "@/lib/formatCalendarDateTime";
+import {
+  formattedDate,
+  formattedTime,
+  formattedDateGetDay,
+} from "@/lib/formatCalendarDateTime";
 import type { EventModal } from "@/types/interfaces";
-import { SanityBlocks } from 'sanity-blocks-vue-component';
-
+import sanity from "@/lib/client";
+import { SanityBlocks } from "sanity-blocks-vue-component";
+import imageUrlBuilder from "@sanity/image-url";
 import {
   TransitionRoot,
   TransitionChild,
@@ -103,10 +113,15 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/vue";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
+const builder = imageUrlBuilder(sanity);
 const props = defineProps<EventModal>();
-
 const isOpen = ref(false);
+
+function imageUrlFor(source: SanityImageSource) {
+  return builder.image(source).width(600).height(300).url();
+}
 
 function closeModal() {
   isOpen.value = false;
@@ -114,5 +129,4 @@ function closeModal() {
 function openModal() {
   isOpen.value = true;
 }
-
 </script>

@@ -1,4 +1,5 @@
 
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 export interface Posts {
   Posts: Post[];
@@ -79,6 +80,7 @@ export interface ExtendedProps {
   multipleDays?: boolean,
   image?: Image;
   body?: any;
+  mainImage?: SanityImageSource
 }
 
 export interface Image {
