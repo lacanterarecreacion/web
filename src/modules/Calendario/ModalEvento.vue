@@ -19,7 +19,8 @@
       </h3>
       <div class="flex items-start justify-between w-full pt-1 text-sm">
         <p class="text-left">
-          {{ formattedDateGetDay(props.event.start) }} al {{ formattedDate(props.event.end) }}
+          <span v-if="props.event.extendedProps.multipleDays">{{ formattedDateGetDay(props.event.start) }} al</span>
+          {{ formattedDate(props.event.end) }}
         </p>
         <p class="text-gray-600">
           {{ formattedTime(props.event.start) }}hs
@@ -61,12 +62,13 @@
                   </b>
                 </div>
               </div>
-              <div class="p-1 max-w-lg px-3 inline-flex mx-3 text-gray-800 bg-gray-200 rounded-full z-10">
-                <span>{{ formattedDate(props.event.start) }} de
-                  {{ formattedTime(props.event.start) }}
-                </span>
-                <span v-if="formattedTime(props.event.end)">&nbsp; a {{ formattedTime(props.event.end) }}
-                </span>
+              <div class="p-1 w-full px-3 flex sm:flex-row flex-col justify-between gap-2 text-xl font-bold text-gray-800 z-10">
+                <p>
+                  <span v-if="props.event.extendedProps.multipleDays">Del {{ formattedDateGetDay(props.event.start) }}
+                  al</span>
+                  {{ formattedDate(props.event.end) }}
+                </p>
+                <span>{{ formattedTime(props.event.start) }} a {{ formattedTime(props.event.end) }}hs </span>
               </div>
               <div v-if="props.event.extendedProps?.body" class="m-3 prose ">
                 <SanityBlocks :blocks="props.event.extendedProps?.body" />

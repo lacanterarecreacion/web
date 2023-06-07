@@ -76,6 +76,7 @@ export interface Event {
 export interface ExtendedProps {
   link?: string;
   description?: string;
+  multipleDays?: boolean,
   image?: Image;
   body?: any;
 }
