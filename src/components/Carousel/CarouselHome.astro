@@ -12,7 +12,10 @@ const { images } = Astro.props;
       {
         images.map((i: any) => {
           return (
-            <a class="swiper-slide bg-black rounded-lg overflow-hidden glightbox" href={i}>
+            <a
+              class="swiper-slide bg-black rounded-lg overflow-hidden glightbox"
+              href={i}
+            >
               <Image
                 alt={i}
                 src={i}
@@ -21,7 +24,7 @@ const { images } = Astro.props;
                 class="object-cover w-full h-96"
                 format="webp"
               />
-              <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+              <div class="swiper-lazy-preloader swiper-lazy-preloader-white" />
             </a>
           );
         })
@@ -58,8 +61,8 @@ const { images } = Astro.props;
 <script>
   //@ts-ignore
   var swiper = new Swiper(".mySwiper", {
-    lazy: true,
-    spaceBetween: 30,
+       lazy: true,
+       spaceBetween: 30,
     breakpoints: {
       0: {
         slidesPerView: 1,
@@ -70,19 +73,17 @@ const { images } = Astro.props;
       800: {
         slidesPerView: 3,
       },
-      1200: {
-        slidesPerView: 4,
-      },
+      
     },
-    loop: false,
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: true,
-    },
+    loop: true,
+    // autoplay: {
+    //   delay: 2500,
+    //   disableOnInteraction: true,
+    // },
     pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
+      el: ".swiper-pagination",
+      clickable: true,
+    },
     navigation: {
       nextEl: ".swiper-button-right",
       prevEl: ".swiper-button-left",
@@ -90,7 +91,7 @@ const { images } = Astro.props;
   });
 </script>
 
-<style >
+<style>
   .swiper {
     @apply w-full select-none;
   }
@@ -110,7 +111,7 @@ const { images } = Astro.props;
   }
 
   .swiper-button-left.swiper-button-disabled {
-    @apply opacity-30 ;
+    @apply opacity-30;
   }
   .swiper-button-right.swiper-button-disabled {
     @apply opacity-30;
