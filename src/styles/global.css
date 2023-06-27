@@ -1,5 +1,6 @@
 html {
-  @apply text-base scroll-smooth
+  @apply text-base scroll-smooth;
+  @apply motion-reduce:scroll-auto
 }
 
 html,

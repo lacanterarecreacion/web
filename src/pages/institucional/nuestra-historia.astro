@@ -3,24 +3,49 @@ import { useSanityClient } from "astro-sanity";
 import Layout from "@/src/layouts/Layout.astro";
 import LineaDeTiempo from "@/src/modules/Institucional/LineaDeTiempo.astro";
 import PageSectionsPlugs from "@/components/PortableText/PageSectionsPlugs.astro";
-const about = await useSanityClient().fetch(
+import type { Recurso } from "@/src/types/interfaces";
+import slugify from "@/lib/createSlug";
+
+const ABOUT = await useSanityClient().fetch(
   `*[_type == "nuestra_historia"]  | order(publishedAt desc) [0]`
+);
+
+const ABOUT_TITLES = await useSanityClient().fetch(
+  `*[_type == "nuestra_historia"]  | order(publishedAt desc) [0] `
 );
 ---
 
 <Layout title="Sobre cantera">
   <div class="relative z-30 w-full mx-auto">
     <LineaDeTiempo />
-    <PageSectionsPlugs content={about.content} />
+    <h1 class="text-3xl text-center py-12">Nuestra historia jugando</h1>
+    <div class="grid grid-cols-3 gap-y-12 gap-3 py-12 max-w-7xl mx-auto">
+      {
+        ABOUT_TITLES.content.map((post: any) => (
+          <a
+            href={`#${slugify(post.heading)}`}
+            class="text-2xl text-center cursor-pointer underline underline-offset-4 decoration-emerald-600/20 duration-300 hover:underline-offset-8"
+          >
+            {post.heading}
+          </a>
+        ))
+      }
+    </div>
+    <PageSectionsPlugs content={ABOUT.content} />
   </div>
 
   <style is:global>
     section .PlugBlockeditorGrillaDoble:nth-child(odd) {
-      @apply md:!flex-row-reverse;
+      @apply md:!flex-row-reverse bg-green-100;
+    }
+
+    section .PlugBlockeditorGrillaDoble:nth-child(even) {
+      @apply bg-orange-100;
     }
 
     section .portable-text {
-      @apply prose  max-w-full p-3 md:px-12 md:py-0;
+      @apply prose  max-w-full p-3 md:px-12 md:py-0 prose-sm md:prose-base;
+      text-wrap: balance;
     }
   </style>
 </Layout>
