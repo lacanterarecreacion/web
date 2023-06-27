@@ -8,7 +8,7 @@ const pathname = new URL(Astro.request.url).pathname;
 <nav aria-label="Top">
   <div class="flex flex-col justify-center items-center gap-5 xl:hidden">
     <span
-      class="text-lg text-indigo-700 font-sans  "
+      class="text-xl text-indigo-700 font-sans  "
     >
       Quiénes somos
     </span>
@@ -76,11 +76,11 @@ const pathname = new URL(Astro.request.url).pathname;
 
 <style>
   nav {
-    @apply mx-auto gap-2 md:gap-4 w-full flex justify-center items-center;
+    @apply mx-auto gap-2 md:gap-8 w-full flex justify-center items-center;
   }
 
   nav a {
-    @apply py-1 pr-1 text-sm md:text-lg text-left hover:text-gray-600 duration-300 text-gray-900 font-sans;
+    @apply py-1 pr-1 text-sm md:text-xl text-left hover:text-gray-600 duration-300 text-gray-900 font-sans;
   }
 
   nav a.active {
