@@ -21,7 +21,10 @@ import slugify from "@/lib/createSlug";
           break;
         case "PlugBlockeditor":
           el = (
-            <div class="PlugBlockeditor prose prose-xl max-w-4xl mx-auto py-12">
+            <div
+              id={slugify(c.heading)}
+              class="PlugBlockeditor prose prose-xl max-w-4xl mx-auto px-6 py-12"
+            >
               <PortableText portableText={c.body} />
             </div>
           );
@@ -56,3 +59,9 @@ import slugify from "@/lib/createSlug";
     })
   }
 </section>
+
+<style>
+  #faq {
+    @apply max-w-full bg-indigo-100;
+  }
+</style>

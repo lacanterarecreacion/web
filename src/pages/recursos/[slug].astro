@@ -24,17 +24,17 @@ const { title, description, body, mainImage } = Astro.props as Props;
 
 <Layout title={title}>
   <div
-    class="h-[60vh] bg-gradient-to-br flex justify-center items-center relative overflow-hidden from-pink-600 to-red-600"
+    class="min-h-[60vh] bg-gradient-to-br flex justify-center items-center relative overflow-hidden from-pink-600 to-red-600 py-12"
   >
     <div
-      class="text-white text-center relative z-20 animate__fadeIn animate__animated"
+      class="text-white text-center max-w-3xl mx-auto relative z-20 animate__fadeIn animate__animated"
     >
       <h1 class="text-6xl font-hand">{title}</h1>
-      <p class="mt-6 text-3xl">
+      <p class="mt-6 text-2xl" style="text-wrap: balance">
         {description}
       </p>
     </div>
-    <div class="absolute z-0 opacity-20 inset-0 object-cover w-full">
+    <div class="absolute z-0 opacity-10 inset-0 object-cover w-full">
       <PlaceholderImage
         customClass="!h-screen"
         title={title}

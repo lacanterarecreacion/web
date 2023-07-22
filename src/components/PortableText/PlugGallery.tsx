@@ -24,7 +24,18 @@ export default ({ gallery }: any) => {
         key={gallery.images._key}
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={50}
-        slidesPerView={3}
+        slidesPerView={1}
+        breakpoints={{
+          // when window width is >= 640px
+          400: {
+            slidesPerView: 2,
+            spaceBetween: 10
+          },
+          // when window width is >= 768px
+          768: {
+            slidesPerView: 3,
+          },
+        }}
         navigation
         pagination={{ clickable: true }}
       >

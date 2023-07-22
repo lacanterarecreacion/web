@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import GrainOne from "@/components/UI/Grain/GrainOne.astro";
-import WaveScene from "@/components/UI/Backgrounds/WaveScene.astro";
+import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
 import QueHacemosCards from "@/modules/Institucional/QueHacemosCards.astro";
 ---
 
@@ -10,7 +10,7 @@ import QueHacemosCards from "@/modules/Institucional/QueHacemosCards.astro";
     class="relative flex items-center justify-center py-6 overflow-hidden bg-blue-600 bg-gradient-to-tr from-indigo-400"
   >
     <h1
-      class="relative z-10 font-sans text-left max-w-screen-2xl mx-auto w-full text-2xl p-6 text-white md:text-3xl"
+      class="relative z-10 font-hand text-center max-w-screen-2xl mx-auto w-full text-2xl p-6 text-white md:text-7xl py-12"
     >
       ¿Qué hacemos?
     </h1>
@@ -18,9 +18,9 @@ import QueHacemosCards from "@/modules/Institucional/QueHacemosCards.astro";
       <GrainOne />
     </div>
     <div
-      class="absolute animate__fadeIn animate__animated animate__slower inset-0 z-0 opacity-40"
+      class="absolute animate__fadeIn animate__animated animate__slower bg-blue-600 inset-0 z-0 !opacity-10"
     >
-      <WaveScene />
+      <BlobPlotScene />
     </div>
   </div>
   <div class="min-h-[60vh]">

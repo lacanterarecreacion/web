@@ -43,7 +43,7 @@ const bodySlug = slugify(pathname);
   </head>
   <body class={`w-full text-gray-900 bg-white ${bodySlug}`}>
     <Offcanvas client:load>
-      <div class="md:hidden">
+      <div class="flex justify-center md:hidden">
         <CallToActions />
       </div>
       <Navigation />

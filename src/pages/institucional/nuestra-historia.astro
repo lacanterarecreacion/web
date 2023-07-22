@@ -19,12 +19,14 @@ const ABOUT_TITLES = await useSanityClient().fetch(
   <div class="relative z-30 w-full mx-auto">
     <LineaDeTiempo />
     <h1 class="text-3xl text-center py-12">Nuestra historia jugando</h1>
-    <div class="grid grid-cols-3 gap-y-12 gap-3 py-12 max-w-7xl mx-auto">
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-3 py-12 max-w-7xl mx-auto"
+    >
       {
         ABOUT_TITLES.content.map((post: any) => (
           <a
             href={`#${slugify(post.heading)}`}
-            class="text-2xl text-center cursor-pointer underline underline-offset-4 decoration-emerald-600/20 duration-300 hover:underline-offset-8"
+            class="text-lg px-3 md:text-2xl text-center cursor-pointer underline underline-offset-4 decoration-emerald-600/20 duration-300 hover:underline-offset-8"
           >
             {post.heading}
           </a>
@@ -35,6 +37,10 @@ const ABOUT_TITLES = await useSanityClient().fetch(
   </div>
 
   <style is:global>
+    section .PlugBlockeditorGrillaDoble {
+      @apply scroll-mt-20
+    }
+     
     section .PlugBlockeditorGrillaDoble:nth-child(odd) {
       @apply md:!flex-row-reverse bg-green-100;
     }

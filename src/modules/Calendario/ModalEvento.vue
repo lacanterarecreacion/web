@@ -6,7 +6,7 @@
     <button v-else type="button" @click="openModal"
       class="flex flex-col group hover:bg-gray-200 w-full hover:ring-1 ring-gray-600 bg-gray-100 duration-300 p-2 rounded-lg shadow">
       <h3 class="flex items-center w-full justify-between text-gray-600">
-        <span class="group-hover:underline underline-offset-2 truncate w-64 text-left text-sm font-bold font-sans">
+        <span class="group-hover:underline underline-offset-2 w-64 text-left text-sm font-bold font-sans">
           {{ props.event.title }}
         </span>
         <b class="!text-xs font-bold no-underline rounded-full px-2 py-0.5 bg-purple-200 text-purple-900 ml-1"

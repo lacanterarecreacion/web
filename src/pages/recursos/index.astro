@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import GrainOne from "@/components/UI/Grain/GrainOne.astro";
-import StrackedScene from "@/components/UI/Backgrounds/StrackedScene.astro";
+import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
 import RecursosCards from "@/modules/Recursos/RecursosCards.astro";
 ---
 
@@ -10,7 +10,7 @@ import RecursosCards from "@/modules/Recursos/RecursosCards.astro";
     class="relative flex items-center justify-center pt-32 pb-32 overflow-hidden bg-gradient-to-tr from-red-400 bg-red-600"
   >
     <h1
-      class="relative z-10 font-sans text-4xl text-white md:text-6xl animate__fadeIn animate__animated"
+      class="relative z-10 font-hand text-5xl text-white md:text-7xl animate__fadeIn animate__animated"
     >
       Recursos
     </h1>
@@ -18,9 +18,9 @@ import RecursosCards from "@/modules/Recursos/RecursosCards.astro";
       <GrainOne />
     </div>
     <div
-      class="absolute animate__fadeIn animate__animated animate__slower inset-0 z-0 opacity-30"
+      class="absolute animate__fadeIn animate__animated animate__slower bg-red-600 inset-0 z-0 !opacity-10"
     >
-      <StrackedScene />
+      <BlobPlotScene/>
     </div>
   </div>
   <div class="min-h-screen bg-gray-200 pb-24">
