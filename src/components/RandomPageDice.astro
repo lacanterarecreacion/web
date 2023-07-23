@@ -13,14 +13,16 @@ const routes = [
   "/contacto/",
 ];
 
+
 const currentRoute = new URL(Astro.request.url).pathname;
 const validRoutes = routes.filter((item: any) => item !== currentRoute);
 
-function getRandomRoute(routes: string[]) {
-  const randomIndex = Math.floor(Math.random() * routes.length);
+function getRandomRoute(min: number, max: number) {
+  const randomIndex = Math.floor(Math.random() * (max - min + 1));
   return routes[randomIndex];
 }
-const randomRoute = getRandomRoute(validRoutes);
+const randomRoute = getRandomRoute(0, validRoutes.length);
+
 ---
 
 <a 

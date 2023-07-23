@@ -7,11 +7,12 @@ const pathname = new URL(Astro.request.url).pathname;
 
 <nav aria-label="Top">
   <div class="flex flex-col justify-center items-center gap-5 xl:hidden">
-    <span
+    <a
+      href="/institucional/quienes-somos"
       class="text-xl text-indigo-700 font-sans  "
     >
       Quiénes somos
-    </span>
+    </a>
     <a
       class={`${
         pathname === "/institucional/quienes-somos"
@@ -55,7 +56,7 @@ const pathname = new URL(Astro.request.url).pathname;
     Recursos
   </a>
   <a
-    class={pathname === "/colabora" ? "active" : " underline underline-offset-2 md:no-underline"}
+    class={pathname === "/colabora" ? "active" : " "}
     rel="prefetch"
     href="/colabora"
   >
@@ -76,11 +77,11 @@ const pathname = new URL(Astro.request.url).pathname;
 
 <style>
   nav {
-    @apply mx-auto gap-2 md:gap-3 w-full flex justify-center items-center;
+    @apply mx-auto gap-2 md:gap-6 w-full flex justify-center items-center;
   }
 
   nav a {
-    @apply py-1 pr-1 text-xl text-left hover:text-gray-600 duration-300 text-gray-900 font-sans;
+    @apply py-1 pr-1 text-lg text-left hover:text-gray-600 duration-300 text-gray-900 font-sans;
   }
 
   nav a.active {
