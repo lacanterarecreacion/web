@@ -9,7 +9,7 @@ const pathname = new URL(Astro.request.url).pathname;
   <div class="flex flex-col justify-center items-center gap-5 xl:hidden">
     <a
       href="/institucional/quienes-somos"
-      class="text-xl text-indigo-700 font-sans  "
+      class="text-lg text-indigo-700 font-sans  "
     >
       Quiénes somos
     </a>
@@ -81,10 +81,10 @@ const pathname = new URL(Astro.request.url).pathname;
   }
 
   nav a {
-    @apply py-1 pr-1 text-lg text-left hover:text-gray-600 duration-300 text-gray-900 font-sans;
+    @apply py-1 pr-1 text-2xl text-left hover:text-gray-600 duration-300 text-gray-900 font-hand;
   }
 
   nav a.active {
-    @apply text-gray-600 underline underline-offset-8;
+    @apply text-gray-600;
   }
 </style>

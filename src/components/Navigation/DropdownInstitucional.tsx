@@ -6,7 +6,7 @@ export default function Example() {
     <div className="hidden xl:flex">
       <Menu as="div" className="relative font-sans">
         <div>
-          <Menu.Button className="rounded-md outline-none focus:ring-2 ring-offset-2 cursor-pointer flex items-center text-left hover:text-indigo-600 duration-300 text-gray-900 font-sans text-xl">
+          <Menu.Button className="rounded-md outline-none focus:ring-2 ring-offset-2 cursor-pointer flex items-center text-left hover:text-indigo-600 duration-300 text-gray-900 font-hand text-2xl">
             Quiénes somos
             <svg
               className={`
