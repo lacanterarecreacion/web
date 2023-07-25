@@ -23,13 +23,13 @@ const RECURSOS = await useSanityClient().fetch(
               <div class="absolute inset-0 bg-gradient-to-b from-red-500 via-50% via-red-700/80 to-red-700/90 z-0">
                 <img
                   class="object-cover w-full group-hover:scale-105 h-44 duration-300 z-0"
-                  src={urlForImage(post.mainImage).width(600).height(200).url()}
+                  src={urlForImage(post.mainImage).width(400).height(200).url()}
                   alt={post.title}
                 />
               </div>
             </div>
             <div class="grid grid-cols-3 gap-3 p-3 min-h-[5rem]">
-              <a href={`/recursos/${post.slug?.current}`} class="z-10 underline underline-offset-4 col-span-2 flex items-start  font-atkinson  justify-start w-full px-6 font-medium text-lg text-left text-red-600">
+              <a href={`/recursos/${post.slug?.current}`} class="z-10 underline underline-offset-4 col-span-2 flex items-start  font-atkinson  justify-start w-full font-medium text-lg text-left text-red-600">
                 {post.title}
               </a>
               <div class="flex justify-end items-start">
