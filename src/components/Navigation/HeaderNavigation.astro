@@ -6,10 +6,10 @@ const pathname = new URL(Astro.request.url).pathname;
 ---
 
 <nav aria-label="Top">
-  <div class="flex flex-col justify-center items-center gap-5 xl:hidden">
+  <div class="flex flex-col justify-center mb-6 items-center gap-5 xl:hidden">
     <a
       href="/institucional/quienes-somos"
-      class="text-lg text-indigo-700 font-sans  "
+      class="text-2xl text-indigo-700 font-trash  "
     >
       Quiénes somos
     </a>
@@ -20,7 +20,7 @@ const pathname = new URL(Astro.request.url).pathname;
           : "" || pathname.includes("/institucional/quienes-somos")
           ? "active"
           : ""
-      } text-sm !pr-0`}
+      } text-lg !pr-0`}
       rel="prefetch"
       href="/institucional/quienes-somos"
     >
@@ -33,7 +33,7 @@ const pathname = new URL(Astro.request.url).pathname;
           : "" || pathname.includes("/institucional/nuestra-historia")
           ? "active"
           : ""
-      } text-sm !pr-0`}
+      } text-lg !pr-0`}
       rel="prefetch"
       href="/institucional/nuestra-historia"
     >
