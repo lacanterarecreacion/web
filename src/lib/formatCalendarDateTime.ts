@@ -28,3 +28,4 @@ export const formattedDateGetDay = (value: D) => {
     locale: "es",
   });
 };
+

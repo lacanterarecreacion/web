@@ -26,8 +26,8 @@ const { title, description, body, mainImage } = Astro.props;
     <div
       class="relative z-20 text-center text-white animate__fadeIn animate__animated"
     >
-      <h1 class="max-w-6xl mx-auto font-hand text-2xl md:text-7xl">{title}</h1>
-      <p class="max-w-3xl mx-auto mt-6 font-sans  md:text-2xl" style="text-wrap: balance">
+      <h1 class="max-w-6xl mx-auto font-hand text-5xl md:text-7xl" style="text-wrap: balance">{title}</h1>
+      <p class="max-w-3xl mx-auto mt-6 font-sans text-lg md:text-2xl" style="text-wrap: balance">
         {description}
       </p>
     </div>
@@ -47,10 +47,10 @@ const { title, description, body, mainImage } = Astro.props;
   >
     <PortableText portableText={body} />
   </article>
-  <aside>
-    <h3 class="text-4xl text-center">Que más hacemos</h3>
-    <QueHacemosCards />
+  <aside class="bg-gradient-to-b from-white to-blue-200">
+    <h3 class="text-7xl pt-16 pb-6 font-hand text-blue-800 text-center">Que más hacemos</h3>
   </aside>
+  <QueHacemosCards />
 </Layout>
 
 

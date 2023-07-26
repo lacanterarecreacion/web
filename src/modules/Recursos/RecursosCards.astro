@@ -17,7 +17,7 @@ const RECURSOS = await useSanityClient().fetch(
   >
     {
       RECURSOS.map((post: Recurso) => (
-        <div class="item animate__fadeIn relative animate__animated animate__slower ">
+        <div class="item ">
           <div class="w-full max-w-sm mx-auto overflow-hidden text-left align-middle transition-all duration-300 transform bg-white shadow-lg sm:max-w-full rounded-2xl hover:shadow-2xl">
             <div class="relative flex items-center justify-center w-full pt-3 overflow-hidden bg-red-800 h-44 patternForest">
               <div class="absolute inset-0 bg-gradient-to-b from-red-500 via-50% via-red-700/80 to-red-700/90 z-0">
@@ -47,30 +47,3 @@ const RECURSOS = await useSanityClient().fetch(
     }
   </div>
 </div>
-
-<style>
-  .RecursosGrid .item:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  .RecursosGrid .item:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  .RecursosGrid .item:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  .RecursosGrid .item:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-  .RecursosGrid .item:nth-child(5) {
-    animation-delay: 0.5s;
-  }
-  .RecursosGrid .item:nth-child(6) {
-    animation-delay: 0.6s;
-  }
-  .RecursosGrid .item:nth-child(7) {
-    animation-delay: 0.7s;
-  }
-  .RecursosGrid .item:nth-child(8) {
-    animation-delay: 0.8s;
-  }
-</style>

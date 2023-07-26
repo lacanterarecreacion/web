@@ -28,10 +28,10 @@ const { title, description, body, mainImage } = Astro.props as Props;
     class="min-h-[60vh] bg-gradient-to-br flex justify-center items-center relative overflow-hidden from-pink-600 to-red-600 py-12"
   >
     <div
-      class="text-white text-center max-w-3xl mx-auto relative z-20 animate__fadeIn animate__animated"
+      class="text-white text-center max-w-3xl px-6 mx-auto relative z-20 animate__fadeIn animate__animated"
     >
-      <h1 class="text-6xl font-hand">{title}</h1>
-      <p class="mt-6 text-2xl" style="text-wrap: balance">
+      <h1 class="text-5xl md:text-7xl font-hand" style="text-wrap: balance">{title}</h1>
+      <p class="mt-6 text-lg md:text-2xl" style="text-wrap: balance">
         {description}
       </p>
     </div>
@@ -64,5 +64,9 @@ const { title, description, body, mainImage } = Astro.props as Props;
 
   body[class*="recursos"] #menuOffcanvas {
     @apply ring-red-400;
+  }
+
+  body[class*="recursos"] .prose a {
+    line-break: anywhere;
   }
 </style>

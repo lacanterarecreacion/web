@@ -5,8 +5,8 @@
     </button>
     <button v-else type="button" @click="openModal"
       class="flex flex-col group hover:bg-gray-200 w-full hover:ring-1 ring-gray-600 bg-gray-100 duration-300 p-2 rounded-lg shadow">
-      <h3 class="flex items-center w-full justify-between text-gray-600">
-        <span class="group-hover:underline underline-offset-2 w-64 text-left text-sm font-bold font-sans">
+      <h3 class="flex items-start w-full justify-between text-gray-600">
+        <span class="group-hover:underline underline-offset-2 w-72 text-left text-sm font-bold font-sans" >
           {{ props.event.title }}
         </span>
         <b class="!text-xs font-bold no-underline rounded-full px-2 py-0.5 bg-purple-200 text-purple-900 ml-1"
@@ -17,12 +17,13 @@
           Virtual
         </b>
       </h3>
-      <div class="flex items-start justify-between w-full pt-1 text-sm">
-        <p class="text-left">
-          <span v-if="props.event.extendedProps.multipleDays">{{ formattedDateGetDay(props.event.start) }} al</span>
+      <div class="flex items-end justify-between w-full pt-1 text-sm">
+        <p class="text-left"  style="text-wrap: balance">
+          <span v-if="props.event.extendedProps.multipleDays">Del <span class="capitalize">{{ new Date(props.event.start).toLocaleString('es-ar', {weekday:'long'}) }}</span>  {{ formattedDateGetDay(props.event.start) }} al </span>
+          <span class="capitalize">{{ new Date(props.event.end).toLocaleString('es-ar', {weekday:'long'}) }}</span>
           {{ formattedDate(props.event.end) }}
         </p>
-        <p class="text-gray-600">
+        <p class="text-gray-600 text-right pr-1" >
           {{ formattedTime(props.event.start) }}hs
           <span v-if="props.event.end">
             a {{ formattedTime(props.event.end) }}hs
@@ -67,8 +68,10 @@
               <div
                 class="p-1 w-full px-3 flex sm:flex-row flex-col justify-between gap-2 text-xl font-bold text-gray-800 z-10">
                 <p>
-                  <span v-if="props.event.extendedProps.multipleDays">Del {{ formattedDateGetDay(props.event.start) }}
-                    al</span>
+                  
+                  <span v-if="props.event.extendedProps.multipleDays">Del <span class="">{{ new Date(props.event.start).toLocaleString('es-ar', {weekday:'long'}) }}</span> {{ formattedDateGetDay(props.event.start) }}
+                    al </span>
+                    <span class="">{{ new Date(props.event.end).toLocaleString('es-ar', {weekday:'long'}) }}</span>
                   {{ formattedDate(props.event.end) }}
                 </p>
                 <span>{{ formattedTime(props.event.start) }} a

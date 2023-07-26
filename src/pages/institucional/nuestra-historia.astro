@@ -7,51 +7,126 @@ import type { Recurso } from "@/src/types/interfaces";
 import slugify from "@/lib/createSlug";
 
 const ABOUT = await useSanityClient().fetch(
-  `*[_type == "nuestra_historia"]  | order(publishedAt desc) [0]`
-);
-
-const ABOUT_TITLES = await useSanityClient().fetch(
-  `*[_type == "nuestra_historia"]  | order(publishedAt desc) [0] `
+  `*[_type == "nuestra_historia"] | order(publishedAt desc) [0]`
 );
 ---
 
 <Layout title="Sobre cantera">
   <div class="relative z-30 w-full mx-auto">
-    <LineaDeTiempo />
-    <h1 class="text-3xl text-center py-12">Nuestra historia jugando</h1>
     <div
-      class="grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-3 py-12 max-w-7xl mx-auto"
+      class="w-1 h-screen hidden lg:block fixed top-0 left-0 lg:left-1/2 bg-gray-800/10 lg:-translate-x-1 z-10"
     >
-      {
-        ABOUT_TITLES.content.map((post: any) => (
-          <a
-            href={`#${slugify(post.heading)}`}
-            class="text-lg px-3 md:text-2xl text-center cursor-pointer underline underline-offset-4 decoration-emerald-600/20 duration-300 hover:underline-offset-8"
-          >
-            {post.heading}
-          </a>
-        ))
-      }
+      <div
+        class="h-6 w-6 rounded-full ring-white ring-2 bg-emerald-600 z-20 top-1/2 !-translate-y-24 animate-pulse absolute -left-2.5"
+      >
+      </div>
+    </div>
+    <div class="relative pb-12 pt-12 bg-fixed bg-cover bg-bottom">
+      <div class="z-30 relative">
+        <h1
+          class="text-4xl text-emerald-800 z-30 top-6 md:text-5xl font-hand text-center relative"
+        >
+          Nuestra historia
+        </h1>
+        <svg
+          class="absolute w-96 z-0 -top-1 mx-auto left-1/2 -translate-x-1/2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 382.293 100.262"
+        >
+          <g stroke-linecap="round">
+            <path
+              class="fill-emerald-50"
+              stroke-width="0"
+              d="m27.32 13.36 327.11-5.78 12.44 8.31 4.19 4.9-1.18 51.2-2.86 8.16-5.8 5.62-12.97 2.92L26.22 93.8l-12.18-4.08L8.07 77.9l-.44-47.71 3.75-7.91 6.34-6.25 6.64-5.07 2.31-4.77"
+            ></path>
+            <path
+              fill="none"
+              class="stroke-emerald-600"
+              stroke-width="2"
+              d="M30.07 10c120.86-1.31 236.45-.84 322.16 0M30.07 10c73.32-4.41 147.52-4.5 322.16 0m0 0c16.14.82 19.18 7.94 20.06 20.07M352.23 10c10.05-4.14 23.89 2.86 20.06 20.07m0 0c1.37 18.33-3.15 32.74 0 40.13m0-40.13c1.22 12.64 1.99 23.07 0 40.13m0 0c-.19 9.57-8.56 20.12-20.06 20.06m20.06-20.06c-2.46 17.55-11.16 19.11-20.06 20.06m0 0c-81.72.68-166.65 1.55-322.16 0m322.16 0c-64.23-.31-129.45-.05-322.16 0m0 0C13.21 90.29 7.47 84.39 10 70.2m20.07 20.06C12.79 90.37 6.52 86.58 10 70.2m0 0c3.38-5.37-.68-13.43 0-40.13m0 40.13c.01-10.95-1.16-19.79 0-40.13m0 0C7.14 13.22 18.92 9.85 30.07 10M10 30.07C5.88 15.65 16.78 7.88 30.07 10"
+            ></path>
+          </g>
+        </svg>
+      </div>
+      <LineaDeTiempo />
+      <div
+        class="absolute inset-0 z-0 bg-gradient-to-br from-emerald-100/60 to-emerald-200/90"
+      >
+      </div>
+    </div>
+    <div class="relative px-6 mt-40">
+      <h1
+        class="text-emerald-900 max-w-sm mx-auto text-5xl font-hand text-center relative z-30 py-12"
+        style="text-wrap: balance"
+      >
+        Actividades realizadas
+      </h1>
+      <svg
+        class="absolute hidden md:block w-full max-w-lg top-1 mx-auto z-20 left-1/2 -translate-x-1/2"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 382.293 100.262"
+      >
+        <g stroke-linecap="round">
+          <path
+            class="fill-emerald-200"
+            stroke-width="0"
+            d="m27.32 13.36 327.11-5.78 12.44 8.31 4.19 4.9-1.18 51.2-2.86 8.16-5.8 5.62-12.97 2.92L26.22 93.8l-12.18-4.08L8.07 77.9l-.44-47.71 3.75-7.91 6.34-6.25 6.64-5.07 2.31-4.77"
+          ></path>
+          <path
+            fill="none"
+            class="stroke-emerald-800"
+            stroke-width="2"
+            d="M30.07 10c120.86-1.31 236.45-.84 322.16 0M30.07 10c73.32-4.41 147.52-4.5 322.16 0m0 0c16.14.82 19.18 7.94 20.06 20.07M352.23 10c10.05-4.14 23.89 2.86 20.06 20.07m0 0c1.37 18.33-3.15 32.74 0 40.13m0-40.13c1.22 12.64 1.99 23.07 0 40.13m0 0c-.19 9.57-8.56 20.12-20.06 20.06m20.06-20.06c-2.46 17.55-11.16 19.11-20.06 20.06m0 0c-81.72.68-166.65 1.55-322.16 0m322.16 0c-64.23-.31-129.45-.05-322.16 0m0 0C13.21 90.29 7.47 84.39 10 70.2m20.07 20.06C12.79 90.37 6.52 86.58 10 70.2m0 0c3.38-5.37-.68-13.43 0-40.13m0 40.13c.01-10.95-1.16-19.79 0-40.13m0 0C7.14 13.22 18.92 9.85 30.07 10M10 30.07C5.88 15.65 16.78 7.88 30.07 10"
+          ></path>
+        </g>
+      </svg>
+    </div>
+    <div class="px-6">
+      <div
+        class="grid bg-white bottom-0 relative shadow-lg z-[10] rounded-lg mb-12 px-10 border-4 border-emerald-800 md:grid-cols-3 gap-12 py-20 max-w-3xl mx-auto"
+      >
+        {
+          ABOUT.content.map((post: any) => (
+            <a
+              href={`#${slugify(post.heading)}`}
+              class="text-lg px-3 md:text-xl text-center cursor-pointer underline underline-offset-4 decoration-emerald-600/20 relative flex justify-center items-center duration-300 hover:underline-offset-8 group"
+            >
+              <span>{post.heading}</span>
+              <div class="absolute -top-6 left-0 right-0 flex justify-center items-center opacity-0 group-hover:opacity-100 duration-300">
+                <div class="h-3 w-3 rounded-full  ring-white  ring-2 bg-emerald-600 z-20 animate-bounce" />
+              </div>
+            </a>
+          ))
+        }
+      </div>
     </div>
     <PageSectionsPlugs content={ABOUT.content} />
   </div>
 
   <style is:global>
     section .PlugBlockeditorGrillaDoble {
-      @apply scroll-mt-20
+      @apply scroll-mt-20;
     }
-     
+
     section .PlugBlockeditorGrillaDoble:nth-child(odd) {
-      @apply md:!flex-row-reverse bg-green-100;
+      @apply md:!flex-row-reverse bg-emerald-100;
     }
 
     section .PlugBlockeditorGrillaDoble:nth-child(even) {
       @apply bg-orange-100;
     }
 
+    section .PlugBlockeditorGrillaDoble:nth-child(even) .item-pointer {
+      @apply !items-end;
+    }
+
     section .portable-text {
-      @apply prose  max-w-full p-3 md:px-12 md:py-0 prose-sm md:prose-base;
+      @apply prose  max-w-full p-3 md:px-12 md:py-0 prose-sm prose-emerald md:prose-base;
       text-wrap: balance;
+    }
+
+    section .PlugBlockeditorGrillaDoble .portable-text ul {
+      list-style-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik05IDIwSDRhMSAxIDAgMCAxLTEtMWMwLTIgMy4zNzgtNC45MDcgNC02Yy0xIDAtNC0uNS00LTJjMC0yIDQtMy41IDYtNGMwLTEuNS41LTQgMy00czMgMi41IDMgNGMyIC41IDYgMiA2IDRjMCAxLjUtMyAyLTQgMmMuNjIyIDEuMDkzIDQgNCA0IDZhMSAxIDAgMCAxLTEgMWgtNWMtMSAwLTItNC0zLTRzLTIgNC0zIDR6Ii8+PC9zdmc+") !important;
     }
   </style>
 </Layout>

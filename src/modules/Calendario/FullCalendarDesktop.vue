@@ -95,7 +95,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
 
 <template>
   <div
-    class="w-full gap-1 mx-auto mt-2 bg-white shadow-lg mb-20 grid lg:grid-cols-6 max-w-2xl lg:max-w-7xl sm:p-3 md:gap-2 rounded-xl"
+    class="w-full gap-1 mx-auto mt-2 bg-white shadow-lg mb-20 grid lg:grid-cols-6 max-w-2xl lg:max-w-full sm:p-3 md:gap-2 rounded-xl 2xl:mx-16"
   >
     <div class="lg:col-span-2 lg:p-2 lg:pt-0 lg:px-2">
       <div

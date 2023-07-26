@@ -5,23 +5,21 @@ export default function Example() {
   return (
     <div className="hidden xl:flex">
       <Menu as="div" className="relative font-sans">
-        <div>
-          <Menu.Button className="rounded-md outline-none focus:ring-2 ring-offset-2 cursor-pointer flex items-center text-left hover:text-indigo-600 duration-300 text-gray-900 font-hand text-2xl">
-            Quiénes somos
-            <svg
-              className={`
-                  h-6 w-6 text-indigo-300 transition duration-150 ease-in-out group-hover:text-opacity-80`}
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6l1.41-1.42Z"
-              />
-            </svg>
-          </Menu.Button>
-        </div>
+        <Menu.Button className="rounded-md outline-none focus:ring-2 ring-offset-2 cursor-pointer flex items-center text-left hover:text-indigo-600 duration-300 text-gray-900 font-hand text-2xl">
+          Quiénes somos
+          <svg
+            className={`
+                  h-6 w-6 -translate-x-1 text-indigo-300 transition duration-150 ease-in-out group-hover:text-opacity-80`}
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6l1.41-1.42Z"
+            />
+          </svg>
+        </Menu.Button>
         <Transition
           as={Fragment}
           enter="transition ease-out duration-100"
@@ -39,26 +37,25 @@ export default function Example() {
                     href="/institucional/quienes-somos"
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
-                    } group flex w-full font-sans items-center rounded-md px-2 py-4 text-base`}
+                    } group flex w-full font-hand items-center rounded-md px-2 py-4 text-2xl justify-center`}
                   >
                     Qué es La Cantera
                   </a>
                 )}
               </Menu.Item>
-              
+
               <Menu.Item>
                 {({ active }) => (
                   <a
                     href="/institucional/nuestra-historia"
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
-                    } group flex w-full font-sans items-center rounded-md px-2 py-4 text-base`}
+                    } group flex w-full font-hand items-center rounded-md px-2 py-4 text-2xl justify-center`}
                   >
                     Nuestra historia
                   </a>
                 )}
               </Menu.Item>
-             
             </div>
           </Menu.Items>
         </Transition>

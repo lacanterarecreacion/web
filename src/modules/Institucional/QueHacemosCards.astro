@@ -16,13 +16,13 @@ const QUE_HACEMOS = await useSanityClient().fetch(
   id="que-hacemos"
   class="relative flex-col gap-12 flex items-center justify-center w-full overflow-hidden"
 >
-  <div class="bg-blue-600 w-full ">
+  <div class="bg-blue-200 z-10 w-full">
     <div
-      class="relative z-10 grid p-12 w-full gap-8 px-20 mx-auto QueHacemosGrid max-w-screen-2xl sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4"
+      class="relative z-10 grid p-12 w-full gap-8 px-8 md:px-20 mx-auto QueHacemosGrid max-w-screen-2xl sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4"
     >
       {
         QUE_HACEMOS_HIGHLIGHT.map((post: ItemHacemos) => (
-          <div class="relative flex flex-col items-center justify-start pb-4 overflow-hidden duration-300 bg-white rounded-lg shadow item animate__fadeIn animate__animated animate__slower group hover:shadow-lg">
+          <div class="relative flex flex-col items-center justify-start pb-4 overflow-hidden duration-300 bg-white rounded-lg shadow item  group hover:shadow-lg">
             <h3 class="flex flex-col relative mb-3 items-center justify-center w-full overflow-hidden h-44">
               <img
                 class="object-cover w-full group-hover:scale-105 h-44 duration-300 z-0"
@@ -48,24 +48,38 @@ const QUE_HACEMOS = await useSanityClient().fetch(
       }
     </div>
   </div>
-  <h2
-    class="relative z-10 font-sans text-center max-w-screen-2xl mx-auto w-full text-2xl px-6 text-gray-900 md:text-3xl"
-  >
-    Más acciones
-  </h2>
+  <div class="relative">
+    <h2
+      class="relative z-20 font-hand text-center max-w-screen-2xl mx-auto w-full text-4xl px-6 text-gray-900 md:text-6xl"
+    >
+      Más acciones
+    </h2>
+    <svg
+      class="absolute top-12 z-10 opacity-30 rotate-2"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 369.943 52.38"
+      ><path
+        fill="none"
+        class="stroke-indigo-900 "
+        stroke-dasharray="1.5 8"
+        stroke-linecap="round"
+        stroke-width="2.5"
+        d="M11.523 23.534c57.9-1.92 290.27-11.51 348.42-13.53m-348.77 23.37c57.86-2.47 287.48-12.43 345.81-14.67m-346.98 23.68c57.68-1.92 287.25-10.61 344.69-12.02"
+      ></path></svg
+    >
+  </div>
   <div
-    class="relative z-10 grid w-full gap-8 px-3 mx-auto QueHacemosGrid max-w-6xl pt-6 pb-24 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
+    class="relative z-10 grid w-full gap-8 px-8 mx-auto QueHacemosGrid max-w-6xl pt-6 pb-24 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
   >
     {
       QUE_HACEMOS.map((post: ItemHacemos) => (
-        <div class="relative flex flex-col items-center justify-start pb-4 overflow-hidden duration-300 bg-white rounded-lg shadow item animate__fadeIn animate__animated animate__slower group hover:shadow-lg">
+        <div class="relative flex flex-col items-center justify-start pb-4 overflow-hidden duration-300 bg-white rounded-lg shadow item  group hover:shadow-lg">
           <h3 class="flex flex-col relative items-center justify-center w-full overflow-hidden h-44">
             <img
               class="object-cover w-full group-hover:scale-105 h-44 duration-300 z-0"
               src={urlForImage(post.mainImage).width(300).height(200).url()}
               alt={post.title}
             />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-40% via-emerald-900/50 to-emerald-950 z-0" />
           </h3>
           <p class="w-full flex justify-start items-end z-10 text-base p-4 font-sans font-bold text-left group-hover:underline underline-offset-2">
             <a href={`/que-hacemos/${post.slug?.current}`}>{post.title}</a>
@@ -88,30 +102,3 @@ const QUE_HACEMOS = await useSanityClient().fetch(
   >
   </div>
 </div>
-
-<style>
-  .QueHacemosGrid .item:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  .QueHacemosGrid .item:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  .QueHacemosGrid .item:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  .QueHacemosGrid .item:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-  .QueHacemosGrid .item:nth-child(5) {
-    animation-delay: 0.5s;
-  }
-  .QueHacemosGrid .item:nth-child(6) {
-    animation-delay: 0.6s;
-  }
-  .QueHacemosGrid .item:nth-child(7) {
-    animation-delay: 0.7s;
-  }
-  .QueHacemosGrid .item:nth-child(8) {
-    animation-delay: 0.8s;
-  }
-</style>

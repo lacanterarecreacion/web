@@ -1,9 +1,33 @@
 ---
 const props = Astro.props;
 import { urlForImage } from "@/lib/urlForImage";
+
+const xyz = props.images.imagesGallery;
+
+console.log(xyz.length)
+let numCols;
+switch (xyz.length) {
+    case 1:
+        numCols = 1;
+        break;
+    case 2:
+        numCols = 2;
+        break;
+    case 3:
+        numCols = 3;
+        break;
+    case 4:
+        numCols = 2;
+        break;
+    default: // handle for images more than 4 as per requirements
+        numCols = 4; 
+}
+
 ---
 
-<div class="grid grid-cols-2 gap-0.5">
+
+
+<div class={`grid gap-0.5 grid-cols-${numCols} lg:!grid-cols-${numCols}`}>
   {
     props.images.imagesGallery.map((i: any) => {
       return (
@@ -25,7 +49,7 @@ import { urlForImage } from "@/lib/urlForImage";
             </svg>
           </span>
           <img
-            class="object-cover w-full overflow-hidden h-[400px]"
+            class="object-cover w-full overflow-hidden h-24 md:h-[300px]"
             src={urlForImage(i.asset).width(600).height(600).url()}
           />
         </a>
@@ -33,41 +57,3 @@ import { urlForImage } from "@/lib/urlForImage";
     })
   }
 </div>
-
-<!-- Initialize Swiper -->
-<!-- <script>
-  //@ts-ignore
-  import Swiper from "swiper/bundle";
-  import "swiper/css/bundle";
-  //@ts-ignore
-  const swiper = new Swiper(".mySwiper", {
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    slidesPerView:1,
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
-    navigation: {
-      nextEl: ".swiper-button-right",
-      prevEl: ".swiper-button-left",
-    },
-  });
-</script>
-
-<style>
-  .swiper {
-    @apply w-full select-none;
-  }
-
-  .swiper-button-left,
-  .swiper-button-right {
-    @apply bg-white w-12 h-12 absolute top-1/2 z-50 flex justify-center items-center -translate-y-10;
-  }
-
-  .swiper-button-right {
-    @apply right-0;
-  }
-</style> -->
