@@ -17,7 +17,7 @@ const ABOUT = await useSanityClient().fetch(
       class="w-1 h-screen hidden lg:block fixed top-0 left-0 lg:left-1/2 bg-gray-800/10 lg:-translate-x-1 z-10"
     >
       <div
-        class="h-6 w-6 rounded-full ring-white ring-2 bg-emerald-600 z-20 top-1/2 !-translate-y-24 animate-pulse absolute -left-2.5"
+        class="h-6 w-6 rounded-full ring-white ring-2 bg-gray-800 z-20 top-1/2 !-translate-y-24 animate-pulse absolute -left-2.5"
       >
       </div>
     </div>
@@ -81,7 +81,7 @@ const ABOUT = await useSanityClient().fetch(
         </g>
       </svg>
     </div>
-    <div class="px-6">
+    <div class="px-6 -mt-12">
       <div
         class="grid bg-white bottom-0 relative shadow-lg z-[10] rounded-lg mb-12 px-10 border-4 border-emerald-800 md:grid-cols-3 gap-12 py-20 max-w-3xl mx-auto"
       >
@@ -93,7 +93,7 @@ const ABOUT = await useSanityClient().fetch(
             >
               <span>{post.heading}</span>
               <div class="absolute -top-6 left-0 right-0 flex justify-center items-center opacity-0 group-hover:opacity-100 duration-300">
-                <div class="h-3 w-3 rounded-full  ring-white  ring-2 bg-emerald-600 z-20 animate-bounce" />
+                <div class="h-3 w-3 rounded-full  ring-white  ring-2 bg-gray-800 z-20 animate-bounce" />
               </div>
             </a>
           ))
@@ -116,6 +116,10 @@ const ABOUT = await useSanityClient().fetch(
       @apply bg-orange-100;
     }
 
+    section .PlugBlockeditorGrillaDoble:nth-child(even) a {
+      @apply text-orange-600;
+    }
+
     section .PlugBlockeditorGrillaDoble:nth-child(even) .item-pointer {
       @apply !items-end;
     }
@@ -126,7 +130,20 @@ const ABOUT = await useSanityClient().fetch(
     }
 
     section .PlugBlockeditorGrillaDoble .portable-text ul {
-      list-style-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik05IDIwSDRhMSAxIDAgMCAxLTEtMWMwLTIgMy4zNzgtNC45MDcgNC02Yy0xIDAtNC0uNS00LTJjMC0yIDQtMy41IDYtNGMwLTEuNS41LTQgMy00czMgMi41IDMgNGMyIC41IDYgMiA2IDRjMCAxLjUtMyAyLTQgMmMuNjIyIDEuMDkzIDQgNCA0IDZhMSAxIDAgMCAxLTEgMWgtNWMtMSAwLTItNC0zLTRzLTIgNC0zIDR6Ii8+PC9zdmc+") !important;
+      @apply list-none pl-3;
+    }
+
+    section .PlugBlockeditorGrillaDoble .portable-text ul li::before {
+      content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+      @apply text-emerald-600;
+      font-weight: bold; /* If you want it to be bold */
+      display: inline-block; /* Needed to add space between the bullet and the text */
+      width: 1em; /* Also needed for space (tweak if needed) */
+      margin-left: -1em; /* Also needed for space (tweak if needed) */
+    }
+
+    section .PlugBlockeditorGrillaDoble:nth-child(even) .portable-text ul li::before {
+      @apply text-orange-600;
     }
   </style>
 </Layout>

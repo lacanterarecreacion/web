@@ -6,6 +6,10 @@ import { urlForImage } from "@/lib/urlForImage";
 const RECURSOS = await useSanityClient().fetch(
   `*[_type == "recursos"]  | order(title asc)`
 );
+
+const currentURL = Astro.url.pathname;
+const currentSlug = currentURL.replace('/recursos/', '');
+
 ---
 
 <div
@@ -16,34 +20,45 @@ const RECURSOS = await useSanityClient().fetch(
     class="RecursosGrid relative z-10 grid w-full gap-6 px-3 py-12 lg:px-20 mx-auto md:grid-cols-2 max-w-screen-2xl lg:grid-cols-3"
   >
     {
-      RECURSOS.map((post: Recurso) => (
-        <div class="item ">
-          <div class="w-full max-w-sm mx-auto overflow-hidden text-left align-middle transition-all duration-300 transform bg-white shadow-lg sm:max-w-full rounded-2xl hover:shadow-2xl">
-            <div class="relative flex items-center justify-center w-full pt-3 overflow-hidden bg-red-800 h-44 patternForest">
-              <div class="absolute inset-0 bg-gradient-to-b from-red-500 via-50% via-red-700/80 to-red-700/90 z-0">
-                <img
-                  class="object-cover w-full group-hover:scale-105 h-44 duration-300 z-0"
-                  src={urlForImage(post.mainImage).width(400).height(200).url()}
-                  alt={post.title}
-                />
+      RECURSOS.map((post) => {
+        // Assuming that the slug is a string
+        if (post.slug?.current !== currentSlug) {
+          return (
+            <div class="item">
+              <div class="w-full max-w-sm mx-auto overflow-hidden text-left align-middle transition-all duration-300 transform bg-white shadow-lg sm:max-w-full rounded-2xl hover:shadow-2xl">
+                <div class="relative flex items-center justify-center w-full pt-3 overflow-hidden bg-red-800 h-44 patternForest">
+                  <div class="absolute inset-0 bg-gradient-to-b from-red-500 via-50% via-red-700/80 to-red-700/90 z-0">
+                    <img
+                      class="object-cover w-full group-hover:scale-105 h-44 duration-300 z-0"
+                      src={urlForImage(post.mainImage)
+                        .width(400)
+                        .height(200)
+                        .url()}
+                      alt={post.title}
+                    />
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 gap-3 p-3 min-h-[5rem]">
+                  <a
+                    href={`/recursos/${post.slug?.current}`}
+                    class="z-10 underline underline-offset-4 col-span-2 flex items-start  font-atkinson  justify-start w-full font-medium text-lg text-left text-red-600"
+                  >
+                    {post.title}
+                  </a>
+                  <div class="flex justify-end items-start">
+                    <a
+                      href={`/recursos/${post.slug?.current}`}
+                      class="btn !text-xs red"
+                    >
+                      Ver
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="grid grid-cols-3 gap-3 p-3 min-h-[5rem]">
-              <a href={`/recursos/${post.slug?.current}`} class="z-10 underline underline-offset-4 col-span-2 flex items-start  font-atkinson  justify-start w-full font-medium text-lg text-left text-red-600">
-                {post.title}
-              </a>
-              <div class="flex justify-end items-start">
-                <a
-                  href={`/recursos/${post.slug?.current}`}
-                  class="btn !text-xs red"
-                >
-                  Ver
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))
+          );
+        }
+      })
     }
   </div>
 </div>
