@@ -8,14 +8,14 @@ const pathname = new URL(Astro.request.url).pathname;
 <nav aria-label="Top">
   <a
     class={`${
-      pathname === "/institucional/quienes-somos"
+      pathname === "/quienes-somos/la-cantera"
         ? "active"
-        : "" || pathname.includes("/institucional/quienes-somos")
+        : "" || pathname.includes("/quienes-somos/la-cantera")
         ? "active"
         : ""
     } `}
     rel="prefetch"
-    href="/institucional/quienes-somos"
+    href="/quienes-somos/la-cantera"
   >
     Quiénes somos
   </a>

@@ -34,7 +34,7 @@ export default function Example() {
               <Menu.Item>
                 {({ active }) => (
                   <a
-                    href="/institucional/quienes-somos"
+                    href="/quienes-somos/la-cantera"
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full font-hand items-center rounded-md px-2 py-4 text-2xl justify-center`}
@@ -47,7 +47,7 @@ export default function Example() {
               <Menu.Item>
                 {({ active }) => (
                   <a
-                    href="/institucional/nuestra-historia"
+                    href="/quienes-somos/nuestra-historia"
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full font-hand items-center rounded-md px-2 py-4 text-2xl justify-center`}

@@ -8,34 +8,34 @@ const pathname = new URL(Astro.request.url).pathname;
 <nav aria-label="Top">
   <div class="flex flex-col justify-center mb-6 items-center gap-5 xl:hidden">
     <a
-      href="/institucional/quienes-somos"
+      href="/quienes-somos/la-cantera"
       class="text-2xl text-indigo-700 font-trash  "
     >
       Quiénes somos
     </a>
     <a
       class={`${
-        pathname === "/institucional/quienes-somos"
+        pathname === "/quienes-somos/la-cantera"
           ? "active"
-          : "" || pathname.includes("/institucional/quienes-somos")
+          : "" || pathname.includes("/quienes-somos/la-cantera")
           ? "active"
           : ""
       } text-lg !pr-0`}
       rel="prefetch"
-      href="/institucional/quienes-somos"
+      href="/quienes-somos/la-cantera"
     >
       Qué es La Cantera
     </a>
     <a
       class={`${
-        pathname === "/institucional/nuestra-historia"
+        pathname === "/quienes-somos/nuestra-historia"
           ? "active"
-          : "" || pathname.includes("/institucional/nuestra-historia")
+          : "" || pathname.includes("/quienes-somos/nuestra-historia")
           ? "active"
           : ""
       } text-lg !pr-0`}
       rel="prefetch"
-      href="/institucional/nuestra-historia"
+      href="/quienes-somos/nuestra-historia"
     >
       Nuestra historia
     </a>

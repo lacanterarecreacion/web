@@ -10,23 +10,23 @@ switch (xyz.length) {
         numCols = 1;
         break;
     case 2:
-        numCols = 2;
+        numCols = 1;
         break;
     case 3:
-        numCols = 3;
+        numCols = 1;
         break;
     case 4:
         numCols = 2;
         break;
     default: // handle for images more than 4 as per requirements
-        numCols = 4; 
+        numCols = 2; 
 }
 
 ---
 
 
 
-<div class={`grid gap-0.5 grid-cols-${numCols} lg:!grid-cols-${numCols}`}>
+<div class={`grid sticky top-0 gap-0.5 grid-cols-${numCols} lg:!grid-cols-${numCols}`}>
   {
     props.images.imagesGallery.map((i: any) => {
       return (
