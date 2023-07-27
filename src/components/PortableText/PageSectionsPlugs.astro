@@ -36,9 +36,9 @@ import slugify from "@/lib/createSlug";
           el = (
             <div
               id={slugify(c.heading)}
-              class="PlugBlockeditorGrillaDoble min-h-[80vh] p-6 flex md:flex-row flex-col"
+              class="PlugBlockeditorGrillaDoble pattern-grid-lg text-gray-900/5 bg-fixed md:min-h-screen p-6 md:gap-6 flex md:flex-row flex-col"
             >
-              <div class="item-pointer w-full relative flex flex-col justify-start items-start">
+              <div class="item-pointer text-gray-900 w-full relative flex flex-col justify-start items-start">
                 <div class=" sticky top-36 w-full py-6 bg-white shadow-md">
                   <h2 class="md:text-5xl text-3xl font-hand p-3 md:px-12 md:pt-6">
                     {c.heading}
@@ -46,7 +46,7 @@ import slugify from "@/lib/createSlug";
                   <PortableText portableText={c.body} />
                 </div>
               </div>
-              <div class="relative    w-full">
+              <div class="relative pr-1 w-full">
                 <PlugGalleryFour images={c} />
               </div>
             </div>
