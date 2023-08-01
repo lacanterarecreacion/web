@@ -13,7 +13,6 @@ const routes = [
   "/contacto/",
 ];
 
-
 const currentRoute = new URL(Astro.request.url).pathname;
 const validRoutes = routes.filter((item: any) => item !== currentRoute);
 
@@ -22,17 +21,16 @@ function getRandomRoute(min: number, max: number) {
   return routes[randomIndex];
 }
 const randomRoute = getRandomRoute(0, validRoutes.length);
-
 ---
 
-<a 
-  href={randomRoute}
+<!-- href={randomRoute} -->
+<a
+  href="/random"
   aria-label="Ir a una sección aleatoria"
   class="fixed group left-0 bottom-0 bg-indigo-600 fill-white w-12 m-3 flex justify-center items-center rounded-full cursor-pointer z-50 shadow h-12 IconRollingDice"
 >
   <IconRollingDice />
 </a>
-
 
 <style is:global>
   .institucional-nuestra-historia .IconRollingDice {
@@ -43,11 +41,11 @@ const randomRoute = getRandomRoute(0, validRoutes.length);
     @apply bg-amber-600 fill-white;
   }
 
-  .contacto  .IconRollingDice {
+  .contacto .IconRollingDice {
     @apply bg-emerald-600 fill-yellow-100;
   }
 
-  .recursos  .IconRollingDice {
+  .recursos .IconRollingDice {
     @apply bg-amber-600 fill-emerald-100;
   }
 </style>

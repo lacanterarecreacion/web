@@ -20,7 +20,7 @@ const ABOUT = await useSanityClient().fetch(
       >
       </div>
     </div>
-    <div class=" relative pb-12 pt-12 bg-fixed bg-cover bg-bottom">
+    <div class="relative pb-12 pt-12 bg-fixed bg-cover bg-bottom">
       <div class="z-30 relative">
         <h1
           class="text-4xl text-emerald-800 z-30 top-6 md:text-5xl font-hand text-center relative"
@@ -88,9 +88,9 @@ const ABOUT = await useSanityClient().fetch(
           ABOUT.content.map((post: any) => (
             <a
               href={`#${slugify(post.heading)}`}
-              class="text-lg px-3 md:text-xl text-center cursor-pointer underline underline-offset-4 decoration-emerald-600/20 relative flex justify-center items-center duration-300 hover:underline-offset-8 group"
+              class="text-lg px-3 md:text-3xl text-center cursor-pointer underline underline-offset-4 decoration-emerald-600/20 relative flex justify-center items-center duration-300 hover:underline-offset-8 group"
             >
-              <span>{post.heading}</span>
+              <span class="font-hand">{post.heading}</span>
               <div class="absolute -top-6 left-0 right-0 flex justify-center items-center opacity-0 group-hover:opacity-100 duration-300">
                 <div class="h-3 w-3 rounded-full  ring-white  ring-2 bg-amber-600 z-20 animate-bounce" />
               </div>
@@ -101,60 +101,63 @@ const ABOUT = await useSanityClient().fetch(
     </div>
     <PageSectionsPlugs content={ABOUT.content} />
   </div>
-
-  <style is:global>
-    section .PlugBlockeditorGrillaDoble {
-      @apply scroll-mt-20;
-    }
-
-    section .PlugBlockeditorGrillaDoble:nth-child(odd) {
-      @apply md:!flex-row-reverse bg-emerald-100;
-    }
-
-    section .PlugBlockeditorGrillaDoble:nth-child(even) {
-      @apply bg-orange-100;
-    }
-
-    section .PlugBlockeditorGrillaDoble:nth-child(even) a {
-      @apply text-orange-600;
-    }
-
-    section .PlugBlockeditorGrillaDoble:nth-child(even) .item-pointer {
-      @apply !items-end;
-    }
-
-    section .portable-text {
-      @apply prose  max-w-full p-3 md:px-12 md:py-0 prose-sm prose-emerald md:prose-base;
-      text-wrap: balance;
-    }
-
-    section .PlugBlockeditor#linea-de-tiempo {
-      @apply relative z-50 bg-white shadow-lg ring ring-gray-300 rounded-sm;
-    }
-
-    section .PlugBlockeditorGrillaDoble .portable-text ul {
-      @apply list-none pl-3;
-    }
-
-    section .PlugBlockeditorGrillaDoble .portable-text ul li  {
-      text-wrap: initial;
-    }
-
-    section .PlugBlockeditorGrillaDoble .portable-text ul li::before {
-      content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
-      @apply text-emerald-600;
-      font-weight: bold; /* If you want it to be bold */
-      display: inline-block; /* Needed to add space between the bullet and the text */
-      width: 1em; /* Also needed for space (tweak if needed) */
-      margin-left: -1em; /* Also needed for space (tweak if needed) */
-    }
-
-    section .PlugBlockeditorGrillaDoble .portable-text ul li li::before {
-      @apply text-gray-400;
-    }
-
-    section .PlugBlockeditorGrillaDoble:nth-child(even) .portable-text ul li::before {
-      @apply text-orange-600;
-    }
-  </style>
 </Layout>
+<style is:global>
+  section .PlugBlockeditorGrillaDoble {
+    @apply scroll-mt-20;
+  }
+
+  section .PlugBlockeditorGrillaDoble:nth-child(odd) {
+    @apply md:!flex-row-reverse bg-emerald-100;
+  }
+
+  section .PlugBlockeditorGrillaDoble:nth-child(even) {
+    @apply bg-orange-100;
+  }
+
+  section .PlugBlockeditorGrillaDoble:nth-child(even) a {
+    @apply text-orange-600;
+  }
+
+  section .PlugBlockeditorGrillaDoble:nth-child(even) .item-pointer {
+    @apply !items-end;
+  }
+
+  section .portable-text {
+    @apply prose  max-w-full p-3 md:px-12 md:py-0 prose-sm prose-emerald md:prose-base;
+    text-wrap: balance;
+  }
+
+  section .PlugBlockeditor#linea-de-tiempo {
+    @apply relative z-50 bg-white shadow-lg ring ring-gray-300 rounded-sm;
+  }
+
+  section .PlugBlockeditorGrillaDoble .portable-text ul {
+    @apply list-none pl-3;
+  }
+
+  section .PlugBlockeditorGrillaDoble .portable-text ul li {
+    text-wrap: initial;
+  }
+
+  section .PlugBlockeditorGrillaDoble .portable-text ul li::before {
+    content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    @apply text-emerald-600;
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+    margin-left: -1em; /* Also needed for space (tweak if needed) */
+  }
+
+  section .PlugBlockeditorGrillaDoble .portable-text ul li li::before {
+    @apply text-gray-400;
+  }
+
+  section
+    .PlugBlockeditorGrillaDoble:nth-child(even)
+    .portable-text
+    ul
+    li::before {
+    @apply text-orange-600;
+  }
+</style>
