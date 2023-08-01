@@ -12,7 +12,7 @@
     <span id="randomRouteResult"></span> (<span id="score-result"></span>)
   </div>
   <div
-    class="absolute bottom-40 left-0 right-0 flex justify-center items-center flex-col"
+    class="absolute bottom-24 left-0 right-0 flex justify-center items-center flex-col"
   >
     <div class="ui-controls grid grid-cols-2 gap-3">
       <a
@@ -20,7 +20,7 @@
         aria-label="Ir a una sección aleatoria"
         class="btn red !text-white"
       >
-        Ir a la pagina
+        <span class="!text-white">Ir a la página</span>
       </a>
       <button class="btn blue" id="roll-btn"> Tirar nuevamente</button>
     </div>
@@ -73,11 +73,11 @@
       45,
       window.innerWidth / window.innerHeight,
       0.1,
-      50
+      500
     );
-    camera.position.set(0, 2, 0).multiplyScalar(4);
     // camera.position.set(0, -0.5, 4).multiplyScalar(7);
-    camera.rotation.x += -Math.PI / 2;
+     camera.position.set(0, 2, 0).multiplyScalar(3);
+     camera.rotation.x += -Math.PI / 2;
 
     updateSceneSize();
 
@@ -85,11 +85,7 @@
     scene.add(ambientLight);
     const topLight = new THREE.PointLight(0xffffff, 2);
     topLight.position.set(10, 15, 0);
-    topLight.castShadow = true;
-    topLight.shadow.mapSize.width = 2048;
-    topLight.shadow.mapSize.height = 2048;
-    topLight.shadow.camera.near = 5;
-    topLight.shadow.camera.far = 400;
+    topLight.castShadow = false;
     scene.add(topLight);
 
     createFloor();
@@ -115,9 +111,13 @@
   function createFloor() {
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(1000, 1000),
-      new THREE.ShadowMaterial({
-        opacity: 0,
-      })
+       new THREE.ShadowMaterial({
+         opacity: .5,
+       }),
+      // new THREE.MeshStandardMaterial({
+      //   // color: "#1e3a89",
+      //   color: "lightblue",
+      // })
     );
     floor.receiveShadow = true;
     floor.position.y = -7;
@@ -136,14 +136,15 @@
     physicsWorld.addBody(floorBody);
 
     const wall1 = new THREE.Mesh(
-      new THREE.PlaneGeometry(90, 20),
+      new THREE.PlaneGeometry(30, 20),
       new THREE.MeshStandardMaterial({
-        color: 0xeeeeee,
+        // color: "#1e3a89",
+        color: "#1e2b6a",
       })
     );
     wall1.receiveShadow = true;
-    wall1.position.y = 20;
-    wall1.position.z = -3;
+    wall1.position.y = 2;
+    wall1.position.z = -4;
     // wall1.quaternion.setFromAxisAngle(
     //   new THREE.Vector3(-1, -1, 0),
     //   Math.PI * 0.5
@@ -162,19 +163,19 @@
     const wall2 = new THREE.Mesh(
       new THREE.PlaneGeometry(90, 20),
       new THREE.MeshStandardMaterial({
-        color: "#1e2b6a",
+        // color: "#1e2b6a",
+        color: "#1e2b6a"
       })
     );
     wall2.receiveShadow = true;
-    wall2.position.y = 1;
-    wall2.position.x = -3;
-    wall2.position.z = -3;
+    wall2.position.y = 2;
+    wall2.position.x = -13;
+    wall2.position.z = -12;
     // wall2.quaternion.setFromAxisAngle(
     //   new THREE.Vector3(-1, -1, 0),
     //   Math.PI * 0.5
     // );
-    wall2.rotation.y += Math.PI / 3;
-    wall2.rotation.x += Math.PI / 45;
+    wall2.rotation.y += Math.PI / 2;
     scene.add(wall2);
 
     const wallBody2 = new CANNON.Body({
@@ -184,6 +185,60 @@
     wallBody2.position.copy(wall2.position);
     wallBody2.quaternion.copy(wall2.quaternion);
     physicsWorld.addBody(wallBody2);
+
+
+    const wall3 = new THREE.Mesh(
+      new THREE.PlaneGeometry(90, 20),
+      new THREE.MeshStandardMaterial({
+        // color: "#1e2b6a",
+        color: "#1e2b6a"
+      })
+    );
+    wall3.receiveShadow = true;
+    wall3.position.y = 2;
+    wall3.position.x = 13;
+    wall3.position.z = -2;
+    // wall3.quaternion.setFromAxisAngle(
+    //   new THREE.Vector3(-1, -1, 0),
+    //   Math.PI * 0.5
+    // );
+    wall3.rotation.y += -Math.PI / 2;
+    scene.add(wall3);
+
+    const wallBody3 = new CANNON.Body({
+      type: CANNON.Body.STATIC,
+      shape: new CANNON.Plane(),
+    });
+    wallBody3.position.copy(wall3.position);
+    wallBody3.quaternion.copy(wall3.quaternion);
+    physicsWorld.addBody(wallBody3);
+
+    const wall4 = new THREE.Mesh(
+      new THREE.PlaneGeometry(90, 20),
+      new THREE.MeshStandardMaterial({
+        color: "#1e2b6a",
+      })
+    );
+    wall4.receiveShadow = true;
+    wall4.position.y = 2;
+    wall4.position.x = 20;
+    wall4.position.z = 4;
+    // wall4.quaternion.setFromAxisAngle(
+    //   new THREE.Vector3(-1, -1, 0),
+    //   Math.PI * 0.5
+    // );
+    wall4.rotation.y += -Math.PI;
+
+    scene.add(wall4);
+
+    const wallBody4 = new CANNON.Body({
+      type: CANNON.Body.STATIC,
+      shape: new CANNON.Plane(),
+    });
+    wallBody4.position.copy(wall4.position);
+    wallBody4.quaternion.copy(wall4.quaternion);
+    physicsWorld.addBody(wallBody4);
+
   }
 
   function createDiceMesh() {
@@ -200,7 +255,7 @@
     const diceMesh = new THREE.Group();
     const innerMesh = new THREE.Mesh(createInnerGeometry(), boxMaterialInner);
     const outerMesh = new THREE.Mesh(createBoxGeometry(), boxMaterialOuter);
-    outerMesh.castShadow = true;
+    outerMesh.castShadow = false;
     diceMesh.add(innerMesh, outerMesh);
 
     return diceMesh;
