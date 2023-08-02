@@ -74,6 +74,8 @@ import Logo from "@/components/Icons/Logo.astro";
   initPhysics();
   initScene();
 
+  
+
   window.addEventListener("resize", updateSceneSize);
   rollBtn.addEventListener("click", throwDice);
 
@@ -96,7 +98,7 @@ import Logo from "@/components/Icons/Logo.astro";
     );
     // camera.position.set(0, -0.5, 4).multiplyScalar(7);
     //  camera.position.set(0, 2, 0).multiplyScalar(3);
-    camera.position.set(0, 6, 0);
+    camera.position.set(0, 12, 0);
 
     camera.rotation.x += -Math.PI / 2;
 
@@ -165,7 +167,7 @@ import Logo from "@/components/Icons/Logo.astro";
     );
     wall1.receiveShadow = false;
     wall1.position.y = 2;
-    wall1.position.z = -3;
+    wall1.position.z = -5;
     // wall1.quaternion.setFromAxisAngle(
     //   new THREE.Vector3(-1, -1, 0),
     //   Math.PI * 0.5
@@ -190,7 +192,7 @@ import Logo from "@/components/Icons/Logo.astro";
     );
     wall2.receiveShadow = false;
     wall2.position.y = 2;
-    wall2.position.x = -3;
+    wall2.position.x = -5;
     wall2.position.z = -12;
     // wall2.quaternion.setFromAxisAngle(
     //   new THREE.Vector3(-1, -1, 0),
@@ -216,8 +218,8 @@ import Logo from "@/components/Icons/Logo.astro";
     );
     wall3.receiveShadow = false;
     wall3.position.y = 2;
-    wall3.position.x = 3;
-    wall3.position.z = -2;
+    wall3.position.x = 4;
+    wall3.position.z = -12;
     // wall3.quaternion.setFromAxisAngle(
     //   new THREE.Vector3(-1, -1, 0),
     //   Math.PI * 0.5
@@ -242,7 +244,7 @@ import Logo from "@/components/Icons/Logo.astro";
     wall4.receiveShadow = false;
     wall4.position.y = 2;
     wall4.position.x = 20;
-    wall4.position.z = 4;
+    wall4.position.z = 5;
     // wall4.quaternion.setFromAxisAngle(
     //   new THREE.Vector3(-1, -1, 0),
     //   Math.PI * 0.5
@@ -536,8 +538,8 @@ import Logo from "@/components/Icons/Logo.astro";
 
       const force = 3 + 5 * Math.random();
       d.body.applyImpulse(
-        new CANNON.Vec3(-force, force, 0),
-        new CANNON.Vec3(0.1, 0.1, 0.2)
+        new CANNON.Vec3(-force * 2, force, 0),
+        new CANNON.Vec3(0, 0, 0.2)
       );
 
       d.body.allowSleep = true;
