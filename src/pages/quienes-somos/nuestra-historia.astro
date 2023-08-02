@@ -18,9 +18,12 @@ const ABOUT = await useSanityClient().fetch(
       <div
         class="h-4 w-4 rounded-full ring-white ring-2 bg-amber-600 z-20 top-36 animate-pulse absolute -left-1.5 shadow"
       >
+        <span
+          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"
+        ></span>
       </div>
     </div>
-    <div class="relative pb-12 pt-12 bg-fixed bg-cover bg-bottom">
+    <!-- <div class="relative pb-12 pt-12 bg-fixed bg-cover bg-bottom">
       <div class="z-30 relative">
         <h1
           class="text-4xl text-emerald-800 z-30 top-6 md:text-5xl font-hand text-center relative"
@@ -52,13 +55,13 @@ const ABOUT = await useSanityClient().fetch(
         class="absolute inset-0 z-0 bg-gradient-to-br from-emerald-100/60 to-emerald-200/90"
       >
       </div>
-    </div>
+    </div> -->
     <div class="relative px-6 mt-40">
       <h1
         class="text-emerald-900 max-w-sm mx-auto text-5xl font-hand text-center relative z-30 py-12"
         style="text-wrap: balance"
       >
-        Actividades realizadas
+        Nuestra Historia
       </h1>
       <svg
         class="absolute hidden md:block w-full max-w-lg top-1 mx-auto z-20 left-1/2 -translate-x-1/2"
@@ -92,7 +95,9 @@ const ABOUT = await useSanityClient().fetch(
             >
               <span class="font-hand">{post.heading}</span>
               <div class="absolute -top-6 left-0 right-0 flex justify-center items-center opacity-0 group-hover:opacity-100 duration-300">
-                <div class="h-3 w-3 rounded-full  ring-white  ring-2 bg-amber-600 z-20 animate-bounce" />
+                <div class="h-3 w-3 rounded-full  ring-white  ring-2 bg-amber-600 z-20 animate-bounce">
+                  <span class="animate-ping top-0 left-0 absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
+                </div>
               </div>
             </a>
           ))
