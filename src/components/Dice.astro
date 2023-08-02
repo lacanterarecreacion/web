@@ -126,7 +126,7 @@ import Logo from "@/components/Icons/Logo.astro";
       allowSleep: true,
       gravity: new CANNON.Vec3(0, -30, 0),
     });
-    physicsWorld.defaultContactMaterial.restitution = 0.5;
+    physicsWorld.defaultContactMaterial.restitution = 0.6;
   }
 
   function createFloor() {
@@ -190,7 +190,7 @@ import Logo from "@/components/Icons/Logo.astro";
     );
     wall2.receiveShadow = false;
     wall2.position.y = 2;
-    wall2.position.x = -5;
+    wall2.position.x = -3.4;
     wall2.position.z = -12;
     // wall2.quaternion.setFromAxisAngle(
     //   new THREE.Vector3(-1, -1, 0),
@@ -216,7 +216,7 @@ import Logo from "@/components/Icons/Logo.astro";
     );
     wall3.receiveShadow = false;
     wall3.position.y = 2;
-    wall3.position.x = 4;
+    wall3.position.x = 3.4;
     wall3.position.z = -12;
     // wall3.quaternion.setFromAxisAngle(
     //   new THREE.Vector3(-1, -1, 0),
@@ -534,7 +534,7 @@ import Logo from "@/components/Icons/Logo.astro";
 
       const force = 3 + 5 * Math.random();
       d.body.applyImpulse(
-        new CANNON.Vec3(-force * 0.6, force, 0),
+        new CANNON.Vec3(-force * 0.6, force, -force),
         new CANNON.Vec3(0, 0, 0.3)
       );
 
