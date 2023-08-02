@@ -2,24 +2,18 @@
 import Logo from "@/components/Icons/Logo.astro";
 ---
 
-<div class="fixed top-0 left-0 flex items-center justify-between right-0 h-20 bg-white z-[70]">
-  <a
-    href="/"
-    rel="prefetch"
-    class=" z-[70] flex items-center justify-start h-16 px-2 sm:h-16 md:px-3 top-0 left-0"
-  >
-    <Logo />
-  </a>
-  <div
-    class="text-gray-900 font-hand text-3xl font-bold text-center rounded-md flex px-1 py-0.5 gap-3"
-  >
-    <div class="font-hand">
-      página <span id="score-result" class="font-hand"></span>:
-    </div>
-    <span class="text-green-600 font-hand" id="randomRouteResult"></span>
-  </div>
-</div>
 <main class="fixed inset-0 z-[60]">
+  <div
+    class="fixed top-0 left-0 flex items-center justify-center right-0 h-20 z-[60]"
+  >
+    <a
+      href="/"
+      rel="prefetch"
+      class="z-[70] flex items-center justify-start rounded h-16 px-2 sm:h-20 md:px-3 top-3 relative left-0"
+    >
+      <Logo />
+    </a>
+  </div>
   <div
     class="absolute inset-0 overflow-hidden text-gray-700 bg-gray-900 content pattern-grid-lg"
   >
@@ -28,21 +22,28 @@ import Logo from "@/components/Icons/Logo.astro";
   <div
     class="absolute left-0 right-0 flex flex-col items-center justify-center bottom-4"
   >
-    <div class="grid grid-cols-2 gap-3 ui-controls">
+    <div
+      class="text-gray-900 font-hand text-xl md:text-3xl text-center rounded-md -top-2 relative flex px-1 py-0.5 gap-3"
+    >
       <a
         id="randomRoute"
         aria-label="Ir a una sección aleatoria"
-        class="btn red !text-white"
+        class="btn yellow !text-white"
       >
-        <span class="!text-white">Ir a la página</span>
+        <span class="!text-white ml-2">Página</span>
+        <span id="randomRouteResult" class="ml-2 !text-white"></span>
+        <span id="score-result" class="hidden"></span>
       </a>
-      <button class="btn yellow" id="roll-btn"> Tirar nuevamente</button>
+    </div>
+    <div class="flex justify-center items-center gap-3 ui-controls">
+      <button class="btn blue" id="roll-btn"> Tirar nuevamente</button>
     </div>
   </div>
 </main>
 
 <script>
   import * as CANNON from "https://cdn.skypack.dev/cannon-es";
+  import Stats from "stats.js";
 
   import * as THREE from "three";
   import * as BufferGeometryUtils from "three/addons/utils/BufferGeometryUtils.js";
@@ -53,6 +54,10 @@ import Logo from "@/components/Icons/Logo.astro";
   const randomRouteResult = document.querySelector("#randomRouteResult");
 
   const rollBtn = document.querySelector("#roll-btn");
+
+  // const stats = new Stats();
+  // stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+  // document.body.appendChild(stats.dom);
 
   let renderer, scene, camera, diceMesh, physicsWorld;
 
@@ -119,9 +124,9 @@ import Logo from "@/components/Icons/Logo.astro";
   function initPhysics() {
     physicsWorld = new CANNON.World({
       allowSleep: true,
-      gravity: new CANNON.Vec3(0, -30, 0),
+      gravity: new CANNON.Vec3(0, -60, 0),
     });
-    physicsWorld.defaultContactMaterial.restitution = 0.3;
+    physicsWorld.defaultContactMaterial.restitution = 0.5;
   }
 
   function createFloor() {
@@ -155,7 +160,7 @@ import Logo from "@/components/Icons/Logo.astro";
       new THREE.PlaneGeometry(30, 20),
       new THREE.MeshStandardMaterial({
         // color: "#1e3a89",
-        color: "#ffffff",
+        color: "#e0fcee",
       })
     );
     wall1.receiveShadow = false;
@@ -180,12 +185,12 @@ import Logo from "@/components/Icons/Logo.astro";
       new THREE.PlaneGeometry(90, 20),
       new THREE.MeshStandardMaterial({
         // color: "#1e2b6a",
-        color: "#ffffff",
+        color: "#e0fcee",
       })
     );
     wall2.receiveShadow = false;
     wall2.position.y = 2;
-    wall2.position.x = -13;
+    wall2.position.x = -3;
     wall2.position.z = -12;
     // wall2.quaternion.setFromAxisAngle(
     //   new THREE.Vector3(-1, -1, 0),
@@ -206,12 +211,12 @@ import Logo from "@/components/Icons/Logo.astro";
       new THREE.PlaneGeometry(90, 20),
       new THREE.MeshStandardMaterial({
         // color: "#1e2b6a",
-        color: "#ffffff",
+        color: "#e0fcee",
       })
     );
     wall3.receiveShadow = false;
     wall3.position.y = 2;
-    wall3.position.x = 13;
+    wall3.position.x = 3;
     wall3.position.z = -2;
     // wall3.quaternion.setFromAxisAngle(
     //   new THREE.Vector3(-1, -1, 0),
@@ -231,7 +236,7 @@ import Logo from "@/components/Icons/Logo.astro";
     const wall4 = new THREE.Mesh(
       new THREE.PlaneGeometry(90, 20),
       new THREE.MeshStandardMaterial({
-        color: "#ffffff",
+        color: "#e0fcee",
       })
     );
     wall4.receiveShadow = false;
@@ -492,6 +497,7 @@ import Logo from "@/components/Icons/Logo.astro";
   }
 
   function render() {
+    // stats.begin();
     physicsWorld.fixedStep();
 
     for (const dice of diceArray) {
@@ -500,6 +506,7 @@ import Logo from "@/components/Icons/Logo.astro";
     }
 
     renderer.render(scene, camera);
+    // stats.end();
     requestAnimationFrame(render);
   }
 
@@ -517,7 +524,7 @@ import Logo from "@/components/Icons/Logo.astro";
       d.body.velocity.setZero();
       d.body.angularVelocity.setZero();
 
-      d.body.position = new CANNON.Vec3(6, dIdx * 1.5, 0);
+      d.body.position = new CANNON.Vec3(3, dIdx * -2.5, 0);
       d.mesh.position.copy(d.body.position);
 
       d.mesh.rotation.set(
@@ -530,7 +537,7 @@ import Logo from "@/components/Icons/Logo.astro";
       const force = 3 + 5 * Math.random();
       d.body.applyImpulse(
         new CANNON.Vec3(-force, force, 0),
-        new CANNON.Vec3(0, 0, 0.2)
+        new CANNON.Vec3(0.1, 0.1, 0.2)
       );
 
       d.body.allowSleep = true;
