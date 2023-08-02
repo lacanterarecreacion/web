@@ -28,11 +28,11 @@ import Logo from "@/components/Icons/Logo.astro";
       <a
         id="randomRoute"
         aria-label="Ir a una sección aleatoria"
-        class="btn yellow !text-white"
+        class="btn yellow !text-white gap-2"
       >
-        <span class="!text-white ml-2">Página</span>
-        <span id="randomRouteResult" class="ml-2 !text-white"></span>
-        <span id="score-result" class="hidden"></span>
+        <span class="pagina !text-white">ir a la página</span>
+        <span id="score-result" class="!text-white hidden"></span>
+        <span id="randomRouteResult" class="!text-white"></span>
       </a>
     </div>
     <div class="flex justify-center items-center gap-3 ui-controls">
@@ -73,8 +73,6 @@ import Logo from "@/components/Icons/Logo.astro";
 
   initPhysics();
   initScene();
-
-  
 
   window.addEventListener("resize", updateSceneSize);
   rollBtn.addEventListener("click", throwDice);
@@ -126,7 +124,7 @@ import Logo from "@/components/Icons/Logo.astro";
   function initPhysics() {
     physicsWorld = new CANNON.World({
       allowSleep: true,
-      gravity: new CANNON.Vec3(0, -60, 0),
+      gravity: new CANNON.Vec3(0, -30, 0),
     });
     physicsWorld.defaultContactMaterial.restitution = 0.5;
   }
@@ -162,7 +160,7 @@ import Logo from "@/components/Icons/Logo.astro";
       new THREE.PlaneGeometry(30, 20),
       new THREE.MeshStandardMaterial({
         // color: "#1e3a89",
-        color: "#e0fcee",
+        color: "#bae6fd",
       })
     );
     wall1.receiveShadow = false;
@@ -187,7 +185,7 @@ import Logo from "@/components/Icons/Logo.astro";
       new THREE.PlaneGeometry(90, 20),
       new THREE.MeshStandardMaterial({
         // color: "#1e2b6a",
-        color: "#e0fcee",
+        color: "#bae6fd",
       })
     );
     wall2.receiveShadow = false;
@@ -213,7 +211,7 @@ import Logo from "@/components/Icons/Logo.astro";
       new THREE.PlaneGeometry(90, 20),
       new THREE.MeshStandardMaterial({
         // color: "#1e2b6a",
-        color: "#e0fcee",
+        color: "#bae6fd",
       })
     );
     wall3.receiveShadow = false;
@@ -238,7 +236,7 @@ import Logo from "@/components/Icons/Logo.astro";
     const wall4 = new THREE.Mesh(
       new THREE.PlaneGeometry(90, 20),
       new THREE.MeshStandardMaterial({
-        color: "#e0fcee",
+        color: "#bae6fd",
       })
     );
     wall4.receiveShadow = false;
@@ -474,6 +472,7 @@ import Logo from "@/components/Icons/Logo.astro";
   function showRollResults(score) {
     if (scoreResult.innerHTML === "") {
       scoreResult.innerHTML += score;
+      randomRoute.classList.remove("disabled");
       if (score === 1) {
         randomRoute.setAttribute("href", "/quienes-somos/la-cantera");
         randomRouteResult.innerHTML += "Quienes Somos";
@@ -521,6 +520,7 @@ import Logo from "@/components/Icons/Logo.astro";
   function throwDice() {
     scoreResult.innerHTML = "";
     randomRouteResult.innerHTML = "";
+    randomRoute.classList.add("disabled");
 
     diceArray.forEach((d, dIdx) => {
       d.body.velocity.setZero();
@@ -529,17 +529,13 @@ import Logo from "@/components/Icons/Logo.astro";
       d.body.position = new CANNON.Vec3(3, dIdx * -2.5, 0);
       d.mesh.position.copy(d.body.position);
 
-      d.mesh.rotation.set(
-        2 * Math.PI * Math.random(),
-        0,
-        2 * Math.PI * Math.random()
-      );
+      d.mesh.rotation.set(0, 0, 0);
       d.body.quaternion.copy(d.mesh.quaternion);
 
       const force = 3 + 5 * Math.random();
       d.body.applyImpulse(
-        new CANNON.Vec3(-force * 2, force, 0),
-        new CANNON.Vec3(0, 0, 0.2)
+        new CANNON.Vec3(-force * 0.6, force, 0),
+        new CANNON.Vec3(0, 0, 0.3)
       );
 
       d.body.allowSleep = true;
@@ -639,5 +635,20 @@ import Logo from "@/components/Icons/Logo.astro";
   }
   .ui-controls #score-result:after {
     content: "\200b";
+  }
+
+  .btn {
+    @apply bg-center;
+  }
+
+  .btn.disabled {
+    @apply pointer-events-none opacity-90 bg-no-repeat;
+    background-color: #df7f07;
+    background-size: 30px;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAxMjAgMzAiIGZpbGw9IiNmZmYiPgogICAgPGNpcmNsZSBjeD0iMTUiIGN5PSIxNSIgcj0iMTUiPgogICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InIiIGZyb209IjE1IiB0bz0iMTUiIGJlZ2luPSIwcyIgZHVyPSIwLjhzIiB2YWx1ZXM9IjE1Ozk7MTUiIGNhbGNNb2RlPSJsaW5lYXIiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+CiAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iZmlsbC1vcGFjaXR5IiBmcm9tPSIxIiB0bz0iMSIgYmVnaW49IjBzIiBkdXI9IjAuOHMiIHZhbHVlcz0iMTsuNTsxIiBjYWxjTW9kZT0ibGluZWFyIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgPC9jaXJjbGU+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjE1IiByPSI5IiBmaWxsLW9wYWNpdHk9IjAuMyI+CiAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgZnJvbT0iOSIgdG89IjkiIGJlZ2luPSIwcyIgZHVyPSIwLjhzIiB2YWx1ZXM9Ijk7MTU7OSIgY2FsY01vZGU9ImxpbmVhciIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgICAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJmaWxsLW9wYWNpdHkiIGZyb209IjAuNSIgdG89IjAuNSIgYmVnaW49IjBzIiBkdXI9IjAuOHMiIHZhbHVlcz0iLjU7MTsuNSIgY2FsY01vZGU9ImxpbmVhciIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgIDwvY2lyY2xlPgogICAgPGNpcmNsZSBjeD0iMTA1IiBjeT0iMTUiIHI9IjE1Ij4KICAgICAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJyIiBmcm9tPSIxNSIgdG89IjE1IiBiZWdpbj0iMHMiIGR1cj0iMC44cyIgdmFsdWVzPSIxNTs5OzE1IiBjYWxjTW9kZT0ibGluZWFyIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9ImZpbGwtb3BhY2l0eSIgZnJvbT0iMSIgdG89IjEiIGJlZ2luPSIwcyIgZHVyPSIwLjhzIiB2YWx1ZXM9IjE7LjU7MSIgY2FsY01vZGU9ImxpbmVhciIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgIDwvY2lyY2xlPgo8L3N2Zz4=") !important;
+  }
+
+  .btn.disabled span.pagina {
+    opacity: 0;
   }
 </style>

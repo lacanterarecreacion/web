@@ -1,36 +1,17 @@
 ---
 import IconRollingDice from "@/components/Icons/IconRollingDice.astro";
-
-const routes = [
-  "/quienes-somos/la-cantera",
-  "/quienes-somos/nuestra-historia",
-  "/que-hacemos",
-  "/colabora",
-  "/calendario-ludico",
-  "/",
-  "/que-hacemos/",
-  "/recursos/",
-  "/contacto/",
-];
-
-const currentRoute = new URL(Astro.request.url).pathname;
-const validRoutes = routes.filter((item: any) => item !== currentRoute);
-
-function getRandomRoute(min: number, max: number) {
-  const randomIndex = Math.floor(Math.random() * (max - min + 1));
-  return routes[randomIndex];
-}
-const randomRoute = getRandomRoute(0, validRoutes.length);
 ---
 
-<!-- href={randomRoute} -->
-<a
-  href="/random"
-  aria-label="Ir a una sección aleatoria"
-  class="fixed group left-0 bottom-0 bg-indigo-600 fill-white w-12 m-3 flex justify-center items-center rounded-full cursor-pointer z-50 shadow h-12 IconRollingDice"
+<div
+  aria-hidden="true"
+  class="fixed group left-0 bottom-0 w-12 m-3 flex bg-indigo-600 fill-white IconRollingDice rounded-full justify-center items-center cursor-pointer z-50 shadow h-12"
 >
-  <IconRollingDice />
-</a>
+  <a href="/random" class="" id="button"><IconRollingDice /></a>
+  <div id="tooltip" role="tooltip">
+    Navegar de manera aleatoria
+    <div id="arrow"></div>
+  </div>
+</div>
 
 <style is:global>
   .institucional-nuestra-historia .IconRollingDice {
@@ -48,4 +29,91 @@ const randomRoute = getRandomRoute(0, validRoutes.length);
   .recursos .IconRollingDice {
     @apply bg-amber-600 fill-emerald-100;
   }
+
+  #tooltip {
+    display: none;
+    width: max-content;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @apply text-gray-900 bg-white;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 90%;
+  }
+  #arrow {
+    position: absolute;
+    @apply bg-white;
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+  }
 </style>
+
+<script>
+  import {
+    computePosition,
+    flip,
+    shift,
+    offset,
+    arrow,
+  } from "https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.5.0/+esm";
+
+  const button = document.querySelector("#button");
+  const tooltip = document.querySelector("#tooltip");
+  const arrowElement = document.querySelector("#arrow");
+
+  function update() {
+    computePosition(button, tooltip, {
+      placement: "right",
+      middleware: [
+        offset(16),
+        flip(),
+        shift({ padding: 5 }),
+        arrow({ element: arrowElement }),
+      ],
+    }).then(({ x, y, placement, middlewareData }) => {
+      Object.assign(tooltip.style, {
+        left: `${x}px`,
+        top: `${y}px`,
+      });
+
+      // Accessing the data
+      const { x: arrowX, y: arrowY } = middlewareData.arrow;
+
+      const staticSide = {
+        top: "bottom",
+        right: "left",
+        bottom: "top",
+        left: "right",
+      }[placement.split("-")[0]];
+
+      Object.assign(arrowElement.style, {
+        left: arrowX != null ? `${arrowX}px` : "",
+        top: arrowY != null ? `${arrowY}px` : "",
+        right: "",
+        bottom: "",
+        [staticSide]: "-4px",
+      });
+    });
+  }
+
+  function showTooltip() {
+    tooltip.style.display = "block";
+    update();
+  }
+
+  function hideTooltip() {
+    tooltip.style.display = "";
+  }
+
+  [
+    ["mouseenter", showTooltip],
+    ["mouseleave", hideTooltip],
+    ["focus", showTooltip],
+    ["blur", hideTooltip],
+  ].forEach(([event, listener]) => {
+    button.addEventListener(event, listener);
+  });
+</script>
