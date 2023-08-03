@@ -103,7 +103,7 @@
                 </svg>
               </button>
               <img
-                class="object-cover w-full h-64"
+                class="object-cover w-full h-40 md:h-64"
                 v-if="props.event.extendedProps?.mainImage"
                 :src="imageUrlFor(props.event.extendedProps?.mainImage)"
               />
