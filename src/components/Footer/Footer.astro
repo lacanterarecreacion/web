@@ -14,7 +14,7 @@ import LogoCantera from "@/components/Icons/LogoCantera.astro";
           <FooterNavigation />
         </div>
         <div class="flex flex-col justify-center items-center h-full">
-          <div class="mx-auto">
+          <a href="/random" class="mx-auto">
             <Image
               src="/LogoCantera.png"
               class="object-cover w-full h-32 mt-12"
@@ -23,7 +23,7 @@ import LogoCantera from "@/components/Icons/LogoCantera.astro";
               width={181}
               height={136}
             />
-          </div>
+          </a>
           <div
             class="flex-col items-start justify-center gap-2 pt-1 flex"
           >
@@ -40,8 +40,5 @@ import LogoCantera from "@/components/Icons/LogoCantera.astro";
     class="sm:flex sm:items-center gap-6 sm:justify-center py-6 text-sm text-gray-800 font-sans sm:text-center"
   >
     <span>©{new Date().getFullYear()} Cantera</span>
-    <a href="https://github.com/lacanterarecreacion/web" target="_blank">
-      Repositorio
-    </a>
   </div>
 </div>
