@@ -8,7 +8,7 @@ import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://lacanteraweb.netlify.app/",
+  site: "https://lacanterarecreacion.org.ar/",
   integrations: [
     mdx(),
     react(),
