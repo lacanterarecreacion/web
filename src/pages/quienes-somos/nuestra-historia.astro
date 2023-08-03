@@ -56,7 +56,7 @@ const ABOUT = await useSanityClient().fetch(
       >
       </div>
     </div> -->
-    <div class="relative px-6 mt-40">
+    <div class="relative px-6 mt-12 md:mt-40">
       <h1
         class="text-emerald-900 max-w-sm mx-auto text-5xl font-hand text-center relative z-30 py-12"
         style="text-wrap: balance"
@@ -91,7 +91,7 @@ const ABOUT = await useSanityClient().fetch(
           ABOUT.content.map((post: any) => (
             <a
               href={`#${slugify(post.heading)}`}
-              class="text-lg px-3 md:text-3xl text-center cursor-pointer underline underline-offset-4 decoration-emerald-600/20 relative flex justify-center items-center duration-300 hover:underline-offset-8 group"
+              class="px-3 text-3xl text-center cursor-pointer underline underline-offset-4 decoration-emerald-600/20 relative flex justify-center items-center duration-300 hover:underline-offset-8 group"
             >
               <span class="font-hand">{post.heading}</span>
               <div class="absolute -top-6 left-0 right-0 flex justify-center items-center opacity-0 group-hover:opacity-100 duration-300">

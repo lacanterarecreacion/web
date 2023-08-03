@@ -30,9 +30,11 @@ import Logo from "@/components/Icons/Logo.astro";
         aria-label="Ir a una sección aleatoria"
         class="btn yellow !text-white gap-2"
       >
-        <span class="pagina !text-white">ir a la página</span>
+        <span class="pagina !text-white">&nbsp;</span>
         <span id="score-result" class="!text-white hidden"></span>
         <span id="randomRouteResult" class="!text-white"></span>
+        <span class="pagina !text-white">&nbsp;</span>
+
       </a>
     </div>
     <div class="flex justify-center items-center gap-3 ui-controls">
@@ -475,10 +477,10 @@ import Logo from "@/components/Icons/Logo.astro";
       randomRoute.classList.remove("disabled");
       if (score === 1) {
         randomRoute.setAttribute("href", "/quienes-somos/la-cantera");
-        randomRouteResult.innerHTML += "Quienes Somos";
+        randomRouteResult.innerHTML += "Conocenos";
       } else if (score === 2) {
         randomRoute.setAttribute("href", "/que-hacemos");
-        randomRouteResult.innerHTML += "Que Hacemos";
+        randomRouteResult.innerHTML += "Qué Hace";
       } else if (score === 3) {
         randomRoute.setAttribute("href", "/colabora");
         randomRouteResult.innerHTML += "Colabora";
@@ -526,16 +528,16 @@ import Logo from "@/components/Icons/Logo.astro";
       d.body.velocity.setZero();
       d.body.angularVelocity.setZero();
 
-      d.body.position = new CANNON.Vec3(3, dIdx * -2.5, 0);
+      d.body.position = new CANNON.Vec3(3, dIdx * -2.5, 2);
       d.mesh.position.copy(d.body.position);
 
-      d.mesh.rotation.set(0, 0, 0);
+      d.mesh.rotation.set(0, 0, 3);
       d.body.quaternion.copy(d.mesh.quaternion);
 
       const force = 3 + 5 * Math.random();
       d.body.applyImpulse(
-        new CANNON.Vec3(-force * 0.6, force, -force),
-        new CANNON.Vec3(0, 0, 0.3)
+        new CANNON.Vec3(-force * 0.2, force, -8),
+        new CANNON.Vec3(-0.3, 0, -1.3)
       );
 
       d.body.allowSleep = true;
