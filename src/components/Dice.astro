@@ -43,7 +43,7 @@ import Logo from "@/components/Icons/Logo.astro";
           <input
             type="submit"
             value="Intentar"
-            class="guessSubmit btn yellow"
+            class="guessSubmit btn green"
           />
         </div>
         <div class="lastResult"></div>
@@ -67,7 +67,8 @@ import Logo from "@/components/Icons/Logo.astro";
         <span class="pagina !text-white">&nbsp;</span>
       </a>
     </div>
-    <div class="flex justify-center items-center gap-3 ui-controls">
+    <div class="grid grid-cols-2 gap-3 ui-controls">
+      <a class="btn yellow" href="/"> Volver</a>
       <button class="btn blue" id="roll-btn"> Tirar de nuevo</button>
     </div>
   </div>
@@ -591,7 +592,7 @@ import Logo from "@/components/Icons/Logo.astro";
     image.src = "";
     lastResult.classList.remove("active");
     randomQuestionResult.classList.remove("active");
-    randomQuestionResult.classList.remove("correct")
+    randomQuestionResult.classList.remove("correct");
     randomRoute.classList.add("disabled");
     randomRouteResult.innerHTML = "";
     scoreResult.innerHTML = "";
@@ -634,7 +635,7 @@ import Logo from "@/components/Icons/Logo.astro";
       lastResult.classList.add("active");
       lastResult.classList.remove("incorrect");
       lastResult.classList.add("correct");
-      randomQuestionResult.classList.add("correct")
+      randomQuestionResult.classList.add("correct");
     } else {
       lastResult.textContent = "Volve a intentar";
       lastResult.classList.remove("correct");
@@ -769,10 +770,9 @@ import Logo from "@/components/Icons/Logo.astro";
   }
 
   #randomQuestionResult.correct .guessField,
-  #randomQuestionResult.correct .guessSubmit{
-    @apply opacity-50 pointer-events-none hidden
+  #randomQuestionResult.correct .guessSubmit {
+    @apply opacity-50 pointer-events-none hidden;
   }
-
 
   .lastResult {
     @apply text-center duration-300 px-3 py-2 opacity-0;
@@ -781,8 +781,6 @@ import Logo from "@/components/Icons/Logo.astro";
   .lastResult.active {
     @apply opacity-100;
   }
-
-
 
   .lastResult.incorrect {
     @apply bg-gray-300/20 text-white;
