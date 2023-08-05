@@ -35,7 +35,9 @@ import Logo from "@/components/Icons/Logo.astro";
             id="puzzleImage"
             src="/LogoCantera.png"
             alt=""
-            class="object-cover scale-[1.01]"
+            height="191"
+            width="330"
+            class="object-cover w-full scale-[1.01]"
           />
         </div>
         <label for="guessField" class="sr-only">Su respuesta</label>
@@ -55,7 +57,7 @@ import Logo from "@/components/Icons/Logo.astro";
   <div
     class="absolute left-0 right-0 flex z-[501] flex-col items-center justify-center bottom-12"
   >
-    <div
+    <!-- <div
       class="text-gray-900 font-hand text-xl md:text-3xl text-center rounded-md -top-2 relative hidden px-1 py-0.5 gap-3"
     >
       <a
@@ -68,7 +70,7 @@ import Logo from "@/components/Icons/Logo.astro";
         <span id="randomRouteResult" class="!text-white"></span>
         <span class="pagina !text-white">&nbsp;</span>
       </a>
-    </div>
+    </div> -->
     <div class="grid grid-cols-2 gap-3 ui-controls">
       <a class="btn yellow" href="/"> Volver</a>
       <button class="btn blue" id="roll-btn"> Tirar de nuevo</button>
@@ -88,10 +90,10 @@ import Logo from "@/components/Icons/Logo.astro";
   const canvasEl = document.querySelector("#canvas");
 
   // Logica de ruta basada en resultado del dado
-  const scoreResult = document.querySelector("#score-result");
-  const randomRoute = document.querySelector("#randomRoute");
+  // const scoreResult = document.querySelector("#score-result");
+  // const randomRoute = document.querySelector("#randomRoute");
   const randomQuestionResult = document.querySelector("#randomQuestionResult");
-  const randomRouteResult = document.querySelector("#randomRouteResult");
+  // const randomRouteResult = document.querySelector("#randomRouteResult");
   const rollBtn = document.querySelector("#roll-btn");
 
   // Formulario juego
@@ -513,47 +515,47 @@ import Logo from "@/components/Icons/Logo.astro";
   }
 
   function showRollResults(score) {
-    scoreResult.innerHTML += score;
-    randomRoute.classList.remove("disabled");
+    // scoreResult.innerHTML += score;
+    // randomRoute.classList.remove("disabled");
     randomQuestionResult.classList.add("active");
     guessField.focus();
 
     if (score === 1) {
-      randomRoute.setAttribute("href", "/quienes-somos/la-cantera");
-      randomRouteResult.innerHTML = "Conocenos";
+      // randomRoute.setAttribute("href", "/quienes-somos/la-cantera");
+      // randomRouteResult.innerHTML = "Conocenos";
       answer = "sombrilla";
       image.src =
-        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/01_edejtg.png";
+        "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_190,w_330/v1691202747/web/random/01_edejtg.png";
     } else if (score === 2) {
-      randomRoute.setAttribute("href", "/que-hacemos");
-      randomRouteResult.innerHTML = "Qué Hacemos";
+      // randomRoute.setAttribute("href", "/que-hacemos");
+      // randomRouteResult.innerHTML = "Qué Hacemos";
       answer = "ojito";
       image.src =
-        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/02_j0vrhe.png";
+        "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_190,w_330/v1691202747/web/random/02_j0vrhe.png";
     } else if (score === 3) {
-      randomRoute.setAttribute("href", "/colabora");
-      randomRouteResult.innerHTML = "Colaborá";
+      // randomRoute.setAttribute("href", "/colabora");
+      // randomRouteResult.innerHTML = "Colaborá";
       answer = "pochoclo";
       image.src =
-        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/03_urgbh0.png";
+        "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_190,w_330/v1691202747/web/random/03_urgbh0.png";
     } else if (score === 4) {
-      randomRoute.setAttribute("href", "/calendario-ludico");
-      randomRouteResult.innerHTML = "Agendate";
+      // randomRoute.setAttribute("href", "/calendario-ludico");
+      // randomRouteResult.innerHTML = "Agendate";
       answer = "binocular";
       image.src =
-        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/04_t1tvno.png";
+        "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_190,w_330/v1691202747/web/random/04_t1tvno.png";
     } else if (score === 5) {
-      randomRoute.setAttribute("href", "/recursos/");
-      randomRouteResult.innerHTML = "Recursos";
+      // randomRoute.setAttribute("href", "/recursos/");
+      // randomRouteResult.innerHTML = "Recursos";
       answer = "uranio";
       image.src =
-        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/05_im9orh.png";
+        "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_190,w_330/v1691202747/web/random/05_im9orh.png";
     } else if (score === 6) {
-      randomRoute.setAttribute("href", "/contacto/");
-      randomRouteResult.innerHTML = "Contacto";
+      // randomRoute.setAttribute("href", "/contacto/");
+      // randomRouteResult.innerHTML = "Contacto";
       answer = "inseparable";
       image.src =
-        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/06_iox6tn.png";
+        "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_191,w_340/v1691202747/web/random/06_iox6tn.png";
     }
   }
 
@@ -581,13 +583,15 @@ import Logo from "@/components/Icons/Logo.astro";
     guessField.disabled = false;
     guessField.value = "";
     guessSubmit.disabled = false;
-    image.src = "";
     lastResult.classList.remove("active");
     randomQuestionResult.classList.remove("active");
     randomQuestionResult.classList.remove("correct");
-    randomRoute.classList.add("disabled");
-    randomRouteResult.innerHTML = "";
-    scoreResult.innerHTML = "";
+    setTimeout(() => {
+      image.src = "";
+    }, 500);
+    // randomRoute.classList.add("disabled");
+    // randomRouteResult.innerHTML = "";
+    // scoreResult.innerHTML = "";
     // lastResult.style.display = "none";
     diceArray.forEach((d, dIdx) => {
       d.body.velocity.setZero();
