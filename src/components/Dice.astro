@@ -44,7 +44,7 @@ import Logo from "@/components/Icons/Logo.astro";
             type="text"
             id="guessField"
             placeholder="Su respuesta"
-            class="guessField w-full ring-2 outline-none ring-gray-400 rounded-lg px-2 py-1 text-lg text-gray-900"
+            class="guessField w-full ring-2 focus-visible:ring-2 focus-visible:ring-red-900 ring-gray-400 rounded-lg px-2 py-1 text-lg text-gray-900"
           />
           <input type="submit" value="Intentar" class="guessSubmit btn green" />
         </div>
@@ -53,7 +53,7 @@ import Logo from "@/components/Icons/Logo.astro";
     </div>
   </div>
   <div
-    class="absolute left-0 right-0 flex z-[501] flex-col items-center justify-center bottom-4"
+    class="absolute left-0 right-0 flex z-[501] flex-col items-center justify-center bottom-12"
   >
     <div
       class="text-gray-900 font-hand text-xl md:text-3xl text-center rounded-md -top-2 relative hidden px-1 py-0.5 gap-3"
@@ -101,7 +101,7 @@ import Logo from "@/components/Icons/Logo.astro";
   const guessField = document.querySelector(".guessField");
   const image = document.querySelector("#puzzleImage");
 
-  let answer
+  let answer;
   let renderer, scene, camera, diceMesh, physicsWorld;
 
   const params = {
@@ -513,51 +513,47 @@ import Logo from "@/components/Icons/Logo.astro";
   }
 
   function showRollResults(score) {
-    if (scoreResult.innerHTML === "") {
-      scoreResult.innerHTML += score;
-      randomRoute.classList.remove("disabled");
-      randomQuestionResult.classList.add("active");
-      guessField.focus();
+    scoreResult.innerHTML += score;
+    randomRoute.classList.remove("disabled");
+    randomQuestionResult.classList.add("active");
+    guessField.focus();
 
-      if (score === 1) {
-        randomRoute.setAttribute("href", "/quienes-somos/la-cantera");
-        randomRouteResult.innerHTML = "Conocenos";
-        answer = "sombrilla";
-        image.src =
-          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/01_edejtg.png";
-      } else if (score === 2) {
-        randomRoute.setAttribute("href", "/que-hacemos");
-        randomRouteResult.innerHTML = "Qué Hacemos";
-        answer = "ojito";
-        image.src =
-          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/02_j0vrhe.png";
-      } else if (score === 3) {
-        randomRoute.setAttribute("href", "/colabora");
-        randomRouteResult.innerHTML = "Colaborá";
-        answer = "pochoclo";
-        image.src =
-          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/03_urgbh0.png";
-      } else if (score === 4) {
-        randomRoute.setAttribute("href", "/calendario-ludico");
-        randomRouteResult.innerHTML = "Agendate";
-        answer = "binocular";
-        image.src =
-          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/02_j0vrhe.png";
-      } else if (score === 5) {
-        randomRoute.setAttribute("href", "/recursos/");
-        randomRouteResult.innerHTML = "Recursos";
-        answer = "uranio";
-        image.src =
-          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/05_im9orh.png";
-      } else if (score === 6) {
-        randomRoute.setAttribute("href", "/contacto/");
-        randomRouteResult.innerHTML = "Contacto";
-        answer = "inseparable";
-        image.src =
-          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/06_iox6tn.png";
-      }
-    } else {
-      scoreResult.innerHTML += "+" + score;
+    if (score === 1) {
+      randomRoute.setAttribute("href", "/quienes-somos/la-cantera");
+      randomRouteResult.innerHTML = "Conocenos";
+      answer = "sombrilla";
+      image.src =
+        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/01_edejtg.png";
+    } else if (score === 2) {
+      randomRoute.setAttribute("href", "/que-hacemos");
+      randomRouteResult.innerHTML = "Qué Hacemos";
+      answer = "ojito";
+      image.src =
+        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/02_j0vrhe.png";
+    } else if (score === 3) {
+      randomRoute.setAttribute("href", "/colabora");
+      randomRouteResult.innerHTML = "Colaborá";
+      answer = "pochoclo";
+      image.src =
+        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/03_urgbh0.png";
+    } else if (score === 4) {
+      randomRoute.setAttribute("href", "/calendario-ludico");
+      randomRouteResult.innerHTML = "Agendate";
+      answer = "binocular";
+      image.src =
+        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/04_t1tvno.png";
+    } else if (score === 5) {
+      randomRoute.setAttribute("href", "/recursos/");
+      randomRouteResult.innerHTML = "Recursos";
+      answer = "uranio";
+      image.src =
+        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/05_im9orh.png";
+    } else if (score === 6) {
+      randomRoute.setAttribute("href", "/contacto/");
+      randomRouteResult.innerHTML = "Contacto";
+      answer = "inseparable";
+      image.src =
+        "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/06_iox6tn.png";
     }
   }
 
@@ -604,7 +600,7 @@ import Logo from "@/components/Icons/Logo.astro";
 
       const force = 3 + 5 * Math.random();
       d.body.applyImpulse(
-        new CANNON.Vec3(-force * 0.2 , force / 2, -4),
+        new CANNON.Vec3(-force * 0.2, force / 2, -4),
         new CANNON.Vec3(0.3, 0.3, 0.3)
       );
 
@@ -778,7 +774,7 @@ import Logo from "@/components/Icons/Logo.astro";
   }
 
   .lastResult.incorrect {
-    @apply bg-gray-300/20 text-indigo-900 font-bold ring-1 ring-indigo-600 rounded-sm ;
+    @apply bg-gray-300/20 text-indigo-900 font-bold ring-1 ring-indigo-600 rounded-sm;
   }
 
   .lastResult.correct {
