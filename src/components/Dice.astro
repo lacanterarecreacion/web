@@ -15,15 +15,45 @@ import Logo from "@/components/Icons/Logo.astro";
     </a>
   </div>
   <div
-    class="absolute inset-0 overflow-hidden text-gray-700 bg-gray-900 content pattern-grid-lg"
+    class="absolute inset-0 overflow-hidden text-gray-700 bg-gray-900 content pattern-grid-lg z-0"
   >
     <canvas id="canvas"></canvas>
   </div>
   <div
-    class="absolute left-0 right-0 flex flex-col items-center justify-center bottom-4"
+    id="randomQuestionResult"
+    class="absolute bg-gradient-to-br from-indigo-600/80 to-orange-600/80 duration-700 inset-0 z-[500] flex items-center justify-center"
   >
     <div
-      class="text-gray-900 font-hand text-xl md:text-3xl text-center rounded-md -top-2 relative flex px-1 py-0.5 gap-3"
+      class="z-[5] relative -translate-y-4 w-96 rounded-lg bg-gray-900 text-white p-6"
+    >
+      <form class="grid gap-3">
+        <h2 class="text-2xl text-center font-hand">Adivina la palabra. ¿Qué ves?</h2>
+        <img id="puzzleImage" src="/LogoCantera.png" alt="" />
+        
+        <label for="guessField" class="sr-only">Su respuesta</label>
+        <div class="flex gap-2">
+          <input
+            type="text"
+            id="guessField"
+            placeholder="Su respuesta"
+            class="guessField w-full ring-2 rounded-lg px-2 py-1 text-lg text-gray-900"
+          />
+          <input
+            type="submit"
+            value="Intentar"
+            class="guessSubmit btn yellow"
+          />
+        </div>
+        <div class="lastResult"></div>
+      </form>
+      
+    </div>
+  </div>
+  <div
+    class="absolute left-0 right-0 flex z-[501] flex-col items-center justify-center bottom-4"
+  >
+    <div
+      class="text-gray-900 font-hand text-xl md:text-3xl text-center rounded-md -top-2 relative hidden px-1 py-0.5 gap-3"
     >
       <a
         id="randomRoute"
@@ -34,7 +64,6 @@ import Logo from "@/components/Icons/Logo.astro";
         <span id="score-result" class="!text-white hidden"></span>
         <span id="randomRouteResult" class="!text-white"></span>
         <span class="pagina !text-white">&nbsp;</span>
-
       </a>
     </div>
     <div class="flex justify-center items-center gap-3 ui-controls">
@@ -44,19 +73,33 @@ import Logo from "@/components/Icons/Logo.astro";
 </main>
 
 <script>
-  // @ts-nocheck  
+  // @ts-nocheck
   import * as CANNON from "https://cdn.skypack.dev/cannon-es";
   import Stats from "stats.js";
 
   import * as THREE from "three";
   import * as BufferGeometryUtils from "three/addons/utils/BufferGeometryUtils.js";
 
+  // Escena 3d dados
+
   const canvasEl = document.querySelector("#canvas");
+
+  // Logica de ruta basada en resultado del dado
   const scoreResult = document.querySelector("#score-result");
   const randomRoute = document.querySelector("#randomRoute");
+  const randomQuestionResult = document.querySelector("#randomQuestionResult");
   const randomRouteResult = document.querySelector("#randomRouteResult");
-
   const rollBtn = document.querySelector("#roll-btn");
+
+  // Formulario juego
+
+  const lastResult = document.querySelector(".lastResult");
+  const guessSubmit = document.querySelector(".guessSubmit");
+  const guessField = document.querySelector(".guessField");
+  const image = document.querySelector("#puzzleImage");
+
+  let answer = "answer";
+  let imageUrl = "image";
 
   // const stats = new Stats();
   // stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
@@ -99,7 +142,7 @@ import Logo from "@/components/Icons/Logo.astro";
     );
     // camera.position.set(0, -0.5, 4).multiplyScalar(7);
     //  camera.position.set(0, 2, 0).multiplyScalar(3);
-    camera.position.set(0, 12, 0);
+    camera.position.set(0.2, 12, 0);
 
     camera.rotation.x += -Math.PI / 2;
 
@@ -476,24 +519,50 @@ import Logo from "@/components/Icons/Logo.astro";
     if (scoreResult.innerHTML === "") {
       scoreResult.innerHTML += score;
       randomRoute.classList.remove("disabled");
+      randomQuestionResult.classList.add("active");
+
       if (score === 1) {
         randomRoute.setAttribute("href", "/quienes-somos/la-cantera");
-        randomRouteResult.innerHTML += "Conocenos";
+        randomRouteResult.innerHTML = "Conocenos";
+        answer = "sombrilla";
+        image.src =
+          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/01_edejtg.png";
+        console.log(answer);
       } else if (score === 2) {
         randomRoute.setAttribute("href", "/que-hacemos");
-        randomRouteResult.innerHTML += "Qué Hacemos";
+        randomRouteResult.innerHTML = "Qué Hacemos";
+        answer = "ojito";
+        image.src =
+          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/02_j0vrhe.png";
+        console.log(answer);
       } else if (score === 3) {
         randomRoute.setAttribute("href", "/colabora");
-        randomRouteResult.innerHTML += "Colaborá";
+        randomRouteResult.innerHTML = "Colaborá";
+        answer = "pochoclo";
+        image.src =
+          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/03_urgbh0.png";
+        console.log(answer);
       } else if (score === 4) {
         randomRoute.setAttribute("href", "/calendario-ludico");
-        randomRouteResult.innerHTML += "Agendate";
+        randomRouteResult.innerHTML = "Agendate";
+        answer = "binocular";
+        image.src =
+          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/02_j0vrhe.png";
+        console.log(answer);
       } else if (score === 5) {
         randomRoute.setAttribute("href", "/recursos/");
-        randomRouteResult.innerHTML += "Recursos";
+        randomRouteResult.innerHTML = "Recursos";
+        answer = "uranio";
+        image.src =
+          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/05_im9orh.png";
+        console.log(answer);
       } else if (score === 6) {
         randomRoute.setAttribute("href", "/contacto/");
-        randomRouteResult.innerHTML += "Contacto";
+        randomRouteResult.innerHTML = "Contacto";
+        answer = "inseparable";
+        image.src =
+          "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/06_iox6tn.png";
+        console.log(answer);
       }
     } else {
       scoreResult.innerHTML += "+" + score;
@@ -524,7 +593,15 @@ import Logo from "@/components/Icons/Logo.astro";
     scoreResult.innerHTML = "";
     randomRouteResult.innerHTML = "";
     randomRoute.classList.add("disabled");
-
+    guessField.value = "";
+    randomQuestionResult.classList.remove("active");
+    guessField.disabled = false;
+    guessSubmit.disabled = false;
+    guessField.value = "";
+    image.src = "";
+    guessField.focus();
+    // lastResult.style.display = "none";
+    lastResult.classList.remove("active");
     diceArray.forEach((d, dIdx) => {
       d.body.velocity.setZero();
       d.body.angularVelocity.setZero();
@@ -544,6 +621,29 @@ import Logo from "@/components/Icons/Logo.astro";
       d.body.allowSleep = true;
     });
   }
+
+  function checkGuess() {
+    let userGuess = guessField.value;
+
+    if (userGuess === answer) {
+      lastResult.textContent = "Correcto! 🎉";
+      lastResult.classList.add("active");
+      lastResult.classList.remove("incorrect");
+      lastResult.classList.add("correct");
+    } else {
+      lastResult.textContent = "Volve a intentar";
+      lastResult.classList.remove("correct");
+      lastResult.classList.add("active");
+      lastResult.classList.add("incorrect");
+    }
+    guessField.value = "";
+    guessField.focus();
+  }
+
+  guessSubmit.addEventListener("click", function (event) {
+    event.preventDefault();
+    checkGuess();
+  });
 </script>
 
 <style is:global>
@@ -653,5 +753,29 @@ import Logo from "@/components/Icons/Logo.astro";
 
   .btn.disabled span.pagina {
     opacity: 0;
+  }
+
+  #randomQuestionResult {
+    @apply opacity-0;
+  }
+
+  #randomQuestionResult.active {
+    @apply opacity-100;
+  }
+
+  .lastResult {
+    @apply text-center duration-300 px-3 py-2 opacity-0;
+  }
+
+  .lastResult.active {
+    @apply opacity-100;
+  } 
+
+  .lastResult.incorrect {
+    @apply bg-gray-300/20 text-white;
+  }
+
+  .lastResult.correct {
+    @apply bg-emerald-300/90 text-emerald-900 font-bold;
   }
 </style>
