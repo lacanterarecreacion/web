@@ -20,7 +20,7 @@ import Logo from "@/components/Icons/Logo.astro";
     <canvas id="canvas"></canvas>
   </div>
   <div
-    id="randomQuestionResult"
+    id="question"
     class="absolute bg-gray-800/80 duration-700 inset-0 z-[500] flex items-center justify-center"
   >
     <div
@@ -57,20 +57,6 @@ import Logo from "@/components/Icons/Logo.astro";
   <div
     class="absolute left-0 right-0 flex z-[501] flex-col items-center justify-center bottom-12"
   >
-    <!-- <div
-      class="text-gray-900 font-hand text-xl md:text-3xl text-center rounded-md -top-2 relative hidden px-1 py-0.5 gap-3"
-    >
-      <a
-        id="randomRoute"
-        aria-label="Ir a una sección aleatoria"
-        class="btn yellow !text-white gap-2"
-      >
-        <span class="pagina !text-white">&nbsp;</span>
-        <span id="score-result" class="!text-white hidden"></span>
-        <span id="randomRouteResult" class="!text-white"></span>
-        <span class="pagina !text-white">&nbsp;</span>
-      </a>
-    </div> -->
     <div class="grid grid-cols-2 gap-3 ui-controls">
       <a class="btn yellow" href="/"> Volver</a>
       <button class="btn blue" id="roll-btn"> Tirar de nuevo</button>
@@ -81,23 +67,12 @@ import Logo from "@/components/Icons/Logo.astro";
 <script>
   // @ts-nocheck
   import * as CANNON from "https://cdn.skypack.dev/cannon-es";
-
   import * as THREE from "three";
   import * as BufferGeometryUtils from "three/addons/utils/BufferGeometryUtils.js";
 
-  // Escena 3d dados
-
   const canvasEl = document.querySelector("#canvas");
-
-  // Logica de ruta basada en resultado del dado
-  // const scoreResult = document.querySelector("#score-result");
-  // const randomRoute = document.querySelector("#randomRoute");
-  const randomQuestionResult = document.querySelector("#randomQuestionResult");
-  // const randomRouteResult = document.querySelector("#randomRouteResult");
+  const question = document.querySelector("#question");
   const rollBtn = document.querySelector("#roll-btn");
-
-  // Formulario juego
-
   const lastResult = document.querySelector(".lastResult");
   const guessSubmit = document.querySelector(".guessSubmit");
   const guessField = document.querySelector(".guessField");
@@ -128,6 +103,7 @@ import Logo from "@/components/Icons/Logo.astro";
       antialias: true,
       canvas: canvasEl,
     });
+
     renderer.shadowMap.enabled = true;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
@@ -139,22 +115,23 @@ import Logo from "@/components/Icons/Logo.astro";
       0.1,
       500
     );
-    // camera.position.set(0, -0.5, 4).multiplyScalar(7);
-    //  camera.position.set(0, 2, 0).multiplyScalar(3);
-    camera.position.set(0.2, 12, 0);
 
+    camera.position.set(0.2, 12, 0);
     camera.rotation.x += -Math.PI / 2;
 
     updateSceneSize();
 
+    // Luces de la escena
     const ambientLight = new THREE.AmbientLight(0xffffff, 4);
     scene.add(ambientLight);
+
     const topLight = new THREE.PointLight(0xffffff, 2);
     topLight.position.set(10, 15, 0);
     topLight.castShadow = false;
     scene.add(topLight);
 
-    createFloor();
+    // Crea la caja para el dado
+    createBox();
     diceMesh = createDiceMesh();
     for (let i = 0; i < params.numberOfDice; i++) {
       diceArray.push(createDice());
@@ -174,16 +151,13 @@ import Logo from "@/components/Icons/Logo.astro";
     physicsWorld.defaultContactMaterial.restitution = 0.5;
   }
 
-  function createFloor() {
+  function createBox() {
+    // Piso
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(1000, 1000),
       new THREE.ShadowMaterial({
         opacity: 0.5,
       })
-      // new THREE.MeshStandardMaterial({
-      //   // color: "#1e3a89",
-      //   color: "lightemerald",
-      // })
     );
     floor.receiveShadow = false;
     floor.position.y = -7;
@@ -201,108 +175,91 @@ import Logo from "@/components/Icons/Logo.astro";
     floorBody.quaternion.copy(floor.quaternion);
     physicsWorld.addBody(floorBody);
 
-    const wall1 = new THREE.Mesh(
+    // Pared arriba
+    const wallTop = new THREE.Mesh(
       new THREE.PlaneGeometry(30, 20),
       new THREE.MeshStandardMaterial({
-        // color: "#1e3a89",
         color: "#bae6fd",
       })
     );
-    wall1.receiveShadow = false;
-    wall1.position.y = 2;
-    wall1.position.z = -5;
-    // wall1.quaternion.setFromAxisAngle(
-    //   new THREE.Vector3(-1, -1, 0),
-    //   Math.PI * 0.5
-    // );
-    wall1.rotation.x += Math.PI / 45;
-    scene.add(wall1);
+    wallTop.receiveShadow = false;
+    wallTop.position.y = 2;
+    wallTop.position.z = -5;
+    wallTop.rotation.x += Math.PI / 45;
+    scene.add(wallTop);
 
-    const wallBody1 = new CANNON.Body({
+    const wallTopBody = new CANNON.Body({
       type: CANNON.Body.STATIC,
       shape: new CANNON.Plane(),
     });
-    wallBody1.position.copy(wall1.position);
-    wallBody1.quaternion.copy(wall1.quaternion);
-    physicsWorld.addBody(wallBody1);
+    wallTopBody.position.copy(wallTop.position);
+    wallTopBody.quaternion.copy(wallTop.quaternion);
+    physicsWorld.addBody(wallTopBody);
 
-    const wall2 = new THREE.Mesh(
-      new THREE.PlaneGeometry(90, 20),
-      new THREE.MeshStandardMaterial({
-        // color: "#1e2b6a",
-        color: "#bae6fd",
-      })
-    );
-    wall2.receiveShadow = false;
-    wall2.position.y = 2;
-    wall2.position.x = -3.4;
-    wall2.position.z = -12;
-    // wall2.quaternion.setFromAxisAngle(
-    //   new THREE.Vector3(-1, -1, 0),
-    //   Math.PI * 0.5
-    // );
-    wall2.rotation.y += Math.PI / 2;
-    scene.add(wall2);
-
-    const wallBody2 = new CANNON.Body({
-      type: CANNON.Body.STATIC,
-      shape: new CANNON.Plane(),
-    });
-    wallBody2.position.copy(wall2.position);
-    wallBody2.quaternion.copy(wall2.quaternion);
-    physicsWorld.addBody(wallBody2);
-
-    const wall3 = new THREE.Mesh(
-      new THREE.PlaneGeometry(90, 20),
-      new THREE.MeshStandardMaterial({
-        // color: "#1e2b6a",
-        color: "#bae6fd",
-      })
-    );
-    wall3.receiveShadow = false;
-    wall3.position.y = 2;
-    wall3.position.x = 3.4;
-    wall3.position.z = -12;
-    // wall3.quaternion.setFromAxisAngle(
-    //   new THREE.Vector3(-1, -1, 0),
-    //   Math.PI * 0.5
-    // );
-    wall3.rotation.y += -Math.PI / 2;
-    scene.add(wall3);
-
-    const wallBody3 = new CANNON.Body({
-      type: CANNON.Body.STATIC,
-      shape: new CANNON.Plane(),
-    });
-    wallBody3.position.copy(wall3.position);
-    wallBody3.quaternion.copy(wall3.quaternion);
-    physicsWorld.addBody(wallBody3);
-
-    const wall4 = new THREE.Mesh(
+    const wallLeft = new THREE.Mesh(
       new THREE.PlaneGeometry(90, 20),
       new THREE.MeshStandardMaterial({
         color: "#bae6fd",
       })
     );
-    wall4.receiveShadow = false;
-    wall4.position.y = 2;
-    wall4.position.x = 20;
-    wall4.position.z = 5;
-    // wall4.quaternion.setFromAxisAngle(
-    //   new THREE.Vector3(-1, -1, 0),
-    //   Math.PI * 0.5
-    // );
-    wall4.rotation.y += -Math.PI;
+    wallLeft.receiveShadow = false;
+    wallLeft.position.y = 2;
+    wallLeft.position.x = -3.4;
+    wallLeft.position.z = -12;
+    wallLeft.rotation.y += Math.PI / 2;
+    scene.add(wallLeft);
 
-    scene.add(wall4);
-
-    const wallBody4 = new CANNON.Body({
+    const wallLeftBody = new CANNON.Body({
       type: CANNON.Body.STATIC,
       shape: new CANNON.Plane(),
     });
-    wallBody4.position.copy(wall4.position);
-    wallBody4.quaternion.copy(wall4.quaternion);
-    physicsWorld.addBody(wallBody4);
+    wallLeftBody.position.copy(wallLeft.position);
+    wallLeftBody.quaternion.copy(wallLeft.quaternion);
+    physicsWorld.addBody(wallLeftBody);
+
+    // Pared derecha
+    const wallRight = new THREE.Mesh(
+      new THREE.PlaneGeometry(90, 20),
+      new THREE.MeshStandardMaterial({
+        color: "#bae6fd",
+      })
+    );
+    wallRight.receiveShadow = false;
+    wallRight.position.y = 2;
+    wallRight.position.x = 3.4;
+    wallRight.position.z = -12;
+    wallRight.rotation.y += -Math.PI / 2;
+    scene.add(wallRight);
+
+    const wallRightBody = new CANNON.Body({
+      type: CANNON.Body.STATIC,
+      shape: new CANNON.Plane(),
+    });
+    wallRightBody.position.copy(wallRight.position);
+    wallRightBody.quaternion.copy(wallRight.quaternion);
+    physicsWorld.addBody(wallRightBody);
+
+    // Pared abajo
+    const wallBottom = new THREE.Mesh(
+      new THREE.PlaneGeometry(90, 20),
+      new THREE.MeshStandardMaterial({
+        color: "#bae6fd",
+      })
+    );
+    wallBottom.receiveShadow = false;
+    wallBottom.position.y = 2;
+    wallBottom.position.x = 20;
+    wallBottom.position.z = 5;
+    wallBottom.rotation.y += -Math.PI;
+    scene.add(wallBottom);
+
+    const wallBottomBody = new CANNON.Body({
+      type: CANNON.Body.STATIC,
+      shape: new CANNON.Plane(),
+    });
+    wallBottomBody.position.copy(wallBottom.position);
+    wallBottomBody.quaternion.copy(wallBottom.quaternion);
+    physicsWorld.addBody(wallBottomBody);
   }
 
   function createDiceMesh() {
@@ -310,9 +267,7 @@ import Logo from "@/components/Icons/Logo.astro";
       color: 0xeeeeee,
     });
     const boxMaterialInner = new THREE.MeshStandardMaterial({
-      color: 0x000000,
-      roughness: 0,
-      metalness: 1,
+      color: 0x333333,
       side: THREE.DoubleSide,
     });
 
@@ -330,7 +285,7 @@ import Logo from "@/components/Icons/Logo.astro";
     scene.add(mesh);
 
     const body = new CANNON.Body({
-      mass: 1.2,
+      mass: 0.9,
       shape: new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5)),
       sleepTimeLimit: 0.1,
     });
@@ -517,42 +472,30 @@ import Logo from "@/components/Icons/Logo.astro";
   function showRollResults(score) {
     // scoreResult.innerHTML += score;
     // randomRoute.classList.remove("disabled");
-    randomQuestionResult.classList.add("active");
+    question.classList.add("active");
     guessField.focus();
 
     if (score === 1) {
-      // randomRoute.setAttribute("href", "/quienes-somos/la-cantera");
-      // randomRouteResult.innerHTML = "Conocenos";
       answer = "sombrilla";
       image.src =
         "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_190,w_330/v1691202747/web/random/01_edejtg.png";
     } else if (score === 2) {
-      // randomRoute.setAttribute("href", "/que-hacemos");
-      // randomRouteResult.innerHTML = "Qué Hacemos";
       answer = "ojito";
       image.src =
         "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_190,w_330/v1691202747/web/random/02_j0vrhe.png";
     } else if (score === 3) {
-      // randomRoute.setAttribute("href", "/colabora");
-      // randomRouteResult.innerHTML = "Colaborá";
       answer = "pochoclo";
       image.src =
         "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_190,w_330/v1691202747/web/random/03_urgbh0.png";
     } else if (score === 4) {
-      // randomRoute.setAttribute("href", "/calendario-ludico");
-      // randomRouteResult.innerHTML = "Agendate";
       answer = "binocular";
       image.src =
         "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_190,w_330/v1691202747/web/random/04_t1tvno.png";
     } else if (score === 5) {
-      // randomRoute.setAttribute("href", "/recursos/");
-      // randomRouteResult.innerHTML = "Recursos";
       answer = "uranio";
       image.src =
         "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_190,w_330/v1691202747/web/random/05_im9orh.png";
     } else if (score === 6) {
-      // randomRoute.setAttribute("href", "/contacto/");
-      // randomRouteResult.innerHTML = "Contacto";
       answer = "inseparable";
       image.src =
         "https://res.cloudinary.com/do2avsfpk/image/upload/c_scale,h_191,w_340/v1691202747/web/random/06_iox6tn.png";
@@ -560,7 +503,6 @@ import Logo from "@/components/Icons/Logo.astro";
   }
 
   function render() {
-    // stats.begin();
     physicsWorld.fixedStep();
 
     for (const dice of diceArray) {
@@ -569,7 +511,6 @@ import Logo from "@/components/Icons/Logo.astro";
     }
 
     renderer.render(scene, camera);
-    // stats.end();
     requestAnimationFrame(render);
   }
 
@@ -584,15 +525,11 @@ import Logo from "@/components/Icons/Logo.astro";
     guessField.value = "";
     guessSubmit.disabled = false;
     lastResult.classList.remove("active");
-    randomQuestionResult.classList.remove("active");
-    randomQuestionResult.classList.remove("correct");
+    question.classList.remove("active");
+    question.classList.remove("correct");
     setTimeout(() => {
       image.src = "";
     }, 500);
-    // randomRoute.classList.add("disabled");
-    // randomRouteResult.innerHTML = "";
-    // scoreResult.innerHTML = "";
-    // lastResult.style.display = "none";
     diceArray.forEach((d, dIdx) => {
       d.body.velocity.setZero();
       d.body.angularVelocity.setZero();
@@ -622,7 +559,6 @@ import Logo from "@/components/Icons/Logo.astro";
 
   function checkGuess() {
     let userGuess = guessField.value;
-
     let normalizedGuess = normalizeString(userGuess);
 
     if (normalizedGuess === answer) {
@@ -630,7 +566,7 @@ import Logo from "@/components/Icons/Logo.astro";
       lastResult.classList.add("active");
       lastResult.classList.remove("incorrect");
       lastResult.classList.add("correct");
-      randomQuestionResult.classList.add("correct");
+      question.classList.add("correct");
     } else {
       lastResult.textContent = "Volve a intentar";
       lastResult.classList.remove("correct");
@@ -648,87 +584,6 @@ import Logo from "@/components/Icons/Logo.astro";
 </script>
 
 <style is:global>
-  body.random {
-    @apply overflow-hidden max-h-screen;
-  }
-
-  .unbutton {
-    background: none;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    font: inherit;
-    cursor: pointer;
-  }
-
-  .unbutton:focus {
-    outline: none;
-  }
-
-  .frame {
-    color: var(--color-title);
-    padding: 1.5rem;
-    display: grid;
-    grid-template-columns: auto auto 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: "title prev sponsor";
-    justify-content: start;
-    grid-gap: 2rem;
-    z-index: 1000;
-  }
-
-  .frame a:not(.frame__title-back) {
-    white-space: nowrap;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .frame a:not(.frame__title-back)::before {
-    content: "";
-    height: 1px;
-    width: 100%;
-    background: currentColor;
-    position: absolute;
-    top: 90%;
-    transition: transform 0.3s;
-    transform-origin: 0% 50%;
-  }
-
-  .frame a:not(.frame__title-back):hover::before {
-    transform: scaleX(0);
-    transform-origin: 100% 50%;
-  }
-
-  .frame__title {
-    grid-area: title;
-    display: flex;
-  }
-
-  .frame__title-main {
-    font-size: 1rem;
-    margin: 0;
-    font-weight: normal;
-  }
-
-  .frame__title-back {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 0.15rem;
-  }
-
-  .frame__title-back span {
-    display: none;
-  }
-
-  .frame__title-back svg {
-    fill: currentColor;
-  }
-
-  .frame__prev {
-    grid-area: prev;
-  }
-
   canvas {
     @apply absolute inset-0;
   }
@@ -756,16 +611,16 @@ import Logo from "@/components/Icons/Logo.astro";
     opacity: 0;
   }
 
-  #randomQuestionResult {
+  #question {
     @apply opacity-0;
   }
 
-  #randomQuestionResult.active {
+  #question.active {
     @apply opacity-100;
   }
 
-  #randomQuestionResult.correct .guessField,
-  #randomQuestionResult.correct .guessSubmit {
+  #question.correct .guessField,
+  #question.correct .guessSubmit {
     @apply opacity-50 pointer-events-none hidden;
   }
 
