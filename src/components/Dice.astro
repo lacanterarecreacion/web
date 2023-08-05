@@ -21,17 +21,23 @@ import Logo from "@/components/Icons/Logo.astro";
   </div>
   <div
     id="randomQuestionResult"
-    class="absolute bg-gradient-to-br from-indigo-600/80 to-orange-600/80 duration-700 inset-0 z-[500] flex items-center justify-center"
+    class="absolute bg-gray-800/80 duration-700 inset-0 z-[500] flex items-center justify-center"
   >
     <div
-      class="z-[5] relative -translate-y-4 w-96 rounded-lg bg-gray-900 text-white p-6"
+      class="z-[5] relative -translate-y-4 w-96 rounded-lg bg-white text-gray-900 shadow-lg p-6"
     >
       <form class="grid gap-3" action="">
         <h2 class="text-2xl text-center font-hand">
           Adivina la palabra. ¿Qué ves?
         </h2>
-        <img id="puzzleImage" src="/LogoCantera.png" alt="" />
-
+        <div class="overflow-hidden shadow ring ring-gray-200 rounded-md">
+          <img
+            id="puzzleImage"
+            src="/LogoCantera.png"
+            alt=""
+            class="object-cover scale-[1.01]"
+          />
+        </div>
         <label for="guessField" class="sr-only">Su respuesta</label>
         <div class="flex gap-2">
           <input
@@ -40,11 +46,7 @@ import Logo from "@/components/Icons/Logo.astro";
             placeholder="Su respuesta"
             class="guessField w-full ring-2 rounded-lg px-2 py-1 text-lg text-gray-900"
           />
-          <input
-            type="submit"
-            value="Intentar"
-            class="guessSubmit btn green"
-          />
+          <input type="submit" value="Intentar" class="guessSubmit btn green" />
         </div>
         <div class="lastResult"></div>
       </form>
@@ -171,7 +173,7 @@ import Logo from "@/components/Icons/Logo.astro";
   function initPhysics() {
     physicsWorld = new CANNON.World({
       allowSleep: true,
-      gravity: new CANNON.Vec3(0, -40, 0),
+      gravity: new CANNON.Vec3(0, -30, 0),
     });
     physicsWorld.defaultContactMaterial.restitution = 0.5;
   }
@@ -600,7 +602,6 @@ import Logo from "@/components/Icons/Logo.astro";
     diceArray.forEach((d, dIdx) => {
       d.body.velocity.setZero();
       d.body.angularVelocity.setZero();
-
       d.body.position = new CANNON.Vec3(0, dIdx * -1.5, 4);
       d.mesh.position.copy(d.body.position);
 
@@ -609,8 +610,8 @@ import Logo from "@/components/Icons/Logo.astro";
 
       const force = 3 + 5 * Math.random();
       d.body.applyImpulse(
-        new CANNON.Vec3(-force * 0.2, force / 2, -8),
-        new CANNON.Vec3(0, 0.3, 0.1)
+        new CANNON.Vec3(-force * 0.2 , force / 2, -4),
+        new CANNON.Vec3(0.3, 0.3, 0.3)
       );
 
       d.body.allowSleep = true;
