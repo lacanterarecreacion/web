@@ -1,0 +1,84 @@
+---
+import "@/styles/animate.css";
+import "@/styles/global.css";
+import "@/styles/mobile.css";
+import "@/styles/patterns.css";
+import BaseHead from "@/layouts/BaseHead.astro";
+import CallToActions from "@/components/Header/CallToActions.astro";
+import MainLayout from "./MainLayout.astro";
+import Navigation from "@/components/Navigation/HeaderNavigation.astro";
+import Offcanvas from "@/components/Navigation/Offcanvas.vue";
+import GoogleFont from "./GoogleFont.astro";
+import IntersectionObserver from "./IntersectionObserver.astro";
+import Noscript from "./noscript.astro";
+import slugify from "@/lib/createSlug";
+
+const {
+  title,
+  description,
+  image = "https://res.cloudinary.com/do2avsfpk/image/upload/v1680800805/web/social/cantera-social-card_car7lp.png",
+} = Astro.props;
+
+const pathname = new URL(Astro.request.url).pathname;
+const bodySlug = slugify(pathname);
+---
+
+<html lang="es">
+  <head>
+    <BaseHead
+      title={` ${title ? `${title}` : ""} | La Cantera`}
+      description={`${
+        description
+          ? `${description}`
+          : " Proyectos en el campo de la recreación."
+      }`}
+      image={image}
+    />
+    <GoogleFont />
+    <Noscript />
+  </head>
+  <body class={`w-full text-gray-900 bg-white ${bodySlug}`}>
+    <div class="hidden md:block skip-link">
+      <a class="skip-to-content-link" href="#main"> Saltar al contenido</a> o
+      <a href="#headroom">a la navegación</a>
+    </div>
+    <Offcanvas client:load>
+      <div class="flex justify-center md:hidden">
+        <CallToActions />
+      </div>
+      <Navigation />
+    </Offcanvas>
+    <main class="w-full max-h-screen min-h-screen">
+      <slot />
+    </main>
+    <IntersectionObserver />
+    <script
+      src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver,ResizeObserver,WebAnimations,Object.fromEntries,Array.prototype.at"
+    ></script>
+    <style is:global>
+      html {
+        overflow-y: scroll;
+      }
+    </style>
+  </body><style>
+    .skip-link {
+      right: 7.25rem;
+      position: absolute;
+      transform: translateY(-130%);
+      border-radius: 0.375rem;
+      background-color: rgb(31, 41, 55);
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      color: #fff;
+      transition: transform 0.3s;
+      z-index: 99999;
+      font-size: 0.825rem;
+    }
+
+    .skip-link:focus-within {
+      transform: translateY(1.25rem);
+    }
+  </style>
+</html>

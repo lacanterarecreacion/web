@@ -44,7 +44,7 @@ import Logo from "@/components/Icons/Logo.astro";
             type="text"
             id="guessField"
             placeholder="Su respuesta"
-            class="guessField w-full ring-2 rounded-lg px-2 py-1 text-lg text-gray-900"
+            class="guessField w-full ring-2 ring-gray-400 rounded-lg px-2 py-1 text-lg text-gray-900"
           />
           <input type="submit" value="Intentar" class="guessSubmit btn green" />
         </div>
@@ -79,7 +79,6 @@ import Logo from "@/components/Icons/Logo.astro";
 <script>
   // @ts-nocheck
   import * as CANNON from "https://cdn.skypack.dev/cannon-es";
-  import Stats from "stats.js";
 
   import * as THREE from "three";
   import * as BufferGeometryUtils from "three/addons/utils/BufferGeometryUtils.js";
@@ -102,12 +101,7 @@ import Logo from "@/components/Icons/Logo.astro";
   const guessField = document.querySelector(".guessField");
   const image = document.querySelector("#puzzleImage");
 
-  let answer = "answer";
-
-  // const stats = new Stats();
-  // stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-  // document.body.appendChild(stats.dom);
-
+  let answer
   let renderer, scene, camera, diceMesh, physicsWorld;
 
   const params = {
@@ -455,7 +449,7 @@ import Logo from "@/components/Icons/Logo.astro";
       1 - 2 * params.edgeRadius
     );
     const offset = 0.48;
-    return BufferGeometryUtils.mergeBufferGeometries(
+    return BufferGeometryUtils.mergeGeometries(
       [
         baseGeometry.clone().translate(0, 0, offset),
         baseGeometry.clone().translate(0, 0, -offset),
@@ -784,7 +778,7 @@ import Logo from "@/components/Icons/Logo.astro";
   }
 
   .lastResult.incorrect {
-    @apply bg-gray-300/20 text-white;
+    @apply bg-gray-300/20 text-indigo-900 font-bold ring-1 ring-indigo-600 rounded-sm ;
   }
 
   .lastResult.correct {
