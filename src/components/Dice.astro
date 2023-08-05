@@ -27,9 +27,11 @@ import Logo from "@/components/Icons/Logo.astro";
       class="z-[5] relative -translate-y-4 w-96 rounded-lg bg-gray-900 text-white p-6"
     >
       <form class="grid gap-3">
-        <h2 class="text-2xl text-center font-hand">Adivina la palabra. ¿Qué ves?</h2>
+        <h2 class="text-2xl text-center font-hand">
+          Adivina la palabra. ¿Qué ves?
+        </h2>
         <img id="puzzleImage" src="/LogoCantera.png" alt="" />
-        
+
         <label for="guessField" class="sr-only">Su respuesta</label>
         <div class="flex gap-2">
           <input
@@ -46,7 +48,6 @@ import Logo from "@/components/Icons/Logo.astro";
         </div>
         <div class="lastResult"></div>
       </form>
-      
     </div>
   </div>
   <div
@@ -527,42 +528,36 @@ import Logo from "@/components/Icons/Logo.astro";
         answer = "sombrilla";
         image.src =
           "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/01_edejtg.png";
-        console.log(answer);
       } else if (score === 2) {
         randomRoute.setAttribute("href", "/que-hacemos");
         randomRouteResult.innerHTML = "Qué Hacemos";
         answer = "ojito";
         image.src =
           "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/02_j0vrhe.png";
-        console.log(answer);
       } else if (score === 3) {
         randomRoute.setAttribute("href", "/colabora");
         randomRouteResult.innerHTML = "Colaborá";
         answer = "pochoclo";
         image.src =
           "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/03_urgbh0.png";
-        console.log(answer);
       } else if (score === 4) {
         randomRoute.setAttribute("href", "/calendario-ludico");
         randomRouteResult.innerHTML = "Agendate";
         answer = "binocular";
         image.src =
           "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/02_j0vrhe.png";
-        console.log(answer);
       } else if (score === 5) {
         randomRoute.setAttribute("href", "/recursos/");
         randomRouteResult.innerHTML = "Recursos";
         answer = "uranio";
         image.src =
           "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/05_im9orh.png";
-        console.log(answer);
       } else if (score === 6) {
         randomRoute.setAttribute("href", "/contacto/");
         randomRouteResult.innerHTML = "Contacto";
         answer = "inseparable";
         image.src =
           "https://res.cloudinary.com/do2avsfpk/image/upload/v1691202747/web/random/06_iox6tn.png";
-        console.log(answer);
       }
     } else {
       scoreResult.innerHTML += "+" + score;
@@ -622,10 +617,19 @@ import Logo from "@/components/Icons/Logo.astro";
     });
   }
 
+  function normalizeString(str) {
+    return str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
+
   function checkGuess() {
     let userGuess = guessField.value;
 
-    if (userGuess === answer) {
+    let normalizedGuess = normalizeString(userGuess);
+
+    if (normalizedGuess === answer) {
       lastResult.textContent = "Correcto! 🎉";
       lastResult.classList.add("active");
       lastResult.classList.remove("incorrect");
@@ -769,7 +773,7 @@ import Logo from "@/components/Icons/Logo.astro";
 
   .lastResult.active {
     @apply opacity-100;
-  } 
+  }
 
   .lastResult.incorrect {
     @apply bg-gray-300/20 text-white;
