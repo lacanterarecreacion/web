@@ -26,7 +26,7 @@ import Logo from "@/components/Icons/Logo.astro";
     <div
       class="z-[5] relative -translate-y-4 w-96 rounded-lg bg-gray-900 text-white p-6"
     >
-      <form class="grid gap-3">
+      <form class="grid gap-3" action="">
         <h2 class="text-2xl text-center font-hand">
           Adivina la palabra. ¿Qué ves?
         </h2>
@@ -100,7 +100,6 @@ import Logo from "@/components/Icons/Logo.astro";
   const image = document.querySelector("#puzzleImage");
 
   let answer = "answer";
-  let imageUrl = "image";
 
   // const stats = new Stats();
   // stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
@@ -521,6 +520,7 @@ import Logo from "@/components/Icons/Logo.astro";
       scoreResult.innerHTML += score;
       randomRoute.classList.remove("disabled");
       randomQuestionResult.classList.add("active");
+      guessField.focus();
 
       if (score === 1) {
         randomRoute.setAttribute("href", "/quienes-somos/la-cantera");
@@ -585,17 +585,17 @@ import Logo from "@/components/Icons/Logo.astro";
   }
 
   function throwDice() {
-    scoreResult.innerHTML = "";
-    randomRouteResult.innerHTML = "";
-    randomRoute.classList.add("disabled");
-    guessField.value = "";
-    randomQuestionResult.classList.remove("active");
     guessField.disabled = false;
-    guessSubmit.disabled = false;
     guessField.value = "";
+    guessSubmit.disabled = false;
     image.src = "";
-    // lastResult.style.display = "none";
     lastResult.classList.remove("active");
+    randomQuestionResult.classList.remove("active");
+    randomQuestionResult.classList.remove("correct")
+    randomRoute.classList.add("disabled");
+    randomRouteResult.innerHTML = "";
+    scoreResult.innerHTML = "";
+    // lastResult.style.display = "none";
     diceArray.forEach((d, dIdx) => {
       d.body.velocity.setZero();
       d.body.angularVelocity.setZero();
@@ -608,8 +608,8 @@ import Logo from "@/components/Icons/Logo.astro";
 
       const force = 3 + 5 * Math.random();
       d.body.applyImpulse(
-        new CANNON.Vec3(-force * 0.2, force, -8),
-        new CANNON.Vec3(0, 0.3, 0)
+        new CANNON.Vec3(-force * 0.2, force / 2, -8),
+        new CANNON.Vec3(0, 0.3, 0.1)
       );
 
       d.body.allowSleep = true;
@@ -620,6 +620,7 @@ import Logo from "@/components/Icons/Logo.astro";
     return str
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
+      .replace(/ /g, "")
       .toLowerCase();
   }
 
@@ -629,10 +630,11 @@ import Logo from "@/components/Icons/Logo.astro";
     let normalizedGuess = normalizeString(userGuess);
 
     if (normalizedGuess === answer) {
-      lastResult.textContent = "Correcto! 🎉";
+      lastResult.textContent = "Correcto! 🎉 ";
       lastResult.classList.add("active");
       lastResult.classList.remove("incorrect");
       lastResult.classList.add("correct");
+      randomQuestionResult.classList.add("correct")
     } else {
       lastResult.textContent = "Volve a intentar";
       lastResult.classList.remove("correct");
@@ -766,6 +768,12 @@ import Logo from "@/components/Icons/Logo.astro";
     @apply opacity-100;
   }
 
+  #randomQuestionResult.correct .guessField,
+  #randomQuestionResult.correct .guessSubmit{
+    @apply opacity-50 pointer-events-none hidden
+  }
+
+
   .lastResult {
     @apply text-center duration-300 px-3 py-2 opacity-0;
   }
@@ -773,6 +781,8 @@ import Logo from "@/components/Icons/Logo.astro";
   .lastResult.active {
     @apply opacity-100;
   }
+
+
 
   .lastResult.incorrect {
     @apply bg-gray-300/20 text-white;
