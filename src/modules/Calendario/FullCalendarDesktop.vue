@@ -99,7 +99,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
   >
     <div class="lg:col-span-2 lg:p-2 lg:pt-0 lg:px-2">
       <div
-        class="flex items-center justify-between pt-2 pb-3 mb-2 border-b border-gray-300"
+        class="flex items-center justify-between pt-2 pb-3  border-b border-gray-300"
       >
         <h1 class="text-left w-full font-hand text-3xl text-gray-800">
           Proximas actividades
@@ -110,7 +110,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
         <div
           v-if="isLoading"
           class="flex lg:h-[660px] flex-col items-center justify-start gap-3 px-2 mt-4"
-        > 
+        >
           <div class="pulse h-4 mr-auto w-64 rounded-full animate-pulse"></div>
           <AgendaSkeleton v-for="i in 2" />
           <div class="pulse h-4 mr-auto w-44 rounded-full animate-pulse"></div>
@@ -118,12 +118,15 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
           <div class="pulse h-4 mr-auto w-32 rounded-full animate-pulse"></div>
           <AgendaSkeleton v-for="i in 1" />
         </div>
-        <div v-else-if="futureEvents">
+        <div v-else-if="futureEvents" class="relative">
+          <div class="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent"/>
+          <div class="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent"/>
+          
           <div
-            class="lg:h-[560px] overflow-y-auto px-1 flex flex-col gap-3 mt-4"
+            class="futureEvents lg:h-[560px] overflow-y-auto px-1 flex flex-col gap-3 pt-4"
           >
             <div v-if="eventosDay.length !== 0">
-              <p class="font-bold text-orange-600">En las próximas 24hs</p>
+              <p class="font-bold text-orange-600 sticky -top-4 py-2 bg-white">En las próximas 24hs</p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosDay"
@@ -133,7 +136,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
               </div>
             </div>
             <div v-if="eventosWeek.length !== 0">
-              <p class="font-bold text-orange-600">Próximos 7 días</p>
+              <p class="font-bold text-orange-600 sticky -top-4 py-2 bg-white">Próximos 7 días</p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosWeek"
@@ -143,7 +146,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
               </div>
             </div>
             <div v-if="eventosMonth.length !== 0">
-              <p class="font-bold text-orange-600">Próximos 30 días</p>
+              <p class="font-bold text-orange-600 sticky -top-4 py-2 bg-white">Próximos 30 días</p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosMonth"
@@ -153,7 +156,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
               </div>
             </div>
             <div v-if="eventosSixMonth">
-              <p class="font-bold text-orange-600">Próximos 6 Meses</p>
+              <p class="font-bold text-orange-600 sticky -top-4 py-2 bg-white">Próximos 6 Meses</p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosSixMonth"
@@ -177,7 +180,9 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
       <FullCalendar :options="calendarOptions">
         <template v-slot:eventContent="arg">
           <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
-            <p class="truncate !font-sans">{{ arg.event.title }}</p>
+            <p class="line-clamp-3 text-gray-900/90 !font-sans font-bold" style="text-wrap: balance;">
+              {{ arg.event.title }}
+            </p>
           </div>
           <ModalEvento inCalendar :event="arg.event" />
         </template>
@@ -191,64 +196,3 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
     </div>
   </div>
 </template>
-
-<style>
-.fc-header-toolbar {
-  @apply px-0 mb-2 gap-2 md:gap-0 !important;
-}
-
-.fc-header-toolbar .fc-toolbar-chunk:nth-child(2) div {
-  @apply flex w-full justify-center items-center gap-1  md:gap-6;
-}
-
-.fc-header-toolbar .fc-toolbar-chunk:nth-child(2) {
-  @apply w-full md:w-auto;
-}
-
-.fc-header-toolbar .fc-toolbar-chunk:nth-child(3) {
-  @apply hidden md:flex;
-}
-
-.fc .fc-col-header-cell-cushion {
-  @apply font-sans font-normal uppercase text-sm;
-}
-
-.fc .fc-daygrid-day-number {
-  @apply font-sans font-normal uppercase text-xs;
-}
-
-.fc .fc-view-harness {
-  @apply !h-[75vh] md:!h-[560px];
-}
-
-.fc-toolbar-title {
-  @apply font-sans capitalize !text-xs md:!text-lg min-w-[230px] text-center;
-}
-
-.fc .fc-button {
-  @apply bg-transparent text-gray-800 p-0.5 px-1.5 flex justify-center items-center;
-}
-
-.fc .fc-today-button {
-  @apply font-sans disabled:bg-orange-600 p-1 px-2 disabled:border-none disabled:cursor-not-allowed text-sm disabled:text-white bg-white text-gray-600;
-}
-
-.fc .fc-day-past .fc-event {
-  @apply bg-gray-800 border-gray-700 hover:ring-2 ring-gray-300 !important;
-  color: #fff;
-}
-
-.tab {
-  @apply w-full rounded-lg py-2.5 font-sans text-sm font-medium bg-white/60 leading-5 text-orange-700;
-  @apply ring-white ring-opacity-60 ring-offset-2 ring-offset-orange-400 focus:outline-none focus:ring-2;
-}
-
-.tab.selected {
-  @apply bg-white shadow text-orange-700 hover:bg-orange-200;
-}
-
-/* .fc .fc-event {
-  @apply bg-amber-600 border-amber-700 hover:ring-2 ring-orange-300 !important;
-  color: #fff;
-} */
-</style>

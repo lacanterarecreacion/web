@@ -95,7 +95,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
 
 <template>
   <div
-    class="w-full gap-1 mx-auto bg-white shadow-lg grid max-w-7xl lg:p-3 pt-12 md:gap-2 md:rounded-xl"
+    class="w-full gap-1 mx-auto bg-white shadow-lg grid max-w-7xl lg:p-3 pt-6 md:pt-12 md:gap-2 md:rounded-xl"
   >
     <TabGroup :defaultIndex="1">
       <TabList class="flex p-1 mx-2 space-x-1 rounded-xl bg-orange-300/20">
@@ -199,7 +199,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
             <FullCalendar :options="calendarOptions">
               <template v-slot:eventContent="arg">
                 <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
-                  <p class="truncate !font-sans">{{ arg.event.title }}</p>
+                  <p class="line-clamp-3 text-gray-900/80 !font-sans font-bold" style="text-wrap: balance">{{ arg.event.title }}</p>
                 </div>
                 <ModalEvento inCalendar :event="arg.event" />
               </template>
@@ -216,64 +216,3 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
     </TabGroup>
   </div>
 </template>
-
-<style>
-.fc-header-toolbar {
-  @apply px-0 mb-2 gap-2 md:gap-0 !important;
-}
-
-.fc-header-toolbar .fc-toolbar-chunk:nth-child(2) div {
-  @apply flex w-full justify-center items-center gap-1  md:gap-6;
-}
-
-.fc-header-toolbar .fc-toolbar-chunk:nth-child(2) {
-  @apply w-full md:w-auto;
-}
-
-.fc-header-toolbar .fc-toolbar-chunk:nth-child(3) {
-  @apply hidden md:flex;
-}
-
-.fc .fc-col-header-cell-cushion {
-  @apply font-sans font-normal uppercase text-sm;
-}
-
-.fc .fc-daygrid-day-number {
-  @apply font-sans font-normal uppercase text-xs;
-}
-
-.fc .fc-view-harness {
-  @apply !h-[75vh] md:!h-[560px];
-}
-
-.fc-toolbar-title {
-  @apply font-sans capitalize !text-sm md:!text-lg min-w-[230px] text-center;
-}
-
-.fc .fc-button {
-  @apply bg-transparent text-gray-800 p-0.5 px-1.5 flex justify-center items-center;
-}
-
-.fc .fc-today-button {
-  @apply font-sans disabled:bg-orange-600 p-1 px-2 disabled:border-none disabled:cursor-not-allowed text-sm disabled:text-white bg-white text-gray-600;
-}
-
-.fc .fc-day-past .fc-event {
-  @apply bg-gray-800 border-gray-700 hover:ring-2 ring-gray-300 !important;
-  color: #fff;
-}
-
-.tab {
-  @apply w-full rounded-lg py-2.5 font-sans text-sm font-medium bg-white/60 leading-5 text-orange-700;
-  @apply ring-white ring-opacity-60 ring-offset-2 ring-offset-orange-400 focus:outline-none focus:ring-2;
-}
-
-.tab.selected {
-  @apply bg-white shadow text-orange-700 hover:bg-orange-200;
-}
-
-/* .fc .fc-event {
-  @apply bg-amber-600 border-amber-700 hover:ring-2 ring-orange-300 !important;
-  color: #fff;
-} */
-</style>

@@ -1,10 +1,13 @@
 <template>
-  <div class="flex justify-start items-center">
+  <div
+    class="flex justify-start items-center"
+    :class="props.inCalendar ? ' absolute inset-0' : ''"
+  >
     <button
       v-if="props.inCalendar"
       type="button"
       @click="openModal"
-      class="absolute inset-0"
+      class="absolute inset-0 w-full h-full outline-none"
     >
       <span class="sr-only"> Ver más información </span>
     </button>
@@ -16,13 +19,14 @@
     >
       <h3 class="flex items-start w-full justify-between text-gray-600">
         <span
-          class="group-hover:underline underline-offset-2 w-72 text-left text-sm font-bold font-sans"
+          class="group-hover:underline underline-offset-2 w-full text-left text-sm font-bold font-sans"
+          style="text-wrap: balance"
         >
           {{ props.event.title }}
         </span>
         <b
           class="!text-xs font-bold no-underline rounded-full px-2 py-0.5 bg-purple-200 text-purple-900 ml-1"
-          v-if="props.event.backgroundColor === 'purple'"
+          v-if="props.event.backgroundColor === '#e9d5ff'"
         >
           Presencial
         </b>
@@ -36,11 +40,11 @@
       <div class="flex items-end justify-between w-full pt-1 text-sm">
         <p class="text-left" style="text-wrap: balance">
           <span class="capitalize">{{
-            new Date(props.event.end).toLocaleString("es-ar", {
+            new Date(props.event.start).toLocaleString("es-ar", {
               weekday: "long",
             })
           }}</span>
-          {{ formattedDate(props.event.end) }}
+          {{ formattedDate(props.event.start) }}
         </p>
         <p class="text-gray-600 text-right pr-1">
           {{ formattedTime(props.event.start) }}hs
@@ -69,7 +73,7 @@
 
       <div class="fixed inset-0 overflow-y-auto">
         <div
-          class="flex min-h-full items-center justify-center p-4 text-center"
+          class="flex min-h-full items-center justify-center p-6 md:p-4 text-center"
         >
           <TransitionChild
             as="template"
@@ -81,13 +85,14 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-2xl relative transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-2xl transition-all"
+              class="w-full max-w-2xl px-2 md:px-6 relative transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-2xl transition-all"
+              :class="props.event.extendedProps?.mainImage ? ' ' : '!pt-8'"
             >
               <!-- <img v-if="props.event.extendedProps?.image" :src="props.event.extendedProps?.image.secure_url"
                 class="object-cover w-full h-64" /> -->
               <button
                 type="button"
-                class="absolute bg-black/30 top-2 w-8 flex justify-center items-center hover:bg-black duration-300 h-8  right-2 rounded-full"
+                class="absolute bg-gray-100/80 outline-none focus-visible:ring-1 hover:ring-1 ring-gray-900 z-50 top-2 w-8 flex justify-center items-center hover:bg-white/95 duration-300 h-8 right-2 rounded-full"
                 @click="closeModal"
               >
                 <svg
@@ -97,20 +102,25 @@
                   viewBox="0 0 24 24"
                 >
                   <path
-                    fill="#ddd"
+                    fill="#333"
                     d="m13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29l-4.3 4.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l4.29-4.3l4.29 4.3a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42Z"
                   />
                 </svg>
               </button>
-              <img
-                class="object-cover object-top w-full"
+              <div
                 v-if="props.event.extendedProps?.mainImage"
-                :src="imageUrlFor(props.event.extendedProps?.mainImage)"
-              />
+                class="aspect-h-10 -mx-2 md:-mx-6 aspect-w-16"
+              >
+                <img
+                  class="object-cover object-top w-full"
+                  :src="imageUrlFor(props.event.extendedProps?.mainImage)"
+                />
+              </div>
               <div class="relative">
                 <DialogTitle
                   as="h3"
-                  class="text-3xl p-3 font-medium font-sans pr-28 text-gray-900"
+                  class="text-xl md:text-3xl p-3 font-medium font-sans pr-28 text-gray-900"
+                  style="text-wrap: balance"
                 >
                   {{ props.event.title }}
                 </DialogTitle>
@@ -128,42 +138,46 @@
                     Virtual
                   </b>
                 </div>
+                <div class="px-3">
+                  <a
+                    v-if="props.event.extendedProps?.link"
+                    class="btn blue !text-xs mb-3 gap-2"
+                    target="_blank"
+                    :href="props.event.extendedProps?.link"
+                  >
+                    Link al evento
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="#ffffff"><path d="M5 6a1 1 0 0 1 1-1h4a1 1 0 1 0 0-2H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-4a1 1 0 1 0-2 0v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6zm10-3a1 1 0 1 0 0 2h2.586l-6.293 6.293a1 1 0 0 0 1.414 1.414L19 6.414V9a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1h-5z"/></g></svg>
+                  </a>
+                </div>
               </div>
               <div
-                class="p-1 w-full px-3 flex sm:flex-row flex-col justify-between gap-2 text-xl font-bold text-gray-800 z-10"
+                class="p-1 w-full px-3 flex sm:flex-row flex-col justify-between gap-1 md:gap-2 md:text-xl font-bold text-gray-800 z-10"
               >
                 <p>
-                  <span class="capitalize">{{
-                    new Date(props.event.end).toLocaleString("es-ar", {
-                      weekday: "long",
-                    })
-                  }}</span>
-                  {{ formattedDate(props.event.end) }}
+                  <span class="capitalize">
+                    {{
+                      new Date(props.event.start).toLocaleString("es-ar", {
+                        weekday: "long",
+                      })
+                    }}
+                  </span>
+                  {{ formattedDate(props.event.start) }}
                 </p>
-                <span
-                  >{{ formattedTime(props.event.start) }} a
+                <time class="font-normal text-lg">
+                  De {{ formattedTime(props.event.start) }} a
                   {{ formattedTime(props.event.end) }}hs
-                </span>
+                </time>
               </div>
-              <div v-if="props.event.extendedProps?.body" class="m-3 prose">
+              <div
+                v-if="props.event.extendedProps?.body"
+                class="m-3 prose md:prose-lg"
+              >
                 <SanityBlocks :blocks="props.event.extendedProps?.body" />
               </div>
               <div class="mt-4 flex justify-center items-center p-3 gap-2">
-                <button
-                  type="button"
-                  class="btn !text-xs orange ghost w-44"
-                  @click="closeModal"
-                >
+                <button type="button" class="btn w-44 !text-xs !ring-2" @click="closeModal">
                   Cerrar
                 </button>
-                <a
-                  v-if="props.event.extendedProps?.link"
-                  class="btn blue !text-xs w-44"
-                  target="_blank"
-                  :href="props.event.extendedProps?.link"
-                >
-                  Link al evento
-                </a>
               </div>
             </DialogPanel>
           </TransitionChild>
@@ -198,7 +212,7 @@ const props = defineProps<EventModal>();
 const isOpen = ref(false);
 
 function imageUrlFor(source: SanityImageSource) {
-  return builder.image(source).width(600).height(300).url();
+  return builder.image(source).width(680).height(420).url();
 }
 
 function closeModal() {
