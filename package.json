@@ -25,6 +25,7 @@
     "@astrojs/node": "^5.3.3",
     "@astrojs/prefetch": "^0.3.0",
     "@astrojs/react": "^2.2.1",
+    "@astrojs/sitemap": "^2.0.2",
     "@astrojs/vue": "^2.2.1",
     "@floating-ui/react": "^0.25.1",
     "@fullcalendar/core": "^6.1.8",
