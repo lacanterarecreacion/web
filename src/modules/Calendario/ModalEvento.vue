@@ -127,7 +127,7 @@
                 <div class="absolute top-1.5 right-0 m-3">
                   <b
                     class="!text-xs font-bold no-underline rounded-full px-2 py-0.5 bg-purple-200 text-purple-900 ml-1"
-                    v-if="props.event.backgroundColor === 'purple'"
+                    v-if="props.event.backgroundColor === '#e9d5ff'"
                   >
                     Presencial
                   </b>
