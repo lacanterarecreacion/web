@@ -5,7 +5,11 @@ import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
 import RecursosCards from "@/modules/Recursos/RecursosCards.astro";
 ---
 
-<Layout title="Recursos" description="Colecciones de recursos para el área de la recreación.">
+<Layout
+  title="Recursos"
+  description="Colecciones de recursos para el área de la recreación."
+  image="https://res.cloudinary.com/do2avsfpk/image/upload/v1692201129/web/social/recursos_wafckz.jpg"
+>
   <div
     class="relative flex items-center justify-center pt-12 pb-12 overflow-hidden bg-gradient-to-tr from-red-600 bg-red-700"
   >
@@ -35,7 +39,7 @@ import RecursosCards from "@/modules/Recursos/RecursosCards.astro";
     @apply ring-red-400;
   }
 
-  .recursos  .active {
-    @apply text-red-600
+  .recursos .active {
+    @apply text-red-600;
   }
 </style>

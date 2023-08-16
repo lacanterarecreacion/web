@@ -4,6 +4,7 @@ import { useSanityClient } from "astro-sanity";
 import Layout from "@/layouts/Layout.astro";
 import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderImage.astro";
 import QueHacemosCards from "@/src/modules/Institucional/QueHacemosCards.astro";
+import { urlForImage } from "@/lib/urlForImage";
 
 export async function getStaticPaths() {
   const noticias = await useSanityClient().fetch(`*[_type == "quehacemos"]`);
@@ -19,7 +20,7 @@ export async function getStaticPaths() {
 const { title, description, body, mainImage } = Astro.props;
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} image={urlForImage(mainImage).width(1200).height(627).url()}>
   <div
     class="relative flex items-center justify-center h-[400px] overflow-hidden bg-gradient-to-br from-indigo-700 to-blue-700"
   >

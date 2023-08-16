@@ -5,7 +5,11 @@ import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
 import QueHacemosCards from "@/modules/Institucional/QueHacemosCards.astro";
 ---
 
-<Layout title="Qué hacemos" description="Nos enfocamos en diversas iniciativas y actividades. Algunas de nuestras principales áreas de acción">
+<Layout
+  title="Qué hacemos"
+  description="Nos enfocamos en diversas iniciativas y actividades. Algunas de nuestras principales áreas de acción"
+  image="https://res.cloudinary.com/do2avsfpk/image/upload/v1692201206/web/social/que-hacemos_eej729.jpg"
+>
   <div
     class="relative flex items-center justify-center py-12 overflow-hidden bg-blue-600 bg-gradient-to-tr from-indigo-400"
   >
@@ -17,9 +21,7 @@ import QueHacemosCards from "@/modules/Institucional/QueHacemosCards.astro";
     <div class="absolute inset-0 z-10 opacity-60">
       <GrainOne />
     </div>
-    <div
-      class="absolute inset-0 z-0 !opacity-10"
-    >
+    <div class="absolute inset-0 z-0 !opacity-10">
       <BlobPlotScene />
     </div>
   </div>
@@ -37,6 +39,6 @@ import QueHacemosCards from "@/modules/Institucional/QueHacemosCards.astro";
   }
 
   .que-hacemos .active {
-    @apply text-blue-600
+    @apply text-blue-600;
   }
 </style>

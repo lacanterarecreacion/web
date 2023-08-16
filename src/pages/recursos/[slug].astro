@@ -5,7 +5,7 @@ import PlaceholderImage from "@/components/PlaceholderImage/SanityPlaceholderIma
 import PortableText from "@/components/PortableText/PortableTextCustom.astro";
 import type { Recurso } from "@/types/interfaces";
 import RecursosCards from "@/modules/Recursos/RecursosCards.astro";
-
+import { urlForImage } from "@/lib/urlForImage";
 
 interface Props extends Recurso {}
 
@@ -21,9 +21,10 @@ export async function getStaticPaths() {
   });
 }
 const { title, description, body, mainImage } = Astro.props as Props;
+
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} image={urlForImage(mainImage).width(1200).height(627).url()}>
   <div
     class="min-h-[60vh] bg-gradient-to-br flex justify-center items-center relative overflow-hidden from-pink-600 to-red-600 py-12"
   >
