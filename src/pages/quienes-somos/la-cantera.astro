@@ -5,7 +5,10 @@ import InstitucionalQuienesSomos from "@/src/modules/Institucional/Institucional
 import LaCanteraHero from "@/src/modules/Institucional/LaCanteraHero.astro";
 ---
 
-<Layout title="Sobre cantera">
+<Layout
+  title="Sobre cantera"
+  description="Somos una organización sin fines de lucro que se dedica a la investigación, difusión y puesta en marcha de actividades y proyectos en el ámbito de la Recreación, la Educación y el Juego."
+>
   <LaCanteraHero />
   <div class="relative z-10 bg-white">
     <InstitucionalQuienesSomos />
@@ -13,10 +16,16 @@ import LaCanteraHero from "@/src/modules/Institucional/LaCanteraHero.astro";
       style="background-image:url('https://cdn.sanity.io/images/1ekf84ne/production/53537aa7a0d385ea37c76a488b8125ccdaf61a28-4080x3060.jpg?w=1300')"
       class="flex bg-indigo-600 justify-center items-center py-40 w-full mt-4 relative overflow-hidden bg-fixed"
     >
-      <a href="/quienes-somos/nuestra-historia" class="btn yellow relative z-20">
+      <a
+        href="/quienes-somos/nuestra-historia"
+        class="btn yellow relative z-20"
+      >
         Conocé nuestra historia
       </a>
-      <div class="absolute inset-0 z-0 bg-gradient-to-br from-indigo-800/90 to-indigo-800/90"/>
+      <div
+        class="absolute inset-0 z-0 bg-gradient-to-br from-indigo-800/90 to-indigo-800/90"
+      >
+      </div>
     </div>
   </div>
 </Layout>

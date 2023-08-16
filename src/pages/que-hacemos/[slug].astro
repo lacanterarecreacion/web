@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 const { title, description, body, mainImage } = Astro.props;
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description}>
   <div
     class="relative flex items-center justify-center h-[400px] overflow-hidden bg-gradient-to-br from-indigo-700 to-blue-700"
   >

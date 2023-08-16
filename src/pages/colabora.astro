@@ -9,13 +9,15 @@ const colabora = await useSanityClient().fetch(
 );
 ---
 
-<Layout title="Colabora">
+<Layout
+  title="Colabora"
+  description="Nuestra misión es promover la educación y la inclusión a través de los juegos de mesa. ¡Ayúdanos a marcar la diferencia!"
+>
   <HeroColabora />
   <PageSections>
     <PageSectionsPlugs content={colabora.content} />
   </PageSections>
 </Layout>
-
 
 <style is:global>
   .colabora #headroom {
@@ -26,6 +28,6 @@ const colabora = await useSanityClient().fetch(
   }
 
   .colabora .active {
-    @apply text-blue-600
+    @apply text-blue-600;
   }
 </style>
