@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex justify-start items-center"
+    class="flex justify-start items-center w-full"
     :class="props.inCalendar ? ' absolute inset-0' : ''"
   >
     <button
@@ -174,8 +174,8 @@
               >
                 <SanityBlocks :blocks="props.event.extendedProps?.body" />
               </div>
-              <div class="mt-4 flex justify-center items-center p-3 gap-2">
-                <button type="button" class="btn w-44 !text-xs !ring-2" @click="closeModal">
+              <div class="mt-4 -mx-2 md:-mx-6 flex justify-center items-center bg-gray-100 p-6 gap-2">
+                <button type="button" class="btn w-44 yellow !text-xs !ring-2" @click="closeModal">
                   Cerrar
                 </button>
               </div>

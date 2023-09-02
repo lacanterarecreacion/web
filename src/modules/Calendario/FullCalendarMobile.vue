@@ -109,11 +109,11 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
         </Tab>
       </TabList>
 
-      <TabPanels class="mt-2 md:px-3">
+      <TabPanels class="mt-2">
         <TabPanel
           :class="[
-            'rounded-xl bg-white p-3',
-            'ring-white  focus:outline-none ',
+            'rounded-xl bg-white py-3 pl-3',
+            'ring-white focus:outline-none ',
           ]"
         >
           <div class="lg:col-span-2 lg:p-2 lg:pt-0 lg:px-2">
@@ -132,49 +132,66 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
               >
                 <AgendaSkeleton v-for="i in 6" />
               </div>
-
               <div v-else-if="futureEvents">
                 <div
-                  class="lg:h-[600px] overflow-y-auto px-1 grid xl:grid-cols-3 gap-3 mt-4"
+                  class="h-[500px] lg:h-[600px] overflow-y-auto px-1 grid xl:grid-cols-3 gap-3 pt-4"
                 >
                   <div v-if="eventosDay.length !== 0">
-                    <p class="font-bold text-orange-600">En las próximas 24hs</p>
-                    <div
-                      class="grid py-1 gap-3"
-                      v-for="event in eventosDay"
-                      :key="event.id"
+                    <p
+                      class="font-bold text-orange-600 sticky -top-4 py-2 bg-white"
                     >
-                      <ModalEvento :event="event" />
+                      En las próximas 24hs
+                    </p>
+                    <div class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start">
+                      <ModalEvento
+                        v-for="event in eventosDay"
+                        :key="event.id"
+                        :event="event"
+                      />
                     </div>
                   </div>
                   <div v-if="eventosWeek.length !== 0">
-                    <p class="font-bold text-orange-600">Dentro de 7 días</p>
-                    <div
-                      class="grid py-1 gap-3"
-                      v-for="event in eventosWeek"
-                      :key="event.id"
+                    <p
+                      class="font-bold text-orange-600 sticky -top-4 py-2 bg-white"
                     >
-                      <ModalEvento :event="event" />
+                      Dentro de 7 días
+                    </p>
+                    <div
+                      class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start"
+                    >
+                      <ModalEvento
+                        v-for="event in eventosWeek"
+                        :key="event.id"
+                        :event="event"
+                      />
                     </div>
                   </div>
                   <div v-if="eventosMonth.length !== 0">
-                    <p class="font-bold text-orange-600">En 30 días</p>
-                    <div
-                      class="grid py-1 gap-3"
-                      v-for="event in eventosMonth"
-                      :key="event.id"
+                    <p
+                      class="font-bold text-orange-600 sticky -top-4 py-2 bg-white"
                     >
-                      <ModalEvento :event="event" />
+                      En 30 días
+                    </p>
+                    <div class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start">
+                      <ModalEvento
+                        v-for="event in eventosMonth"
+                        :key="event.id"
+                        :event="event"
+                      />
                     </div>
                   </div>
                   <div v-if="eventosSixMonth">
-                    <p class="font-bold text-orange-600">En menos 6 Meses</p>
-                    <div
-                      class="grid gap-3 py-1"
-                      v-for="event in eventosSixMonth"
-                      :key="event.id"
+                    <p
+                      class="font-bold text-orange-600 sticky -top-4 py-2 bg-white"
                     >
-                      <ModalEvento :event="event" />
+                      En menos 6 Meses
+                    </p>
+                    <div class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start">
+                      <ModalEvento
+                        v-for="event in eventosSixMonth"
+                        :key="event.id"
+                        :event="event"
+                      />
                     </div>
                   </div>
                 </div>
@@ -199,7 +216,12 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
             <FullCalendar :options="calendarOptions">
               <template v-slot:eventContent="arg">
                 <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
-                  <p class="line-clamp-3 text-gray-900/80 !font-sans font-bold" style="text-wrap: balance">{{ arg.event.title }}</p>
+                  <p
+                    class="line-clamp-3 text-gray-900/80 !font-sans font-bold"
+                    style="text-wrap: balance"
+                  >
+                    {{ arg.event.title }}
+                  </p>
                 </div>
                 <ModalEvento inCalendar :event="arg.event" />
               </template>
