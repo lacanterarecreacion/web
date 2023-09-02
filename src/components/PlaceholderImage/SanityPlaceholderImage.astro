@@ -1,7 +1,7 @@
 ---
 import { urlForImage } from "@/lib/urlForImage";
 const { title, image, width, height, customClass } = Astro.props;
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 
 export interface Props {
   title: string;
