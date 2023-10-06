@@ -15,7 +15,7 @@ export default function MyDialogDemoDialog({ buttonTriggerClass }: any) {
               <span className="font-hand font-light">Enterate</span>
             </Dialog.Title>
             <Dialog.Description className="max-w-2xl font-sans sm:text-xl text-white">
-              En ambos canales recibiran información oficial sobre eventos,
+              En ambos canales recibirán información oficial sobre eventos,
               reuniones y actualizaciones relacionadas al juego.
             </Dialog.Description>
             <div className="grid grid-cols-2 mt-6 gap-6">
