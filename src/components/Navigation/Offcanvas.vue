@@ -9,6 +9,7 @@
       leave-to-class="opacity-0"
     >
       <button
+        aria-hidden="true"
         class="fixed inset-0 z-40 bg-white/60 backdrop-blur"
         @click="show = !show"
         v-if="!show"

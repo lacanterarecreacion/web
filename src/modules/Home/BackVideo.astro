@@ -1,9 +1,45 @@
+<div class="absolute z-50 hidden md:flex right-0 bottom-6 lg:bottom-0 m-2">
+  <button
+    class="bg-gray-100 p-1 m-2 rounded-full active hover:opacity-80 duration-300"
+    id="play-pause-button"
+    aria-label="Pausar Video"
+  >
+    <svg
+      class="play-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="#999"
+        d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 0 0 0-1.69L9.54 5.98A.998.998 0 0 0 8 6.82z"
+      >
+      </path>
+    </svg>
+    <svg
+      class="pause-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path fill="#999" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"> </path>
+    </svg>
+  </button>
+  <div id="tooltip" role="tooltip">
+    Reproducir o pausar Video
+    <div id="arrow"></div> 
+  </div>
+</div>
+
 <div
+  aria-hidden="true"
   class="flex absolute top-0 overflow-hidden inset-0 left-0 -z-10 object-cover object-right w-full h-screen opacity-40 md:opacity-80 md:object-center"
 >
   <img
     class="!h-screen object-cover absolute inset-0 z-10 md:hidden motion-reduce:!flex"
-    title="Back Video"
+    alt=""
     width={1820}
     height={1200}
     src="https://res.cloudinary.com/do2avsfpk/image/upload/v1685029591/web/Fondo/videoplayback.00_00_12_03_mventv.webp"
@@ -12,8 +48,9 @@
     autoplay
     loop
     muted
-    playsinline
-    class="absolute motion-reduce:hidden inset-0 -z-10 object-cover object-right w-full h-screen md:object-center"
+    controlslist="nodownload nofullscreen"
+    id="videoId"
+    class="absolute motion-reduce:hidden inset-0 -z-10 object-cover object-right w-full h-[90vh] md:object-center"
     poster="https://res.cloudinary.com/do2avsfpk/image/upload/v1685029591/web/Fondo/videoplayback.00_00_12_03_mventv.webp"
   >
     <source
@@ -30,3 +67,107 @@
     />
   </video>
 </div>
+
+<script>
+  // Find our component DOM on the page.
+  const playPauseButton = document.getElementById("play-pause-button");
+
+  if (playPauseButton) {
+    playPauseButton.addEventListener("click", function () {
+      const video = document.getElementById("videoId") as HTMLVideoElement;
+      if (video) {
+        if (video.paused) {
+          video.play();
+          playPauseButton.classList.add("active");
+        } else {
+          video.pause();
+          playPauseButton.classList.remove("active");
+        }
+      }
+    });
+  }
+</script>
+
+<script>
+  // @ts-nocheck
+  import {
+    computePosition,
+    flip,
+    shift,
+    offset,
+    arrow,
+  } from "https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.5.0/+esm";
+
+  const button = document.querySelector("#play-pause-button");
+  const tooltip = document.querySelector("#tooltip");
+  const arrowElement = document.querySelector("#arrow");
+
+  function update() {
+    computePosition(button, tooltip, {
+      placement: "right",
+      middleware: [
+        offset(16),
+        flip(),
+        shift({ padding: 5 }),
+        arrow({ element: arrowElement }),
+      ],
+    }).then(({ x, y, placement, middlewareData }) => {
+      Object.assign(tooltip.style, {
+        left: `${x}px`,
+        top: `${y}px`,
+      });
+
+      // Accessing the data
+      const { x: arrowX, y: arrowY } = middlewareData.arrow;
+
+      const staticSide = {
+        top: "bottom",
+        right: "left",
+        bottom: "top",
+        left: "right",
+      }[placement.split("-")[0]];
+
+      Object.assign(arrowElement.style, {
+        left: arrowX != null ? `${arrowX}px` : "",
+        top: arrowY != null ? `${arrowY}px` : "",
+        right: "",
+        bottom: "",
+        [staticSide]: "-4px",
+      });
+    });
+  }
+
+  function showTooltip() {
+    tooltip.style.display = "block";
+    update();
+  }
+
+  function hideTooltip() {
+    tooltip.style.display = "";
+  }
+
+  [
+    ["mouseenter", showTooltip],
+    ["mouseleave", hideTooltip],
+    ["focus", showTooltip],
+    ["blur", hideTooltip],
+  ].forEach(([event, listener]) => {
+    button.addEventListener(event, listener);
+  });
+</script>
+
+<style>
+  #play-pause-button .pause-icon {
+    @apply hidden;
+  }
+  #play-pause-button.active .pause-icon {
+    @apply flex;
+  }
+
+  #play-pause-button .play-icon {
+    @apply flex;
+  }
+  #play-pause-button.active .play-icon {
+    @apply hidden;
+  }
+</style>

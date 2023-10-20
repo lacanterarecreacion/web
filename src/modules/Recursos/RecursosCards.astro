@@ -33,19 +33,19 @@ const currentSlug = currentURL.replace('/recursos/', '');
                         .width(400)
                         .height(200)
                         .url()}
-                      alt={post.title}
+                      alt=""
                     />
                   </div>
                 </div>
                 <div class="grid grid-cols-3 gap-3 p-3 min-h-[5rem]">
-                  <a
-                    href={`/recursos/${post.slug?.current}`}
-                    class="z-10 underline underline-offset-4 col-span-2 flex items-start  font-atkinson  justify-start w-full font-medium text-lg text-left text-red-600"
+                  <h3
+                    class="z-10 col-span-2 flex items-start  font-atkinson  justify-start w-full font-medium text-lg text-left text-gray-800"
                   >
                     {post.title}
-                  </a>
+                  </h3>
                   <div class="flex justify-end items-start">
                     <a
+                      aria-label={`Ir a la página de ${post.title}`}
                       href={`/recursos/${post.slug?.current}`}
                       class="btn !text-xs red"
                     >

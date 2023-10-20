@@ -23,7 +23,7 @@ const QUE_HACEMOS = await useSanityClient().fetch(
     Nos enfocamos en diversas iniciativas y actividades. <br /> Algunas de nuestras
     principales áreas de acción
   </p>
-  <a href="/que-hacemos" class="relative z-20 btn green"> Conocer más</a>
+  <a href="/que-hacemos" class="relative z-20 btn green" aria-label="Conocer más sobre los proyectos que hacemos">Conocer más</a>
   <div class="relative z-50 pb-24">
     <div
       class="relative z-10 grid w-full gap-8 px-3 mx-auto QueHacemosGrid max-w-7xl sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4"
@@ -31,20 +31,21 @@ const QUE_HACEMOS = await useSanityClient().fetch(
       {
         QUE_HACEMOS.map((post: ItemHacemos) => (
           <div class="relative flex flex-col items-center justify-start pb-4 overflow-hidden duration-300 bg-white rounded-lg shadow item animate__fadeIn animate__animated animate__slower group hover:shadow-lg">
-            <h3 class="flex flex-col relative items-center justify-center w-full overflow-hidden h-44">
+            <div class="flex flex-col relative items-center bg-indigo-900 justify-center w-full overflow-hidden h-44">
               <img
-                class="object-cover w-full group-hover:scale-105 h-44 duration-300 z-0"
+                class="object-cover w-full group-hover:scale-105 h-44 duration-300 opacity-50 z-0"
                 src={urlForImage(post.mainImage).width(300).height(200).url()}
-                alt={post.title}
+                alt=""
               />
-              <p class="w-full absolute bottom-0 left-0  right-0 !flex justify-start items-end h-20 z-10 text-xl line-clamp-2 p-4 font-sans font-bold text-left text-blue-100 group-hover:underline underline-offset-2">
-                <a href={`/que-hacemos/${post.slug?.current}`}>{post.title}</a>
-              </p>
-              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-40% via-indigo-900/50 to-indigo-950 z-0" />
-            </h3>
+              <h3 class="w-full absolute bottom-0 left-0  right-0 !flex justify-start items-end h-20 z-10 text-xl line-clamp-2 p-4 font-sans font-bold text-left text-white">
+                {post.title}
+              </h3>
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-40% via-indigo-900/70 to-indigo-950 z-0" />
+            </div>
             <p class="w-full p-4 line-clamp-3 h-20 mb-4">{post.description}</p>
             <div class="flex justify-start w-full px-4">
               <a
+                aria-label={`Conoce más informacion en la sección de ${post.title}`}
                 href={`/que-hacemos/${post.slug?.current}`}
                 class="underline text-blue-600 underline-offset-2"
               >
@@ -56,15 +57,6 @@ const QUE_HACEMOS = await useSanityClient().fetch(
       }
     </div>
   </div>
-
-  <!-- <div class="absolute inset-0 z-0 opacity-90">
-    <div class="absolute inset-0">
-      <GrainOne />
-    </div>
-    <div class="absolute inset-0 opacity-30 mix-blend-multiply">
-      <WaveScene />
-    </div>
-  </div> -->
 </div>
 
 <style>

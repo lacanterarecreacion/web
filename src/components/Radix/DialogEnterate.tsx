@@ -128,7 +128,7 @@ export default function MyDialogDemoDialog({ buttonTriggerClass }: any) {
           <Dialog.Close asChild>
             <button
               className="text-white hover:text-gray-200 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
-              aria-label="Close"
+              aria-label="Cerrar"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

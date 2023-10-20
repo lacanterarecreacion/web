@@ -6,7 +6,7 @@ const { images } = Astro.props;
 <div class="w-full px-3 mx-auto">
   <div
     style="--swiper-navigation-color: #333; --swiper-pagination-color: #333; --swiper-pagination-bullet-width: 16px; --swiper-pagination-bullet-height: 16px;"
-    class="!pb-12 swiper mySwiper"
+    class="!pb-12 swiper"
   >
     <div class="swiper-wrapper">
       {
@@ -17,7 +17,7 @@ const { images } = Astro.props;
               href={i}
             >
               <Image
-                alt={i}
+                alt=""
                 src={i}
                 width={400}
                 height={400}
@@ -60,7 +60,7 @@ const { images } = Astro.props;
 <!-- Initialize Swiper -->
 <script>
   //@ts-ignore
-  var swiper = new Swiper(".mySwiper", {
+  const swiper = new Swiper(".swiper", {
     lazy: true,
     spaceBetween: 30,
     breakpoints: {

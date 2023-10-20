@@ -8,6 +8,7 @@ import slugify from "@/lib/createSlug";
 const ABOUT = await useSanityClient().fetch(
   `*[_type == "nuestra_historia"] | order(publishedAt desc) [0]`
 );
+
 ---
 
 <Layout
@@ -27,39 +28,6 @@ const ABOUT = await useSanityClient().fetch(
         ></span>
       </div>
     </div>
-    <!-- <div class="relative pb-12 pt-12 bg-fixed bg-cover bg-bottom">
-      <div class="z-30 relative">
-        <h1
-          class="text-4xl text-emerald-800 z-30 top-6 md:text-5xl font-hand text-center relative"
-        >
-          Nuestra historia
-        </h1>
-        <svg
-          class="absolute w-96 z-0 -top-1 mx-auto left-1/2 -translate-x-1/2"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 382.293 100.262"
-        >
-          <g stroke-linecap="round">
-            <path
-              class="fill-emerald-50"
-              stroke-width="0"
-              d="m27.32 13.36 327.11-5.78 12.44 8.31 4.19 4.9-1.18 51.2-2.86 8.16-5.8 5.62-12.97 2.92L26.22 93.8l-12.18-4.08L8.07 77.9l-.44-47.71 3.75-7.91 6.34-6.25 6.64-5.07 2.31-4.77"
-            ></path>
-            <path
-              fill="none"
-              class="stroke-emerald-600"
-              stroke-width="2"
-              d="M30.07 10c120.86-1.31 236.45-.84 322.16 0M30.07 10c73.32-4.41 147.52-4.5 322.16 0m0 0c16.14.82 19.18 7.94 20.06 20.07M352.23 10c10.05-4.14 23.89 2.86 20.06 20.07m0 0c1.37 18.33-3.15 32.74 0 40.13m0-40.13c1.22 12.64 1.99 23.07 0 40.13m0 0c-.19 9.57-8.56 20.12-20.06 20.06m20.06-20.06c-2.46 17.55-11.16 19.11-20.06 20.06m0 0c-81.72.68-166.65 1.55-322.16 0m322.16 0c-64.23-.31-129.45-.05-322.16 0m0 0C13.21 90.29 7.47 84.39 10 70.2m20.07 20.06C12.79 90.37 6.52 86.58 10 70.2m0 0c3.38-5.37-.68-13.43 0-40.13m0 40.13c.01-10.95-1.16-19.79 0-40.13m0 0C7.14 13.22 18.92 9.85 30.07 10M10 30.07C5.88 15.65 16.78 7.88 30.07 10"
-            ></path>
-          </g>
-        </svg>
-      </div>
-      <LineaDeTiempo />
-      <div
-        class="absolute inset-0 z-0 bg-gradient-to-br from-emerald-100/60 to-emerald-200/90"
-      >
-      </div>
-    </div> -->
     <div class="relative px-6 mt-12 md:mt-40">
       <h1
         class="text-emerald-900 max-w-sm mx-auto text-5xl font-hand text-center relative z-30 py-12"

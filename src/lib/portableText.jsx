@@ -42,6 +42,7 @@ const customComponents = {
            return (
              <div class="swiper-slide glightbox" >
                <img
+                 alt=""
                  class="object-cover w-full h-64"
                  src={urlForImage(i.asset).width(600).height(400).url()}
                />

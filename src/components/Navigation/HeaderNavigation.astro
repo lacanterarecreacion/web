@@ -7,12 +7,11 @@ const pathname = new URL(Astro.request.url).pathname;
 
 <nav aria-label="Top">
   <div class="flex flex-col justify-center mb-6 items-center gap-5 xl:hidden">
-    <a
-      href="/quienes-somos/la-cantera"
-      class="text-2xl text-indigo-700 font-trash  "
+    <h3
+      class="text-2xl text-indigo-700 !font-hand  "
     >
       Quiénes somos
-    </a>
+    </h3>
     <a
       class={`${
         pathname === "/quienes-somos/la-cantera"

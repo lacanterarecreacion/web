@@ -40,14 +40,16 @@ export default ({ gallery }: any) => {
         pagination={{ clickable: true }}
       >
         {gallery.images.imagesGallery.map(
-          (item: { asset: any }, index: number) => {
+          (item: { asset: any, alt: string }, index: number) => {
             return (
               <SwiperSlide key={index}>
                 <a
                   className="glightbox"
+                  aria-hidden
                   href={urlFor(item.asset).width(1300).url()}
                 >
                   <img
+                    alt={item.alt}
                     className="object-cover w-full rounded-lg overflow-hidden h-64"
                     src={urlFor(item).width(600).height(400).url()}
                   />

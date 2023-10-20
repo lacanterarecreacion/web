@@ -1,7 +1,5 @@
 ---
 import BackVideo from "@/modules/Home/BackVideo.astro";
-import DialogEnterate from "@/components/Radix/DialogEnterate";
-
 ---
 
 <div
@@ -11,29 +9,28 @@ import DialogEnterate from "@/components/Radix/DialogEnterate";
     class="relative z-20 grid w-full gap-3 pb-6 md:grid-cols-2 max-w-7xl animate__fadeIn animate__animated"
   >
     <div class="flex flex-col gap-2 mt-2 sm:gap-6 lg:pr-6">
-      <h2 class="font-sans text-4xl text-white lg:text-6xl">
+      <h1 class="font-sans text-4xl text-white lg:text-6xl">
         <!-- La Cantera:  -->
-        <span class="font-hand font-light"
-          >Proyectos en el campo <br /> de la recreación</span
+        <span class="font-hand font-light">
+          Proyectos en el campo <br /> de la recreación</span
         >
-      </h2>
-      <p class="max-w-xl font-sans text-white sm:text-xl">
+      </h1>
+      <h2 class="max-w-xl font-sans text-white sm:text-xl">
         Nos dedicamos a la investigación, difusión y diseño de actividades y
         proyectos en el ámbito de la Recreación, la Educación y el Juego.
-      </p>
+      </h2>
       <div class="flex w-full gap-3 mt-4">
-        <a href="/quienes-somos/nuestra-historia" class="btn blue  ">
+        <a href="/quienes-somos/nuestra-historia" class="btn blue">
           Nuestra historia
         </a>
-        <a href="/calendario-ludico" class="btn yellow  ">
-          Calendario Lúdico
-        </a>
+        <a href="/calendario-ludico" class="btn yellow"> Calendario Lúdico</a>
         <!-- <DialogEnterate buttonTriggerClass={'btn green'} client:visible/> -->
       </div>
     </div>
   </div>
   <div
-    class="absolute inset-0 z-10 flex bg-gradient-to-r from-gray-900/50 md:from-gray-900/95 md: via-gray-900/75 via-40% to-transparent"
+    
+    class="absolute pointer-events-none inset-0 z-10 flex bg-gradient-to-r from-gray-900/50 md:from-gray-900/95 md: via-gray-900/75 via-40% to-transparent"
   >
   </div>
   <BackVideo />

@@ -105,3 +105,22 @@ article.prose h3 {
     opacity: 0;
   }
 }
+#tooltip {
+  display: none;
+  width: max-content;
+  position: absolute;
+  top: 0;
+  left: 0;
+  @apply text-gray-900 bg-white;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 90%;
+}
+#arrow {
+  position: absolute;
+  @apply bg-white;
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+}

@@ -126,7 +126,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
             class="futureEvents lg:h-[560px] overflow-y-auto px-1 flex flex-col gap-3 pt-4"
           >
             <div v-if="eventosDay.length !== 0">
-              <p class="font-bold text-orange-600 sticky -top-4 py-2 bg-white">En las próximas 24hs</p>
+              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">En las próximas 24hs</p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosDay"
@@ -136,7 +136,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
               </div>
             </div>
             <div v-if="eventosWeek.length !== 0">
-              <p class="font-bold text-orange-600 sticky -top-4 py-2 bg-white">Próximos 7 días</p>
+              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">Próximos 7 días</p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosWeek"
@@ -146,7 +146,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
               </div>
             </div>
             <div v-if="eventosMonth.length !== 0">
-              <p class="font-bold text-orange-600 sticky -top-4 py-2 bg-white">Próximos 30 días</p>
+              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">Próximos 30 días</p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosMonth"
@@ -156,7 +156,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
               </div>
             </div>
             <div v-if="eventosSixMonth">
-              <p class="font-bold text-orange-600 sticky -top-4 py-2 bg-white">Próximos 6 Meses</p>
+              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">Próximos 6 Meses</p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosSixMonth"
