@@ -45,7 +45,6 @@ export default ({ gallery }: any) => {
               <SwiperSlide key={index}>
                 <a
                   className="glightbox"
-                  aria-hidden
                   href={urlFor(item.asset).width(1300).url()}
                 >
                   <img

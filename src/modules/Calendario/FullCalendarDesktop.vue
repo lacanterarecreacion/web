@@ -9,6 +9,7 @@ import ModalEvento from "./ModalEvento.vue";
 import IconSpinner from "./IconSpinner.vue";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import AgendaSkeleton from "./AgendaSkeleton.vue";
+import NoEvent from "./NoEvent.vue";
 import type { Events, Event, EventsByTimes } from "@/types/interfaces";
 
 const props = defineProps<Events>();
@@ -99,7 +100,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
   >
     <div class="lg:col-span-2 lg:p-2 lg:pt-0 lg:px-2">
       <div
-        class="flex items-center justify-between pt-2 pb-3  border-b border-gray-300"
+        class="flex items-center justify-between pt-2 pb-3 border-b border-gray-300"
       >
         <h1 class="text-left w-full font-hand text-3xl text-gray-800">
           Proximas actividades
@@ -119,14 +120,28 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
           <AgendaSkeleton v-for="i in 1" />
         </div>
         <div v-else-if="futureEvents" class="relative">
-          <div class="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent"/>
-          <div class="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent"/>
-          
+          <div
+            class="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent"
+          />
+          <div
+            class="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent"
+          />
+
           <div
             class="futureEvents lg:h-[560px] overflow-y-auto px-1 flex flex-col gap-3 pt-4"
           >
+            <NoEvent
+              v-if="
+                eventosDay.length === 0 &&
+                eventosWeek.length === 0 &&
+                eventosMonth.length === 0 &&
+                eventosSixMonth.length === 0
+              "
+            />
             <div v-if="eventosDay.length !== 0">
-              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">En las próximas 24hs</p>
+              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">
+                En las próximas 24hs
+              </p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosDay"
@@ -136,7 +151,9 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
               </div>
             </div>
             <div v-if="eventosWeek.length !== 0">
-              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">Próximos 7 días</p>
+              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">
+                Próximos 7 días
+              </p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosWeek"
@@ -146,7 +163,9 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
               </div>
             </div>
             <div v-if="eventosMonth.length !== 0">
-              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">Próximos 30 días</p>
+              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">
+                Próximos 30 días
+              </p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosMonth"
@@ -155,8 +174,10 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
                 <ModalEvento :event="event" />
               </div>
             </div>
-            <div v-if="eventosSixMonth">
-              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">Próximos 6 Meses</p>
+            <div v-if="eventosSixMonth.length !== 0">
+              <p class="font-bold text-orange-700 sticky -top-4 py-2 bg-white">
+                Próximos 6 Meses
+              </p>
               <div
                 class="grid py-1 gap-3"
                 v-for="event in eventosSixMonth"
@@ -180,7 +201,10 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
       <FullCalendar :options="calendarOptions">
         <template v-slot:eventContent="arg">
           <div class="flex flex-col w-full p-2 overflow-hidden text-xs">
-            <p class="line-clamp-3 text-gray-900/90 !font-sans font-bold" style="text-wrap: balance;">
+            <p
+              class="line-clamp-3 text-gray-900/90 !font-sans font-bold"
+              style="text-wrap: balance"
+            >
               {{ arg.event.title }}
             </p>
           </div>

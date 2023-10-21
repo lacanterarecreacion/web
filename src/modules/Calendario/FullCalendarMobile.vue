@@ -11,6 +11,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import AgendaSkeleton from "./AgendaSkeleton.vue";
 import type { Events, Event, EventsByTimes } from "@/types/interfaces";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
+import NoEvent from "./NoEvent.vue";
 
 const props = defineProps<Events>();
 const isLoading = ref(true);
@@ -95,7 +96,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
 
 <template>
   <div
-    class="w-full gap-1 mx-auto bg-white shadow-lg grid max-w-7xl lg:p-3 pt-6 md:pt-12 md:gap-2 md:rounded-xl"
+    class="w-full gap-1 mx-auto bg-white shadow-lg grid max-w-7xl lg:p-3 pt-8 md:pt-12 md:gap-2 md:rounded-xl"
   >
     <TabGroup :defaultIndex="1">
       <TabList class="flex p-1 mx-2 space-x-1 rounded-xl bg-orange-300/20">
@@ -136,13 +137,23 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
                 <div
                   class="h-[500px] lg:h-[600px] overflow-y-auto px-1 grid xl:grid-cols-3 gap-3 pt-4"
                 >
+                  <NoEvent
+                    v-if="
+                      eventosDay.length === 0 &&
+                      eventosWeek.length === 0 &&
+                      eventosMonth.length === 0 &&
+                      eventosSixMonth.length === 0
+                    "
+                  />
                   <div v-if="eventosDay.length !== 0">
                     <p
                       class="font-bold text-orange-600 sticky -top-4 py-2 bg-white"
                     >
                       En las próximas 24hs
                     </p>
-                    <div class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start">
+                    <div
+                      class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start"
+                    >
                       <ModalEvento
                         v-for="event in eventosDay"
                         :key="event.id"
@@ -172,7 +183,9 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
                     >
                       En 30 días
                     </p>
-                    <div class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start">
+                    <div
+                      class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start"
+                    >
                       <ModalEvento
                         v-for="event in eventosMonth"
                         :key="event.id"
@@ -180,13 +193,15 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
                       />
                     </div>
                   </div>
-                  <div v-if="eventosSixMonth">
+                  <div v-if="eventosSixMonth.length !== 0">
                     <p
                       class="font-bold text-orange-600 sticky -top-4 py-2 bg-white"
                     >
-                      En menos 6 Meses
+                      Próximos 6 Meses
                     </p>
-                    <div class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start">
+                    <div
+                      class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start"
+                    >
                       <ModalEvento
                         v-for="event in eventosSixMonth"
                         :key="event.id"
