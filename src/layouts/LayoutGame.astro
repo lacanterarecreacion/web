@@ -53,32 +53,34 @@ const bodySlug = slugify(pathname);
     </main>
     <IntersectionObserver />
     <script
-      src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver,ResizeObserver,WebAnimations,Object.fromEntries,Array.prototype.at"
+      is:inline
+      src="https://polyfill.io/v3/polyfill.js?features=IntersectionObserver,ResizeObserver,WebAnimations,Object.fromEntries,Array.prototype.at"
     ></script>
     <style is:global>
       html {
         overflow-y: scroll;
       }
     </style>
-  </body><style>
-    .skip-link {
-      right: 7.25rem;
-      position: absolute;
-      transform: translateY(-130%);
-      border-radius: 0.375rem;
-      background-color: rgb(31, 41, 55);
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      color: #fff;
-      transition: transform 0.3s;
-      z-index: 99999;
-      font-size: 0.825rem;
-    }
+    <style>
+      .skip-link {
+        right: 7.25rem;
+        position: absolute;
+        transform: translateY(-130%);
+        border-radius: 0.375rem;
+        background-color: rgb(31, 41, 55);
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        color: #fff;
+        transition: transform 0.3s;
+        z-index: 99999;
+        font-size: 0.825rem;
+      }
 
-    .skip-link:focus-within {
-      transform: translateY(1.25rem);
-    }
-  </style>
+      .skip-link:focus-within {
+        transform: translateY(1.25rem);
+      }
+    </style>
+  </body>
 </html>
