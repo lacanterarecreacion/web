@@ -102,9 +102,19 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
       <div
         class="flex items-center justify-between pt-2 pb-3 border-b border-gray-300"
       >
-        <h1 class="text-left w-full font-hand text-3xl text-gray-800">
-          Proximas actividades
-        </h1>
+        <div class="flex flex-col">
+          <h1 class="text-left w-full font-hand text-3xl text-gray-800">
+            Próximas actividades
+          </h1>
+          Hoy es
+          {{
+            new Date().toLocaleString("es-ar", {
+              day: "numeric",
+              year: "numeric",
+              month: "short",
+            })
+          }}
+        </div>
         <IconSpinner v-if="isLoading" class="w-6 h-6" />
       </div>
       <Transition>

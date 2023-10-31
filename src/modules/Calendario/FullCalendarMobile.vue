@@ -117,13 +117,23 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
             'ring-white focus:outline-none ',
           ]"
         >
-          <div class="lg:col-span-2 lg:p-2 lg:pt-0 lg:px-2">
+          <div class="lg:col-span-2">
             <div
               class="flex items-center justify-between pt-3 pb-3 mb-2 border-b border-gray-300"
             >
-              <h1 class="text-left w-full font-hand text-3xl text-gray-800">
-                Proximas actividades
-              </h1>
+              <div class="flex flex-col">
+                <h1 class="text-left w-full font-hand text-3xl text-gray-800">
+                  Próximas actividades
+                </h1>
+                Hoy es
+                {{
+                  new Date().toLocaleString("es-ar", {
+                    day: "numeric",
+                    year: "numeric",
+                    month: "short",
+                  })
+                }}
+              </div>
               <IconSpinner v-if="isLoading" class="w-6 h-6" />
             </div>
             <Transition>
@@ -135,7 +145,7 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
               </div>
               <div v-else-if="futureEvents">
                 <div
-                  class="h-[500px] lg:h-[600px] overflow-y-auto px-1 grid xl:grid-cols-3 gap-3 pt-4"
+                  class="h-[500px] lg:h-[600px] overflow-y-auto px-1 lg:grid lg:grid-cols-4 flex flex-col gap-3 pt-4"
                 >
                   <NoEvent
                     v-if="
@@ -147,12 +157,12 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
                   />
                   <div v-if="eventosDay.length !== 0">
                     <p
-                      class="font-bold text-orange-600 sticky -top-4 py-2 bg-white"
+                      class="font-bold text-orange-700 sticky -top-4 py-2 bg-white"
                     >
                       En las próximas 24hs
                     </p>
                     <div
-                      class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start"
+                      class="grid py-1 gap-3 place-items-start md:grid-cols-2 lg:grid-cols-1"
                     >
                       <ModalEvento
                         v-for="event in eventosDay"
@@ -163,12 +173,12 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
                   </div>
                   <div v-if="eventosWeek.length !== 0">
                     <p
-                      class="font-bold text-orange-600 sticky -top-4 py-2 bg-white"
+                      class="font-bold text-orange-700 sticky -top-4 py-2 bg-white"
                     >
                       Dentro de 7 días
                     </p>
                     <div
-                      class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start"
+                      class="grid py-1 gap-3 place-items-start md:grid-cols-2 lg:grid-cols-1"
                     >
                       <ModalEvento
                         v-for="event in eventosWeek"
@@ -179,12 +189,12 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
                   </div>
                   <div v-if="eventosMonth.length !== 0">
                     <p
-                      class="font-bold text-orange-600 sticky -top-4 py-2 bg-white"
+                      class="font-bold text-orange-700 sticky -top-4 py-2 bg-white"
                     >
                       En 30 días
                     </p>
                     <div
-                      class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start"
+                      class="grid py-1 gap-3 place-items-start md:grid-cols-2 lg:grid-cols-1"
                     >
                       <ModalEvento
                         v-for="event in eventosMonth"
@@ -195,12 +205,12 @@ const eventosSixMonth = futureEvents.value.NextSixMonths;
                   </div>
                   <div v-if="eventosSixMonth.length !== 0">
                     <p
-                      class="font-bold text-orange-600 sticky -top-4 py-2 bg-white"
+                      class="font-bold text-orange-700 sticky -top-4 py-2 bg-white"
                     >
                       Próximos 6 Meses
                     </p>
                     <div
-                      class="grid py-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 place-items-start"
+                      class="grid py-1 gap-3 place-items-start md:grid-cols-2 lg:grid-cols-1"
                     >
                       <ModalEvento
                         v-for="event in eventosSixMonth"
