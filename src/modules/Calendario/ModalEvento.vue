@@ -146,7 +146,18 @@
                     :href="props.event.extendedProps?.link"
                   >
                     Link al evento
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="#ffffff"><path d="M5 6a1 1 0 0 1 1-1h4a1 1 0 1 0 0-2H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-4a1 1 0 1 0-2 0v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6zm10-3a1 1 0 1 0 0 2h2.586l-6.293 6.293a1 1 0 0 0 1.414 1.414L19 6.414V9a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1h-5z"/></g></svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                    >
+                      <g fill="#ffffff">
+                        <path
+                          d="M5 6a1 1 0 0 1 1-1h4a1 1 0 1 0 0-2H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-4a1 1 0 1 0-2 0v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6zm10-3a1 1 0 1 0 0 2h2.586l-6.293 6.293a1 1 0 0 0 1.414 1.414L19 6.414V9a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1h-5z"
+                        />
+                      </g>
+                    </svg>
                   </a>
                 </div>
               </div>
@@ -163,10 +174,11 @@
                   </span>
                   {{ formattedDate(props.event.start) }}
                 </p>
-                <time class="font-normal text-lg">
+                <span v-if="props.event.end" class="font-normal text-lg">
                   De {{ formattedTime(props.event.start) }} a
                   {{ formattedTime(props.event.end) }}hs
-                </time>
+                </span>
+                <span v-else class="font-normal text-lg"> {{ formattedTime(props.event.start) }}hs </span>
               </div>
               <div
                 v-if="props.event.extendedProps?.body"
@@ -174,8 +186,14 @@
               >
                 <SanityBlocks :blocks="props.event.extendedProps?.body" />
               </div>
-              <div class="mt-4 -mx-2 md:-mx-6 flex justify-center items-center bg-gray-100 p-6 gap-2">
-                <button type="button" class="btn w-44 yellow !text-xs !ring-2" @click="closeModal">
+              <div
+                class="mt-4 -mx-2 md:-mx-6 flex justify-center items-center bg-gray-100 p-6 gap-2"
+              >
+                <button
+                  type="button"
+                  class="btn w-44 yellow !text-xs !ring-2"
+                  @click="closeModal"
+                >
                   Cerrar
                 </button>
               </div>

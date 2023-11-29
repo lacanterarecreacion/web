@@ -47,7 +47,7 @@ const eventosFuturos = () => {
 
   if (props.calendarEvents) {
     props.calendarEvents.forEach((evento: Event) => {
-      const fechaEvento = new Date(evento.end).getTime();
+      const fechaEvento = new Date(evento.start).getTime();
       if (fechaEvento > now && fechaEvento <= nextDay) {
         eventsByPeriod["Next24Hours"].push(evento);
       } else if (fechaEvento > now && fechaEvento <= nextWeek) {
