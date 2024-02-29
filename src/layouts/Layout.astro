@@ -14,7 +14,6 @@ import Navigation from "@/components/Navigation/HeaderNavigation.astro";
 import Offcanvas from "@/components/Navigation/Offcanvas.vue";
 import GoogleFont from "./GoogleFont.astro";
 import IntersectionObserver from "./IntersectionObserver.astro";
-import Noscript from "./noscript.astro";
 import slugify from "@/lib/createSlug";
 
 const {
@@ -62,10 +61,6 @@ const bodySlug = slugify(pathname);
     <script
       is:inline
       src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"
-    ></script>
-    <script
-      is:inline
-      src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver,ResizeObserver,WebAnimations,Object.fromEntries,Array.prototype.at"
     ></script>
     <style is:global>
       html {
