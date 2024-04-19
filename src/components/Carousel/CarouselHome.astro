@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 const { images } = Astro.props;
+import { urlForImage } from "@/lib/urlForImage";
 ---
 
 <div class="w-full px-3 mx-auto">
@@ -14,11 +15,11 @@ const { images } = Astro.props;
           return (
             <a
               class="swiper-slide bg-black rounded-lg overflow-hidden glightbox"
-              href={i}
+              href={urlForImage(i).width(1200).url()}
             >
               <Image
-                alt=""
-                src={i}
+                alt={i.alt}
+                src={urlForImage(i).width(600).height(400).url()}
                 width={400}
                 height={400}
                 class="object-cover w-full h-96"

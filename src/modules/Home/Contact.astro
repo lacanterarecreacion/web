@@ -5,6 +5,13 @@ import IconYoutube from "@/components/Icons/IconYoutube.astro";
 import GrainOne from "@/components/UI/Grain/GrainOne.astro";
 import DialogEnterate from "@/components/Radix/DialogEnterate";
 import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
+
+import { useSanityClient } from "astro-sanity";
+
+const CONTACT = await useSanityClient().fetch(
+  `*[_type == "contacto"][0]`
+);
+
 ---
 
 <div
@@ -14,7 +21,7 @@ import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
   <h1
     class="w-full md:w-96 mx-auto font-hand pb-6 text-5xl text-center text-white md:text-7xl"
   >
-    Contacto
+    {CONTACT.title}
   </h1>
   <div
     class="relative z-30 w-full max-w-lg mx-auto overflow-hidden text-center bg-white rounded-lg shadow-lg animate__fadeIn animate__animated"
@@ -27,7 +34,7 @@ import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
       </h2>
       <div class="relative text-gray-800">
         <p class="w-full text-center break-words select-all md:text-xl">
-          lacantera.recreacion@gmail.com
+          {CONTACT.mail}
         </p>
       </div>
     </div>
@@ -44,7 +51,7 @@ import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
           rel="noopener noreferrer"
           aria-label="Ir a facebook de La Cantera Recreación"
           class="btn green hover:opacity-80 group"
-          href="https://es-la.facebook.com/LaCanteraRecreacion/"
+          href={CONTACT.facebook}
         >
           <IconFacebook />
         </a>
@@ -53,7 +60,7 @@ import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
           rel="noopener noreferrer"
           aria-label="Ir a Instagram de La Cantera Recreación"
           class="btn green hover:opacity-80 group"
-          href="https://www.instagram.com/lacantera.recreacion/"
+          href={CONTACT.instagram}
         >
           <IconInstagram />
         </a>
@@ -62,7 +69,7 @@ import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
           rel="noopener noreferrer"
           aria-label="Ir a youtube de La Cantera Recreación"
           class="btn green hover:opacity-80 group"
-          href="https://www.youtube.com/channel/UCgyRMwOrJ8zKayunSI6pMGA"
+          href={CONTACT.youtube}
         >
           <IconYoutube />
         </a>
@@ -77,6 +84,11 @@ import BlobPlotScene from "@/components/UI/Backgrounds/BlobPlotScene.astro";
       </h2>
       <div class="scale-125">
         <DialogEnterate
+          title={CONTACT.enterateTitle}
+          buttonText={CONTACT.enterateButtonText}
+          description={CONTACT.enterateDescription}
+          linkTelegram={CONTACT.telegram}
+          linkWhatsapp={CONTACT.whatsapp}
           buttonTriggerClass={"btn green !py-1 text-sm"}
           client:load
         />

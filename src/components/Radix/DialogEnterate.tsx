@@ -1,22 +1,21 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 
-export default function MyDialogDemoDialog({ buttonTriggerClass }: any) {
+export default function MyDialogDemoDialog({ buttonTriggerClass,title, description, buttonText, linkTelegram, linkWhatsapp} : any) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className={buttonTriggerClass}>Enterate</button>
+        <button className={buttonTriggerClass}>{buttonText}</button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="z-[9998]  bg-gradient-to-tr from-emerald-300/90 to-blue-600/90 backdrop-blur data-[state=open]:animate-overlayShow data-[state=closed]:animate-overlayHide fixed inset-0" />
         <Dialog.Content className="z-[9999] data-[state=open]:animate-contentShow data-[state=closed]:animate-contentHide fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] p-[25px] focus:outline-none">
           <div className="relative z-10 grid w-full gap-3 pb-6 max-w-7xl animate__fadeIn animate__animated">
             <Dialog.Title className="text-3xl text-white lg:text-6xl">
-              <span className="font-hand font-light">Enterate</span>
+              <span className="font-hand font-light">{title}</span>
             </Dialog.Title>
             <Dialog.Description className="max-w-2xl font-sans sm:text-xl text-white">
-              En ambos canales recibirán información oficial sobre eventos,
-              reuniones y actualizaciones relacionadas al juego.
+              {description}
             </Dialog.Description>
             <div className="grid grid-cols-2 mt-6 gap-6">
               <div className="w-full ring ring-white max-w-sm overflow-hidden text-center align-middle transition-all transform bg-white shadow-xl rounded-2xl">
@@ -74,7 +73,7 @@ export default function MyDialogDemoDialog({ buttonTriggerClass }: any) {
                   className="btn text-center my-3 green"
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://chat.whatsapp.com/BrRcAcACvCjLXyH61w4RJm"
+                  href={linkWhatsapp}
                 >
                   Ir al grupo
                 </a>
@@ -118,7 +117,7 @@ export default function MyDialogDemoDialog({ buttonTriggerClass }: any) {
                   className="btn blue my-3"
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://t.me/lacanterarecreacion"
+                  href={linkTelegram}
                 >
                   Ir al grupo
                 </a>
